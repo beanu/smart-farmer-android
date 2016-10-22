@@ -6,6 +6,8 @@
 ===
 ###架构图
 
+![框架图](screenshot/frame.png)
+
 **1.第一层** [Arad](https://github.com/beanu/Arad)基础类库
 - Retrofit
 - Rxjava
