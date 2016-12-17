@@ -15,14 +15,14 @@
 - Glide
 - LiteOrm
 - avtivity fragment adapter基础类
-- 上拉下拉刷新，常用的util等
+- 上拉下拉基础Adapter，常用的util等
 
 **2.第二层** 可依赖的第三方功能库(特点：可单独使用的工具型模块)
-- [图片选择器](l2_imageselector/README.md)
+- [图片选择器](l2_imageselector)
 - 二维码扫描
 - 支付宝＋微信支付
 - 推送（小米，华为，极光）
-- [分享](l2_shareutil/README.md)
+- [分享](l2_shareutil)
 
 **3.第三层** 业务模块＋可抽离并可复用的模块
 - 登陆模块
