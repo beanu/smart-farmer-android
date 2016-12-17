@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/l2_imageselector/l2_imageselector.iml" filepath="$PROJECT_DIR$/l2_imageselector/l2_imageselector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/l2_recycleview/l2_recycleview.iml" filepath="$PROJECT_DIR$/l2_recycleview/l2_recycleview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/l2_shareutil/l2_shareutil.iml" filepath="$PROJECT_DIR$/l2_shareutil/l2_shareutil.iml" />
       <module fileurl="file://$PROJECT_DIR$/smart-farmer-android.iml" filepath="$PROJECT_DIR$/smart-farmer-android.iml" />
     </modules>
   </component>

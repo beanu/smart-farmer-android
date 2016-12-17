@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">smart-farmer-android</string>
+    <string name="app_name">SF</string>
+    <string name="title_activity_one">OneActivity</string>
 </resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/img_item_news"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginRight="8dp"/>
+
+
+    <TextView
+        android:id="@+id/txt_item_news_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/img_item_news"
+        tools:text="TITLE"/>
+
+
+    <TextView
+        android:id="@+id/txt_item_news_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_item_news_title"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/img_item_news"
+        android:maxLines="2"
+        tools:text="描述"/>
+</RelativeLayout>
