@@ -79,3 +79,6 @@ LoginUtil.login(MainActivity.this, LoginPlatform.WEIBO, mLoginListener, isFetchU
 * 分享的bitmap，会在分享之后被回收掉，所以分享之后最好不要再对该bitmap做任何操作。
 * example 中的代码可以参考，但是不可运行，因为需要保证包名以及签名文件和你申请各个平台id所填写信息保持一致
 * ShareListener的回调结果仅供参考，不可当做分享是否返回的依据，它并不是那么完全可靠，因为某些操作，例如微博分享取消，但是用户选择了保存草稿，这时候客户端并不会收到回调，所以也就不会调用ShareListener的onCancel
+
+###参考
+[三件事：Aar, Manifest和Activity-Alias](http://shaohui.me/2016/12/10/three_thing_about_aar_manifest_activity-alias/)

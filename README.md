@@ -44,3 +44,12 @@
 **4.第四层** 主APP布局
 - 底部导航
 - 侧滑
+
+
+
+###参考文章
+
+- [关于Android业务组件化的一些思考](http://zjutkz.net/2016/10/07/%E5%85%B3%E4%BA%8EAndroid%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E5%8C%96%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/)
+- [Android组件化实战](http://www.jianshu.com/p/4a5a036111bd)
+- [Android 开发:由模块化到组件化](http://blog.csdn.net/dd864140130/article/details/53645290)
+
