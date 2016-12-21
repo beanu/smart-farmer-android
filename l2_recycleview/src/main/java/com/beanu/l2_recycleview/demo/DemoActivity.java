@@ -9,6 +9,7 @@ import com.beanu.arad.utils.MessageUtils;
 import com.beanu.l2_recycleview.R;
 import com.beanu.l2_recycleview.demo.classic.DemoClassicPTRActivity;
 import com.beanu.l2_recycleview.demo.customAnim.DemoAnimPTRActivity;
+import com.beanu.l2_recycleview.demo.loadmore.DemoLoadMoreActivity;
 import com.beanu.l2_recycleview.demo.storehouse.StoreHouseActivity;
 
 public class DemoActivity extends AppCompatActivity implements View.OnClickListener {
@@ -47,7 +48,8 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent3);
                 break;
             case R.id.btn4:
-                MessageUtils.showShortToast(this, "别偷懒了，快开发");
+                Intent intent4 = new Intent(this, DemoLoadMoreActivity.class);
+                startActivity(intent4);
                 break;
             case R.id.btn5:
                 MessageUtils.showShortToast(this, "别偷懒了，快开发");

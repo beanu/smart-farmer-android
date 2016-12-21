@@ -1,4 +1,4 @@
-package com.beanu.l2_recycleview.demo;
+package com.beanu.l2_recycleview.demo.support;
 
 /**
  * 新闻类

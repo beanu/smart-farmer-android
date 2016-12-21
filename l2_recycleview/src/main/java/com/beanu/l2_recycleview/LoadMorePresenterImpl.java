@@ -81,10 +81,10 @@ public class LoadMorePresenterImpl<B, V extends ILoadMoreView<B>, M extends ILoa
             @Override
             public void onNext(PageModel<B> pageModel) {
                 mPageModel = pageModel;
+                if(mCurPage == 1){//第一次加载或者重新加载
+                    mList.clear();
+                }
                 if (pageModel.dataList != null && !pageModel.dataList.isEmpty()) {
-                    if(mCurPage == 1){//第一次加载或者重新加载
-                        mList.clear();
-                    }
                     mList.addAll(pageModel.dataList);
                 }
             }

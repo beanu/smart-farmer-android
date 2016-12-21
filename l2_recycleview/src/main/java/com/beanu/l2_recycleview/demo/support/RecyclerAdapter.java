@@ -1,4 +1,4 @@
-package com.beanu.l2_recycleview.demo;
+package com.beanu.l2_recycleview.demo.support;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

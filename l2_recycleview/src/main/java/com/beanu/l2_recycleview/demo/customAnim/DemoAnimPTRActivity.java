@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 
 import com.beanu.arad.utils.MessageUtils;
 import com.beanu.l2_recycleview.R;
-import com.beanu.l2_recycleview.demo.News;
-import com.beanu.l2_recycleview.demo.RecyclerAdapter;
+import com.beanu.l2_recycleview.demo.support.News;
+import com.beanu.l2_recycleview.demo.support.RecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

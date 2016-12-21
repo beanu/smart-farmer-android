@@ -10,6 +10,6 @@ import rx.Observable;
  * 继承该接口, 添加过滤方法
  */
 
-public interface ILoadMoreModel<Bean> extends BaseModel {
-    Observable<PageModel<Bean>> loadData(int pageIndex);
+public interface ILoadMoreModel<B> extends BaseModel {
+    Observable<PageModel<B>> loadData(int pageIndex);
 }

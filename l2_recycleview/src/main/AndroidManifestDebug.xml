@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".demo.customAnim.DemoAnimPTRActivity">
         </activity>
+        <activity android:name=".demo.loadmore.DemoLoadMoreActivity">
+        </activity>
     </application>
 
 </manifest>
