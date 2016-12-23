@@ -186,4 +186,8 @@ public class PtrAnimHeader extends FrameLayout implements PtrUIHandler {
         }
     }
 
+    public void setTitleTextColor(int color) {
+        mTextView.setTextColor(color);
+    }
+
 }

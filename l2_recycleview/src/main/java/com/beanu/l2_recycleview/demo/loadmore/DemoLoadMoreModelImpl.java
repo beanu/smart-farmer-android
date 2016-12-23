@@ -4,6 +4,8 @@ import com.beanu.l2_recycleview.PageModel;
 import com.beanu.l2_recycleview.demo.support.FakeLoader;
 import com.beanu.l2_recycleview.demo.support.News;
 
+import java.util.Map;
+
 import rx.Observable;
 
 /**
@@ -13,9 +15,7 @@ import rx.Observable;
 public class DemoLoadMoreModelImpl implements DemoLoadMoreContract.Model {
 
     @Override
-    public Observable<PageModel<News>> loadData(int pageIndex) {
+    public Observable<PageModel<News>> loadData(Map<String, Object> params, int pageIndex) {
         return FakeLoader.loadNewsList(pageIndex);
     }
-
-
 }

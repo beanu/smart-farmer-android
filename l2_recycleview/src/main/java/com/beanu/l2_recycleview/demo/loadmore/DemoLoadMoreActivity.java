@@ -55,7 +55,7 @@ public class DemoLoadMoreActivity extends ToolBarActivity<DemoLoadMorePresenterI
     }
 
     @Override
-    public void setList(List<News> beans) {
+    public void loadDataComplete(List<News> beans) {
         mPtrFrame.refreshComplete();
         mAdapter.notifyDataSetChanged();
     }

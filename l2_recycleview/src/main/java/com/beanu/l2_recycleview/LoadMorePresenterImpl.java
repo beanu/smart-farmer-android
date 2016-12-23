@@ -1,24 +1,26 @@
 package com.beanu.l2_recycleview;
 
+import android.support.v4.util.ArrayMap;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import rx.Subscriber;
 
 /**
+ * LoadMore P层的实现
  * Created by lizhihua on 2016/12/14.
  * 通用加载更多 Presenter
  */
 
 /**
- *
  * @param <B> 列表数据类型
  * @param <V> 实现了 ILoadMoreView接口 的类, 通常填写是当前 Activity (需要实现ILoadMoreView接口)
- *           或 Fragment (需要实现ILoadMoreView接口)
+ *            或 Fragment (需要实现ILoadMoreView接口)
  * @param <M> 实现了 ILoadMoreModel 接口 的类
  */
 public class LoadMorePresenterImpl<B, V extends ILoadMoreView<B>, M extends ILoadMoreModel<B>>
-        extends BaseLoadMorePresenter<V, M> {
+        extends ABSLoadMorePresenter<V, M> {
 
     private int mCurPage = 0;
     private PageModel<B> mPageModel;
@@ -27,7 +29,9 @@ public class LoadMorePresenterImpl<B, V extends ILoadMoreView<B>, M extends ILoa
     private boolean mHasError = false;
     private boolean mIsLoading = false;
 
-    public List<B> getList(){
+    private ArrayMap<String, Object> mParams = new ArrayMap<>();
+
+    public List<B> getList() {
         return mList;
     }
 
@@ -47,6 +51,11 @@ public class LoadMorePresenterImpl<B, V extends ILoadMoreView<B>, M extends ILoa
     }
 
     @Override
+    public void initLoadDataParams(ArrayMap<String, Object> params) {
+        mParams = params;
+    }
+
+    @Override
     public void loadDataFirst() {
         mCurPage = 0;
         loadDataNext();
@@ -56,7 +65,7 @@ public class LoadMorePresenterImpl<B, V extends ILoadMoreView<B>, M extends ILoa
     public void loadDataNext() {
         ++mCurPage;
         mIsLoading = true;
-        mRxManage.add(mModel.loadData(mCurPage).subscribe(new Subscriber<PageModel<B>>() {
+        mRxManage.add(mModel.loadData(mParams, mCurPage).subscribe(new Subscriber<PageModel<B>>() {
             @Override
             public void onCompleted() {
                 mIsLoading = false;
@@ -66,7 +75,7 @@ public class LoadMorePresenterImpl<B, V extends ILoadMoreView<B>, M extends ILoa
                 } else {
                     mView.contentLoadingComplete();
                 }
-                mView.setList(mList);
+                mView.loadDataComplete(mList);
             }
 
             @Override
@@ -81,7 +90,7 @@ public class LoadMorePresenterImpl<B, V extends ILoadMoreView<B>, M extends ILoa
             @Override
             public void onNext(PageModel<B> pageModel) {
                 mPageModel = pageModel;
-                if(mCurPage == 1){//第一次加载或者重新加载
+                if (mCurPage == 1) {//第一次加载或者重新加载
                     mList.clear();
                 }
                 if (pageModel.dataList != null && !pageModel.dataList.isEmpty()) {
