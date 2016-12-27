@@ -45,7 +45,10 @@
 - 底部导航
 - 侧滑
 
-
+###插件
+- [Android ButterKnife Zelezny](https://github.com/avast/android-butterknife-zelezny) findViewById的代替品
+- [MVPHelper](https://github.com/beanu/mvphelper) 帮助生成MVP的接口和类
+- [Android Parcelable code generator](https://github.com/mcharmas/android-parcelable-intellij-plugin) 可序列化生成器
 
 ###参考文章
 

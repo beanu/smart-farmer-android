@@ -15,16 +15,3 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
-
-#极光混淆
--dontoptimize
--dontpreverify
-
--dontwarn cn.jpush.**
--keep class cn.jpush.** { *; }
-
--dontwarn cn.jiguang.**
--keep class cn.jiguang.** { *; }
-
-#小米混淆(自定义的广播接收器，不能混淆)
--keep class com.beanu.l2_push.MiMessageReceiver {*;}

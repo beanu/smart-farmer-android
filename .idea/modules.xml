@@ -10,6 +10,8 @@
       <module fileurl="file://$PROJECT_DIR$/l2_recycleview/l2_recycleview.iml" filepath="$PROJECT_DIR$/l2_recycleview/l2_recycleview.iml" />
       <module fileurl="file://$PROJECT_DIR$/l2_shareutil/l2_shareutil.iml" filepath="$PROJECT_DIR$/l2_shareutil/l2_shareutil.iml" />
       <module fileurl="file://$PROJECT_DIR$/l2_zxing/l2_zxing.iml" filepath="$PROJECT_DIR$/l2_zxing/l2_zxing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/l4_bottom_tab/l4_bottom_tab.iml" filepath="$PROJECT_DIR$/l4_bottom_tab/l4_bottom_tab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/l4_drawer_navigation/l4_drawer_navigation.iml" filepath="$PROJECT_DIR$/l4_drawer_navigation/l4_drawer_navigation.iml" />
       <module fileurl="file://$PROJECT_DIR$/smart-farmer-android.iml" filepath="$PROJECT_DIR$/smart-farmer-android.iml" />
     </modules>
   </component>

@@ -25,6 +25,19 @@ android {
         versionCode 1
         versionName "1.0"
 
+        //极光的参数设定
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.beanu.l2_push",
+                JPUSH_APPKEY : "a84768eea8c9143659221c2a", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
+        //极光配置完毕
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -43,4 +56,9 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
+
+    //第三方依赖
+    compile 'cn.jiguang.sdk:jpush:3.0.0'
+    compile 'cn.jiguang.sdk:jcore:1.0.0'
+
 }
