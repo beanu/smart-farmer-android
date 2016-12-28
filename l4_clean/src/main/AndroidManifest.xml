@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.beanu.l4_clean"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:name=".L4Application"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.signIn.LoginActivity">
+        </activity>
+
+        <activity android:name=".ui.MainActivity">
+        </activity>
+        <!-- 下载服务 -->
+        <service
+            android:name="com.beanu.arad.support.updateversion.DownloadService"
+            android:exported="true"/>
+
+        <!--bug收集-->
+        <!--<meta-data-->
+        <!--android:name="com.bugsnag.android.API_KEY"-->
+        <!--android:value="561a4fc14f249d093d8da339b6714a44"/>-->
+
+    </application>
+
+</manifest>

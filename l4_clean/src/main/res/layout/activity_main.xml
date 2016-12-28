@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.beanu.l4_clean.ui.MainActivity">
+
+    <include layout="@layout/arad_toolbar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:lineSpacingMultiplier="1.2"
+        android:padding="16dp"
+        android:text="本工程已经包含了项目中常用的网络请求、数据存储、图片加载、工具类、下拉上拉、ButterKnife、图片选择、支付、分享.....\n\n你所要做的就是复制一份工程，选择你需要的功能，然后关注业务即可"/>
+</LinearLayout>
