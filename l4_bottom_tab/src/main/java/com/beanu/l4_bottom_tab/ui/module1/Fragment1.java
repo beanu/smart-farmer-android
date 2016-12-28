@@ -14,10 +14,10 @@ import com.beanu.l4_bottom_tab.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends BaseFragment {
+public class Fragment1 extends BaseFragment {
 
 
-    public HomeFragment() {
+    public Fragment1() {
         // Required empty public constructor
     }
 
@@ -26,7 +26,7 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_1, container, false);
     }
 
 }

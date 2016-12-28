@@ -7,6 +7,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="支撑保障"/>
+        android:gravity="center"
+        android:text="页面2"
+        android:textSize="30sp"/>
 
 </FrameLayout>

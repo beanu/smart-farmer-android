@@ -2,7 +2,7 @@
     <string name="app_name">l4_bottom_tab</string>
 
     <string name="tab_title_1">首页</string>
-    <string name="tab_title_2">两页</string>
-    <string name="tab_title_3">内容</string>
-    <string name="tab_title_4">我的</string>
+    <string name="tab_title_2">页面2</string>
+    <string name="tab_title_3">页面3</string>
+    <string name="tab_title_4">页面4</string>
 </resources>

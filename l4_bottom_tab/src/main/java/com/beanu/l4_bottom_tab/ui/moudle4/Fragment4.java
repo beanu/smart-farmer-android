@@ -1,4 +1,4 @@
-package com.beanu.l4_bottom_tab.ui.module2;
+package com.beanu.l4_bottom_tab.ui.moudle4;
 
 
 import android.os.Bundle;
@@ -14,10 +14,10 @@ import com.beanu.l4_bottom_tab.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WaterFragment extends BaseFragment {
+public class Fragment4 extends BaseFragment {
 
 
-    public WaterFragment() {
+    public Fragment4() {
         // Required empty public constructor
     }
 
@@ -26,7 +26,7 @@ public class WaterFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_water, container, false);
+        return inflater.inflate(R.layout.fragment_4, container, false);
     }
 
 }
