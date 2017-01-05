@@ -18,7 +18,6 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.beanu.l2_pay"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

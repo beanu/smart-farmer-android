@@ -19,7 +19,6 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.beanu.l2_zxing"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

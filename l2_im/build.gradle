@@ -11,15 +11,14 @@ android {
     sourceSets {
         main {
             if (isDebug.toBoolean()) {
-                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+                manifest.srcFile 'src/main/AndroidManifestDebug.xml'
             } else {
-                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                manifest.srcFile 'src/main/AndroidManifest.xml'
             }
         }
     }
 
     defaultConfig {
-        applicationId "com.beanu.l2_im"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

@@ -25,7 +25,6 @@ android {
         }
     }
     defaultConfig {
-        applicationId "com.beanu.l2_shareutil"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
