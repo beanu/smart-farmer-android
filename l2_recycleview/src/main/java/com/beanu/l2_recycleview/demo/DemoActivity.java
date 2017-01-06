@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.beanu.arad.utils.MessageUtils;
 import com.beanu.l2_recycleview.R;
 import com.beanu.l2_recycleview.demo.classic.DemoClassicPTRActivity;
 import com.beanu.l2_recycleview.demo.customAnim.DemoAnimPTRActivity;
 import com.beanu.l2_recycleview.demo.loadmore.DemoLoadMoreActivity;
+import com.beanu.l2_recycleview.demo.loadmore_header.DemoHeaderLoadMoreActivity;
+import com.beanu.l2_recycleview.demo.simplest.DemoSimplestActivity;
 import com.beanu.l2_recycleview.demo.storehouse.StoreHouseActivity;
 
 public class DemoActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,13 +26,12 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn3).setOnClickListener(this);
         findViewById(R.id.btn4).setOnClickListener(this);
         findViewById(R.id.btn5).setOnClickListener(this);
-
+        findViewById(R.id.btn6).setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View view) {
-
 
         int id = view.getId();
         switch (id) {
@@ -52,7 +52,12 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent4);
                 break;
             case R.id.btn5:
-                MessageUtils.showShortToast(this, "别偷懒了，快开发");
+                Intent intent5 = new Intent(this, DemoHeaderLoadMoreActivity.class);
+                startActivity(intent5);
+                break;
+            case R.id.btn6:
+                Intent intent6 = new Intent(this, DemoSimplestActivity.class);
+                startActivity(intent6);
                 break;
         }
 

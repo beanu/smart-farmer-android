@@ -44,7 +44,12 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 
+    if(isDebug.toBoolean()){
+        compile 'com.pacioianu.david:ink-page-indicator:1.2.0'
+    }
+
     //第三方依赖
     compile 'com.beanu:arad:0.9.6'
     compile 'in.srain.cube:ultra-ptr:1.0.11'
+
 }

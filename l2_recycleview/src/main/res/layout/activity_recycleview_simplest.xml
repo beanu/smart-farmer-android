@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/activity_demo_load_more"
+    android:id="@+id/activity_load_more_simplest"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ptr="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,9 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <include layout="@layout/arad_loading"/>
-
 
         <in.srain.cube.views.ptr.PtrClassicFrameLayout
             android:id="@+id/arad_content"

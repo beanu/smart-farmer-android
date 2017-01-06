@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.beanu.arad.support.loadmore.ILoadMoreAdapter;
 import com.beanu.arad.support.recyclerview.adapter.BaseLoadMoreAdapter;
 import com.beanu.l2_recycleview.R;
 import com.bumptech.glide.Glide;
@@ -20,8 +21,8 @@ import java.util.List;
 
 public class DemoLoadMoreAdapter extends BaseLoadMoreAdapter<News, DemoLoadMoreAdapter.ViewHolder> {
 
-    public DemoLoadMoreAdapter(Context context, List<News> list) {
-        super(context, list);
+    public DemoLoadMoreAdapter(Context context, List<News> list, ILoadMoreAdapter listener) {
+        super(context, list, listener);
     }
 
     @Override

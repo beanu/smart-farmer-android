@@ -1,7 +1,7 @@
 # smart-farmer-android
 整合常用的业务模块，快速开发项目
 
-本项目基于模块开发的思想，GUI层使用MVP框架以及整合最新的android开发技术，包括但不限于（Retrofit Rxjava OKhttp Glide LiteOrm......）,持续更新!
+本项目基于组件化开发的思想，GUI层使用MVP框架以及整合最新的android开发技术，包括但不限于（Retrofit Rxjava OKhttp Glide LiteOrm......）,持续更新!
 
 ===
 ###架构图

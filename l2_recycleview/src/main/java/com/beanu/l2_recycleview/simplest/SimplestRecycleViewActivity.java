@@ -1,39 +1,43 @@
-package com.beanu.l2_recycleview.demo.loadmore;
+package com.beanu.l2_recycleview.simplest;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;
+import com.beanu.arad.support.recyclerview.adapter._BaseAdapter;
+import com.beanu.l2_recycleview.ABSLoadMorePresenter;
+import com.beanu.l2_recycleview.ILoadMoreModel;
 import com.beanu.l2_recycleview.R;
-import com.beanu.l2_recycleview.demo.support.DemoLoadMoreAdapter;
-import com.beanu.l2_recycleview.demo.support.News;
-
-import java.util.List;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
-public class DemoLoadMoreActivity extends ToolBarActivity<DemoLoadMorePresenterImpl, DemoLoadMoreModelImpl> implements DemoLoadMoreContract.View {
+/**
+ * 最简的recycle view
+ * Created by Beanu on 2017/1/6.
+ */
 
+public abstract class SimplestRecycleViewActivity<T extends ABSLoadMorePresenter, E extends ILoadMoreModel> extends ToolBarActivity<T, E> {
 
     RecyclerView mRecycleView;
     PtrClassicFrameLayout mPtrFrame;
-    DemoLoadMoreAdapter mAdapter;
+    _BaseAdapter mAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo_load_more);
+        setContentView(R.layout.activity_recycleview_simplest);
 
         //初始化view
         mPtrFrame = (PtrClassicFrameLayout) findViewById(R.id.arad_content);
         mRecycleView = (RecyclerView) findViewById(R.id.recycle_view);
 
         //定义recycle view 样式
-        mAdapter = new DemoLoadMoreAdapter(this, mPresenter.getList(), mPresenter);
+        mAdapter = initBaseApater();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecycleView.setLayoutManager(linearLayoutManager);
         mRecycleView.setAdapter(mAdapter);
@@ -54,11 +58,14 @@ public class DemoLoadMoreActivity extends ToolBarActivity<DemoLoadMorePresenterI
             }
         });
 
+        //第一次加载数据
         mPresenter.loadDataFirst();
     }
 
-    @Override
-    public void loadDataComplete(List<News> beans) {
+
+    public abstract _BaseAdapter initBaseApater();
+
+    public void loadDataComplete() {
         mPtrFrame.refreshComplete();
         mAdapter.notifyDataSetChanged();
     }

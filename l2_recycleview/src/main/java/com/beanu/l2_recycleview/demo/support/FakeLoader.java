@@ -27,7 +27,7 @@ public class FakeLoader {
                 pageModel.dataList = new ArrayList<>();
                 for (int i = 0; i < 10; ++i) {
                     News standard = new News();
-                    standard.setTitle("新闻标题" + i);
+                    standard.setTitle("新闻标题" + page + "" + i);
                     standard.setDesc("征收标准：自2015年9月1日起，适当调整我省水资源费征收标准。淮河流域及合肥市、滁州市地表水资源费征收标准为每立方米0.12元;其他地区为每立方米0.08元。其中，水力发电用水水资源费征收标准0.003元/千万时，贯流式火电为0.001元/千万时，抽水蓄能电站发电循环用水量暂不征收水资源费。");
                     standard.setImgPath("http://ds.cdncache.org/avatar-50/532/164695.jpg");
                     pageModel.dataList.add(standard);

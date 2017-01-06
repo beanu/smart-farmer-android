@@ -1,4 +1,4 @@
-package com.beanu.l2_recycleview.demo.loadmore;
+package com.beanu.l2_recycleview.demo.loadmore_header;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;
 import com.beanu.l2_recycleview.R;
-import com.beanu.l2_recycleview.demo.support.DemoLoadMoreAdapter;
+import com.beanu.l2_recycleview.demo.support.DemoHeaderLoadMoreAdapter;
 import com.beanu.l2_recycleview.demo.support.News;
 
 import java.util.List;
@@ -16,29 +16,27 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
-public class DemoLoadMoreActivity extends ToolBarActivity<DemoLoadMorePresenterImpl, DemoLoadMoreModelImpl> implements DemoLoadMoreContract.View {
-
+public class DemoHeaderLoadMoreActivity extends ToolBarActivity<DemoHeaderLoadMorePresenterImpl, DemoHeaderLoadMoreModelImpl> implements DemoHeaderLoadMoreContract.View {
 
     RecyclerView mRecycleView;
     PtrClassicFrameLayout mPtrFrame;
-    DemoLoadMoreAdapter mAdapter;
+    DemoHeaderLoadMoreAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo_load_more);
+        setContentView(R.layout.activity_demo_header_load_more);
 
-        //初始化view
         mPtrFrame = (PtrClassicFrameLayout) findViewById(R.id.arad_content);
         mRecycleView = (RecyclerView) findViewById(R.id.recycle_view);
 
-        //定义recycle view 样式
-        mAdapter = new DemoLoadMoreAdapter(this, mPresenter.getList(), mPresenter);
+        mAdapter = new DemoHeaderLoadMoreAdapter(this, mPresenter.getList(), mPresenter.getTopImageList(), mPresenter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecycleView.setLayoutManager(linearLayoutManager);
         mRecycleView.setAdapter(mAdapter);
 
-        //上拉监听
+        mPresenter.loadDataFirst();
+
         mRecycleView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager, mPresenter) {
             @Override
             public void onLoadMore() {
@@ -46,15 +44,26 @@ public class DemoLoadMoreActivity extends ToolBarActivity<DemoLoadMorePresenterI
             }
         });
 
-        //下拉刷新监听
+
         mPtrFrame.setPtrHandler(new PtrDefaultHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
                 mPresenter.loadDataFirst();
             }
         });
+    }
 
-        mPresenter.loadDataFirst();
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAdapter.getViewPagerAutoScroll().start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mAdapter.getViewPagerAutoScroll().stop();
     }
 
     @Override
