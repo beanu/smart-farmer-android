@@ -161,6 +161,11 @@ public class ZxingUtil {
         return result;
     }
 
+    /**
+     * 不可以单独使用，需要在相机开启的页面调用
+     *
+     * @param isEnable 是否打开闪光灯
+     */
     public static void isLightEnable(boolean isEnable) {
         if (isEnable) {
             Camera camera = CameraManager.get().getCamera();

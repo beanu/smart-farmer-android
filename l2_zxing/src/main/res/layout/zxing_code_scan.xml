@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent">
 
     <SurfaceView
         android:id="@+id/preview_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"/>
 
     <com.beanu.l2_zxing.view.ViewfinderView
         android:id="@+id/viewfinder_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"/>
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btn_flight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"
+            android:text="开启闪光灯"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,7 +38,7 @@
             android:layout_marginBottom="@dimen/dp10"
             android:text="@string/scan_tip"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp20" />
+            android:textSize="@dimen/sp20"/>
     </RelativeLayout>
 
 </FrameLayout>

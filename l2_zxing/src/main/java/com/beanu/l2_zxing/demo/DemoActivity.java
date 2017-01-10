@@ -25,7 +25,6 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTextView;
     private ImageView mImageView;
 
-    private boolean isLightOpen;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,6 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn2).setOnClickListener(this);
         findViewById(R.id.btn3).setOnClickListener(this);
         findViewById(R.id.btn4).setOnClickListener(this);
-        findViewById(R.id.btn5).setOnClickListener(this);
     }
 
     @Override
@@ -67,10 +65,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent1);
 
                 break;
-            case R.id.btn5:
-                isLightOpen = !isLightOpen;
-                ZxingUtil.isLightEnable(isLightOpen);
-                break;
+
         }
     }
 
