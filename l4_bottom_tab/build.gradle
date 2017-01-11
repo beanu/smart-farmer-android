@@ -36,6 +36,6 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
 
     //第三方依赖
-    compile 'com.beanu:arad:0.9.7'
+    compile 'com.beanu:arad:0.9.9'
 
 }

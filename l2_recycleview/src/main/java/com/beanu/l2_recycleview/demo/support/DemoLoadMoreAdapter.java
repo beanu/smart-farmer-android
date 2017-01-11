@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.beanu.arad.support.loadmore.ILoadMoreAdapter;
+import com.beanu.arad.support.listview.ILoadMoreAdapter;
 import com.beanu.arad.support.recyclerview.adapter.BaseLoadMoreAdapter;
 import com.beanu.l2_recycleview.R;
 import com.bumptech.glide.Glide;
@@ -49,7 +49,7 @@ public class DemoLoadMoreAdapter extends BaseLoadMoreAdapter<News, DemoLoadMoreA
         }
 
         private void bind(News item) {
-            Glide.with(context).load(item.getImgPath()).into(img);
+            Glide.with(mContext).load(item.getImgPath()).into(img);
             mTxtTitle.setText(item.getTitle());
             mTxtDesc.setText(item.getDesc());
         }

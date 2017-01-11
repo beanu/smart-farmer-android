@@ -9,7 +9,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.beanu.arad.support.loadmore.ILoadMoreAdapter;
+import com.beanu.arad.support.listview.ILoadMoreAdapter;
 import com.beanu.arad.support.recyclerview.adapter.BaseHeadLoadMoreAdapter;
 import com.beanu.arad.support.viewpager.transforms.HalfTransformer;
 import com.beanu.arad.support.viewpager.tricks.ViewPagerAutoScroll;
@@ -76,7 +76,7 @@ public class DemoHeaderLoadMoreAdapter extends BaseHeadLoadMoreAdapter<News, Dem
         }
 
         private void bind(News item) {
-            Glide.with(context).load(item.getImgPath()).into(img);
+            Glide.with(mContext).load(item.getImgPath()).into(img);
             mTxtTitle.setText(item.getTitle());
             mTxtDesc.setText(item.getDesc());
         }
@@ -100,7 +100,7 @@ public class DemoHeaderLoadMoreAdapter extends BaseHeadLoadMoreAdapter<News, Dem
             mIndicator = (InkPageIndicator) itemView.findViewById(R.id.ink_indicator);
 
             indexImages = list;
-            pagerAdapter = new ViewPagerImageAdapter(context, indexImages);
+            pagerAdapter = new ViewPagerImageAdapter(mContext, indexImages);
 
             mHeaderViewpager.setAdapter(pagerAdapter);
             mHeaderViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -1,8 +1,9 @@
 package com.beanu.l2_recycleview.demo.support;
 
-import com.beanu.arad.http.BaseModel;
+import com.beanu.arad.http.IPageModel;
 import com.beanu.arad.http.RxHelper;
-import com.beanu.l2_recycleview.PageModel;
+import com.beanu.l2_recycleview.demo.support.api.HttpModel;
+import com.beanu.l2_recycleview.demo.support.api.PageModel;
 
 import java.util.ArrayList;
 
@@ -15,11 +16,11 @@ import rx.Subscriber;
  */
 
 public class FakeLoader {
-    public static Observable<PageModel<News>> loadNewsList(final int page) {
-        return Observable.create(new Observable.OnSubscribe<BaseModel<PageModel<News>>>() {
+    public static Observable<IPageModel<News>> loadNewsList(final int page) {
+        return Observable.create(new Observable.OnSubscribe<HttpModel<IPageModel<News>>>() {
             @Override
-            public void call(Subscriber<? super BaseModel<PageModel<News>>> subscriber) {
-                BaseModel<PageModel<News>> baseModel = new BaseModel<>();
+            public void call(Subscriber<? super HttpModel<IPageModel<News>>> subscriber) {
+                HttpModel<IPageModel<News>> baseModel = new HttpModel<>();
                 baseModel.error = "false";
                 PageModel<News> pageModel = new PageModel<>();
                 pageModel.currentPage = page;
@@ -43,7 +44,7 @@ public class FakeLoader {
                 subscriber.onNext(baseModel);
                 subscriber.onCompleted();
             }
-        }).compose(RxHelper.<PageModel<News>>handleResult());
+        }).compose(RxHelper.<IPageModel<News>>handleResult());
     }
 
 }

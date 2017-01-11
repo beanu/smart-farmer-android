@@ -1,6 +1,6 @@
 package com.beanu.l2_recycleview.demo.loadmore_header;
 
-import com.beanu.l2_recycleview.PageModel;
+import com.beanu.arad.http.IPageModel;
 import com.beanu.l2_recycleview.demo.support.FakeLoader;
 import com.beanu.l2_recycleview.demo.support.News;
 
@@ -15,7 +15,7 @@ import rx.Observable;
 public class DemoHeaderLoadMoreModelImpl implements DemoHeaderLoadMoreContract.Model {
 
     @Override
-    public Observable<PageModel<News>> loadData(Map<String, Object> params, int pageIndex) {
+    public Observable<IPageModel<News>> loadData(Map<String, Object> params, int pageIndex) {
         return FakeLoader.loadNewsList(pageIndex);
     }
 }

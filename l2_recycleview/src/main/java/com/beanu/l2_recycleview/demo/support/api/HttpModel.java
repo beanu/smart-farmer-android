@@ -1,20 +1,20 @@
-package com.beanu.l4_clean.model;
+package com.beanu.l2_recycleview.demo.support.api;
 
 import com.beanu.arad.http.IHttpModel;
 
-import java.io.Serializable;
-
 /**
- * 基础实体类
+ * Created by Beanu on 2017/1/11.
  */
-public class HttpModel<T> implements IHttpModel<T>, Serializable {
+
+public class HttpModel<T> implements IHttpModel<T> {
+
     public String error;
     public String msg;
     public T results;
 
     @Override
     public boolean success() {
-        return error.equals("false");
+        return "false".equals(error);
     }
 
     @Override

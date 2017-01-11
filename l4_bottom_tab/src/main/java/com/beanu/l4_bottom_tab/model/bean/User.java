@@ -1,9 +1,11 @@
 package com.beanu.l4_bottom_tab.model.bean;
 
+import java.io.Serializable;
+
 /**
  * 用户信息
  * Created by Beanu on 16/2/23.
  */
-public class User {
+public class User implements Serializable{
 
 }

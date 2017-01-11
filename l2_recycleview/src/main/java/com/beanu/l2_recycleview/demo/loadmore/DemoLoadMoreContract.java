@@ -1,8 +1,8 @@
 package com.beanu.l2_recycleview.demo.loadmore;
 
-import com.beanu.l2_recycleview.ILoadMoreModel;
-import com.beanu.l2_recycleview.ILoadMoreView;
-import com.beanu.l2_recycleview.LoadMorePresenterImpl;
+import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreModel;
+import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreView;
+import com.beanu.arad.support.recyclerview.loadmore.LoadMorePresenterImpl;
 import com.beanu.l2_recycleview.demo.support.News;
 
 /**

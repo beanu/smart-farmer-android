@@ -8,8 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;
 import com.beanu.arad.support.recyclerview.adapter._BaseAdapter;
-import com.beanu.l2_recycleview.ABSLoadMorePresenter;
-import com.beanu.l2_recycleview.ILoadMoreModel;
+import com.beanu.arad.support.recyclerview.loadmore.ABSLoadMorePresenter;
+import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreModel;
 import com.beanu.l2_recycleview.R;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;

@@ -1,12 +1,11 @@
-package com.beanu.l4_bottom_tab.model;
+package com.beanu.l2_recycleview.demo.support.api;
 
 import com.beanu.arad.http.IPageModel;
 
 import java.util.List;
 
 /**
- * 翻页数据
- * Created by Beanu on 16/9/26.
+ * Created by Beanu on 2017/1/11.
  */
 
 public class PageModel<T> implements IPageModel<T> {
