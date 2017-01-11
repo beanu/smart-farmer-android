@@ -36,7 +36,7 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
 
     //第一层
-    compile 'com.beanu:arad:0.9.6'
+    compile 'com.beanu:arad:0.9.7'
 
     //第二层
 

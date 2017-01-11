@@ -49,7 +49,7 @@ dependencies {
     }
 
     //第三方依赖
-    compile 'com.beanu:arad:0.9.6'
+    compile 'com.beanu:arad:0.9.7'
     compile 'in.srain.cube:ultra-ptr:1.0.11'
 
 }
