@@ -1,7 +1,6 @@
 package com.beanu.l2_shareutil.share;
 
 import android.support.annotation.IntDef;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 

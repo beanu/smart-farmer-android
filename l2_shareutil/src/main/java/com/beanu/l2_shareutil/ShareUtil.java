@@ -23,8 +23,9 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import java.util.List;
+import java.util.Locale;
 
-
+import static com.beanu.l2_shareutil.ShareLogger.INFO;
 
 /**
  * Created by shaohui on 2016/11/18.
@@ -45,9 +46,9 @@ public class ShareUtil {
 
     private static ShareInstance mShareInstance;
 
-    final static int TYPE_IMAGE = 1;
-    final static int TYPE_TEXT = 2;
-    final static int TYPE_MEDIA = 3;
+    private final static int TYPE_IMAGE = 1;
+    private final static int TYPE_TEXT = 2;
+    private final static int TYPE_MEDIA = 3;
 
     private static int mType;
     private static int mPlatform;
@@ -60,9 +61,15 @@ public class ShareUtil {
     static void action(Activity activity) {
         mShareInstance = getShareInstance(mPlatform, activity);
 
-        if (!mShareInstance.isInstall(activity)) {
+        // 防止之后调用 NullPointException
+        if (mShareListener == null) {
             activity.finish();
-            mShareListener.doShareFailure(new Exception("not install"));
+            return;
+        }
+
+        if (!mShareInstance.isInstall(activity)) {
+            mShareListener.shareFailure(new Exception(INFO.NOT_INSTALL));
+            activity.finish();
             return;
         }
 
@@ -78,11 +85,6 @@ public class ShareUtil {
                         mShareImageObject, activity, mShareListener);
                 break;
         }
-
-        // 默认系统分享没有回调，所以需要手动处理掉分享的activity
-        if (mPlatform == SharePlatform.DEFAULT) {
-            activity.finish();
-        }
     }
 
     public static void shareText(Context context, @SharePlatform.Platform int platform, String text,
@@ -90,7 +92,7 @@ public class ShareUtil {
         mType = TYPE_TEXT;
         mText = text;
         mPlatform = platform;
-        mShareListener = listener;
+        mShareListener = buildProxyListener(listener);
 
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
     }
@@ -100,7 +102,7 @@ public class ShareUtil {
         mType = TYPE_IMAGE;
         mPlatform = platform;
         mShareImageObject = new ShareImageObject(urlOrPath);
-        mShareListener = listener;
+        mShareListener = buildProxyListener(listener);
 
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
     }
@@ -110,7 +112,7 @@ public class ShareUtil {
         mType = TYPE_IMAGE;
         mPlatform = platform;
         mShareImageObject = new ShareImageObject(bitmap);
-        mShareListener = listener;
+        mShareListener = buildProxyListener(listener);
 
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
     }
@@ -123,7 +125,7 @@ public class ShareUtil {
         mSummary = summary;
         mTargetUrl = targetUrl;
         mTitle = title;
-        mShareListener = listener;
+        mShareListener = buildProxyListener(listener);
 
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
     }
@@ -137,23 +139,25 @@ public class ShareUtil {
         mSummary = summary;
         mTargetUrl = targetUrl;
         mTitle = title;
-        mShareListener = listener;
+        mShareListener = buildProxyListener(listener);
 
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
+    }
+
+    private static ShareListener buildProxyListener(ShareListener listener) {
+        return new ShareListenerProxy(listener);
     }
 
     public static void handleResult(Intent data) {
         // 微博分享会同时回调onActivityResult和onNewIntent， 而且前者返回的intent为null
         if (mShareInstance != null && data != null) {
-            ShareLog.i("catch result");
             mShareInstance.handleResult(data);
+        } else if (data == null) {
+            if (mPlatform != SharePlatform.WEIBO) {
+                ShareLogger.e(INFO.HANDLE_DATA_NULL);
+            }
         } else {
-            if (mShareInstance == null) {
-                ShareLog.e("share instance is null");
-            }
-            if (data == null) {
-                ShareLog.e("data is null");
-            }
+            ShareLogger.e(INFO.UNKNOWN_ERROR);
         }
     }
 
@@ -196,6 +200,24 @@ public class ShareUtil {
     /**
      * 检查客户端是否安装
      */
+    public static boolean isInstalled(@SharePlatform.Platform int platform, Context context) {
+        switch (platform) {
+            case SharePlatform.QQ:
+            case SharePlatform.QZONE:
+                return isQQInstalled(context);
+            case SharePlatform.WEIBO:
+                return isWeiBoInstalled(context);
+            case SharePlatform.WX:
+            case SharePlatform.WX_TIMELINE:
+                return isWeiXinInstalled(context);
+            case SharePlatform.DEFAULT:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    @Deprecated
     public static boolean isQQInstalled(@NonNull Context context) {
         PackageManager pm = context.getPackageManager();
         if (pm == null) {
@@ -204,21 +226,60 @@ public class ShareUtil {
 
         List<PackageInfo> packageInfos = pm.getInstalledPackages(0);
         for (PackageInfo info : packageInfos) {
-            if (TextUtils.equals(info.packageName.toLowerCase(), "com.tencent.mobileqq")) {
+            if (TextUtils.equals(info.packageName.toLowerCase(Locale.getDefault()),
+                    "com.tencent.mobileqq")) {
                 return true;
             }
         }
         return false;
     }
 
+    @Deprecated
     public static boolean isWeiBoInstalled(@NonNull Context context) {
         IWeiboShareAPI shareAPI =
                 WeiboShareSDK.createWeiboAPI(context, ShareManager.CONFIG.getWeiboId());
         return shareAPI.isWeiboAppInstalled();
     }
 
+    @Deprecated
     public static boolean isWeiXinInstalled(Context context) {
         IWXAPI api = WXAPIFactory.createWXAPI(context, ShareManager.CONFIG.getWxId(), true);
         return api.isWXAppInstalled();
+    }
+    
+    private static class ShareListenerProxy extends ShareListener {
+
+        private final ShareListener mShareListener;
+
+        ShareListenerProxy(ShareListener listener) {
+            mShareListener = listener;
+        }
+
+        @Override
+        public void shareSuccess() {
+            ShareLogger.i(INFO.SHARE_SUCCESS);
+            ShareUtil.recycle();
+            mShareListener.shareSuccess();
+        }
+
+        @Override
+        public void shareFailure(Exception e) {
+            ShareLogger.i(INFO.SHARE_FAILURE);
+            ShareUtil.recycle();
+            mShareListener.shareFailure(e);
+        }
+
+        @Override
+        public void shareCancel() {
+            ShareLogger.i(INFO.SHARE_CANCEL);
+            ShareUtil.recycle();
+            mShareListener.shareCancel();
+        }
+
+        @Override
+        public void shareRequest() {
+            ShareLogger.i(INFO.SHARE_REQUEST);
+            mShareListener.shareRequest();
+        }
     }
 }

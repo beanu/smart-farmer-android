@@ -5,9 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -26,13 +26,13 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
+            android:taskAffinity="me.shaohui.shareutil"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             >
         </activity>
 
         <activity
             android:name="com.tencent.tauth.AuthActivity"
-            android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
@@ -43,11 +43,10 @@
                 <data android:scheme="tencent${qq_id}"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name="._ShareActivity"
-            android:launchMode="singleTop"
-            android:taskAffinity="me.shaohui.shareutil"
+            android:launchMode="singleTask"
+            android:taskAffinity="${applicationId}"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"/>
@@ -59,6 +58,7 @@
             android:name="${applicationId}.wxapi.WXEntryActivity"
             android:exported="true"
             android:targetActivity="._ShareActivity"/>
+
     </application>
 
 

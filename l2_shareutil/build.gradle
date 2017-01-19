@@ -6,13 +6,7 @@ if (isDebug.toBoolean()) {
 
 android {
     signingConfigs {
-        config {
-            keyAlias 'beanu'
-            keyPassword 'mmcsqq'
-            storeFile file('../beanu-keystore.jks')
-            storePassword 'mmcsqq'
-        }
-        config2 {
+        config_debug {
             keyAlias 'qcxy'
             keyPassword 'qcxy123'
             storeFile file('qcxy.jks')
@@ -37,11 +31,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        if (isDebug.toBoolean()) {//debug模式使用的applicationId
+        if (isDebug.toBoolean()) {
             applicationId "com.tuoyan.qcxy"
-        }
-
-        if (isDebug.toBoolean()) {//debug模式使用的qq_id
             manifestPlaceholders = [
                     qq_id: "1105143764"
             ]
@@ -59,9 +50,7 @@ android {
             if (isDebug.toBoolean()) {//debug模式使用config2签名配置
                 minifyEnabled true
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-                signingConfig signingConfigs.config2
-            } else {
-                signingConfig signingConfigs.config
+                signingConfig signingConfigs.config_debug
             }
         }
     }

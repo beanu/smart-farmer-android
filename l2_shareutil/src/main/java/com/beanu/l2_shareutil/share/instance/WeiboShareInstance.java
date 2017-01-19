@@ -3,7 +3,6 @@ package com.beanu.l2_shareutil.share.instance;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -35,9 +34,11 @@ public class WeiboShareInstance implements ShareInstance {
      * 微博分享限制thumb image必须小于2097152，否则点击分享会没有反应
      */
 
-    IWeiboShareAPI mWeiboShareAPI;
+    private IWeiboShareAPI mWeiboShareAPI;
 
-    private static final int TARGET_SIZE = 800;
+    private static final int TARGET_SIZE = 1024;
+
+    private static final int TARGET_LENGTH = 2097152;
 
     public WeiboShareInstance(Context context, String appId) {
         mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(context, appId);
@@ -48,7 +49,6 @@ public class WeiboShareInstance implements ShareInstance {
     public void shareText(int platform, String text, Activity activity, ShareListener listener) {
         TextObject textObject = new TextObject();
         textObject.text = text;
-
         WeiboMultiMessage message = new WeiboMultiMessage();
         message.textObject = textObject;
 
@@ -76,16 +76,16 @@ public class WeiboShareInstance implements ShareInstance {
 
         switch (baseResponse.errCode) {
             case WBConstants.ErrorCode.ERR_OK:
-                ShareUtil.mShareListener.doShareSuccess();
+                ShareUtil.mShareListener.shareSuccess();
                 break;
             case WBConstants.ErrorCode.ERR_FAIL:
-                ShareUtil.mShareListener.doShareFailure(new Exception(baseResponse.errMsg));
+                ShareUtil.mShareListener.shareFailure(new Exception(baseResponse.errMsg));
                 break;
             case WBConstants.ErrorCode.ERR_CANCEL:
-                ShareUtil.mShareListener.doShareCancel();
+                ShareUtil.mShareListener.shareCancel();
                 break;
             default:
-                ShareUtil.mShareListener.doShareFailure(new Exception(baseResponse.errMsg));
+                ShareUtil.mShareListener.shareFailure(new Exception(baseResponse.errMsg));
         }
     }
 
@@ -100,34 +100,21 @@ public class WeiboShareInstance implements ShareInstance {
     }
 
     private void shareTextOrImage(final ShareImageObject shareImageObject, final String text,
-                                  final Activity activity, final ShareListener listener) {
+            final Activity activity, final ShareListener listener) {
 
         Observable.fromEmitter(new Action1<Emitter<Pair<String, byte[]>>>() {
             @Override
             public void call(Emitter<Pair<String, byte[]>> emitter) {
-                if (!TextUtils.isEmpty(shareImageObject.getPathOrUrl())) {
-                    String path = ImageDecoder.decode(activity, shareImageObject.getPathOrUrl());
-                    Bitmap bitmap = ImageDecoder.compress(path, TARGET_SIZE, TARGET_SIZE);
-
-                    emitter.onNext(Pair.create(path, ImageDecoder.bmp2ByteArray(bitmap)));
-                    bitmap.recycle();
+                try {
+                    String path = ImageDecoder.decode(activity, shareImageObject);
+                    emitter.onNext(Pair.create(path,
+                            ImageDecoder.compress2Byte(path, TARGET_SIZE, TARGET_LENGTH)));
                     emitter.onCompleted();
-                } else if (shareImageObject.getBitmap() != null) {
-                    String path = ImageDecoder.decode(activity, shareImageObject.getBitmap());
-                    if (!TextUtils.isEmpty(path)) {
-                        Bitmap bitmap = ImageDecoder.compress(path, TARGET_SIZE, TARGET_SIZE);
-
-                        emitter.onNext(Pair.create(path, ImageDecoder.bmp2ByteArray(bitmap)));
-                        bitmap.recycle();
-                        emitter.onCompleted();
-                    } else {
-                        emitter.onError(new IllegalArgumentException());
-                    }
-                } else {
-                    emitter.onError(new IllegalArgumentException());
+                } catch (Exception e) {
+                    emitter.onError(e);
                 }
             }
-        }, Emitter.BackpressureMode.BUFFER)
+        }, Emitter.BackpressureMode.DROP)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnRequest(new Action1<Long>() {
@@ -157,7 +144,8 @@ public class WeiboShareInstance implements ShareInstance {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        startFailed(activity, listener, new Exception(throwable));
+                        activity.finish();
+                        listener.shareFailure(new Exception(throwable));
                     }
                 });
     }
@@ -167,10 +155,5 @@ public class WeiboShareInstance implements ShareInstance {
         request.transaction = String.valueOf(System.currentTimeMillis());
         request.multiMessage = message;
         mWeiboShareAPI.sendRequest(activity, request);
-    }
-
-    private void startFailed(Activity activity, ShareListener listener, Exception e) {
-        activity.finish();
-        listener.doShareFailure(e);
     }
 }

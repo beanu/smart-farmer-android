@@ -20,13 +20,14 @@ import com.tencent.tauth.Tencent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
+import rx.Emitter;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+
+import static com.beanu.l2_shareutil.ShareLogger.INFO;
 
 /**
  * Created by shaohui on 2016/11/18.
@@ -45,7 +46,8 @@ public class QQShareInstance implements ShareInstance {
         if (platform == SharePlatform.QZONE) {
             shareToQZoneForText(text, activity, listener);
         } else {
-            startFailed(activity, listener, new Exception("qq not support share text"));
+            activity.finish();
+            listener.shareFailure(new Exception(INFO.QQ_NOT_SUPPORT_SHARE_TXT));
         }
     }
 
@@ -53,18 +55,17 @@ public class QQShareInstance implements ShareInstance {
     public void shareMedia(final int platform, final String title, final String targetUrl,
                            final String summary, final ShareImageObject shareImageObject, final Activity activity,
                            final ShareListener listener) {
-        Observable.fromCallable(new Callable<String>() {
+        Observable.fromEmitter(new Action1<Emitter<String>>() {
             @Override
-            public String call() throws Exception {
-                if (!TextUtils.isEmpty(shareImageObject.getPathOrUrl())) {
-                    return ImageDecoder.decode(activity, shareImageObject.getPathOrUrl());
-                } else if (shareImageObject.getBitmap() != null) {
-                    return ImageDecoder.decode(activity, shareImageObject.getBitmap());
-                } else {
-                    return null;
+            public void call(Emitter<String> emitter) {
+                try {
+                    emitter.onNext(ImageDecoder.decode(activity, shareImageObject));
+                    emitter.onCompleted();
+                } catch (Exception e) {
+                    emitter.onError(e);
                 }
             }
-        })
+        }, Emitter.BackpressureMode.DROP)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnRequest(new Action1<Long>() {
@@ -73,52 +74,39 @@ public class QQShareInstance implements ShareInstance {
                         listener.shareRequest();
                     }
                 })
-                .doOnTerminate(new Action0() {
-                    @Override
-                    public void call() {
-                        if (mTencent != null) {
-                            mTencent.releaseResource();
-                            mTencent = null;
-                        }
-                    }
-                })
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
-                        if (!TextUtils.isEmpty(s)) {
-                            if (platform == SharePlatform.QZONE) {
-                                shareToQZoneForMedia(title, targetUrl, summary, s, activity,
-                                        listener);
-                            } else {
-                                shareToQQForMedia(title, summary, targetUrl, s, activity, listener);
-                            }
+                        if (platform == SharePlatform.QZONE) {
+                            shareToQZoneForMedia(title, targetUrl, summary, s, activity,
+                                    listener);
                         } else {
-                            startFailed(activity, listener, new Exception("image fetch error"));
+                            shareToQQForMedia(title, summary, targetUrl, s, activity, listener);
                         }
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        startFailed(activity, listener, new Exception(throwable));
+                        activity.finish();
+                        listener.shareFailure(new Exception(throwable));
                     }
                 });
     }
 
     @Override
     public void shareImage(final int platform, final ShareImageObject shareImageObject,
-                           final Activity activity, final ShareListener listener) {
-        Observable.fromCallable(new Callable<String>() {
+            final Activity activity, final ShareListener listener) {
+        Observable.fromEmitter(new Action1<Emitter<String>>() {
             @Override
-            public String call() throws Exception {
-                if (!TextUtils.isEmpty(shareImageObject.getPathOrUrl())) {
-                    return ImageDecoder.decode(activity, shareImageObject.getPathOrUrl());
-                } else if (shareImageObject.getBitmap() != null) {
-                    return ImageDecoder.decode(activity, shareImageObject.getBitmap());
-                } else {
-                    return null;
+            public void call(Emitter<String> emitter) {
+                try {
+                    emitter.onNext(ImageDecoder.decode(activity, shareImageObject));
+                    emitter.onCompleted();
+                } catch (Exception e) {
+                    emitter.onError(e);
                 }
             }
-        })
+        }, Emitter.BackpressureMode.DROP)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnRequest(new Action1<Long>() {
@@ -127,39 +115,22 @@ public class QQShareInstance implements ShareInstance {
                         listener.shareRequest();
                     }
                 })
-                .doOnTerminate(new Action0() {
-                    @Override
-                    public void call() {
-                        if (mTencent != null) {
-                            mTencent.releaseResource();
-                            mTencent = null;
-                        }
-                    }
-                })
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String localPath) {
-                        if (!TextUtils.isEmpty(localPath)) {
-                            if (platform == SharePlatform.QZONE) {
-                                shareToQzoneForImage(localPath, activity, listener);
-                            } else {
-                                shareToQQForImage(localPath, activity, listener);
-                            }
+                        if (platform == SharePlatform.QZONE) {
+                            shareToQzoneForImage(localPath, activity, listener);
                         } else {
-                            startFailed(activity, listener, new Exception("image fetch error"));
+                            shareToQQForImage(localPath, activity, listener);
                         }
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        startFailed(activity, listener, new Exception(throwable));
+                        activity.finish();
+                        listener.shareFailure(new Exception(throwable));
                     }
                 });
-    }
-
-    private void startFailed(Activity activity, ShareListener listener, Exception e) {
-        activity.finish();
-        listener.doShareFailure(e);
     }
 
     @Override
@@ -185,13 +156,16 @@ public class QQShareInstance implements ShareInstance {
 
     @Override
     public void recycle() {
-
+        if (mTencent != null) {
+            mTencent.releaseResource();
+            mTencent = null;
+        }
     }
 
     private void shareToQQForMedia(String title, String summary, String targetUrl, String thumbUrl,
-                                   Activity activity, ShareListener listener) {
+            Activity activity, ShareListener listener) {
         final Bundle params = new Bundle();
-        params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);// SHARE_TO_QQ_TYPE_AUDIO
+        params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
         params.putString(QQShare.SHARE_TO_QQ_TITLE, title);
         params.putString(QQShare.SHARE_TO_QQ_SUMMARY, summary);
         params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, targetUrl);
@@ -215,7 +189,7 @@ public class QQShareInstance implements ShareInstance {
     }
 
     private void shareToQZoneForMedia(String title, String targetUrl, String summary,
-                                      String imageUrl, Activity activity, ShareListener listener) {
+            String imageUrl, Activity activity, ShareListener listener) {
         final Bundle params = new Bundle();
         final ArrayList<String> image = new ArrayList<>();
         image.add(imageUrl);

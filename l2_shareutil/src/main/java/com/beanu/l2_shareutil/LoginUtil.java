@@ -1,16 +1,19 @@
 package com.beanu.l2_shareutil;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
 import com.beanu.l2_shareutil.login.LoginListener;
 import com.beanu.l2_shareutil.login.LoginPlatform;
+import com.beanu.l2_shareutil.login.LoginResult;
 import com.beanu.l2_shareutil.login.instance.LoginInstance;
 import com.beanu.l2_shareutil.login.instance.QQLoginInstance;
 import com.beanu.l2_shareutil.login.instance.WeiboLoginInstance;
 import com.beanu.l2_shareutil.login.instance.WxLoginInstance;
+import com.beanu.l2_shareutil.login.result.BaseToken;
+
+import static com.beanu.l2_shareutil.ShareLogger.INFO;
 
 
 /**
@@ -30,18 +33,15 @@ public class LoginUtil {
     static final int TYPE = 799;
 
     public static void login(Context context, @LoginPlatform.Platform int platform,
-            LoginListener listener) {
+                             LoginListener listener) {
         login(context, platform, listener, true);
     }
 
     public static void login(Context context, @LoginPlatform.Platform int platform,
-            LoginListener listener, boolean fetchUserInfo) {
+                             LoginListener listener, boolean fetchUserInfo) {
         mPlatform = platform;
-        mLoginListener = listener;
+        mLoginListener = new LoginListenerProxy(listener);
         isFetchUserInfo = fetchUserInfo;
-        if (context instanceof Application) {
-            listener.doLoginFailure(new Exception("don't support the application context"));
-        }
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
     }
 
@@ -56,6 +56,9 @@ public class LoginUtil {
             case LoginPlatform.WX:
                 mLoginInstance = new WxLoginInstance(activity, mLoginListener, isFetchUserInfo);
                 break;
+            default:
+                mLoginListener.loginFailure(new Exception(INFO.UNKNOW_PLATFORM));
+                activity.finish();
         }
         mLoginInstance.doLogin(activity, mLoginListener, isFetchUserInfo);
     }
@@ -74,5 +77,41 @@ public class LoginUtil {
         mLoginListener = null;
         mPlatform = 0;
         isFetchUserInfo = false;
+    }
+
+    private static class LoginListenerProxy extends LoginListener {
+
+        private LoginListener mListener;
+
+        LoginListenerProxy(LoginListener listener) {
+            mListener = listener;
+        }
+
+        @Override
+        public void loginSuccess(LoginResult result) {
+            ShareLogger.i(INFO.LOGIN_SUCCESS);
+            mListener.loginSuccess(result);
+            recycle();
+        }
+
+        @Override
+        public void loginFailure(Exception e) {
+            ShareLogger.i(INFO.LOGIN_FAIl);
+            mListener.loginFailure(e);
+            recycle();
+        }
+
+        @Override
+        public void loginCancel() {
+            ShareLogger.i(INFO.LOGIN_CANCEL);
+            mListener.loginCancel();
+            recycle();
+        }
+
+        @Override
+        public void beforeFetchUserInfo(BaseToken token) {
+            ShareLogger.i(INFO.LOGIN_AUTH_SUCCESS);
+            mListener.beforeFetchUserInfo(token);
+        }
     }
 }

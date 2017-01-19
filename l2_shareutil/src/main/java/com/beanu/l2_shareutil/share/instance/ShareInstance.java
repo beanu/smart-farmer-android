@@ -7,7 +7,6 @@ import android.content.Intent;
 import com.beanu.l2_shareutil.share.ShareImageObject;
 import com.beanu.l2_shareutil.share.ShareListener;
 
-
 /**
  * Created by shaohui on 2016/11/18.
  */

@@ -1,7 +1,6 @@
 package com.beanu.l2_shareutil.login.result;
 
 import android.text.TextUtils;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
