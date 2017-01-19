@@ -50,4 +50,13 @@ public class LoginResult {
     public void setUserInfo(BaseUser userInfo) {
         mUserInfo = userInfo;
     }
+
+    @Override
+    public String toString() {
+        return "LoginResult{" +
+                "mPlatform=" + mPlatform +
+                ", mToken=" + mToken +
+                ", mUserInfo=" + mUserInfo +
+                '}';
+    }
 }
