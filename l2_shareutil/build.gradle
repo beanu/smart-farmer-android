@@ -12,6 +12,12 @@ android {
             storeFile file('../beanu-keystore.jks')
             storePassword 'mmcsqq'
         }
+        config2 {
+            keyAlias 'qcxy'
+            keyPassword 'qcxy123'
+            storeFile file('qcxy.jks')
+            storePassword 'qcxy123'
+        }
     }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -24,27 +30,45 @@ android {
             }
         }
     }
+
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
 
-        manifestPlaceholders = [
-                qq_id: "123456"
-        ]
+        if (isDebug.toBoolean()) {//debug模式使用的applicationId
+            applicationId "com.tuoyan.qcxy"
+        } else {
 
+        }
+
+        if (isDebug.toBoolean()) {//debug模式使用的qq_id
+            manifestPlaceholders = [
+                    qq_id: "1105143764"
+            ]
+        }else {
+
+        }
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
         release {
-            minifyEnabled false
+//            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.config
+            if (isDebug.toBoolean()) {//debug模式使用config2签名配置
+                minifyEnabled true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                signingConfig signingConfigs.config2
+            } else {
+                signingConfig signingConfigs.config
+            }
+//            signingConfig signingConfigs.config2
         }
     }
 }
