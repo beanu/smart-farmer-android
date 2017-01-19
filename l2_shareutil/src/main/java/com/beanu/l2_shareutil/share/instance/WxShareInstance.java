@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.text.TextUtils;
 import android.util.Pair;
 
 import com.beanu.l2_shareutil.ShareUtil;
@@ -42,7 +41,7 @@ public class WxShareInstance implements ShareInstance {
 
     private IWXAPI mIWXAPI;
 
-    private static final int THUMB_SIZE = 144;
+    private static final int THUMB_SIZE = 32 * 1024 * 8;
 
     private static final int TARGET_SIZE = 200;
 
@@ -71,23 +70,14 @@ public class WxShareInstance implements ShareInstance {
 
             @Override
             public void call(Emitter<byte[]> emitter) {
-                if (shareImageObject.getBitmap() != null) {
-                    byte[] data = ImageDecoder.bmp2ByteArray(
-                            ImageDecoder.compress(shareImageObject.getBitmap(), TARGET_SIZE));
-
-                    emitter.onNext(data);
-                    emitter.onCompleted();
-                } else if (!TextUtils.isEmpty(shareImageObject.getPathOrUrl())) {
-                    String path = ImageDecoder.decode(activity, shareImageObject.getPathOrUrl());
-                    Bitmap bitmap = ImageDecoder.compress(path, TARGET_SIZE, TARGET_SIZE);
-                    emitter.onNext(ImageDecoder.bmp2ByteArray(bitmap));
-                    bitmap.recycle();
-                    emitter.onCompleted();
-                } else {
-                    emitter.onError(new IllegalArgumentException());
+                try {
+                    String imagePath = ImageDecoder.decode(activity, shareImageObject);
+                    emitter.onNext(ImageDecoder.compress2Byte(imagePath, TARGET_SIZE, THUMB_SIZE));
+                } catch (Exception e) {
+                    emitter.onError(e);
                 }
             }
-        }, Emitter.BackpressureMode.BUFFER)
+        }, Emitter.BackpressureMode.DROP)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnRequest(new Action1<Long>() {
@@ -112,7 +102,8 @@ public class WxShareInstance implements ShareInstance {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        startFailed(activity, listener, new Exception(throwable));
+                        activity.finish();
+                        listener.shareFailure(new Exception(throwable));
                     }
                 });
     }
@@ -120,24 +111,15 @@ public class WxShareInstance implements ShareInstance {
     @Override
     public void shareImage(final int platform, final ShareImageObject shareImageObject,
             final Activity activity, final ShareListener listener) {
-        Observable.fromEmitter(new Action1<Emitter<Pair<Bitmap, Bitmap>>>() {
+        Observable.fromEmitter(new Action1<Emitter<Pair<Bitmap, byte[]>>>() {
             @Override
-            public void call(Emitter<Pair<Bitmap, Bitmap>> emitter) {
-                if (shareImageObject.getBitmap() != null) {
-                    Bitmap thumb = ImageDecoder.compress(shareImageObject.getBitmap(), TARGET_SIZE);
-
-                    emitter.onNext(Pair.create(shareImageObject.getBitmap(), thumb));
-                    emitter.onCompleted();
-                } else if (!TextUtils.isEmpty(shareImageObject.getPathOrUrl())) {
-                    String filePath =
-                            ImageDecoder.decode(activity, shareImageObject.getPathOrUrl());
-                    Bitmap bitmap = BitmapFactory.decodeFile(filePath);
-                    Bitmap thumb = ImageDecoder.compress(bitmap, TARGET_SIZE);
-
-                    emitter.onNext(Pair.create(bitmap, thumb));
-                    emitter.onCompleted();
-                } else {
-                    emitter.onError(new IllegalArgumentException());
+            public void call(Emitter<Pair<Bitmap, byte[]>> emitter) {
+                try {
+                    String imagePath = ImageDecoder.decode(activity, shareImageObject);
+                    emitter.onNext(Pair.create(BitmapFactory.decodeFile(imagePath),
+                            ImageDecoder.compress2Byte(imagePath, TARGET_SIZE, THUMB_SIZE)));
+                } catch (Exception e) {
+                    emitter.onError(e);
                 }
             }
         }, Emitter.BackpressureMode.BUFFER)
@@ -149,22 +131,22 @@ public class WxShareInstance implements ShareInstance {
                         listener.shareRequest();
                     }
                 })
-                .subscribe(new Action1<Pair<Bitmap, Bitmap>>() {
+                .subscribe(new Action1<Pair<Bitmap, byte[]>>() {
                     @Override
-                    public void call(Pair<Bitmap, Bitmap> pair) {
+                    public void call(Pair<Bitmap, byte[]> pair) {
                         WXImageObject imageObject = new WXImageObject(pair.first);
 
                         WXMediaMessage message = new WXMediaMessage();
                         message.mediaObject = imageObject;
-                        message.thumbData = ImageDecoder.bmp2ByteArray(pair.second);
-                        pair.second.recycle();
+                        message.thumbData = pair.second;
 
                         sendMessage(platform, message, buildTransaction("image"));
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        startFailed(activity, listener, new Exception(throwable));
+                        activity.finish();
+                        listener.shareFailure(new Exception(throwable));
                     }
                 });
     }
@@ -180,13 +162,13 @@ public class WxShareInstance implements ShareInstance {
             public void onResp(BaseResp baseResp) {
                 switch (baseResp.errCode) {
                     case BaseResp.ErrCode.ERR_OK:
-                        ShareUtil.mShareListener.doShareSuccess();
+                        ShareUtil.mShareListener.shareSuccess();
                         break;
                     case BaseResp.ErrCode.ERR_USER_CANCEL:
-                        ShareUtil.mShareListener.doShareCancel();
+                        ShareUtil.mShareListener.shareCancel();
                         break;
                     default:
-                        ShareUtil.mShareListener.doShareFailure(new Exception(baseResp.errStr));
+                        ShareUtil.mShareListener.shareFailure(new Exception(baseResp.errStr));
                 }
             }
         });
@@ -195,11 +177,6 @@ public class WxShareInstance implements ShareInstance {
     @Override
     public boolean isInstall(Context context) {
         return mIWXAPI.isWXAppInstalled();
-    }
-
-    private void startFailed(Activity activity, ShareListener listener, Exception e) {
-        activity.finish();
-        listener.doShareFailure(e);
     }
 
     @Override

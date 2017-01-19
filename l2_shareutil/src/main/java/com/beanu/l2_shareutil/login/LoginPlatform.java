@@ -1,7 +1,6 @@
 package com.beanu.l2_shareutil.login;
 
 import android.support.annotation.IntDef;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -24,7 +23,7 @@ public class LoginPlatform {
 
     public static final int QQ = 1;
 
-    public static final int WX = 2;
+    public static final int WX = 3;
 
-    public static final int WEIBO = 3;
+    public static final int WEIBO = 5;
 }

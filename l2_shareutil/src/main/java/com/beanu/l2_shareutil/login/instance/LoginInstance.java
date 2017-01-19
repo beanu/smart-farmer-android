@@ -7,7 +7,6 @@ import android.content.Intent;
 import com.beanu.l2_shareutil.login.LoginListener;
 import com.beanu.l2_shareutil.login.result.BaseToken;
 
-
 /**
  * Created by shaohui on 2016/12/1.
  */

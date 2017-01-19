@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
 
+import com.beanu.l2_shareutil.ShareLogger;
 import com.beanu.l2_shareutil.ShareManager;
 import com.beanu.l2_shareutil.login.LoginListener;
 import com.beanu.l2_shareutil.login.LoginPlatform;
@@ -33,13 +34,15 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+import static com.beanu.l2_shareutil.ShareLogger.INFO;
+
 /**
  * Created by shaohui on 2016/12/1.
  */
 
 public class QQLoginInstance extends LoginInstance {
 
-    public static final String SCOPE = "get_simple_userinfo";
+    private static final String SCOPE = "get_simple_userinfo";
 
     private static final String URL = "https://graph.qq.com/user/get_user_info";
 
@@ -58,28 +61,31 @@ public class QQLoginInstance extends LoginInstance {
         mIUiListener = new IUiListener() {
             @Override
             public void onComplete(Object o) {
-                QQToken token = QQToken.parse((JSONObject) o);
-                if (token == null) {
-                    mLoginListener.doLoginFailure(new Exception("login_failure"));
-                    return;
-                }
-
-                if (fetchUserInfo) {
-                    listener.beforeFetchUserInfo(token);
-                    fetchUserInfo(token);
-                } else {
-                    listener.doLoginSuccess(new LoginResult(LoginPlatform.QQ, token));
+                ShareLogger.i(INFO.QQ_AUTH_SUCCESS);
+                try {
+                    QQToken token = QQToken.parse((JSONObject) o);
+                    if (fetchUserInfo) {
+                        listener.beforeFetchUserInfo(token);
+                        fetchUserInfo(token);
+                    } else {
+                        listener.loginSuccess(new LoginResult(LoginPlatform.QQ, token));
+                    }
+                } catch (JSONException e) {
+                    ShareLogger.i(INFO.ILLEGAL_TOKEN);
+                    mLoginListener.loginFailure(e);
                 }
             }
 
             @Override
             public void onError(UiError uiError) {
+                ShareLogger.i(INFO.QQ_LOGIN_ERROR);
                 listener.loginFailure(
                         new Exception("QQError: " + uiError.errorCode + uiError.errorDetail));
             }
 
             @Override
             public void onCancel() {
+                ShareLogger.i(INFO.AUTH_CANCEL);
                 listener.loginCancel();
             }
         };
@@ -87,8 +93,6 @@ public class QQLoginInstance extends LoginInstance {
 
     @Override
     public void doLogin(Activity activity, final LoginListener listener, boolean fetchUserInfo) {
-        mTencent = Tencent.createInstance(ShareManager.CONFIG.getQqId(), activity);
-
         mTencent.login(activity, SCOPE, mIUiListener);
     }
 
@@ -106,7 +110,7 @@ public class QQLoginInstance extends LoginInstance {
                     QQUser user = QQUser.parse(token.getOpenid(), jsonObject);
                     qqUserEmitter.onNext(user);
                 } catch (IOException | JSONException e) {
-                    e.printStackTrace();
+                    ShareLogger.e(INFO.FETCH_USER_INOF_ERROR);
                     qqUserEmitter.onError(e);
                 }
             }
@@ -116,13 +120,13 @@ public class QQLoginInstance extends LoginInstance {
                 .subscribe(new Action1<QQUser>() {
                     @Override
                     public void call(QQUser qqUser) {
-                        mLoginListener.doLoginSuccess(
+                        mLoginListener.loginSuccess(
                                 new LoginResult(LoginPlatform.QQ, token, qqUser));
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        mLoginListener.doLoginFailure(new Exception(throwable));
+                        mLoginListener.loginFailure(new Exception(throwable));
                     }
                 });
     }
