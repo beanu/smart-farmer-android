@@ -72,7 +72,7 @@ public class AliLocalParamCreator {
         orderInfo += "&total_fee=" + "\"" + price + "\"";
 
         // 服务器异步通知页面路径
-        orderInfo += "&notify_url=" + "\"" + (TextUtils.isEmpty(SELLER) ? "http://notify.msp.hk/notify.htm" : SELLER)
+        orderInfo += "&notify_url=" + "\"" + (TextUtils.isEmpty(NOTIFY_URL) ? "http://notify.msp.hk/notify.htm" : NOTIFY_URL)
                 + "\"";
 
         // 服务接口名称， 固定值
