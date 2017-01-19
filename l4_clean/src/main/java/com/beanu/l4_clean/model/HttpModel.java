@@ -8,6 +8,7 @@ import java.io.Serializable;
  * 基础实体类
  */
 public class HttpModel<T> implements IHttpModel<T>, Serializable {
+
     public String error;
     public String msg;
     public T results;
