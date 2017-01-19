@@ -109,7 +109,8 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
                         shareImgUrl, new ShareListenerImpl(this, SharePlatform.WEIBO));
                 break;
             case R.id.btn_weibo_image:
-                ShareUtil.shareImage(this, SharePlatform.WEIBO, shareImgUrl, new ShareListenerImpl(this, SharePlatform.WEIBO));
+//                ShareUtil.shareImage(this, SharePlatform.WEIBO, shareImgUrl, new ShareListenerImpl(this, SharePlatform.WEIBO));
+                ShareUtil.shareImage(this, SharePlatform.WEIBO, bitmap, new ShareListenerImpl(this, SharePlatform.WEIBO));
                 break;
             case R.id.btn_weibo_media:
                 ShareUtil.shareMedia(this, SharePlatform.WEIBO, shareTitle, shareSummary, shareUrl,

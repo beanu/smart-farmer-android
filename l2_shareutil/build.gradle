@@ -39,16 +39,12 @@ android {
 
         if (isDebug.toBoolean()) {//debug模式使用的applicationId
             applicationId "com.tuoyan.qcxy"
-        } else {
-
         }
 
         if (isDebug.toBoolean()) {//debug模式使用的qq_id
             manifestPlaceholders = [
                     qq_id: "1105143764"
             ]
-        }else {
-
         }
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -56,7 +52,6 @@ android {
     }
     buildTypes {
         release {
-//            minifyEnabled false
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -68,7 +63,6 @@ android {
             } else {
                 signingConfig signingConfigs.config
             }
-//            signingConfig signingConfigs.config2
         }
     }
 }

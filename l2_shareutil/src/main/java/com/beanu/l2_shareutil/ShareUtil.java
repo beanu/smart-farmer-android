@@ -196,7 +196,6 @@ public class ShareUtil {
     /**
      * 检查客户端是否安装
      */
-
     public static boolean isQQInstalled(@NonNull Context context) {
         PackageManager pm = context.getPackageManager();
         if (pm == null) {
