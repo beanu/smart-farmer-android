@@ -200,7 +200,6 @@ public class ShareUtil {
     /**
      * 检查客户端是否安装
      */
-
     public static boolean isInstalled(@SharePlatform.Platform int platform, Context context) {
         switch (platform) {
             case SharePlatform.QQ:

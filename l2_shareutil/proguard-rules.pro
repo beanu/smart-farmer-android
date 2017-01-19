@@ -33,8 +33,6 @@
 -keep class com.beanu.l2_shareutil.login.result.** { *; }
 -keep class com.beanu.l2_shareutil.share.**{ *; }
 
-#-------------------------------------------------------------------------
-
 #---------------------------------2.第三方包-------------------------------
 
 #RxJava RxAndroid
@@ -56,56 +54,13 @@
 -dontwarn okio.**
 
 # QQ
--keep class com.tencent.open.TDialog$*
--keep class com.tencent.open.TDialog$* {*;}
--keep class com.tencent.open.PKDialog
--keep class com.tencent.open.PKDialog {*;}
--keep class com.tencent.open.PKDialog$*
--keep class com.tencent.open.PKDialog$* {*;}
 
 #Weixin
--keep class com.tencent.mm.opensdk.** {*;}
--keep class com.tencent.wxop.** {*;}
--keep class com.tencent.mm.sdk.** {*;}
-
--keep class com.tencent.mm.opensdk.** {*;}
--keep class com.tencent.wxop.** {*;}
--keep class com.tencent.mm.sdk.** {*;}
-
--keep class com.tencent.mm.sdk.openapi.**{*;}
+-keep class com.tencent.** {*;}
 
 #微博
--dontwarn com.weibo.sdk.Android.WeiboDialog
--dontwarn android.net.http.SslError
--dontwarn android.webkit.WebViewClient
--keep public class android.net.http.SslError{
-     *;
-}
--keep public class android.webkit.WebViewClient{
-    *;
-}
--keep public class android.webkit.WebChromeClient{
-    *;
-}
--keep public interface android.webkit.WebChromeClient$CustomViewCallback {
-    *;
-}
--keep public interface android.webkit.ValueCallback {
-    *;
-}
--keep class * implements android.webkit.WebChromeClient {
-    *;
-}
 
-#-------------------------------------------------------------------------
-
-#---------------------------------3.与js互相调用的类------------------------
-
-#-------------------------------------------------------------------------
-
-#---------------------------------4.反射相关的类和方法----------------------
-
-#--------------------------------------------------------------------------
+-keep class com.sina.weibo.**{*;}
 
 #------------------------------基本不用动区域-------------------------------
 #--------------------------------基本指令区---------------------------------
@@ -155,7 +110,3 @@
 -keepclassmembers class * {
     void *(**On*Event);
 }
-#----------------------------------------------------------------------------
-
-#---------------------------------webview------------------------------------
-#----------------------------------------------------------------------------
