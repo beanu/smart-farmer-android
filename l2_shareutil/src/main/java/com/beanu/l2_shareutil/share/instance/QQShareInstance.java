@@ -106,7 +106,7 @@ public class QQShareInstance implements ShareInstance {
 
     @Override
     public void shareImage(final int platform, final ShareImageObject shareImageObject,
-            final Activity activity, final ShareListener listener) {
+                           final Activity activity, final ShareListener listener) {
         Observable.fromCallable(new Callable<String>() {
             @Override
             public String call() throws Exception {
@@ -189,9 +189,9 @@ public class QQShareInstance implements ShareInstance {
     }
 
     private void shareToQQForMedia(String title, String summary, String targetUrl, String thumbUrl,
-            Activity activity, ShareListener listener) {
+                                   Activity activity, ShareListener listener) {
         final Bundle params = new Bundle();
-        params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_AUDIO);
+        params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);// SHARE_TO_QQ_TYPE_AUDIO
         params.putString(QQShare.SHARE_TO_QQ_TITLE, title);
         params.putString(QQShare.SHARE_TO_QQ_SUMMARY, summary);
         params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, targetUrl);
@@ -215,7 +215,7 @@ public class QQShareInstance implements ShareInstance {
     }
 
     private void shareToQZoneForMedia(String title, String targetUrl, String summary,
-            String imageUrl, Activity activity, ShareListener listener) {
+                                      String imageUrl, Activity activity, ShareListener listener) {
         final Bundle params = new Bundle();
         final ArrayList<String> image = new ArrayList<>();
         image.add(imageUrl);

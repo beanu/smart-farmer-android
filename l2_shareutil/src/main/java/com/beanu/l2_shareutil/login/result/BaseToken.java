@@ -25,4 +25,12 @@ public class BaseToken {
     public void setOpenid(String openid) {
         this.openid = openid;
     }
+
+    @Override
+    public String toString() {
+        return "BaseToken{" +
+                "access_token='" + access_token + '\'' +
+                ", openid='" + openid + '\'' +
+                '}';
+    }
 }
