@@ -2,12 +2,14 @@ package com.beanu.l2_pay.alipay;
 
 import android.text.TextUtils;
 
+import com.beanu.l2_pay.util.OrderInfoUtil2_0;
 import com.beanu.l2_pay.util.SignUtils;
 
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -19,19 +21,58 @@ public class AliLocalParamCreator {
     public static String PARTNER = "";
     //商户收款账号
     public static String SELLER = "";
-    //商户私钥，pkcs8格式
-    public static String RSA_PRIVATE = "";
     //通知地址
     public static String NOTIFY_URL = "";
 
-    public static void init(String partner, String seller, String rsaPrivate, String notifyUrl){
+    /**
+     * 支付宝支付业务：入参app_id
+     */
+    public static String APPID = "";
+    /** 商户私钥，pkcs8格式 */
+    /** 如下私钥，RSA2_PRIVATE 或者 RSA_PRIVATE 只需要填入一个 */
+    /** 如果商户两个都设置了，优先使用 RSA2_PRIVATE */
+    /** RSA2_PRIVATE 可以保证商户交易在更加安全的环境下进行，建议使用 RSA2_PRIVATE */
+    /** 获取 RSA2_PRIVATE，建议使用支付宝提供的公私钥生成工具生成， */
+    /**
+     * 工具地址：https://doc.open.alipay.com/docs/doc.htm?treeId=291&articleId=106097&docType=1
+     */
+    public static String RSA2_PRIVATE = "";
+    public static String RSA_PRIVATE = "";
+
+    @Deprecated
+    public static void init(String partner, String seller, String rsaPrivate, String notifyUrl) {
         PARTNER = partner;
         SELLER = seller;
         RSA_PRIVATE = rsaPrivate;
         NOTIFY_URL = notifyUrl;
     }
 
-    public static String create(String subject, String body, String price){
+    public static void init(String appId, String rsa2Private, String rsaPrivate) {
+        APPID = appId;
+        RSA2_PRIVATE = rsa2Private;
+        RSA_PRIVATE = rsaPrivate;
+    }
+
+    public static String create(String subject, String body, String price) {
+        /**
+         * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
+         * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
+         * 防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
+         *
+         * orderInfo的获取必须来自服务端；
+         */
+        boolean rsa2 = !TextUtils.isEmpty(RSA2_PRIVATE);
+        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, subject, body, price, rsa2);
+        String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
+
+        String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
+        String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
+
+        return orderParam + "&" + sign;
+    }
+
+    @Deprecated
+    public static String oldCreate(String subject, String body, String price) {
         // 订单
         String orderInfo = localGenOrderInfo(subject, body, price);
 
