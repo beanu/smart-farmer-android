@@ -15,3 +15,32 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+
+#pay
+-dontwarn com.tsy.sdk.pay.**
+-keep class com.tsy.sdk.pay.**{*;}
+
+#weixin
+-dontwarn  com.tencent.**
+-keep class com.tencent.** {*;}
+
+#alipay
+-dontwarn com.alipay.**
+-keep class com.alipay.** {*;}
+
+-dontwarn  com.ta.utdid2.**
+-keep class com.ta.utdid2.** {*;}
+
+-dontwarn  com.ut.device.**
+-keep class com.ut.device.** {*;}
+
+#ipay
+-dontwarn  com.beanu.l2_pay.**
+-keep public class com.beanu.l2_pay.** {
+    !private <fields>;
+    !private <methods>;
+}
+
+-keep public interface com.beanu.l2_pay.**{*;}
+-keep public enum com.beanu.l2_pay.**{*;}
