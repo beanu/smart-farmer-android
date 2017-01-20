@@ -41,31 +41,29 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnAli:
-                //使用本地参数生成器生成支付宝所需参数, 调起支付宝支付
-                PayUtil.pay(this, PayType.ALI, AliLocalParamCreator.create("测试", "测试物品", "0.01"), this);
-                break;
-            case R.id.btnWx:
-                //模拟从服务器获取
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final String jsonParam = mockGetWxParamFromNetWork();
+        int i = v.getId();
+        if (i == R.id.btnAli) {//使用本地参数生成器生成支付宝所需参数, 调起支付宝支付
+            PayUtil.pay(this, PayType.ALI, AliLocalParamCreator.create("测试", "测试物品", "0.01"), this);
 
-                        new Handler().post(new Runnable() {
-                            @Override
-                            public void run() {
-                                //使用字符串参数需要 字符串 中存在 如 mockGetWxParamFromNetWork() 所列字段
-                                PayUtil.pay(DemoActivity.this, PayType.WX, jsonParam, DemoActivity.this);
+        } else if (i == R.id.btnWx) {//模拟从服务器获取
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    final String jsonParam = mockGetWxParamFromNetWork();
 
-                                //如果使用自己构造的 PayReq
-                                //PayUtil.wxPay(DemoActivity.this, payReq, DemoActivity.this);
-                            }
-                        });
-                    }
-                }).start();
-                break;
+                    new Handler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            //使用字符串参数需要 字符串 中存在 如 mockGetWxParamFromNetWork() 所列字段
+                            PayUtil.pay(DemoActivity.this, PayType.WX, jsonParam, DemoActivity.this);
+
+                            //如果使用自己构造的 PayReq
+                            //PayUtil.wxPay(DemoActivity.this, payReq, DemoActivity.this);
+                        }
+                    });
+                }
+            }).start();
+
         }
     }
 
