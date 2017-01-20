@@ -57,6 +57,8 @@ public class AliPay implements IPay {
                             mCallback.onError(PayType.ALI, PayResultCallBack.ERROR_NETWORK);
                         } else if(TextUtils.equals(resultStatus, "4000")) {        //支付错误
                             mCallback.onError(PayType.ALI, PayResultCallBack.ERROR_PAY);
+                        } else {
+                            mCallback.onError(PayType.ALI, Integer.parseInt(resultStatus));
                         }
                     }
                 });

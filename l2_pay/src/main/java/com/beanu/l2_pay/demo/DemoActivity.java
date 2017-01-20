@@ -13,7 +13,7 @@ import com.beanu.l2_pay.PayUtil;
 import com.beanu.l2_pay.R;
 import com.beanu.l2_pay.alipay.AliLocalParamCreator;
 
-public class DemoActivity extends AppCompatActivity implements View.OnClickListener, PayResultCallBack{
+public class DemoActivity extends AppCompatActivity implements View.OnClickListener, PayResultCallBack {
 
     Button btnAli;
     Button btnWx;
@@ -26,7 +26,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
 
         //支付宝使用本地签名必须初始化
         //建议在 Application 的 onCreate 中调用
-        AliLocalParamCreator.init("xxxxxxxxx","xxxxxxxxxxx","xxxxxxx", "http://xxx.com");
+        AliLocalParamCreator.init("xxxxxxxxxx", "", "xxxxxxxxxxxxxxxxxx");
 
         //微信支付必须设置 appid
         //建议在 Application 的 onCreate 中调用
@@ -41,7 +41,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnAli:
                 //使用本地参数生成器生成支付宝所需参数, 调起支付宝支付
                 PayUtil.pay(this, PayType.ALI, AliLocalParamCreator.create("测试", "测试物品", "0.01"), this);
@@ -70,7 +70,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //模拟从服务器获取微信支付参数, json格式
-    private String mockGetWxParamFromNetWork(){
+    private String mockGetWxParamFromNetWork() {
         StringBuilder builder = new StringBuilder();
         builder.append("{")
                 .append("\"sign\":\"xxxxxxxxxxxxxxxx\"").append(",")
@@ -102,7 +102,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onError(PayType type, int errorCode) {
-        Toast.makeText(this, "支付失败 "+ errorCode, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "支付失败 " + errorCode, Toast.LENGTH_SHORT).show();
     }
 
     @Override
