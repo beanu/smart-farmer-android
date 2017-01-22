@@ -22,3 +22,30 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+ext {
+    android = [compileSdkVersion: 25,
+               buildToolsVersion: "25.0.2",
+               minSdkVersion    : 15,
+               targetSdkVersion : 25,
+               versionCode      : 1,
+               versionName      : "1.0"]
+
+
+    dependencies = [
+            "support-v4"         : 'com.android.support:support-v4:25.1.0',
+            "support-v7"         : 'com.android.support:appcompat-v7:25.1.0',
+            "design"             : 'com.android.support:design:25.1.0',
+            "recyclerview"       : 'com.android.support:recyclerview-v7:25.1.0',
+            "rxjava"             : 'io.reactivex:rxjava:1.2.4',
+            "rxandroid"          : 'io.reactivex:rxandroid:1.2.1',
+            "gson"               : 'com.google.code.gson:gson:2.7',
+            "okhttp"             : 'com.squareup.okhttp3:okhttp:3.5.0',
+            "logging-interceptor": 'com.squareup.okhttp3:logging-interceptor:3.5.0',
+            "retrofit2"          : 'com.squareup.retrofit2:retrofit:2.1.0',
+            "converter-gson"     : 'com.squareup.retrofit2:converter-gson:2.1.0',
+            "adapter-rxjava"     : 'com.squareup.retrofit2:adapter-rxjava:2.1.0',
+            "converter-glide"    : 'com.github.bumptech.glide:glide:3.7.0',
+            "eventbus"           : 'org.greenrobot:eventbus:3.0.0']
+}

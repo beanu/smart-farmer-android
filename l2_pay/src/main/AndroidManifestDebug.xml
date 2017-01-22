@@ -28,24 +28,24 @@
             android:name="com.beanu.l2_pay.wxpay.WXPayCallbackActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <activity-alias
             android:name="${applicationId}.wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:targetActivity="com.beanu.l2_pay.wxpay.WXPayCallbackActivity" />
+            android:targetActivity="com.beanu.l2_pay.wxpay.WXPayCallbackActivity"/>
 
         <!--支付宝支付-->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind" />
+            android:screenOrientation="behind"/>
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind" />
+            android:screenOrientation="behind"/>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.beanu.l2_shareutil.LoginUtil;
+import com.beanu.l2_shareutil.ShareLogger;
 import com.beanu.l2_shareutil.ShareManager;
 import com.beanu.l2_shareutil.login.LoginListener;
 import com.beanu.l2_shareutil.login.LoginPlatform;
@@ -35,15 +35,13 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+import static com.beanu.l2_shareutil.ShareLogger.INFO;
+
 /**
  * Created by shaohui on 2016/12/1.
  */
 
 public class WeiboLoginInstance extends LoginInstance {
-
-    public static final String DEFAULT_REDIRECT_URL = "https://api.weibo.com/oauth2/default.html";
-
-    public static final String DEFAULT_SCOPE = "email";
 
     private static final String USER_INFO = "https://api.weibo.com/2/users/show.json";
 
@@ -61,7 +59,7 @@ public class WeiboLoginInstance extends LoginInstance {
 
     @Override
     public void doLogin(Activity activity, final LoginListener listener,
-            final boolean fetchUserInfo) {
+                        final boolean fetchUserInfo) {
         mSsoHandler.authorize(new WeiboAuthListener() {
             @Override
             public void onComplete(Bundle bundle) {
@@ -71,17 +69,19 @@ public class WeiboLoginInstance extends LoginInstance {
                     listener.beforeFetchUserInfo(weiboToken);
                     fetchUserInfo(weiboToken);
                 } else {
-                    listener.doLoginSuccess(new LoginResult(LoginPlatform.WEIBO, weiboToken));
+                    listener.loginSuccess(new LoginResult(LoginPlatform.WEIBO, weiboToken));
                 }
             }
 
             @Override
             public void onWeiboException(WeiboException e) {
+                ShareLogger.i(INFO.WEIBO_AUTH_ERROR);
                 listener.loginFailure(e);
             }
 
             @Override
             public void onCancel() {
+                ShareLogger.i(INFO.AUTH_CANCEL);
                 listener.loginCancel();
             }
         });
@@ -101,7 +101,7 @@ public class WeiboLoginInstance extends LoginInstance {
                     WeiboUser user = WeiboUser.parse(jsonObject);
                     weiboUserEmitter.onNext(user);
                 } catch (IOException | JSONException e) {
-                    e.printStackTrace();
+                    ShareLogger.e(INFO.FETCH_USER_INOF_ERROR);
                     weiboUserEmitter.onError(e);
                 }
             }
@@ -111,14 +111,13 @@ public class WeiboLoginInstance extends LoginInstance {
                 .subscribe(new Action1<WeiboUser>() {
                     @Override
                     public void call(WeiboUser weiboUser) {
-                        mLoginListener.doLoginSuccess(
+                        mLoginListener.loginSuccess(
                                 new LoginResult(LoginPlatform.WEIBO, token, weiboUser));
-                        LoginUtil.recycle();
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        mLoginListener.doLoginFailure(new Exception(throwable));
+                        mLoginListener.loginFailure(new Exception(throwable));
                     }
                 });
     }

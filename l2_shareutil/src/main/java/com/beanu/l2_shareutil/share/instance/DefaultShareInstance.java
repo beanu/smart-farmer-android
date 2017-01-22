@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.text.TextUtils;
 
 import com.beanu.l2_shareutil.R;
 import com.beanu.l2_shareutil.share.ImageDecoder;
@@ -53,16 +52,13 @@ public class DefaultShareInstance implements ShareInstance {
         Observable.fromEmitter(new Action1<Emitter<Uri>>() {
             @Override
             public void call(Emitter<Uri> emitter) {
-                if (!TextUtils.isEmpty(shareImageObject.getPathOrUrl())) {
-                    String path = ImageDecoder.decode(activity, shareImageObject.getPathOrUrl());
-                    emitter.onNext(Uri.fromFile(new File(path)));
+                try {
+                    Uri uri =
+                            Uri.fromFile(new File(ImageDecoder.decode(activity, shareImageObject)));
+                    emitter.onNext(uri);
                     emitter.onCompleted();
-                } else if (shareImageObject.getBitmap() != null) {
-                    String path = ImageDecoder.decode(activity, shareImageObject.getBitmap());
-                    emitter.onNext(Uri.fromFile(new File(path)));
-                    emitter.onCompleted();
-                } else {
-                    emitter.onError(new IllegalArgumentException());
+                } catch (Exception e) {
+                    emitter.onError(e);
                 }
             }
         }, Emitter.BackpressureMode.BUFFER)
@@ -87,14 +83,14 @@ public class DefaultShareInstance implements ShareInstance {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        listener.doShareFailure(new Exception(throwable));
+                        listener.shareFailure(new Exception(throwable));
                     }
                 });
     }
 
     @Override
     public void handleResult(Intent data) {
-        // 默认分享 do nothing
+        // Default share, do nothing
     }
 
     @Override

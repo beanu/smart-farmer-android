@@ -72,78 +72,77 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        switch (v.getId()) {
-            //分享
-            case R.id.btn_qq://QQ不支持纯文本分享
-                ShareUtil.shareMedia(this, SharePlatform.QQ, shareTitle, shareSummary, shareUrl,
-                        shareImgUrl, new ShareListenerImpl(this, SharePlatform.QQ));
-                break;
-            case R.id.btn_qq_image://QQ分享图片
-                ShareUtil.shareImage(this, SharePlatform.QQ, shareImgUrl, new ShareListenerImpl(this, SharePlatform.QQ));
-                break;
-            case R.id.btn_qq_media://QQ分享Media
-                ShareUtil.shareMedia(this, SharePlatform.QQ, shareTitle, shareSummary, shareUrl,
-                        bitmap, new ShareListenerImpl(this, SharePlatform.QQ));
-                break;
-            case R.id.btn_weixin:
-                ShareUtil.shareMedia(this, SharePlatform.WX, shareTitle, shareSummary, shareUrl,
-                        shareImgUrl, new ShareListenerImpl(this, SharePlatform.WX));
-                break;
-            case R.id.btn_weixin_image:
-                ShareUtil.shareImage(this, SharePlatform.WX, shareImgUrl, new ShareListenerImpl(this, SharePlatform.WX));
-                break;
-            case R.id.btn_weixin_media:
-                ShareUtil.shareMedia(this, SharePlatform.WX, shareTitle, shareSummary, shareUrl,
-                        bitmap, new ShareListenerImpl(this, SharePlatform.WX));
-                break;
-            case R.id.btn_weixin_circle_media://分享至朋友圈
-                ShareUtil.shareMedia(this, SharePlatform.WX_TIMELINE, shareTitle, shareSummary, shareUrl,
-                        bitmap, new ShareListenerImpl(this, SharePlatform.WX_TIMELINE));
-                break;
-            case R.id.btn_weibo:
-                if (!ShareUtil.isWeiBoInstalled(this)) {//是否安装微博
-                    Toast.makeText(this, "没有安装微博客户端", Toast.LENGTH_SHORT).show();
-                    break;
-                }
+        int i = v.getId();
+        if (i == R.id.btn_qq) {
+            ShareUtil.shareMedia(this, SharePlatform.QQ, shareTitle, shareSummary, shareUrl,
+                    shareImgUrl, new ShareListenerImpl(this, SharePlatform.QQ));
+
+        } else if (i == R.id.btn_qq_image) {
+            ShareUtil.shareImage(this, SharePlatform.QQ, shareImgUrl, new ShareListenerImpl(this, SharePlatform.QQ));
+
+        } else if (i == R.id.btn_qq_media) {
+            ShareUtil.shareMedia(this, SharePlatform.QQ, shareTitle, shareSummary, shareUrl,
+                    bitmap, new ShareListenerImpl(this, SharePlatform.QQ));
+
+        } else if (i == R.id.btn_weixin) {
+            ShareUtil.shareMedia(this, SharePlatform.WX, shareTitle, shareSummary, shareUrl,
+                    shareImgUrl, new ShareListenerImpl(this, SharePlatform.WX));
+
+        } else if (i == R.id.btn_weixin_image) {
+            ShareUtil.shareImage(this, SharePlatform.WX, shareImgUrl, new ShareListenerImpl(this, SharePlatform.WX));
+
+        } else if (i == R.id.btn_weixin_media) {
+            ShareUtil.shareMedia(this, SharePlatform.WX, shareTitle, shareSummary, shareUrl,
+                    bitmap, new ShareListenerImpl(this, SharePlatform.WX));
+
+        } else if (i == R.id.btn_weixin_circle_media) {
+            ShareUtil.shareMedia(this, SharePlatform.WX_TIMELINE, shareTitle, shareSummary, shareUrl,
+                    bitmap, new ShareListenerImpl(this, SharePlatform.WX_TIMELINE));
+
+        } else if (i == R.id.btn_weibo) {
+            if (!ShareUtil.isWeiBoInstalled(this)) {//是否安装微博
+                Toast.makeText(this, "没有安装微博客户端", Toast.LENGTH_SHORT).show();
+            } else {
                 ShareUtil.shareMedia(this, SharePlatform.WEIBO, shareTitle, shareSummary, shareUrl,
                         shareImgUrl, new ShareListenerImpl(this, SharePlatform.WEIBO));
-                break;
-            case R.id.btn_weibo_image:
-                ShareUtil.shareImage(this, SharePlatform.WEIBO, shareImgUrl, new ShareListenerImpl(this, SharePlatform.WEIBO));
-                break;
-            case R.id.btn_weibo_media:
-                ShareUtil.shareMedia(this, SharePlatform.WEIBO, shareTitle, shareSummary, shareUrl,
-                        bitmap, new ShareListenerImpl(this, SharePlatform.WEIBO));
-                break;
+            }
+
+        } else if (i == R.id.btn_weibo_image) {//                ShareUtil.shareImage(this, SharePlatform.WEIBO, shareImgUrl, new ShareListenerImpl(this, SharePlatform.WEIBO));
+            ShareUtil.shareImage(this, SharePlatform.WEIBO, bitmap, new ShareListenerImpl(this, SharePlatform.WEIBO));
+
+        } else if (i == R.id.btn_weibo_media) {
+            ShareUtil.shareMedia(this, SharePlatform.WEIBO, shareTitle, shareSummary, shareUrl,
+                    bitmap, new ShareListenerImpl(this, SharePlatform.WEIBO));
+
 
             //第三方登录,登录成功后显示登录后得到的数据
-            case R.id.btn_qq_login:
-                LoginUtil.login(this, LoginPlatform.QQ, new LoginListenerImpl(this, LoginPlatform.QQ) {
-                    @Override
-                    public void loginSuccess(LoginResult result) {
-                        super.loginSuccess(result);
-                        setLoginResutToView(result, "QQ");
-                    }
-                }, isFetchUserInfo);
-                break;
-            case R.id.btn_weixin_login:
-                LoginUtil.login(this, LoginPlatform.WX, new LoginListenerImpl(this, LoginPlatform.WX) {
-                    @Override
-                    public void loginSuccess(LoginResult result) {
-                        super.loginSuccess(result);
-                        setLoginResutToView(result, "微信");
-                    }
-                }, isFetchUserInfo);
-                break;
-            case R.id.btn_weibo_login:
-                LoginUtil.login(this, LoginPlatform.WEIBO, new LoginListenerImpl(this, LoginPlatform.WEIBO) {
-                    @Override
-                    public void loginSuccess(LoginResult result) {
-                        super.loginSuccess(result);
-                        setLoginResutToView(result, "微博");
-                    }
-                }, isFetchUserInfo);
-                break;
+        } else if (i == R.id.btn_qq_login) {
+            LoginUtil.login(this, LoginPlatform.QQ, new LoginListenerImpl(this, LoginPlatform.QQ) {
+                @Override
+                public void loginSuccess(LoginResult result) {
+                    super.loginSuccess(result);
+                    setLoginResutToView(result, "QQ");
+                }
+            }, isFetchUserInfo);
+
+        } else if (i == R.id.btn_weixin_login) {
+            LoginUtil.login(this, LoginPlatform.WX, new LoginListenerImpl(this, LoginPlatform.WX) {
+                @Override
+                public void loginSuccess(LoginResult result) {
+                    super.loginSuccess(result);
+                    setLoginResutToView(result, "微信");
+                }
+            }, isFetchUserInfo);
+
+        } else if (i == R.id.btn_weibo_login) {
+            LoginUtil.login(this, LoginPlatform.WEIBO, new LoginListenerImpl(this, LoginPlatform.WEIBO) {
+                @Override
+                public void loginSuccess(LoginResult result) {
+                    super.loginSuccess(result);
+                    setLoginResutToView(result, "微博");
+                }
+            }, isFetchUserInfo);
+
         }
     }
 

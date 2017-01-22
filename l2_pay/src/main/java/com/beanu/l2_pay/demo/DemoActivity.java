@@ -38,6 +38,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+      
         if (v.getId() == R.id.btnAli){
             //使用本地参数生成器生成支付宝所需参数, 调起支付宝支付
             PayUtil.pay(this, PayType.ALI, AliLocalParamCreator.create_v2("测试商品", "测试说明", "0.01", null), this);
