@@ -32,6 +32,24 @@
         </activity>
 
 
+        <!--################极光推送服务################-->
+        <receiver
+            android:name=".JPushReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION"/>
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED"/>
+                <action android:name="cn.jpush.android.intent.CONNECTION"/>
+
+                <category android:name="com.beanu.l2_push"/>
+            </intent-filter>
+        </receiver>
+        <!--################极光推送服务结束################-->
+
+
+        <!--################小米推送服务################-->
         <receiver
             android:name=".MiMessageReceiver"
             android:exported="true">
@@ -46,7 +64,6 @@
             </intent-filter>
         </receiver>
 
-        <!--小米推送服务-->
         <service
             android:name="com.xiaomi.push.service.XMPushService"
             android:enabled="true"
@@ -82,7 +99,7 @@
                 <action android:name="com.xiaomi.push.PING_TIMER"/>
             </intent-filter>
         </receiver>
-        <!--小米推送服务结束-->
+        <!--################小米推送服务结束################-->
 
     </application>
 

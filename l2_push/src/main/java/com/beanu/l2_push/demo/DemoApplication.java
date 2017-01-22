@@ -3,53 +3,58 @@ package com.beanu.l2_push.demo;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 import android.os.Process;
-
-import com.xiaomi.channel.commonutils.logger.LoggerInterface;
-import com.xiaomi.mipush.sdk.Logger;
-import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
+ * 测试
  * Created by Beanu on 2016/12/23.
  */
 
 public class DemoApplication extends Application {
 
-    public static final String APP_ID = "your appid";
-    public static final String APP_KEY = "your appkey";
-    public static final String TAG = "your packagename";
+    public static final String APP_ID = "";
+    public static final String APP_KEY = "";
+
+    public static final String TAG = "l2_push";
 
     @Override
     public void onCreate() {
         super.onCreate();
-//        JPushInterface.setDebugMode(true);
-//        JPushInterface.init(this);
 
-        //初始化push推送服务
-        if (shouldInit()) {
-            MiPushClient.registerPush(this, APP_ID, APP_KEY);
-        }
-        //打开Log
-        LoggerInterface newLogger = new LoggerInterface() {
-            @Override
-            public void setTag(String tag) {
-                // ignore
-            }
+        //极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
-            @Override
-            public void log(String content, Throwable t) {
-                Log.d(TAG, content, t);
-            }
 
-            @Override
-            public void log(String content) {
-                Log.d(TAG, content);
-            }
-        };
-        Logger.setLogger(this, newLogger);
+        //****************小米推送 BEGIN*********************
+        //1.初始化小米push推送服务
+//        if (shouldInit()) {
+//            MiPushClient.registerPush(this, APP_ID, APP_KEY);
+//        }
+//        //2.打开小米推送的Log，默认情况下，我们会将日志内容写入SDCard/Android/data/app pkgname/files/MiPushLog
+//        LoggerInterface newLogger = new LoggerInterface() {
+//            @Override
+//            public void setTag(String tag) {
+//                // ignore
+//            }
+//
+//            @Override
+//            public void log(String content, Throwable t) {
+//                Log.d(TAG, content, t);
+//            }
+//
+//            @Override
+//            public void log(String content) {
+//                Log.d(TAG, content);
+//            }
+//        };
+//        Logger.setLogger(this, newLogger);
+        //****************小米推送 END*********************
+
     }
 
     private boolean shouldInit() {

@@ -19,6 +19,9 @@ android {
     }
 
     defaultConfig {
+        if(isDebug.toBoolean()){
+            applicationId "com.beanu.l2_push"
+        }
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -27,12 +30,12 @@ android {
         //极光的参数设定
         ndk {
             //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm-v8a'
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME : "com.beanu.l2_push",
-                JPUSH_APPKEY : "a84768eea8c9143659221c2a", //JPush上注册的包名对应的appkey.
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
         ]
         //极光配置完毕
