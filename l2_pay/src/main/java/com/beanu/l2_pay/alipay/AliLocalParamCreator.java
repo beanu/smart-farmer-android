@@ -47,13 +47,22 @@ public class AliLocalParamCreator {
         NOTIFY_URL = notifyUrl;
     }
 
-    public static void init(String appId, String rsa2Private, String rsaPrivate) {
+    public static void init_v2(String appId, String rsa2Private, String rsaPrivate, String notifyUrl) {
         APPID = appId;
         RSA2_PRIVATE = rsa2Private;
         RSA_PRIVATE = rsaPrivate;
+        NOTIFY_URL = notifyUrl;
     }
 
-    public static String create(String subject, String body, String price) {
+    /**
+     *  支付宝本地签名
+     * @param subject 商品名称
+     * @param body 商品描述
+     * @param price 价格
+     * @param tradeNo 商户订单号，该值在商户端应保持唯一（可自定义格式规范）, 为空则自动生成
+     * @return signUrl
+     */
+    public static String create_v2(String subject, String body, String price, String tradeNo) {
         /**
          * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
          * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
@@ -62,7 +71,7 @@ public class AliLocalParamCreator {
          * orderInfo的获取必须来自服务端；
          */
         boolean rsa2 = !TextUtils.isEmpty(RSA2_PRIVATE);
-        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, subject, body, price, rsa2);
+        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, subject, body, price, NOTIFY_URL,tradeNo, rsa2);
         String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
 
         String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
@@ -71,10 +80,18 @@ public class AliLocalParamCreator {
         return orderParam + "&" + sign;
     }
 
+    /**
+     *  支付宝本地签名
+     * @param subject 商品名称
+     * @param body 商品描述
+     * @param price 价格
+     * @param tradeNo 商户订单号，该值在商户端应保持唯一（可自定义格式规范）, 为空则自动生成
+     * @return signUrl
+     */
     @Deprecated
-    public static String oldCreate(String subject, String body, String price) {
+    public static String create(String subject, String body, String price, String tradeNo) {
         // 订单
-        String orderInfo = localGenOrderInfo(subject, body, price);
+        String orderInfo = localGenOrderInfo(subject, body, price, tradeNo);
 
         // 对订单做RSA 签名
         String sign = localSign(orderInfo);
@@ -93,7 +110,7 @@ public class AliLocalParamCreator {
         return SignUtils.sign(content, RSA_PRIVATE);
     }
 
-    private static String localGenOrderInfo(String subject, String body, String price) {
+    private static String localGenOrderInfo(String subject, String body, String price, String tradeNo) {
         // 签约合作者身份ID
         String orderInfo = "partner=" + "\"" + PARTNER + "\"";
 
@@ -101,7 +118,7 @@ public class AliLocalParamCreator {
         orderInfo += "&seller_id=" + "\"" + SELLER + "\"";
 
         // 商户网站唯一订单号
-        orderInfo += "&out_trade_no=" + "\"" + genOutTradeNo() + "\"";
+        orderInfo += "&out_trade_no=" + "\"" + (TextUtils.isEmpty(tradeNo) ? genOutTradeNo() : tradeNo) + "\"";
 
         // 商品名称
         orderInfo += "&subject=" + "\"" + subject + "\"";

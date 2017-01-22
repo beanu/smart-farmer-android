@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.beanu.l2_pay.alipay.AliPay;
 import com.beanu.l2_pay.wxpay.WxPay;
-import com.tencent.mm.sdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 
 /**
  * Created by lizhihua on 2017/1/18.
