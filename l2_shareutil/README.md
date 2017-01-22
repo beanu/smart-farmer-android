@@ -68,6 +68,12 @@ final LoginListener listener = new LoginListener() {
 LoginUtil.login(this, LoginPlatform.WEIBO, mLoginListener, isFetchUserInfo);
 ```
 
+###更新日志
+2017-1-22：
+1. ShareUtil 升级到1.3.8版本
+2. 增加使用DEMO
+3. 更新使用帮助
+
 
 ### 说明
 * QQ不支持纯文字分享，会直接分享失败。
