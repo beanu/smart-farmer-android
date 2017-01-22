@@ -6,10 +6,10 @@ import android.text.TextUtils;
 import com.beanu.l2_pay.IPay;
 import com.beanu.l2_pay.PayResultCallBack;
 import com.beanu.l2_pay.PayType;
-import com.tencent.mm.sdk.constants.Build;
-import com.tencent.mm.sdk.modelpay.PayReq;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.mm.opensdk.constants.Build;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -77,7 +77,7 @@ public class WxPay implements IPay {
     @Override
     public void doPay() {
         if (!check()) {
-            mCallbackProxy.onError(PayType.WX, PayResultCallBack.NO_OR_LOW_WX);
+            mCallbackProxy.onError(PayType.WX, PayResultCallBack.NO_OR_LOW_WX, PayResultCallBack.NO_OR_LOW_WX);
 
             return;
         }
@@ -90,7 +90,7 @@ public class WxPay implements IPay {
                 param = new JSONObject(mPayParam);
             } catch (JSONException e) {
                 e.printStackTrace();
-                mCallbackProxy.onError(PayType.WX, PayResultCallBack.ERROR_PAY_PARAM);
+                mCallbackProxy.onError(PayType.WX, PayResultCallBack.ERROR_PAY_PARAM, PayResultCallBack.ERROR_PAY_PARAM);
 
                 return;
             }
@@ -100,7 +100,7 @@ public class WxPay implements IPay {
                     TextUtils.isEmpty(param.optString("noncestr")) || TextUtils.isEmpty(param.optString("timestamp")) ||
                     TextUtils.isEmpty(param.optString("sign"))) {
 
-                mCallbackProxy.onError(PayType.WX, PayResultCallBack.ERROR_PAY_PARAM);
+                mCallbackProxy.onError(PayType.WX, PayResultCallBack.ERROR_PAY_PARAM, PayResultCallBack.ERROR_PAY_PARAM);
                 return;
             }
 
@@ -122,13 +122,12 @@ public class WxPay implements IPay {
 
     //支付回调响应
     void onResp(int error_code) {
-
         if (error_code == 0) {   //成功
             mCallbackProxy.onSuccess(PayType.WX);
-        } else if (error_code == -1) {   //错误
-            mCallbackProxy.onError(PayType.WX, PayResultCallBack.ERROR_PAY);
-        } else if (error_code == -2) {   //取消
+        }else if (error_code == -2) {   //取消
             mCallbackProxy.onCancel(PayType.WX);
+        } else { //失败
+            mCallbackProxy.onError(PayType.WX, PayResultCallBack.ERROR_PAY, error_code+"");
         }
     }
 
@@ -146,28 +145,28 @@ public class WxPay implements IPay {
 
         void onCancel(PayType type) {
             if (callBack != null) {
-                callBack.onCancel(type);
+                callBack.onPayCancel(type);
             }
             recycle();
         }
 
-        void onError(PayType type, int errorCode) {
+        void onError(PayType type, String errorCode, String rawErrorCode) {
             if (callBack != null) {
-                callBack.onError(type, errorCode);
+                callBack.onPayError(type, errorCode, rawErrorCode);
             }
             recycle();
         }
 
         void onDealing(PayType type) {
             if (callBack != null) {
-                callBack.onDealing(type);
+                callBack.onPayDealing(type);
             }
             recycle();
         }
 
         void onSuccess(PayType type) {
             if (callBack != null) {
-                callBack.onSuccess(type);
+                callBack.onPaySuccess(type);
             }
             recycle();
         }

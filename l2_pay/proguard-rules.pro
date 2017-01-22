@@ -16,11 +16,6 @@
 #   public *;
 #}
 
-
-#pay
--dontwarn com.tsy.sdk.pay.**
--keep class com.tsy.sdk.pay.**{*;}
-
 #weixin
 -dontwarn  com.tencent.**
 -keep class com.tencent.** {*;}

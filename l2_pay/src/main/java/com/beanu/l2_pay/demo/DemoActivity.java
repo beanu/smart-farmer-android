@@ -23,14 +23,11 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
 
-
         //支付宝使用本地签名必须初始化
-        //建议在 Application 的 onCreate 中调用
-        AliLocalParamCreator.init("xxxxxxxxxx", "", "xxxxxxxxxxxxxxxxxx");
+        AliLocalParamCreator.init_v2("alipay_appid", "rsa2_private", "rsa_private", "http://notify_url");
 
         //微信支付必须设置 appid
-        //建议在 Application 的 onCreate 中调用
-        PayUtil.initWx("xxxxxxxxxxxxxxxxx");
+        PayUtil.initWx("wx_appid");
 
         btnAli = (Button) findViewById(R.id.btnAli);
         btnWx = (Button) findViewById(R.id.btnWx);
@@ -41,11 +38,14 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.btnAli) {//使用本地参数生成器生成支付宝所需参数, 调起支付宝支付
-            PayUtil.pay(this, PayType.ALI, AliLocalParamCreator.create("测试", "测试物品", "0.01"), this);
+      
+        if (v.getId() == R.id.btnAli){
+            //使用本地参数生成器生成支付宝所需参数, 调起支付宝支付
+            PayUtil.pay(this, PayType.ALI, AliLocalParamCreator.create_v2("测试商品", "测试说明", "0.01", null), this);
 
-        } else if (i == R.id.btnWx) {//模拟从服务器获取
+        } else if (v.getId() == R.id.btnWx){
+
+            //模拟从服务器获取
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -58,12 +58,19 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
                             PayUtil.pay(DemoActivity.this, PayType.WX, jsonParam, DemoActivity.this);
 
                             //如果使用自己构造的 PayReq
+                            //PayReq payReq = new PayReq();
+                            //payReq.appId = "wxd930ea5d5a258f4f";
+                            //payReq.partnerId = "1900000109";
+                            //payReq.prepayId= "1101000000140415649af9fc314aa427",;
+                            //payReq.packageValue = "Sign=WXPay";
+                            //payReq.nonceStr= "1101000000140429eb40476f8896f4c9";
+                            //payReq.timeStamp= "1398746574";
+                            //payReq.sign= "7FFECB600D7157C5AA49810D2D8F28BC2811827B";
                             //PayUtil.wxPay(DemoActivity.this, payReq, DemoActivity.this);
                         }
                     });
                 }
             }).start();
-
         }
     }
 
@@ -71,13 +78,13 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     private String mockGetWxParamFromNetWork() {
         StringBuilder builder = new StringBuilder();
         builder.append("{")
-                .append("\"sign\":\"xxxxxxxxxxxxxxxx\"").append(",")
-                .append("\"timestamp\":\"xxxxxxxxxxxxxx\"").append(",")
-                .append("\"partnerid\":\"xxxxxxxxxxxxxx\"").append(",")
-                .append("\"noncestr\":\"xxxxxxxxxxxxx\"").append(",")
-                .append("\"prepayid\":\"xxxxxxxxxxxxxx\"").append(",")
-                .append("\"packageValue\":\"xxxxxxxxxxx\"").append(",")
-                .append("\"appid\":\"xxxxxxxxxxxxxxxxxxxxx\"")
+                .append("\"sign\":\"7FFECB600D7157C5AA49810D2D8F28BC2811827B\"").append(",")
+                .append("\"timestamp\":\"1398746574\"").append(",")
+                .append("\"partnerid\":\"1900000109\"").append(",")
+                .append("\"noncestr\":\"1101000000140429eb40476f8896f4c9\"").append(",")
+                .append("\"prepayid\":\"1101000000140415649af9fc314aa427\"").append(",")
+                .append("\"packageValue\":\"Sign=WXPay\"").append(",")
+                .append("\"appid\":\"wxd930ea5d5a258f4f\"")
                 .append("}");
 
         try {
@@ -89,22 +96,23 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onSuccess(PayType type) {
+    public void onPaySuccess(PayType type) {
         Toast.makeText(this, "支付成功", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onDealing(PayType type) {
+    public void onPayDealing(PayType type) {
         Toast.makeText(this, "支付中", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onError(PayType type, int errorCode) {
+    public void onPayError(PayType type, String errorCode, String rawErrorCode) {
+        //errorCode 请查看 PayResultCallBack 中的说明
         Toast.makeText(this, "支付失败 " + errorCode, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onCancel(PayType type) {
+    public void onPayCancel(PayType type) {
         Toast.makeText(this, "支付取消", Toast.LENGTH_SHORT).show();
     }
 }
