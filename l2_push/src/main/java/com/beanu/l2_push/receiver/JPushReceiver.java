@@ -1,4 +1,4 @@
-package com.beanu.l2_push;
+package com.beanu.l2_push.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

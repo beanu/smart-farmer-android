@@ -16,7 +16,7 @@ import com.yancy.imageselector.ImageSelectorActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class DemoMainActivity extends AppCompatActivity {
 
     private Adapter adapter;
     private ArrayList<String> path = new ArrayList<>();
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         .requestCode(REQUEST_CODE)
                         .build();
 
-                ImageSelector.open(MainActivity.this, imageConfig);   // 开启图片选择器
+                ImageSelector.open(DemoMainActivity.this, imageConfig);   // 开启图片选择器
 
             }
         });
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                         .build();
 
 
-                ImageSelector.open(MainActivity.this, imageConfig);   // 开启图片选择器
+                ImageSelector.open(DemoMainActivity.this, imageConfig);   // 开启图片选择器
 
             }
         });
