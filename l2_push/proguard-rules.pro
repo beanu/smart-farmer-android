@@ -27,4 +27,11 @@
 -keep class cn.jiguang.** { *; }
 
 #小米混淆(自定义的广播接收器，不能混淆)
--keep class com.beanu.l2_push.MiMessageReceiver {*;}
+-keep class com.beanu.l2_push.receiver.MiMessageReceiver {*;}
+-dontwarn com.xiaomi.push.**
+
+#华为混淆
+-keep class com.huawei.android.pushagent.**{*;}
+-keep class com.huawei.android. pushselfshow.**{*;}
+-keep class com.huawei.android. microkernel.**{*;}
+-keep class com.baidu.mapapi.**{*;}

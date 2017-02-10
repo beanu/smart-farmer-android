@@ -5,9 +5,16 @@ if (isDebug.toBoolean()) {
 }
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'beanu'
+            keyPassword 'mmcsqq'
+            storeFile file('../beanu-keystore.jks')
+            storePassword 'mmcsqq'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-
     sourceSets {
         main {
             if (isDebug.toBoolean()) {
@@ -17,9 +24,16 @@ android {
             }
         }
     }
-
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+    }
     defaultConfig {
-        if(isDebug.toBoolean()){
+        if (isDebug.toBoolean()) {
             applicationId "com.beanu.l2_push"
         }
         minSdkVersion 15
@@ -30,13 +44,13 @@ android {
         //极光的参数设定
         ndk {
             //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm-v8a'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
+                JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
         //极光配置完毕
 
@@ -48,19 +62,20 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.config
+        }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
-
     //第三方依赖
     compile 'cn.jiguang.sdk:jpush:3.0.0'
     compile 'cn.jiguang.sdk:jcore:1.0.0'
-
 }

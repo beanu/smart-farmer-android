@@ -27,7 +27,7 @@ public class DemoMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_demo);
 
 
         Button btn_sigle = (Button) findViewById(R.id.btn);

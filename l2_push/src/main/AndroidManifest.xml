@@ -16,11 +16,19 @@
     <uses-permission android:name="${applicationId}.permission.MIPUSH_RECEIVE"/>
     <!--小米推送权限结束-->
 
+    <!--华为推送权限-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!--华为推送权限结束-->
+
     <application>
 
         <!--################极光推送服务################-->
         <receiver
-            android:name=".JPushReceiver"
+            android:name=".receiver.JPushReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION"/>
@@ -38,7 +46,7 @@
 
         <!--################小米推送服务################-->
         <receiver
-            android:name=".MiMessageReceiver"
+            android:name=".receiver.MiMessageReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE"/>
@@ -61,7 +69,6 @@
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:process=":pushservice"/>
-        <!--注：此service必须在3.0.1版本以后（包括3.0.1版本）加入-->
         <service
             android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
             android:enabled="true"
@@ -69,7 +76,7 @@
         <service
             android:name="com.xiaomi.mipush.sdk.MessageHandleService"
             android:enabled="true"/>
-        <!--注：此service必须在2.2.5版本以后（包括2.2.5版本）加入-->
+
         <receiver
             android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver"
             android:exported="true">
@@ -87,6 +94,55 @@
             </intent-filter>
         </receiver>
         <!--################小米推送服务结束################-->
+
+
+        <!--################华为推送################-->
+        <receiver android:name=".receiver.HWReceiver">
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTRATION"/>
+                <action android:name="com.huawei.android.push.intent.RECEIVE"/>
+                <action android:name="com.huawei.android.push.intent.CLICK"/>
+                <action android:name="com.huawei.intent.action.PUSH_STATE"/>
+                <action android:name="com.huawei.android.push.plugin.RESPONSE"/>
+            </intent-filter>
+            <meta-data
+                android:name="CS_cloud_ablitity"
+                android:value="@string/hwpush_ability_value"/>
+        </receiver>
+
+        <receiver
+            android:name="com.huawei.android.pushagent.PushEventReceiver"
+            android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REFRESH_PUSH_CHANNEL"/>
+                <action android:name="com.huawei.intent.action.PUSH"/>
+                <action android:name="com.huawei.intent.action.PUSH_ON"/>
+                <action android:name="com.huawei.android.push.PLUGIN"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.huawei.android.pushagent.PushBootReceiver"
+            android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTER"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+            <meta-data
+                android:name="CS_cloud_version"
+                android:value="\u0032\u0037\u0030\u0035"/>
+        </receiver>
+
+        <service
+            android:name="com.huawei.android.pushagent.PushService"
+            android:process=":pushservice">
+        </service>
+        <!--################华为推送结束################-->
 
     </application>
 

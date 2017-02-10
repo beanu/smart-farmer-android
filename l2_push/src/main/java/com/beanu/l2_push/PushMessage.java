@@ -1,5 +1,7 @@
 package com.beanu.l2_push;
 
+import java.util.Map;
+
 /**
  * 将消息整合成Message
  * Created by Beanu on 2017/2/10.
@@ -10,8 +12,8 @@ public class PushMessage {
     private String messageID;
     private String title;
     private String message;
-    private String extra;
-    private Target target;
+    private Map<String, String> extra;
+    private PhoneTarget target;
 
     public int getNotifyID() {
         return notifyID;
@@ -29,11 +31,11 @@ public class PushMessage {
         this.messageID = messageID;
     }
 
-    public Target getTarget() {
+    public PhoneTarget getTarget() {
         return target;
     }
 
-    public void setTarget(Target target) {
+    public void setTarget(PhoneTarget target) {
         this.target = target;
     }
 
@@ -53,17 +55,17 @@ public class PushMessage {
         this.message = message;
     }
 
-    public String getExtra() {
+    public Map<String, String> getExtra() {
         return extra;
     }
 
-    public void setExtra(String extra) {
+    public void setExtra(Map<String, String> extra) {
         this.extra = extra;
     }
 
     @Override
     public String toString() {
-        return "Message{" +
+        return "PushMessage{" +
                 "notifyID=" + notifyID +
                 ", messageID='" + messageID + '\'' +
                 ", title='" + title + '\'' +
