@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="16dp"
+              tools:context=".RegisterFragment">
+
+    <EditText
+        android:id="@+id/edit_register_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/login_ic_tel"
+        android:drawablePadding="16dp"
+        android:hint="手机号"
+        android:inputType="phone"
+        android:padding="16dp"
+        android:textColorHint="#D2D2D2"/>
+
+    <Button
+        android:id="@+id/btn_register_send_sms"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_yellow"
+        android:enabled="false"
+        android:text="获取验证码"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="39dp"
+            android:layout_height="1dp"
+            android:background="#999999"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:text="第三方账号快速登录"
+            android:textColor="#999999"/>
+
+        <View
+            android:layout_width="39dp"
+            android:layout_height="1dp"
+            android:background="#999999"
+            />
+
+    </LinearLayout>
+
+
+    <ImageButton
+        android:id="@+id/btn_register_wechat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/transparent"
+        android:padding="16dp"
+        android:src="@drawable/login_bt_weixin"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="注册即代表同意[美食+]服务条款和隐私条款"
+        android:textColor="#999999"
+        android:textSize="12sp"/>
+</LinearLayout>

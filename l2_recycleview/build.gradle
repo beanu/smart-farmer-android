@@ -5,8 +5,9 @@ if (isDebug.toBoolean()) {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     sourceSets {
         main {
@@ -18,8 +19,8 @@ android {
         }
     }
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -39,15 +40,13 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:recyclerview-v7:25.1.0'
-
+    compile rootProject.ext.support["support-v7"]
+    compile rootProject.ext.support["recyclerview"]
     testCompile 'junit:junit:4.12'
 
-    compile 'com.pacioianu.david:ink-page-indicator:1.2.0'
-
     //第三方依赖
-    compile 'com.beanu:arad:0.9.9'
-    compile 'in.srain.cube:ultra-ptr:1.0.11'
+    compile rootProject.ext.dependencies["arad"]
+    compile rootProject.ext.dependencies["ink-page-indicator"]
+    compile rootProject.ext.dependencies["ultra-ptr"]
 
 }

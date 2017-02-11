@@ -19,8 +19,8 @@ import com.beanu.l2_shareutil.share.instance.WeiboShareInstance;
 import com.beanu.l2_shareutil.share.instance.WxShareInstance;
 import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
 import com.sina.weibo.sdk.api.share.WeiboShareSDK;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.List;
 import java.util.Locale;

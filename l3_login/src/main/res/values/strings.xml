@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">L3_Login</string>
+
+    <string name="register_tips">请输入我们发送到\n%s的6位验证码</string>
+</resources>

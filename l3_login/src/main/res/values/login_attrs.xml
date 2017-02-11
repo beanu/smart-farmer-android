@@ -1,0 +1,9 @@
+<resources>
+
+
+    <attr name="item_count" format="integer"/>
+
+    <declare-styleable name="ViewPagerIndicator">
+        <attr name="item_count"/>
+    </declare-styleable>
+</resources>

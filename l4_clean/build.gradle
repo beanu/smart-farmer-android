@@ -3,13 +3,13 @@ apply plugin: 'android-apt'
 
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         applicationId "com.beanu.l4_clean"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -29,7 +29,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile rootProject.ext.support["support-v7"]
     testCompile 'junit:junit:4.12'
 
     //butter knife 单独提出来放到app层
@@ -37,5 +37,5 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
 
     //第三方依赖
-    compile 'com.beanu:arad:0.9.9'
+    compile rootProject.ext.dependencies["arad"]
 }

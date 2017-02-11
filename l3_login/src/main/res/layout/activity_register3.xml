@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".Register3Activity">
+
+    <include
+        layout="@layout/arad_toolbar"/>
+
+    <ImageView
+        android:id="@+id/img_register_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/profile_head"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="让更多的人认识你"/>
+
+
+    <EditText
+        android:id="@+id/edit_register_nickname"
+        style="@style/LoginEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:drawableLeft="@drawable/sign_ic_code"
+        android:hint="昵称"
+        android:minWidth="200dp"/>
+
+
+    <Button
+        android:id="@+id/btn_register_complete"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/button_yellow"
+        android:enabled="false"
+        android:text="完成"
+        android:textColor="@color/white"/>
+
+
+</LinearLayout>

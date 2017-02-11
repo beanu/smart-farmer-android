@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+        android:color="#FFEEEEEE">
+
+    <item>
+        <selector>
+            <item android:state_enabled="false">
+                <shape>
+                    <corners android:radius="4dp"/>
+                    <solid android:color="@color/btn_yellow_disable"/>
+                </shape>
+            </item>
+
+            <item android:state_pressed="true">
+                <shape>
+                    <corners android:radius="4dp"/>
+                    <solid android:color="@color/btn_yellow_press"/>
+                </shape>
+            </item>
+
+            <item android:state_enabled="true">
+                <shape>
+                    <corners android:radius="4dp"/>
+                    <solid android:color="@color/btn_yellow_normal"/>
+                </shape>
+            </item>
+
+        </selector>
+    </item>
+
+</ripple>

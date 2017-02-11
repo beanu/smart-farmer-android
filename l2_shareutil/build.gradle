@@ -31,8 +31,8 @@ android {
         }
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        versionCode 1
+        versionName "1.0"
 
         manifestPlaceholders = [
                 qq_id: "1105143764"
@@ -61,10 +61,12 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile rootProject.ext.dependencies["support-v7"]
+    compile rootProject.ext.support["support-v7"]
     testCompile 'junit:junit:4.12'
+
     //第三方依赖
     compile rootProject.ext.dependencies["rxjava"]
     compile rootProject.ext.dependencies["rxandroid"]
     compile rootProject.ext.dependencies["okhttp"]
+    compile rootProject.ext.dependencies["wechat"]
 }

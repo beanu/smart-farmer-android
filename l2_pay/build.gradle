@@ -4,8 +4,8 @@ if (isDebug.toBoolean()) {
     apply plugin: 'com.android.library'
 }
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     sourceSets {
         main {
             if (isDebug.toBoolean()) {
@@ -16,8 +16,8 @@ android {
         }
     }
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -37,12 +37,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile rootProject.ext.support["support-v7"]
     testCompile 'junit:junit:4.12'
 
-    //支付宝SDK
-    compile files('libs/alipaySdk-20161222.jar')
-
     //微信SDK
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.0.2'
+    compile rootProject.ext.dependencies["wechat"]
 }
