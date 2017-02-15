@@ -1,9 +1,9 @@
 package com.beanu.l3_login;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,11 +13,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.beanu.arad.base.ToolBarFragment;
+import com.beanu.arad.utils.MessageUtils;
+import com.beanu.l3_login.mvp.contract.RegisterSMSContract;
+import com.beanu.l3_login.mvp.model.RegisterSMSModelImpl;
+import com.beanu.l3_login.mvp.presenter.RegisterSMSPresenterImpl;
+
 
 /**
  * 注册页面
  */
-public class RegisterFragment extends Fragment implements View.OnClickListener {
+public class RegisterFragment extends ToolBarFragment<RegisterSMSPresenterImpl, RegisterSMSModelImpl> implements View.OnClickListener, RegisterSMSContract.View {
 
 
     EditText mEditRegisterPhone;
@@ -69,7 +75,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length() >= 5) {
+                if (charSequence.length() >= 11) {
                     mBtnRegisterSendSms.setEnabled(true);
                 }
             }
@@ -88,7 +94,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_register_send_sms:
 
                 String phone = mEditRegisterPhone.getText().toString();
-                sendSms(phone);
+                mPresenter.sendSMSCode(phone);
 
                 break;
             case R.id.btn_register_wechat:
@@ -98,38 +104,23 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    private void enableButtonLoading() {
-
+    @Override
+    public void verifyPhone(boolean correct) {
+        if (!correct) {
+            MessageUtils.showShortToast(getActivity(), "手机号不正确");
+            mEditRegisterPhone.setText("");
+        }
     }
 
-    private void resetButton() {
+    @Override
+    public void verifyCode(boolean correct) {
+        if (correct) {
+            Intent intent = new Intent(getActivity(), Register2Activity.class);
+//            intent.putExtra("phone", phone);
+//            intent.putExtra("code", smsCode.yzm);
+            startActivity(intent);
+        } else {
 
+        }
     }
-
-
-    //   业务层
-    private void sendSms(final String phone) {
-//
-//        APIFactory.getInstance().sendSMSCode(phone, "yes").subscribe(new Subscriber<SMSCode>() {
-//            @Override
-//            public void onCompleted() {
-//
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//                e.printStackTrace();
-//            }
-//
-//            @Override
-//            public void onNext(SMSCode smsCode) {
-//
-//                Intent intent = new Intent(getActivity(), Register2Activity.class);
-//                intent.putExtra("phone", phone);
-//                intent.putExtra("code", smsCode.yzm);
-//                startActivity(intent);
-//            }
-//        });
-    }
-
 }

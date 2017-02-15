@@ -1,6 +1,0 @@
-小米推送
-public static final String APP_ID = "2882303761517544232";
-public static final String APP_KEY = "5731754497232";
-
-极光推送appId
-a84768eea8c9143659221c2a

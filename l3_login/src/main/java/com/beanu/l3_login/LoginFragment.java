@@ -2,7 +2,6 @@ package com.beanu.l3_login;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,12 +12,17 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.beanu.arad.base.ToolBarFragment;
+import com.beanu.arad.utils.MessageUtils;
+import com.beanu.l3_login.mvp.contract.LoginContract;
+import com.beanu.l3_login.mvp.model.LoginModelImpl;
+import com.beanu.l3_login.mvp.presenter.LoginPresenterImpl;
+
 
 /**
  * 登录页面
  */
-public class LoginFragment extends Fragment implements TextWatcher, View.OnClickListener {
-
+public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginModelImpl> implements TextWatcher, View.OnClickListener, LoginContract.View {
 
     EditText mEditLoginPhone;
     EditText mEditLoginPassword;
@@ -93,12 +97,14 @@ public class LoginFragment extends Fragment implements TextWatcher, View.OnClick
 
                 String phone = mEditLoginPhone.getText().toString();
                 String password = mEditLoginPassword.getText().toString();
-                login(phone, password);
+                mPresenter.login(phone, password);
 
                 break;
             case R.id.txt_login_forget:
+
                 break;
             case R.id.btn_login_weChat:
+
                 break;
         }
     }
@@ -110,34 +116,14 @@ public class LoginFragment extends Fragment implements TextWatcher, View.OnClick
 //        getActivity().finish();
     }
 
-    //业务
-    private void login(String phone, String password) {
-//        APIFactory.getInstance().login(phone, password).subscribe(new Subscriber<User>() {
-//            @Override
-//            public void onCompleted() {
-//                gotoMain();
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//                e.printStackTrace();
-//            }
-//
-//            @Override
-//            public void onNext(User user) {
-//
-//                AppHolder.getInstance().setUser(user);
-//                //保存到本地
-//                String password = mEditLoginPassword.getText().toString();
-//
-//                Arad.preferences.putString(Constants.P_Name, user.getLogin_value());
-//                Arad.preferences.putString(Constants.P_Password, password);
-//                Arad.preferences.putString(Constants.P_User_Id, user.getUser_id());
-//                Arad.preferences.putBoolean(Constants.P_ISFIRSTLOAD, false);
-//                Arad.preferences.flush();
-//
-//
-//            }
-//        });
+
+    @Override
+    public void loginSuccess() {
+        gotoMain();
+    }
+
+    @Override
+    public void loginFailed(String error) {
+        MessageUtils.showShortToast(getActivity(), error);
     }
 }

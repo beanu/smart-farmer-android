@@ -8,7 +8,6 @@
               android:paddingTop="16dp"
               tools:context=".LoginFragment">
 
-
     <EditText
         android:id="@+id/edit_login_phone"
         style="@style/LoginEditText"
@@ -40,7 +39,6 @@
         android:text="登录"
         android:textColor="@color/white"/>
 
-
     <TextView
         android:id="@+id/txt_login_forget"
         android:layout_width="wrap_content"
@@ -59,8 +57,7 @@
         <View
             android:layout_width="39dp"
             android:layout_height="1dp"
-            android:background="#999999"
-            />
+            android:background="#999999"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,8 +70,7 @@
         <View
             android:layout_width="39dp"
             android:layout_height="1dp"
-            android:background="#999999"
-            />
+            android:background="#999999"/>
 
     </LinearLayout>
 
