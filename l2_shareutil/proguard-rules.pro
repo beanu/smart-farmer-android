@@ -32,6 +32,8 @@
 #---------------------------------1.实体类---------------------------------
 -keep class com.beanu.l2_shareutil.login.result.** { *; }
 -keep class com.beanu.l2_shareutil.share.**{ *; }
+-keep class com.beanu.l2_shareutil.**{ *; }
+
 
 #---------------------------------2.第三方包-------------------------------
 
