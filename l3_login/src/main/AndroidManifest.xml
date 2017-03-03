@@ -3,7 +3,12 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
-
+        <activity android:name=".ui.LoginActivity">
+        </activity>
+        <activity android:name=".ui.RegisterActivity">
+        </activity>
+        <activity android:name=".SignIn2Activity">
+        </activity>
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.beanu.l2_imageselector.DemoMainActivity">
+    tools:context="com.beanu.l2_imageselector.demo.DemoMainActivity">
 
 
     <Button

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+    <ImageView
+        android:id="@+id/user_chat_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:src="@drawable/head_default"/>
+
+    <LinearLayout
+        android:id="@+id/user_chat_name_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@id/user_chat_head"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/user_chat_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_font_black"
+            android:textSize="14sp"
+            tools:text="韩啸"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/boy"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/user_chat_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/user_chat_name_sex"
+        android:layout_below="@id/user_chat_name_sex"
+        android:layout_marginTop="8dp"
+        android:textColor="#777"
+        android:textSize="14sp"
+        tools:text="我重温午后的阳光，将吉他斜背在肩上。"/>
+
+
+</RelativeLayout>

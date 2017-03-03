@@ -13,8 +13,9 @@ import android.view.WindowManager;
 
 import com.beanu.arad.Arad;
 import com.beanu.arad.utils.AnimUtil;
+import com.beanu.arad.utils.Base64Coder;
+import com.beanu.l3_common.util.Constants;
 import com.beanu.l4_bottom_tab.R;
-import com.beanu.l4_bottom_tab.util.Constants;
 
 
 /**
@@ -90,8 +91,9 @@ public class StartActivity extends AppCompatActivity {
     //    业务
     private void tryLogin() {
 
-        String phone = Arad.preferences.getString(Constants.P_Name);
-        String password = Arad.preferences.getString(Constants.P_Password);
+        String phone = Arad.preferences.getString(Constants.P_ACCOUNT);
+        String password = Arad.preferences.getString(Constants.P_PWD);
+        password = Base64Coder.decodeString(password);
 
 //        APIFactory.getInstance().login(phone, password).subscribe(new Subscriber<User>() {
 //            @Override

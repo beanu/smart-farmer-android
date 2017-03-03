@@ -1,4 +1,4 @@
-if (isDebug.toBoolean()) {
+if (isL2Debug.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -17,7 +17,7 @@ android {
     buildToolsVersion rootProject.ext.android.buildToolsVersion
     sourceSets {
         main {
-            if (isDebug.toBoolean()) {
+            if (isL2Debug.toBoolean()) {
                 manifest.srcFile 'src/main/AndroidManifestDebug.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
@@ -26,7 +26,7 @@ android {
     }
 
     defaultConfig {
-        if (isDebug.toBoolean()) {
+        if (isL2Debug.toBoolean()) {
             applicationId "com.tuoyan.qcxy"
         }
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -47,7 +47,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            if (isDebug.toBoolean()) {//debug模式使用config2签名配置
+            if (isL2Debug.toBoolean()) {//debug模式使用config2签名配置
                 minifyEnabled true
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
                 signingConfig signingConfigs.config_debug

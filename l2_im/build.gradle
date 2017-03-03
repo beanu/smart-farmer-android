@@ -1,4 +1,4 @@
-if (isDebug.toBoolean()) {
+if (isL2Debug.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -10,7 +10,7 @@ android {
 
     sourceSets {
         main {
-            if (isDebug.toBoolean()) {
+            if (isL2Debug.toBoolean()) {
                 manifest.srcFile 'src/main/AndroidManifestDebug.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'

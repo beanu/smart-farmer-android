@@ -1,4 +1,4 @@
-if (isDebug.toBoolean()) {
+if (isL3Debug.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -11,7 +11,7 @@ android {
 
     sourceSets {
         main {
-            if (isDebug.toBoolean()) {
+            if (isL3Debug.toBoolean()) {
                 manifest.srcFile 'src/main/AndroidManifestDebug.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
@@ -45,5 +45,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     //第三方依赖
     compile rootProject.ext.dependencies["arad"]
-    compile project(':l3_bean')
+    compile project(':l2_imageselector')
+    compile project(':l3_common')
 }

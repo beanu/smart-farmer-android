@@ -1,8 +1,8 @@
-if (isDebug.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
+//if (isL2Debug.toBoolean()) {
+apply plugin: 'com.android.application'
+//} else {
+//    apply plugin: 'com.android.library'
+//}
 
 android {
     signingConfigs {
@@ -19,7 +19,7 @@ android {
 
     sourceSets {
         main {
-            if (isDebug.toBoolean()) {
+            if (isL2Debug.toBoolean()) {
                 manifest.srcFile 'src/main/AndroidManifestDebug.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
@@ -29,15 +29,13 @@ android {
     android {
         lintOptions {
             checkReleaseBuilds false
-            // Or, if you prefer, you can continue to check for errors in release builds,
-            // but continue the build even when errors are found:
             abortOnError false
         }
     }
     defaultConfig {
-        if (isDebug.toBoolean()) {
-            applicationId "com.beanu.l2_push"
-        }
+//        if (isL2Debug.toBoolean()) {
+        applicationId "com.beanu.l2_push"
+//        }
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1

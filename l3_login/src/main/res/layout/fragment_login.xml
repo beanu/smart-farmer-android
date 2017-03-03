@@ -6,7 +6,7 @@
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="16dp"
-              tools:context=".LoginFragment">
+              tools:context=".ui.LoginFragment">
 
     <EditText
         android:id="@+id/edit_login_phone"

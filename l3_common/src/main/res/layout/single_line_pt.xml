@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff">
+
+    <ImageView
+        android:id="@+id/p1_single_line_pt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/uy"/>
+
+    <TextView
+        android:id="@+id/t1_single_line_pt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/p1_single_line_pt"
+        android:textColor="@color/base_font_black"
+        android:textSize="14sp"
+        tools:text="我的收藏"/>
+
+    <View
+        style="@style/base_line_horizontal"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

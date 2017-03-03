@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+    <ImageView
+        android:id="@+id/contact_info_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:src="@drawable/head_default"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/contact_info_head"
+        android:layout_alignTop="@id/contact_info_head"
+        android:layout_toRightOf="@id/contact_info_head"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/contact_info_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_font_black"
+            android:textSize="14sp"
+            tools:text="韩啸"/>
+
+        <TextView
+            android:id="@+id/contact_info_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/base_font_black"
+            android:textSize="14sp"
+            tools:text="15012345678"/>
+
+    </LinearLayout>
+
+    <!-- 下分割线 -->
+    <View
+        style="@style/base_line_horizontal"
+        android:layout_below="@id/contact_info_head"/>
+
+</RelativeLayout>

@@ -3,14 +3,18 @@ package com.beanu.l4_bottom_tab.ui;
 import android.os.Bundle;
 
 import com.beanu.arad.support.updateversion.UpdateChecker;
+import com.beanu.l3_common.bean.EventModel;
+import com.beanu.l3_common.util.AppHolder;
+import com.beanu.l3_common.util.Constants;
 import com.beanu.l4_bottom_tab.R;
 import com.beanu.l4_bottom_tab.base.NavBarActivity;
 import com.beanu.l4_bottom_tab.ui.module1.Fragment1;
 import com.beanu.l4_bottom_tab.ui.module2.Fragment2;
 import com.beanu.l4_bottom_tab.ui.module3.Fragment3;
 import com.beanu.l4_bottom_tab.ui.moudle4.Fragment4;
-import com.beanu.l4_bottom_tab.util.AppHolder;
-import com.beanu.l4_bottom_tab.util.Constants;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 public class MainActivity extends NavBarActivity {
@@ -43,4 +47,12 @@ public class MainActivity extends NavBarActivity {
     protected void onQuit() {
 
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginEvent(EventModel.LoginEvent event) {
+        //接收到登陆成功事件之后，初始化 融云 极光等
+
+    }
+
+
 }

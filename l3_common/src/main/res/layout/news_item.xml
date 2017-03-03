@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+    <ImageView
+        android:id="@+id/news_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:src="@drawable/head_default"/>
+
+
+    <TextView
+        android:id="@+id/news_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@id/news_pic"
+        android:textColor="#000"
+        android:textSize="14sp"
+        tools:text="体育新闻"/>
+
+
+    <TextView
+        android:id="@+id/news_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/news_title"
+        android:layout_below="@id/news_title"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="#777"
+        android:textSize="14sp"
+        tools:text="怎么怎么样怎么怎么样怎么怎么样怎么怎么样怎么怎么样怎么怎么样怎么怎么样怎么怎么样怎么怎么样怎么怎么样怎么怎么样怎么怎么样怎么怎么样怎么怎么样"/>
+
+    <!-- 下分割线 -->
+    <View
+        style="@style/base_line_horizontal"
+        android:layout_below="@id/news_content"/>
+
+    <!-- 上分割线，按需求添加 -->
+    <!--<View
+        style="@style/line_horizental"/>-->
+
+</RelativeLayout>

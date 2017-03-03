@@ -1,9 +1,15 @@
 package com.beanu.l3_login.mvp.presenter;
 
-import com.beanu.bean.User;
+import com.beanu.arad.Arad;
+import com.beanu.arad.utils.Base64Coder;
+import com.beanu.l3_common.bean.EventModel;
+import com.beanu.l3_common.bean.User;
+import com.beanu.l3_common.util.AppHolder;
+import com.beanu.l3_common.util.Constants;
 import com.beanu.l3_login.mvp.contract.LoginContract;
 
 import rx.Subscriber;
+
 
 /**
  * Created by Beanu on 2017/02/13
@@ -12,7 +18,7 @@ import rx.Subscriber;
 public class LoginPresenterImpl extends LoginContract.Presenter {
 
     @Override
-    public void login(String account, String password) {
+    public void login(final String account, final String password) {
 
         mRxManage.add(mModel.httpLogin().subscribe(new Subscriber<User>() {
 
@@ -28,18 +34,18 @@ public class LoginPresenterImpl extends LoginContract.Presenter {
 
             @Override
             public void onNext(User user) {
-                //TODO 给全局user赋值
 
-//                AppHolder.getInstance().setUser(user);
+                AppHolder.getInstance().setUser(user);
 
-//                //保存到本地
-//                Arad.preferences.putString(Constants.P_Name, user.getLogin_value());
-//                Arad.preferences.putString(Constants.P_Password, password);
-//                Arad.preferences.putString(Constants.P_User_Id, user.getUser_id());
-//                Arad.preferences.putBoolean(Constants.P_ISFIRSTLOAD, false);
-//                Arad.preferences.flush();
-//
+                //保存到本地
+                Arad.preferences.putString(Constants.P_ACCOUNT, account);
+                Arad.preferences.putString(Constants.P_PWD, Base64Coder.encodeString(password));
+                Arad.preferences.putString(Constants.P_User_Id, user.getId());
+                Arad.preferences.putBoolean(Constants.P_ISFIRSTLOAD, false);
+                Arad.preferences.flush();
 
+                //通知登录成功
+                Arad.bus.post(new EventModel.LoginEvent(user));
             }
         }));
     }

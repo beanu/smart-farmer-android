@@ -1,7 +1,7 @@
 package com.beanu.l3_login.mvp.presenter;
 
 import com.beanu.arad.utils.StringUtils;
-import com.beanu.bean.SMSCode;
+import com.beanu.l3_common.bean.SMSCode;
 import com.beanu.l3_login.mvp.contract.RegisterSMSContract;
 
 import rx.Subscriber;
@@ -12,44 +12,39 @@ import rx.Subscriber;
 
 public class RegisterSMSPresenterImpl extends RegisterSMSContract.Presenter {
 
-    private String serverCode;
+    private String mVerificationCode;
+
+    public String getVerificationCode() {
+        return mVerificationCode;
+    }
 
     @Override
     public void sendSMSCode(String phoneNum) {
 
         if (StringUtils.isPhoneFormat(phoneNum)) {
 
-            mView.verifyPhone(true);
-
             mRxManage.add(mModel.sendSMSCode(phoneNum).subscribe(new Subscriber<SMSCode>() {
                 @Override
                 public void onCompleted() {
-
+                    mView.requestSMSCode(true);
                 }
 
                 @Override
                 public void onError(Throwable e) {
-
+                    mView.requestSMSCode(false);
                 }
 
                 @Override
                 public void onNext(SMSCode smsCode) {
-                    serverCode = smsCode.getCode();
+                    mVerificationCode = smsCode.getCode();
                 }
             }));
 
         } else {
-            mView.verifyPhone(false);
+            mView.wrongPhoneFormat();
         }
 
     }
 
-    @Override
-    public void verifyCode(String code) {
-        if (code.equals(serverCode)) {
-            mView.verifyCode(true);
-        } else {
-            mView.verifyCode(false);
-        }
-    }
+
 }

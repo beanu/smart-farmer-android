@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".Register3Activity">
+    tools:context=".ui.Register3Activity">
 
     <include
         layout="@layout/arad_toolbar"/>

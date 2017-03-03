@@ -3,7 +3,7 @@ package com.beanu.l3_login.mvp.contract;
 import com.beanu.arad.base.BaseModel;
 import com.beanu.arad.base.BasePresenter;
 import com.beanu.arad.base.BaseView;
-import com.beanu.bean.SMSCode;
+import com.beanu.l3_common.bean.SMSCode;
 
 import rx.Observable;
 
@@ -18,19 +18,18 @@ public interface RegisterSMSContract {
         /**
          * 验证手机号是否正确
          */
-        public abstract void verifyPhone(boolean correct);
+        public void wrongPhoneFormat();
 
         /**
-         * 验证 验证码是否正确
+         * 请求验证码是否正确
          */
-        public abstract void verifyCode(boolean correct);
+        public void requestSMSCode(boolean correct);
     }
 
     public abstract class Presenter extends BasePresenter<View, Model> {
 
         public abstract void sendSMSCode(String phoneNum);
 
-        public abstract void verifyCode(String code);
     }
 
     public interface Model extends BaseModel {

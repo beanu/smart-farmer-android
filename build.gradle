@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -48,8 +48,8 @@ ext {
             "adapter-rxjava"     : 'com.squareup.retrofit2:adapter-rxjava:2.1.0',
             "glide"              : 'com.github.bumptech.glide:glide:3.7.0',
             "eventbus"           : 'org.greenrobot:eventbus:3.0.0',
-            "arad"               : 'com.beanu:arad:1.0.0',
-            "imageselector"      : 'com.yancy.imageselector:imageselector:1.3.3',
+            "arad"               : 'com.beanu:arad:1.0.1',
+            "imageselector"      : 'com.yuyh.imgsel:library:1.3.7',
             "wechat"             : 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.0.2',
             "ink-page-indicator" : 'com.pacioianu.david:ink-page-indicator:1.2.0',
             "ultra-ptr"          : 'in.srain.cube:ultra-ptr:1.0.11',
