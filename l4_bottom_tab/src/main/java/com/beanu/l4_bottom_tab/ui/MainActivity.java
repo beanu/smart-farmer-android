@@ -2,6 +2,7 @@ package com.beanu.l4_bottom_tab.ui;
 
 import android.os.Bundle;
 
+import com.beanu.arad.Arad;
 import com.beanu.arad.support.updateversion.UpdateChecker;
 import com.beanu.l3_common.bean.EventModel;
 import com.beanu.l3_common.util.AppHolder;
@@ -30,6 +31,7 @@ public class MainActivity extends NavBarActivity {
         if (AppHolder.getInstance().mVersion.getVersion() > 0) {
             UpdateChecker.checkForDialog(MainActivity.this, AppHolder.getInstance().mVersion.getDesc(), Constants.IMAGE_URL + AppHolder.getInstance().mVersion.getUrl(), AppHolder.getInstance().mVersion.getVersion());
         }
+        Arad.bus.register(this);
     }
 
     @Override
@@ -46,6 +48,12 @@ public class MainActivity extends NavBarActivity {
     @Override
     protected void onQuit() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Arad.bus.unregister(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

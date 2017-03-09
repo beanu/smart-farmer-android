@@ -3,7 +3,7 @@ package com.beanu.l4_bottom_tab.model.api;
 
 import com.beanu.arad.support.log.KLog;
 import com.beanu.arad.utils.MD5Util;
-import com.beanu.l4_bottom_tab.util.Constants;
+import com.beanu.l3_common.util.Constants;
 
 import java.io.IOException;
 import java.util.Comparator;

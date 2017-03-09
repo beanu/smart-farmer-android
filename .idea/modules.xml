@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/l2_zxing/l2_zxing.iml" filepath="$PROJECT_DIR$/l2_zxing/l2_zxing.iml" />
       <module fileurl="file://$PROJECT_DIR$/l3_common/l3_common.iml" filepath="$PROJECT_DIR$/l3_common/l3_common.iml" />
       <module fileurl="file://$PROJECT_DIR$/l3_login/l3_login.iml" filepath="$PROJECT_DIR$/l3_login/l3_login.iml" />
+      <module fileurl="file://$PROJECT_DIR$/l3_shoppingcart/l3_shoppingcart.iml" filepath="$PROJECT_DIR$/l3_shoppingcart/l3_shoppingcart.iml" />
       <module fileurl="file://$PROJECT_DIR$/l4_bottom_tab/l4_bottom_tab.iml" filepath="$PROJECT_DIR$/l4_bottom_tab/l4_bottom_tab.iml" />
       <module fileurl="file://$PROJECT_DIR$/l4_clean/l4_clean.iml" filepath="$PROJECT_DIR$/l4_clean/l4_clean.iml" />
       <module fileurl="file://$PROJECT_DIR$/l4_drawer_navigation/l4_drawer_navigation.iml" filepath="$PROJECT_DIR$/l4_drawer_navigation/l4_drawer_navigation.iml" />
