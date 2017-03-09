@@ -2,6 +2,7 @@ package com.beanu.l3_login.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -23,20 +24,21 @@ import com.beanu.l3_login.mvp.presenter.RegisterPresenterImpl;
  */
 public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, RegisterModelImpl> implements TextWatcher, View.OnClickListener, RegisterContract.View {
 
-    Button mBtnRegisterSend;
+    TextView mBtnRegisterSend;
     EditText mEditRegisterCaptcha;
     EditText mEditRegisterPassword;
     Button mBtnRegisterNext;
     TextView mTxtRegisterTips;
 
     private String phone, code;
+    private TimeCount timeCount;//60s倒计时
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register2);
 
-        mBtnRegisterSend = (Button) findViewById(R.id.btn_register_send);
+        mBtnRegisterSend = (TextView) findViewById(R.id.btn_register_send);
         mEditRegisterCaptcha = (EditText) findViewById(R.id.edit_register_captcha);
         mEditRegisterPassword = (EditText) findViewById(R.id.edit_register_password);
         mBtnRegisterNext = (Button) findViewById(R.id.btn_register_next);
@@ -52,42 +54,46 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
 
         mEditRegisterCaptcha.addTextChangedListener(this);
         mEditRegisterPassword.addTextChangedListener(this);
+
+        timeCount = new TimeCount(60000, 1000);
+        timeCount.start();
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_register_send:
+        int i = view.getId();
+        if (i == R.id.btn_register_send) {
 
-                break;
-            case R.id.btn_register_next:
+            mPresenter.sendSMSCode(phone);
+            timeCount.start();
 
-                String capche = mEditRegisterCaptcha.getText().toString();
-                String password = mEditRegisterPassword.getText().toString();
+        } else if (i == R.id.btn_register_next) {
+            String capche = mEditRegisterCaptcha.getText().toString();
+            String password = mEditRegisterPassword.getText().toString();
 
-                if (capche.equals(code)) {
-                    //验证码正确
+            if (capche.equals(code)) {
+                //验证码正确
 
-                    switch (SignInMode.MODE) {
-                        case 1:
-                            mPresenter.register(phone, password, capche, null);
+                switch (SignInMode.MODE) {
+                    case 1:
+                        mPresenter.register(phone, password, capche, null);
 
-                            break;
-                        case 2:
-                            Intent intent = new Intent(this, Register3Activity.class);
-                            intent.putExtra("phone", phone);
-                            intent.putExtra("password", password);
-                            intent.putExtra("yzm", capche);
+                        break;
+                    case 2:
+                        Intent intent = new Intent(this, Register3Activity.class);
+                        intent.putExtra("phone", phone);
+                        intent.putExtra("password", password);
+                        intent.putExtra("yzm", capche);
 
-                            startActivity(intent);
+                        startActivity(intent);
 
-                            break;
-                    }
-
-
+                        break;
                 }
 
-                break;
+
+            }
+
+
         }
     }
 
@@ -138,5 +144,31 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
     @Override
     public void registerFail(String msg) {
         MessageUtils.showShortToast(this, msg);
+    }
+
+    @Override
+    public void obtainSMS(String smsCode) {
+        code = smsCode;
+    }
+
+    //倒计时
+    class TimeCount extends CountDownTimer {
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        //开始倒计时
+        @Override
+        public void onTick(long millisUntilFinished) {
+            mBtnRegisterSend.setText("重新发送(" + millisUntilFinished / 1000 + "s)");
+            mBtnRegisterSend.setClickable(false);
+        }
+
+        //倒计时执行完毕
+        @Override
+        public void onFinish() {
+            mBtnRegisterSend.setText("重新发送");
+            mBtnRegisterSend.setClickable(true);
+        }
     }
 }

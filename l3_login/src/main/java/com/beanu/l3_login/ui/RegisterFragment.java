@@ -92,16 +92,13 @@ public class RegisterFragment extends ToolBarFragment<RegisterSMSPresenterImpl, 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_register_send_sms:
+        int i = view.getId();
+        if (i == R.id.btn_register_send_sms) {
+            mPhoneNum = mEditRegisterPhone.getText().toString();
+            mPresenter.sendSMSCode(mPhoneNum);
 
-                mPhoneNum = mEditRegisterPhone.getText().toString();
-                mPresenter.sendSMSCode(mPhoneNum);
 
-                break;
-            case R.id.btn_register_wechat:
-
-                break;
+        } else if (i == R.id.btn_register_wechat) {
         }
     }
 

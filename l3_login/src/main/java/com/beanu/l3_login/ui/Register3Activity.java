@@ -78,16 +78,16 @@ public class Register3Activity extends ToolBarActivity<RegisterPresenterImpl, Re
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.img_register_avatar:
-                showImageSelector();
-                break;
-            case R.id.btn_register_complete:
-                nickname = mEditRegisterNickname.getText().toString();
+        int i = view.getId();
+        if (i == R.id.img_register_avatar) {
+            showImageSelector();
 
-                mPresenter.register(phone, password, yzm, nickname);
+        } else if (i == R.id.btn_register_complete) {
+            nickname = mEditRegisterNickname.getText().toString();
 
-                break;
+            mPresenter.register(phone, password, yzm, nickname);
+
+
         }
     }
 
@@ -169,6 +169,11 @@ public class Register3Activity extends ToolBarActivity<RegisterPresenterImpl, Re
     @Override
     public void registerFail(String msg) {
         //注册失败
+    }
+
+    @Override
+    public void obtainSMS(String smsCode) {
+        //nothing
     }
 
 }

@@ -1,5 +1,6 @@
 package com.beanu.l3_login.mvp.model;
 
+import com.beanu.l3_common.bean.SMSCode;
 import com.beanu.l3_login.mvp.contract.RegisterContract;
 
 import rx.Observable;
@@ -31,6 +32,22 @@ public class RegisterModelImpl implements RegisterContract.Model {
             public void call(Subscriber<? super Void> subscriber) {
                 subscriber.onNext(null);
                 subscriber.onCompleted();
+            }
+        });
+    }
+
+    @Override
+    public Observable<SMSCode> sendSMSCode(String phoneNum) {
+        return Observable.create(new Observable.OnSubscribe<SMSCode>() {
+            @Override
+            public void call(Subscriber<? super SMSCode> subscriber) {
+
+                SMSCode smsCode = new SMSCode();
+                smsCode.setCode("666666");
+
+                subscriber.onNext(smsCode);
+                subscriber.onCompleted();
+
             }
         });
     }

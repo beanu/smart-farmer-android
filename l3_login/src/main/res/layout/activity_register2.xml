@@ -15,43 +15,109 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:layout_marginTop="48dp"
-        android:gravity="left"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:lineSpacingMultiplier="1.3"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
         android:text="@string/register_tips"/>
 
-    <Button
-        android:id="@+id/btn_register_send"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:minWidth="40dp"
+            android:src="@drawable/sign_ic_code"/>
+
+        <View
+            style="@style/base_line_vertical"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
+            />
+
+        <EditText
+            android:id="@+id/edit_register_captcha"
+            style="@style/LoginEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="验证码"
+            android:inputType="number"
+            android:textSize="14sp"/>
+
+
+        <TextView
+            android:id="@+id/btn_register_send"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:gravity="center"
+            tools:text="重新获取(53s)"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:minWidth="40dp"
+            android:src="@drawable/login_ic_passport"
+            />
+
+        <View
+            style="@style/base_line_vertical"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
+            />
+
+        <EditText
+            android:id="@+id/edit_register_password"
+            style="@style/LoginEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="请输入新密码"
+            android:inputType="textPassword"
+            android:textSize="14sp"/>
+
+
+    </LinearLayout>
+
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="43dp"
-        android:layout_marginLeft="80dp"
-        android:text="重新发送"/>
+        android:layout_margin="16dp"
+        android:text="8-16位，数字、字母或数字字母组合"
+        android:textSize="12sp"/>
 
-
-    <EditText
-        android:id="@+id/edit_register_captcha"
-        style="@style/LoginEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:drawableLeft="@drawable/sign_ic_code"
-        android:hint="验证码"
-        android:inputType="number"/>
-
-    <EditText
-        android:id="@+id/edit_register_password"
-        style="@style/LoginEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:drawableLeft="@drawable/login_ic_passport"
-        android:hint="设置登录密码,至少六位"
-        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/btn_register_next"

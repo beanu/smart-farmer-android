@@ -93,20 +93,15 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_login_login:
+        int i = view.getId();
+        if (i == R.id.btn_login_login) {
+            String phone = mEditLoginPhone.getText().toString();
+            String password = mEditLoginPassword.getText().toString();
+            mPresenter.login(phone, password);
 
-                String phone = mEditLoginPhone.getText().toString();
-                String password = mEditLoginPassword.getText().toString();
-                mPresenter.login(phone, password);
 
-                break;
-            case R.id.txt_login_forget:
-
-                break;
-            case R.id.btn_login_weChat:
-
-                break;
+        } else if (i == R.id.txt_login_forget) {
+        } else if (i == R.id.btn_login_weChat) {
         }
     }
 

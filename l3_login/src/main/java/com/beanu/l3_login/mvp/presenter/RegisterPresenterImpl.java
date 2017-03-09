@@ -1,6 +1,7 @@
 package com.beanu.l3_login.mvp.presenter;
 
 import com.beanu.arad.error.AradException;
+import com.beanu.l3_common.bean.SMSCode;
 import com.beanu.l3_login.mvp.contract.RegisterContract;
 
 import rx.Subscriber;
@@ -63,6 +64,26 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
 
                             }
                         }));
+    }
+
+    @Override
+    public void sendSMSCode(String phoneNum) {
+        mRxManage.add(mModel.sendSMSCode(phoneNum).subscribe(new Subscriber<SMSCode>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onNext(SMSCode smsCode) {
+                mView.obtainSMS(smsCode.getCode());
+            }
+        }));
     }
 
 }
