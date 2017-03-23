@@ -1,0 +1,77 @@
+<RelativeLayout android:id="@+id/fullscreen_content"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.beanu.l3_guide.video.GuideVideoActivity">
+
+
+    <com.beanu.l3_guide.video.GuideVideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_guide_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonLeft"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_login"
+            android:text="注册"
+            android:textColor="@color/button_text_login"/>
+
+        <Button
+            android:id="@+id/buttonRight"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/btn_login"
+            android:text="登录"
+            android:textColor="@color/button_text_login"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Mooda"
+        android:textColor="@android:color/white"
+        android:textSize="64dp"/>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_guide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_guide_button">
+
+    </android.support.v4.view.ViewPager>
+
+    <com.pixelcan.inkpageindicator.InkPageIndicator
+        android:id="@+id/indicator_guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ll_guide_button"
+        android:layout_marginBottom="24dp"/>
+
+
+    <TextView
+        android:id="@+id/txt_guide_jump"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:text="跳过"
+        android:textColor="@android:color/white"/>
+</RelativeLayout>

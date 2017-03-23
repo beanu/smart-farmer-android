@@ -15,6 +15,10 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            url "https://dl.bintray.com/populov/maven"
+        }
+        
         jcenter()
     }
 }
@@ -52,6 +56,7 @@ ext {
             "imageselector"      : 'com.yuyh.imgsel:library:1.3.7',
             "wechat"             : 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.0.2',
             "ink-page-indicator" : 'com.pacioianu.david:ink-page-indicator:1.2.0',
+            "viewpagerindicator" : 'com.viewpagerindicator:library:2.4.1@aar',
             "ultra-ptr"          : 'in.srain.cube:ultra-ptr:1.0.11',
             "zxing"              : 'com.google.zxing:core:3.3.0']
 

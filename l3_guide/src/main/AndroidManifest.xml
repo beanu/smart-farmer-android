@@ -2,7 +2,12 @@
 <manifest package="com.beanu.l3_guide"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application>
+        <activity android:name=".common.GuideActivity"/>
+        <activity android:name=".video.GuideVideoActivity"/>
 
     </application>
 
