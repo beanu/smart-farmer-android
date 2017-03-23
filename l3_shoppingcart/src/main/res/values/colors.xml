@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="cart_colorPrimary">#ff6b00</color>
+    <color name="cart_colorPrimaryDark">#ff6b00</color>
+    <color name="cart_colorAccent">#51bbe0</color>
+
+    <!--购物车相关-->
+    <color name="cart_primary">#ff6b00</color>
+    <color name="cart_white">#FFFFFF</color>
+    <color name="cart_font_gray">#8d8d8d</color>
+
+    <color name="cart_shop_name">#424242</color>
+    <color name="cart_shop_sku">#b0b0b0</color>
+
+
+    <!--背景颜色-->
+    <color name="cart_window_background">#f5f5f5</color>
+    <color name="cart_line">#e0e0e0</color>
+    <color name="cart_red">#ce2d2d</color>
+    <color name="cart_font_black">#222222</color>
+    <color name="cart_font_gray2">#999999</color>
+    <color name="cart_font_orange">#FF843A</color>
 </resources>

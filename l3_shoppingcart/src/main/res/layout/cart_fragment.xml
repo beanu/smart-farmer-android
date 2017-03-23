@@ -1,0 +1,158 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.beanu.l3_shoppingcart.CartFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/arad_toolbar"/>
+
+
+    <RelativeLayout
+        android:id="@+id/cart_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/cart_white">
+
+
+        <CheckBox
+            android:id="@+id/cart_cb_selectAll"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/cart_checkbox_selector"
+            android:button="@null"
+            android:checked="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/cart_cb_selectAll"
+            android:text="全选"
+            android:textColor="@color/cart_font_gray"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/cart_txt_toBuy"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/cart_primary"
+            android:gravity="center"
+            android:text="结算(0)"
+            android:textColor="@color/cart_white"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/cart_txt_priceTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/cart_txt_toBuy"
+            android:text="¥0"
+            android:textColor="@color/cart_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/cart_txt_priceTotal_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/cart_txt_priceTotal"
+            android:text="合计:"
+            android:textColor="@color/cart_font_gray"
+            android:textSize="13sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/cart_line"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/cart_bottom_delete"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/cart_white"
+        android:visibility="gone">
+
+
+        <CheckBox
+            android:id="@+id/cart_cb_selectAllDelete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/cart_checkbox_selector"
+            android:button="@null"
+            android:checked="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/cart_cb_selectAllDelete"
+            android:text="全选"
+            android:textColor="@color/cart_font_gray"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/cart_txt_toBuyDelete"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/cart_red"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="@color/cart_white"
+            android:textSize="14sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/cart_line"
+            />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/cart_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/cart_bottom"
+        android:layout_below="@id/toolbar">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/cart_shop_item">
+
+
+        </android.support.v7.widget.RecyclerView>
+
+        <!--TODO 没有数据的时候-->
+        <ImageView
+            android:id="@+id/cart_img_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:focusable="false"
+              android:focusableInTouchMode="false"
+              android:gravity="center_vertical"
+              android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/num_de"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/cart_minus"
+        android:focusable="false"/>
+
+    <EditText
+        android:id="@+id/num_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/cart_editor_bg"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:gravity="center"
+        android:inputType="number"
+        android:lines="1"
+        android:minWidth="40dp"
+        android:textColor="#626262"
+        android:textSize="14sp">
+    </EditText>
+
+    <Button
+        android:id="@+id/num_in"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/cart_plus"
+        android:focusable="false"/>
+
+</LinearLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cart_white"
+                android:padding="16dp">
+
+    <CheckBox
+        android:id="@+id/cart_shop_cb"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/cart_checkbox_selector"
+        android:button="@null"
+        android:checked="false"/>
+
+
+    <ImageView
+        android:id="@+id/cart_shop_img"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="8dp"
+        android:layout_toRightOf="@id/cart_shop_cb"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/cart_shop_img"
+        android:layout_alignTop="@id/cart_shop_img"
+        android:layout_toRightOf="@id/cart_shop_img"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/cart_shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cart_shop_name"
+            android:textSize="14sp"
+            tools:text="9号平衡车"/>
+
+        <TextView
+            android:id="@+id/cart_shop_sku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/cart_shop_sku"
+            android:textSize="13sp"
+            tools:text="黑色"/>
+
+
+        <TextView
+            android:id="@+id/cart_shop_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/cart_primary"
+            android:textSize="14sp"
+            tools:text="1999.00元"/>
+    </LinearLayout>
+
+
+    <com.beanu.l3_shoppingcart.widget.InDeNumber
+        android:id="@+id/cart_shop_indeNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/cart_shop_img"
+        android:layout_alignParentRight="true">
+
+    </com.beanu.l3_shoppingcart.widget.InDeNumber>
+
+</RelativeLayout>

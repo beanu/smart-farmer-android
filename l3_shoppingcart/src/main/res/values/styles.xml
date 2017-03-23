@@ -1,11 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Cart_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/cart_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/cart_colorPrimaryDark</item>
+        <item name="colorAccent">@color/cart_colorAccent</item>
+
+        <item name="android:windowBackground">@color/cart_window_background</item>
+        <item name="android:colorBackground">@color/cart_window_background</item>
+
     </style>
+
+    <style name="Cart_AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="Cart_AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>

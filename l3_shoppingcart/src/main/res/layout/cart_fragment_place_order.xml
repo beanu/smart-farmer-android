@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.beanu.l3_shoppingcart.PlaceOrderActivityFragment"
+    tools:showIn="@layout/cart_activity_place_order">
+
+
+    <!--收货地址-->
+    <RelativeLayout
+        android:id="@+id/rl_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cart_white"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/cart_img_address_tag"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
+
+        <TextView
+            android:id="@+id/cart_txt_address_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/cart_img_address_tag"
+            android:text="李美慧"
+            android:textColor="@color/cart_font_black"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/cart_txt_address_userPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cart_txt_address_userName"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/cart_txt_address_userName"
+            android:text="18560232016"
+            android:textColor="@color/cart_font_black"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/cart_txt_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/cart_txt_address_userName"
+            android:layout_below="@id/cart_txt_address_userName"
+            android:layout_marginTop="8dp"
+            android:text="山东省济南市高新区"
+            android:textColor="@color/cart_font_gray"
+            android:textSize="13sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+    <!--订单物品-->
+    <com.beanu.arad.widget.LinearLayoutForListView
+        android:id="@+id/cart_goods_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_address"
+        android:layout_marginTop="8dp"
+        android:background="@color/cart_white"
+        android:orientation="vertical">
+
+    </com.beanu.arad.widget.LinearLayoutForListView>
+
+    <!--快递费-->
+
+    <RelativeLayout
+        android:id="@+id/rl_place_order_express_fee"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_below="@id/cart_goods_listview"
+        android:background="@color/cart_white">
+
+        <TextView
+            android:id="@+id/t1_single_line_ptt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/cart_font_gray"
+            android:textSize="12sp"
+            tools:text="快递费"/>
+
+        <TextView
+            android:id="@+id/t2_single_line_ptt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/cart_font_gray"
+            android:textSize="12sp"
+            tools:text="¥0.00"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/cart_line"/>
+
+    </RelativeLayout>
+
+    <!--小记-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_below="@id/rl_place_order_express_fee"
+        android:background="@color/cart_white"
+        android:gravity="center_vertical|right"
+        android:paddingRight="16dp"
+        android:text="共%s件商品  小计:¥$d"
+        android:textSize="12sp"
+        />
+
+    <!--支付按钮-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/cart_white">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/cart_line"
+            />
+
+        <TextView
+            android:id="@+id/cart_txt_priceTotal_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="合计:"/>
+
+        <TextView
+            android:id="@+id/cart_txt_priceTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/cart_txt_priceTotal_tag"
+            android:text="¥45.50"
+            android:textColor="@color/cart_primary"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/cart_txt_toPay"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/cart_primary"
+            android:gravity="center"
+            android:text="支付"
+            android:textColor="@color/cart_white"
+            android:textSize="18sp"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

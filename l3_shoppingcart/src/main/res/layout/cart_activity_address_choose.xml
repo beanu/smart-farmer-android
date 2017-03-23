@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.beanu.l3_shoppingcart.AddressChooseActivity">
+
+    <include layout="@layout/arad_toolbar"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cart_address_recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/cart_address_item">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/cart_txt_address_add"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/cart_primary"
+        android:gravity="center"
+        android:text="添加地址"
+        android:textColor="@color/cart_white"
+        android:textSize="16sp"/>
+
+</LinearLayout>

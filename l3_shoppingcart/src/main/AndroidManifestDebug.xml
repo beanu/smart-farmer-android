@@ -2,7 +2,30 @@
 <manifest package="com.beanu.l3_shoppingcart"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application>
-    </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/cart_app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Cart_AppTheme">
+        <activity android:name=".demo.DemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PlaceOrderActivity">
+        </activity>
+        <activity android:name=".AddressChooseActivity">
+        </activity>
+        <activity android:name=".AddressAddActivity">
+        </activity>
+        <activity android:name=".CartPayActivity">
+        </activity>
+    </application>
 </manifest>
