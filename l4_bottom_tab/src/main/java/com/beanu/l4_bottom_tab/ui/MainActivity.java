@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.beanu.arad.Arad;
 import com.beanu.arad.support.updateversion.UpdateChecker;
-import com.beanu.l3_common.bean.EventModel;
+import com.beanu.l3_common.model.bean.EventModel;
 import com.beanu.l3_common.util.AppHolder;
 import com.beanu.l3_common.util.Constants;
 import com.beanu.l4_bottom_tab.R;

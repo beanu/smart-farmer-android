@@ -1,6 +1,6 @@
 package com.beanu.l3_login.mvp.model;
 
-import com.beanu.l3_common.bean.User;
+import com.beanu.l3_common.model.bean.User;
 import com.beanu.l3_login.mvp.contract.LoginContract;
 
 import rx.Observable;

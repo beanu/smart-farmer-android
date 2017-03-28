@@ -3,8 +3,8 @@ package com.beanu.l3_common.util;
 
 import com.beanu.arad.Arad;
 import com.beanu.arad.utils.StreamUtil;
-import com.beanu.l3_common.bean.User;
-import com.beanu.l3_common.bean.Version;
+import com.beanu.l3_common.model.bean.User;
+import com.beanu.l3_common.model.bean.Version;
 
 import java.io.Serializable;
 

@@ -1,21 +1,8 @@
-if (isL3Debug.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
+apply plugin: 'com.android.library'
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
-
-    sourceSets {
-        main {
-            if (isL3Debug.toBoolean()) {
-                manifest.srcFile 'src/main/AndroidManifestDebug.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            }
-        }
-    }
 
     defaultConfig {
 

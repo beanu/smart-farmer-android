@@ -1,7 +1,7 @@
 package com.beanu.l3_login.mvp.presenter;
 
 import com.beanu.arad.utils.StringUtils;
-import com.beanu.l3_common.bean.SMSCode;
+import com.beanu.l3_login.model.bean.SMSCode;
 import com.beanu.l3_login.mvp.contract.RegisterSMSContract;
 
 import rx.Subscriber;

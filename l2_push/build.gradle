@@ -1,8 +1,4 @@
-//if (isL2Debug.toBoolean()) {
 apply plugin: 'com.android.application'
-//} else {
-//    apply plugin: 'com.android.library'
-//}
 
 android {
     signingConfigs {
@@ -17,15 +13,6 @@ android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
-    sourceSets {
-        main {
-            if (isL2Debug.toBoolean()) {
-                manifest.srcFile 'src/main/AndroidManifestDebug.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            }
-        }
-    }
     android {
         lintOptions {
             checkReleaseBuilds false

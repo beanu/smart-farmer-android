@@ -3,7 +3,7 @@ package com.beanu.l3_login.mvp.contract;
 import com.beanu.arad.base.BaseModel;
 import com.beanu.arad.base.BasePresenter;
 import com.beanu.arad.base.BaseView;
-import com.beanu.l3_common.bean.User;
+import com.beanu.l3_common.model.bean.User;
 
 import rx.Observable;
 

@@ -1,6 +1,6 @@
 package com.beanu.l3_login.mvp.model;
 
-import com.beanu.l3_common.bean.SMSCode;
+import com.beanu.l3_login.model.bean.SMSCode;
 import com.beanu.l3_login.mvp.contract.RegisterContract;
 
 import rx.Observable;

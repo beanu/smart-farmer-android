@@ -22,7 +22,7 @@ public class GuideActivity extends ToolBarActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_guide);
 
         ViewPager guide_viewpager = (ViewPager) findViewById(R.id.viewpager_guide);

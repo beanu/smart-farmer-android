@@ -2,8 +2,8 @@ package com.beanu.l3_login.mvp.presenter;
 
 import com.beanu.arad.Arad;
 import com.beanu.arad.utils.Base64Coder;
-import com.beanu.l3_common.bean.EventModel;
-import com.beanu.l3_common.bean.User;
+import com.beanu.l3_common.model.bean.EventModel;
+import com.beanu.l3_common.model.bean.User;
 import com.beanu.l3_common.util.AppHolder;
 import com.beanu.l3_common.util.Constants;
 import com.beanu.l3_login.mvp.contract.LoginContract;
