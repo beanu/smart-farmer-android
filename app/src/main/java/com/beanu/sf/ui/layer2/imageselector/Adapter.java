@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.beanu.l2_imageselector.R;
+import com.beanu.sf.R;
 import com.bumptech.glide.Glide;
 
 import java.util.List;

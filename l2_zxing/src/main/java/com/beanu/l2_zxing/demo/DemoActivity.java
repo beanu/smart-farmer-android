@@ -42,29 +42,27 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        switch (id) {
-            case R.id.btn1:
-                Intent intent = new Intent(this, CaptureActivity.class);
-                startActivityForResult(intent, REQUEST_CODE);
-                break;
-            case R.id.btn2:
-                Intent intent_img = new Intent(Intent.ACTION_GET_CONTENT);
-                intent_img.addCategory(Intent.CATEGORY_OPENABLE);
-                intent_img.setType("image/*");
-                startActivityForResult(intent_img, REQUEST_IMAGE);
+        if (id == R.id.btn1) {
+            Intent intent = new Intent(this, CaptureActivity.class);
+            startActivityForResult(intent, REQUEST_CODE);
 
-                break;
-            case R.id.btn3:
-                Bitmap mBitmap = ZxingUtil.createImage("你是正确的", 400, 400, BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
-                // 不带logo的写法
-                // Bitmap mBitmap = ZxingUtil.createImage("你是正确的", 400, 400, null);
-                mImageView.setImageBitmap(mBitmap);
-                break;
-            case R.id.btn4:
-                Intent intent1 = new Intent(this, MyCaptureActivity.class);
-                startActivity(intent1);
+        } else if (id == R.id.btn2) {
+            Intent intent_img = new Intent(Intent.ACTION_GET_CONTENT);
+            intent_img.addCategory(Intent.CATEGORY_OPENABLE);
+            intent_img.setType("image/*");
+            startActivityForResult(intent_img, REQUEST_IMAGE);
 
-                break;
+
+        } else if (id == R.id.btn3) {
+            Bitmap mBitmap = ZxingUtil.createImage("你是正确的", 400, 400, BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+            // 不带logo的写法
+            // Bitmap mBitmap = ZxingUtil.createImage("你是正确的", 400, 400, null);
+            mImageView.setImageBitmap(mBitmap);
+
+        } else if (id == R.id.btn4) {
+            Intent intent1 = new Intent(this, MyCaptureActivity.class);
+            startActivity(intent1);
+
 
         }
     }

@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.sf.ui.layer1.OneActivity;
+import com.beanu.sf.ui.layer2.imageselector.ImageSelectorMainActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,6 +32,10 @@ public class MainActivity extends ToolBarActivity {
 
                 break;
             case R.id.btn_two_function:
+
+                //TODO  这个图片选择器有BUG 可以考虑下知乎的开源版本
+                Intent intent1 = new Intent(MainActivity.this, ImageSelectorMainActivity.class);
+                startActivity(intent1);
 
                 break;
             case R.id.btn_three_module:

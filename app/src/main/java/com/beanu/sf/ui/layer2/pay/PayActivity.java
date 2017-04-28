@@ -10,8 +10,8 @@ import android.widget.Toast;
 import com.beanu.l2_pay.PayResultCallBack;
 import com.beanu.l2_pay.PayType;
 import com.beanu.l2_pay.PayUtil;
-import com.beanu.l2_pay.R;
 import com.beanu.l2_pay.alipay.AliLocalParamCreator;
+import com.beanu.sf.R;
 
 public class PayActivity extends AppCompatActivity implements View.OnClickListener, PayResultCallBack {
 

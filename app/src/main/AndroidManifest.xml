@@ -24,6 +24,20 @@
         </activity>
         <activity android:name=".ui.layer1.RetrofitActivity">
         </activity>
+        <activity android:name=".ui.layer2.imageselector.ImageSelectorMainActivity"/>
+
+        <activity android:name=".ui.layer2.recycleview.classic.DemoClassicPTRActivity">
+        </activity>
+        <activity android:name=".ui.layer2.recycleview.storehouse.StoreHouseActivity">
+        </activity>
+        <activity android:name=".ui.layer2.recycleview.customAnim.DemoAnimPTRActivity">
+        </activity>
+        <activity android:name=".ui.layer2.recycleview.loadmore.DemoLoadMoreActivity">
+        </activity>
+        <activity android:name=".ui.layer2.recycleview.loadmore_header.DemoHeaderLoadMoreActivity">
+        </activity>
+        <activity android:name=".ui.layer2.recycleview.RecycleViewDemoActivity">
+        </activity>
     </application>
 
 </manifest>
