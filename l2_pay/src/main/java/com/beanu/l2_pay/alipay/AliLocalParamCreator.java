@@ -13,31 +13,30 @@ import java.util.Map;
 import java.util.Random;
 
 /**
+ * 支付宝本地签名
  * Created by lizhihua on 2017/1/18.
  */
 
 public class AliLocalParamCreator {
     //商户PID
-    public static String PARTNER = "";
+    private static String PARTNER = "";
     //商户收款账号
-    public static String SELLER = "";
+    private static String SELLER = "";
     //通知地址
-    public static String NOTIFY_URL = "";
+    private static String NOTIFY_URL = "";
+    //支付宝支付业务：入参app_id
+    private static String APPID = "";
 
     /**
-     * 支付宝支付业务：入参app_id
-     */
-    public static String APPID = "";
-    /** 商户私钥，pkcs8格式 */
-    /** 如下私钥，RSA2_PRIVATE 或者 RSA_PRIVATE 只需要填入一个 */
-    /** 如果商户两个都设置了，优先使用 RSA2_PRIVATE */
-    /** RSA2_PRIVATE 可以保证商户交易在更加安全的环境下进行，建议使用 RSA2_PRIVATE */
-    /** 获取 RSA2_PRIVATE，建议使用支付宝提供的公私钥生成工具生成， */
-    /**
+     * 商户私钥，pkcs8格式
+     * 如下私钥，RSA2_PRIVATE 或者 RSA_PRIVATE 只需要填入一个
+     * RSA2_PRIVATE 可以保证商户交易在更加安全的环境下进行，建议使用 RSA2_PRIVATE
+     * 获取 RSA2_PRIVATE，建议使用支付宝提供的公私钥生成工具生成
+     * <p>
      * 工具地址：https://doc.open.alipay.com/docs/doc.htm?treeId=291&articleId=106097&docType=1
      */
-    public static String RSA2_PRIVATE = "";
-    public static String RSA_PRIVATE = "";
+    private static String RSA2_PRIVATE = "";
+    private static String RSA_PRIVATE = "";
 
     @Deprecated
     public static void init(String partner, String seller, String rsaPrivate, String notifyUrl) {
@@ -55,10 +54,11 @@ public class AliLocalParamCreator {
     }
 
     /**
-     *  支付宝本地签名
+     * 支付宝本地签名
+     *
      * @param subject 商品名称
-     * @param body 商品描述
-     * @param price 价格
+     * @param body    商品描述
+     * @param price   价格
      * @param tradeNo 商户订单号，该值在商户端应保持唯一（可自定义格式规范）, 为空则自动生成
      * @return signUrl
      */
@@ -71,7 +71,7 @@ public class AliLocalParamCreator {
          * orderInfo的获取必须来自服务端；
          */
         boolean rsa2 = !TextUtils.isEmpty(RSA2_PRIVATE);
-        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, subject, body, price, NOTIFY_URL,tradeNo, rsa2);
+        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, subject, body, price, NOTIFY_URL, tradeNo, rsa2);
         String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
 
         String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
@@ -81,10 +81,11 @@ public class AliLocalParamCreator {
     }
 
     /**
-     *  支付宝本地签名
+     * 支付宝本地签名
+     *
      * @param subject 商品名称
-     * @param body 商品描述
-     * @param price 价格
+     * @param body    商品描述
+     * @param price   价格
      * @param tradeNo 商户订单号，该值在商户端应保持唯一（可自定义格式规范）, 为空则自动生成
      * @return signUrl
      */
