@@ -1,10 +1,5 @@
 package com.beanu.l3_common.model.api;
 
-import com.beanu.arad.Arad;
-
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 对外提供统一的获取请求服务实例
  * Created by Beanu on 2017/3/28.
@@ -35,19 +30,4 @@ public class API {
         return ApiManager.getServiceWithBaseUrl(clazz, baseUrl);
     }
 
-    /**
-     * 创建共用的头部信息
-     *
-     * @return header
-     */
-    public static Map<String, String> createHeader() {
-        Map<String, String> header = new HashMap<>();
-        header.put("uuid", Arad.app.deviceInfo.getDeviceID());
-        header.put("user_id", "1");
-        header.put("sign", "");
-        header.put("timestamp", System.currentTimeMillis() + "");
-        header.put("phone_type", Arad.app.deviceInfo.getDeviceMode());
-        header.put("version", Arad.app.deviceInfo.getVersionName());
-        return header;
-    }
 }

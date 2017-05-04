@@ -22,7 +22,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
-        android:src="@drawable/arrow_right"/>
+        android:src="@drawable/base_arrow_right"/>
 
     <View
         style="@style/base_line_horizontal"

@@ -2,4 +2,9 @@
 <resources>
     <color name="base_line">#ededed</color>
     <color name="base_font_black">#323232</color>
+
+    <color name="base_color_start">#15D1B0</color>
+    <color name="base_color_end">#15BABC</color>
+    <color name="base_color_press">#009178</color>
+    <color name="base_color_disable">#dbdbdb</color>
 </resources>

@@ -6,6 +6,7 @@ import android.util.Log;
 import com.beanu.arad.Arad;
 import com.beanu.arad.utils.AndroidUtil;
 import com.beanu.arad.utils.MD5Util;
+import com.beanu.l3_common.util.AppHolder;
 import com.beanu.l3_common.util.Constants;
 
 import java.io.IOException;
@@ -77,6 +78,7 @@ public class ApiManager {
 
     private static <T> T createServiceWithBaseUrl(Class<T> service, String baseUrl) {
 
+        //TODO 上线的时候 去掉日志
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
@@ -141,7 +143,16 @@ public class ApiManager {
 //            KLog.d("MD5:" + sign);
 
             Request.Builder requestBuilder = original.newBuilder()
-                    .header("sign", sign);
+                    .header("sign", sign)
+                    .header("uuid", Arad.app.deviceInfo.getDeviceID())
+                    .header("timestamp", System.currentTimeMillis() + "")
+                    .header("phone_type", Arad.app.deviceInfo.getDeviceMode())
+                    .header("version", Arad.app.deviceInfo.getVersionName());
+
+            if (AppHolder.getInstance().user.getId() != null) {
+                requestBuilder.header("userId", AppHolder.getInstance().user.getId());
+            }
+
             Request request = requestBuilder.build();
             return chain.proceed(request);
         }

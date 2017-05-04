@@ -2,39 +2,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="80dp"
                 android:background="#fff">
 
-    <ImageView
-        android:id="@+id/p1_single_line_ptp"
+    <TextView
+        android:id="@+id/t1_single_line_tpp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:src="@drawable/uy"/>
-
-    <TextView
-        android:id="@+id/t1_single_line_ptp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/p1_single_line_ptp"
         android:textColor="@color/base_font_black"
         android:textSize="14sp"
-        tools:text="我的爱好"/>
+        tools:text="头像"/>
 
     <ImageView
-        android:id="@+id/p2_single_line_ptp"
+        android:id="@+id/p2_single_line_tpp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
-        android:src="@drawable/arrow_right"/>
+        android:src="@drawable/base_arrow_right"/>
+
+    <ImageView
+        android:id="@+id/p1_single_line_tpp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        android:layout_toLeftOf="@id/p2_single_line_tpp"
+        android:src="@drawable/base_head_default"/>
 
     <View
         style="@style/base_line_horizontal"
         android:layout_alignParentBottom="true"/>
+
+    <!-- 上分割线，按需求添加 -->
+    <!--<View
+        style="@style/line_horizental"/>-->
 
 </RelativeLayout>

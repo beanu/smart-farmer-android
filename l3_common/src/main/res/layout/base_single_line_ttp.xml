@@ -5,49 +5,42 @@
                 android:layout_height="50dp"
                 android:background="#fff">
 
-
-    <ImageView
-        android:id="@+id/p1_single_line_ptt"
+    <TextView
+        android:id="@+id/t1_single_line_ttp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:src="@drawable/my_bankcard"/>
-
-    <TextView
-        android:id="@+id/t1_single_line_ptt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/p1_single_line_ptt"
-        android:textColor="@color/base_font_black"
+        android:textColor="#000"
         android:textSize="14sp"
-        tools:text="我的银行卡"/>
-
+        tools:text="手机号"/>
 
     <ImageView
-        android:id="@+id/p2_single_line_pttp"
+        android:id="@+id/p1_single_line_ttp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
-        android:src="@drawable/arrow_right"/>
+        android:src="@drawable/base_arrow_right"/>
 
     <TextView
-        android:id="@+id/t2_single_line_ptt"
+        android:id="@+id/t2_single_line_ttp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginRight="12dp"
-        android:layout_toLeftOf="@id/p2_single_line_pttp"
+        android:layout_toLeftOf="@id/p1_single_line_ttp"
         android:textColor="#777"
         android:textSize="12sp"
-        tools:text="已设置"/>
+        tools:text="123****1234"/>
 
     <View
         style="@style/base_line_horizontal"
         android:layout_alignParentBottom="true"/>
+
+    <!-- 上分割线，按需求添加 -->
+    <!--<View
+        style="@style/line_horizental"/>-->
 
 </RelativeLayout>
