@@ -38,6 +38,7 @@
         </activity>
         <activity android:name=".ui.layer2.recycleview.RecycleViewDemoActivity">
         </activity>
+        <activity android:name=".ui.layer3.guide.GuideDemoActivity"/>
     </application>
 
 </manifest>

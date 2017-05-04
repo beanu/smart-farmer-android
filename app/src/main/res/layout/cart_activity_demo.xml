@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.beanu.l3_shoppingcart.demo.DemoActivity">
+    tools:context="com.beanu.l3_shoppingcart.com.beanu.sf.ui.layer3.shoppingcart.CartDemoActivity">
 
     <fragment
         android:id="@+id/fragment"

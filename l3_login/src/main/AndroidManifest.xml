@@ -9,6 +9,11 @@
         </activity>
         <activity android:name=".SignIn2Activity">
         </activity>
+        <activity android:name=".ui.Register2Activity"/>
+        <activity android:name=".SignInActivity"/>
+
+        <activity android:name=".ui.Register3Activity"/>
+
     </application>
 
 </manifest>

@@ -3,6 +3,14 @@ apply plugin: 'android-apt'
 
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'beanu'
+            keyPassword 'mmcsqq'
+            storeFile file('../beanu-keystore.jks')
+            storePassword 'mmcsqq'
+        }
+    }
 
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -13,12 +21,17 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }

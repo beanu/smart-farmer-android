@@ -1,14 +1,6 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'beanu'
-            keyPassword 'mmcsqq'
-            storeFile file('../beanu-keystore.jks')
-            storePassword 'mmcsqq'
-        }
-    }
 
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -21,25 +13,25 @@ android {
     }
     defaultConfig {
 //        if (isL2Debug.toBoolean()) {
-        applicationId "com.beanu.l2_push"
+//        applicationId "com.beanu.l2_push"
 //        }
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
-        //极光的参数设定
+//        //极光的参数设定
         ndk {
             //选择要添加的对应cpu类型的.so库。
             abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME: applicationId,
+                JPUSH_PKGNAME: "com.beanu.sf",
                 JPUSH_APPKEY : "", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
-        //极光配置完毕
+//        //极光配置完毕
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -49,9 +41,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug {
-            signingConfig signingConfigs.config
-        }
+//        debug {
+//            signingConfig signingConfigs.config
+//        }
     }
 }
 
