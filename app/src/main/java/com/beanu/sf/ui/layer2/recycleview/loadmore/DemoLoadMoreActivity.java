@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;
-import com.beanu.l2_recycleview.R;
+import com.beanu.sf.R;
 import com.beanu.sf.ui.layer2.recycleview.support.DemoLoadMoreAdapter;
 import com.beanu.sf.ui.layer2.recycleview.support.News;
 

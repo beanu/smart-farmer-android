@@ -9,6 +9,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.beanu.arad.base.ToolBarActivity;
+import com.beanu.arad.support.log.KLog;
+import com.beanu.l3_guide.BuildConfig;
 import com.beanu.l3_guide.R;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -32,6 +34,8 @@ public class GuideActivity extends ToolBarActivity {
         GuideAdapter adapter = new GuideAdapter(getSupportFragmentManager(), fileNames);
         guide_viewpager.setAdapter(adapter);
         guide_indicator.setViewPager(guide_viewpager);
+
+        KLog.d(BuildConfig.DEBUG + "" + BuildConfig.BUILD_TYPE);
     }
 
 

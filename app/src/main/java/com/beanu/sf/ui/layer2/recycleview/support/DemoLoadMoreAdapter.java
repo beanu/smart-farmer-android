@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.beanu.arad.support.listview.ILoadMoreAdapter;
 import com.beanu.arad.support.recyclerview.adapter.BaseLoadMoreAdapter;
-import com.beanu.l2_recycleview.R;
+import com.beanu.sf.R;
 import com.bumptech.glide.Glide;
 
 import java.util.List;

@@ -1,9 +1,10 @@
 package com.beanu.sf.ui.layer3.login;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.beanu.l3_login.R;
+import com.beanu.sf.R;
+
 
 public class LoginDemoActivity extends AppCompatActivity {
 

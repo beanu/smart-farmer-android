@@ -14,7 +14,7 @@ import com.beanu.arad.support.recyclerview.adapter.BaseHeadLoadMoreAdapter;
 import com.beanu.arad.support.viewpager.transforms.HalfTransformer;
 import com.beanu.arad.support.viewpager.tricks.ViewPagerAutoScroll;
 import com.beanu.arad.support.viewpager.tricks.ViewPagerUtils;
-import com.beanu.l2_recycleview.R;
+import com.beanu.sf.R;
 import com.bumptech.glide.Glide;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 

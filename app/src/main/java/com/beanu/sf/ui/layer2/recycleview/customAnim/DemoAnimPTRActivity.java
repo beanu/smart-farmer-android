@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.beanu.arad.utils.MessageUtils;
-import com.beanu.l2_recycleview.R;
+import com.beanu.sf.R;
 import com.beanu.sf.ui.layer2.recycleview.support.News;
 import com.beanu.sf.ui.layer2.recycleview.support.RecyclerAdapter;
 

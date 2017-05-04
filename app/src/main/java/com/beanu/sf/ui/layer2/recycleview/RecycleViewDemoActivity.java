@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.beanu.l2_recycleview.R;
+import com.beanu.sf.R;
 import com.beanu.sf.ui.layer2.recycleview.classic.DemoClassicPTRActivity;
 import com.beanu.sf.ui.layer2.recycleview.customAnim.DemoAnimPTRActivity;
 import com.beanu.sf.ui.layer2.recycleview.loadmore.DemoLoadMoreActivity;

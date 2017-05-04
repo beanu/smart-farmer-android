@@ -1,9 +1,10 @@
 package com.beanu.sf.ui.layer3.shoppingcart;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.beanu.l3_shoppingcart.R;
+import com.beanu.sf.R;
+
 
 public class CartDemoActivity extends AppCompatActivity {
 

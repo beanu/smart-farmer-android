@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.beanu.arad.support.recyclerview.adapter.BaseAdapter;
-import com.beanu.l2_recycleview.R;
+import com.beanu.sf.R;
 import com.bumptech.glide.Glide;
 
 import java.util.List;

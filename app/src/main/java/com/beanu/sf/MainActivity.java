@@ -7,6 +7,7 @@ import android.view.View;
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.sf.ui.layer1.OneActivity;
 import com.beanu.sf.ui.layer2.imageselector.ImageSelectorMainActivity;
+import com.beanu.sf.ui.layer3.guide.GuideDemoActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,6 +40,9 @@ public class MainActivity extends ToolBarActivity {
 
                 break;
             case R.id.btn_three_module:
+
+                Intent intent2 = new Intent(MainActivity.this, GuideDemoActivity.class);
+                startActivity(intent2);
 
                 break;
             case R.id.btn_four_app:
