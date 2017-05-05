@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.l3_login.ui.LoginFragment;
 import com.beanu.l3_login.ui.RegisterFragment;
@@ -20,6 +21,7 @@ import com.beanu.l3_login.widget.ViewPagerIndicator;
 /**
  * 登录页面
  */
+@Route(path = "/login/signIn1")
 public class SignInActivity extends ToolBarActivity implements View.OnClickListener {
 
     ImageView mImgLoginRegisterClose;

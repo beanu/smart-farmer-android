@@ -8,10 +8,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.l3_login.ui.LoginActivity;
 import com.beanu.l3_login.ui.RegisterActivity;
 
+@Route(path = "/login/signIn2")
 public class SignIn2Activity extends ToolBarActivity implements View.OnClickListener {
 
     Button btn_login;

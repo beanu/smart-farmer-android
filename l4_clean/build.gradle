@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
 
 
 android {
@@ -33,8 +32,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     //butter knife 单独提出来放到app层
-    compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-annotation"]
 
     //第三方依赖
     compile rootProject.ext.dependencies["arad"]

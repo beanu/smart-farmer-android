@@ -11,6 +11,13 @@ android {
         versionCode 1
         versionName "1.0"
 
+        //ARouter
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -33,4 +40,6 @@ dependencies {
     compile rootProject.ext.dependencies["arad"]
     compile project(':l2_imageselector')
     compile project(':l3_common')
+    compile rootProject.ext.dependencies["arouter"]
+    annotationProcessor rootProject.ext.dependencies["arouter-annotation"]
 }
