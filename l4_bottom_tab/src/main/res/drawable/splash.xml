@@ -7,6 +7,6 @@
         <!-- 图片 -->
         <bitmap
             android:gravity="center"
-            android:src="@color/colorPrimary"/>
+            android:src="@drawable/base_head_default"/>
     </item>
 </layer-list>
