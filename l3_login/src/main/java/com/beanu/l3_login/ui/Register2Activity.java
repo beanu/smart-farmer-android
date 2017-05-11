@@ -125,6 +125,8 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
         String password = mEditRegisterPassword.getText().toString();
         if (!"".equals(capche) && !"".equals(password) && capche.length() == 6 && password.length() >= 6) {
             mBtnRegisterNext.setEnabled(true);
+        } else {
+            mBtnRegisterNext.setEnabled(false);
         }
 
     }
