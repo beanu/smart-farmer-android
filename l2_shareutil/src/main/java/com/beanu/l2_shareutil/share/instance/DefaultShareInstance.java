@@ -13,11 +13,16 @@ import com.beanu.l2_shareutil.share.ShareListener;
 
 import java.io.File;
 
-import rx.Emitter;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.LongConsumer;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by shaohui on 2016/11/18.
@@ -49,30 +54,30 @@ public class DefaultShareInstance implements ShareInstance {
     @Override
     public void shareImage(int platform, final ShareImageObject shareImageObject,
             final Activity activity, final ShareListener listener) {
-        Observable.fromEmitter(new Action1<Emitter<Uri>>() {
+        Flowable.create(new FlowableOnSubscribe<Uri>() {
             @Override
-            public void call(Emitter<Uri> emitter) {
+            public void subscribe(@NonNull FlowableEmitter<Uri> emitter) throws Exception {
                 try {
                     Uri uri =
                             Uri.fromFile(new File(ImageDecoder.decode(activity, shareImageObject)));
                     emitter.onNext(uri);
-                    emitter.onCompleted();
+                    emitter.onComplete();
                 } catch (Exception e) {
                     emitter.onError(e);
                 }
             }
-        }, Emitter.BackpressureMode.BUFFER)
+        }, BackpressureStrategy.BUFFER)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnRequest(new Action1<Long>() {
+                .doOnRequest(new LongConsumer() {
                     @Override
-                    public void call(Long aLong) {
+                    public void accept(long t) throws Exception {
                         listener.shareRequest();
                     }
                 })
-                .subscribe(new Action1<Uri>() {
+                .subscribe(new Consumer<Uri>() {
                     @Override
-                    public void call(Uri uri) {
+                    public void accept(Uri uri) {
                         Intent shareIntent = new Intent();
                         shareIntent.setAction(Intent.ACTION_SEND);
                         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
@@ -80,9 +85,9 @@ public class DefaultShareInstance implements ShareInstance {
                         activity.startActivity(Intent.createChooser(shareIntent,
                                 activity.getResources().getText(R.string.vista_share_title)));
                     }
-                }, new Action1<Throwable>() {
+                }, new Consumer<Throwable>() {
                     @Override
-                    public void call(Throwable throwable) {
+                    public void accept(Throwable throwable) {
                         listener.shareFailure(new Exception(throwable));
                     }
                 });

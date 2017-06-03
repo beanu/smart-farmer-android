@@ -29,9 +29,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile rootProject.ext.support["support-v7"]
+    compile rootProject.ext.support["support-v4"]
     //第三方依赖
     compile rootProject.ext.dependencies["arad"]
-    compile 'com.android.support:support-v4:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     testCompile 'junit:junit:4.12'
 }

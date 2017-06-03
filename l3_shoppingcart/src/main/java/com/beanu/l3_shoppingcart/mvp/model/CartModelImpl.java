@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+
 
 /**
  * Created by Beanu on 2017/03/10
@@ -21,10 +24,9 @@ public class CartModelImpl implements CartContract.Model {
     public Observable<List<CartItem>> requestCartList() {
 
         //TODO replace
-        return Observable.create(new Observable.OnSubscribe<List<CartItem>>() {
+        return Observable.create(new ObservableOnSubscribe<List<CartItem>>() {
             @Override
-            public void call(Subscriber<? super List<CartItem>> subscriber) {
-
+            public void subscribe(@NonNull ObservableEmitter<List<CartItem>> e) throws Exception {
                 List<CartItem> list = new ArrayList<>();
 
                 for (int i = 0; i < 10; i++) {
@@ -39,23 +41,19 @@ public class CartModelImpl implements CartContract.Model {
 
                     list.add(newsItem);
                 }
-                subscriber.onNext(list);
-                subscriber.onCompleted();
-
+                e.onNext(list);
+                e.onComplete();
             }
         }).delay(1, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
     public Observable<String> uploadCardList(List<CartItem> cartItemList) {
-        return Observable.create(new Observable.OnSubscribe<String>() {
+        return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void call(Subscriber<? super String> subscriber) {
-
-                subscriber.onNext("success");
-                subscriber.onCompleted();
-
-//                subscriber.onError(new NumberFormatException());
+            public void subscribe(@NonNull ObservableEmitter<String> e) throws Exception {
+                e.onNext("success");
+                e.onComplete();
             }
         });
     }

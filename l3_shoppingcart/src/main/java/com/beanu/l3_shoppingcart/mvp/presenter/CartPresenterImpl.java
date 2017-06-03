@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import rx.Subscriber;
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+
 
 /**
  * 购物车 业务层
@@ -34,9 +37,9 @@ public class CartPresenterImpl extends CartContract.Presenter implements CartAda
 
     @Override
     public void requestCartList() {
-        mRxManage.add(mModel.requestCartList().subscribe(new Subscriber<List<CartItem>>() {
+        mModel.requestCartList().subscribe(new Observer<List<CartItem>>() {
             @Override
-            public void onCompleted() {
+            public void onComplete() {
                 mView.requestCartListSuccess();
             }
 
@@ -46,11 +49,16 @@ public class CartPresenterImpl extends CartContract.Presenter implements CartAda
             }
 
             @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                mRxManage.add(d);
+            }
+
+            @Override
             public void onNext(List<CartItem> products) {
                 mProductList.clear();
                 mProductList.addAll(products);
             }
-        }));
+        });
     }
 
     @Override
@@ -97,9 +105,9 @@ public class CartPresenterImpl extends CartContract.Presenter implements CartAda
             mView.updateBottomBar(priceSum, goodsCount, allChecked);
 
             //3.更新到服务器
-            mRxManage.add(mModel.uploadCardList(mProductList).subscribe(new Subscriber<String>() {
+            mModel.uploadCardList(mProductList).subscribe(new Observer<String>() {
                 @Override
-                public void onCompleted() {
+                public void onComplete() {
 
                 }
 
@@ -109,10 +117,15 @@ public class CartPresenterImpl extends CartContract.Presenter implements CartAda
                 }
 
                 @Override
+                public void onSubscribe(@NonNull Disposable d) {
+                    mRxManage.add(d);
+                }
+
+                @Override
                 public void onNext(String s) {
 
                 }
-            }));
+            });
         }
     }
 

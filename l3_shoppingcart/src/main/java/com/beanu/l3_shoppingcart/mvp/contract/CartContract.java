@@ -7,7 +7,8 @@ import com.beanu.l3_shoppingcart.bean.CartItem;
 
 import java.util.List;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 /**
  * 购物车 MVP

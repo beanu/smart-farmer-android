@@ -4,7 +4,10 @@ import com.beanu.arad.error.AradException;
 import com.beanu.l3_login.model.bean.SMSCode;
 import com.beanu.l3_login.mvp.contract.RegisterContract;
 
-import rx.Subscriber;
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+
 
 /**
  * Created by Beanu on 2017/02/13
@@ -16,10 +19,10 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
 
     @Override
     public void uploadAvatar(String imgPath) {
-        mRxManage.add(mModel.uploadAvatar(imgPath)
-                .subscribe(new Subscriber<String>() {
+        mModel.uploadAvatar(imgPath)
+                .subscribe(new Observer<String>() {
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
 
                     }
 
@@ -29,21 +32,25 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
                     }
 
                     @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        mRxManage.add(d);
+                    }
+
+                    @Override
                     public void onNext(String s) {
                         avatarPath = s;
                     }
-                })
-        );
+                });
     }
 
     @Override
     public void register(String phone, String password, String yzm, String nickname) {
         mView.showProgress();
-        mRxManage.add(
+
                 mModel.register(phone, password, yzm, nickname, avatarPath)
-                        .subscribe(new Subscriber<Void>() {
+                        .subscribe(new Observer<Void>() {
                             @Override
-                            public void onCompleted() {
+                            public void onComplete() {
                                 mView.hideProgress();
                                 mView.registerSuccess();
                             }
@@ -60,17 +67,22 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
                             }
 
                             @Override
+                            public void onSubscribe(@NonNull Disposable d) {
+                                mRxManage.add(d);
+                            }
+
+                            @Override
                             public void onNext(Void aVoid) {
 
                             }
-                        }));
+                        });
     }
 
     @Override
     public void sendSMSCode(String phoneNum) {
-        mRxManage.add(mModel.sendSMSCode(phoneNum).subscribe(new Subscriber<SMSCode>() {
+        mModel.sendSMSCode(phoneNum).subscribe(new Observer<SMSCode>() {
             @Override
-            public void onCompleted() {
+            public void onComplete() {
 
             }
 
@@ -80,10 +92,15 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
             }
 
             @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                mRxManage.add(d);
+            }
+
+            @Override
             public void onNext(SMSCode smsCode) {
                 mView.obtainSMS(smsCode.getCode());
             }
-        }));
+        });
     }
 
 }
