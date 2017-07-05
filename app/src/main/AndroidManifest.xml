@@ -3,6 +3,7 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".ui.layer2.share.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -40,7 +41,7 @@
         </activity>
         <activity android:name=".ui.layer3.guide.GuideDemoActivity"/>
         <activity android:name=".ui.layer3.shoppingcart.CartDemoActivity"/>
-
+        <activity android:name=".ui.layer2.share.DemoActivity"/>
     </application>
 
 </manifest>

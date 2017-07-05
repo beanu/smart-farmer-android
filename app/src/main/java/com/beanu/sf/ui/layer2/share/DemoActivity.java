@@ -1,4 +1,4 @@
-package com.beanu.l2_shareutil.demo;
+package com.beanu.sf.ui.layer2.share;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,7 +37,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo);
+        setContentView(R.layout.activity_share_demo);
 
         mBtnQq = (Button) findViewById(R.id.btn_qq);
         mBtnQqImage = (Button) findViewById(R.id.btn_qq_image);

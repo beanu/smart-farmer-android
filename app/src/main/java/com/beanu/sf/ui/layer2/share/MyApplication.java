@@ -1,4 +1,4 @@
-package com.beanu.l2_shareutil.demo;
+package com.beanu.sf.ui.layer2.share;
 
 import android.app.Application;
 
