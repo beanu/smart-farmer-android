@@ -1,10 +1,12 @@
 package com.beanu.l3_login.mvp.model;
 
-import com.beanu.l3_login.model.bean.SMSCode;
 import com.beanu.l3_login.mvp.contract.RegisterSMSContract;
 
-import rx.Observable;
-import rx.Subscriber;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.annotations.NonNull;
+
 
 /**
  * Created by Beanu on 2017/02/13
@@ -13,18 +15,17 @@ import rx.Subscriber;
 public class RegisterSMSModelImpl implements RegisterSMSContract.Model {
 
     @Override
-    public Observable<SMSCode> sendSMSCode(String phoneNum) {
+    public Observable<String> sendSMSCode(String phoneNum) {
 
-        return Observable.create(new Observable.OnSubscribe<SMSCode>() {
+//        return API.getInstance(ApiLoginService.class).smsVCode(phoneNum, "0")
+//                .compose(RxHelper.<String>handleResult());
+
+        return Observable.create(new ObservableOnSubscribe<String>() {
+
             @Override
-            public void call(Subscriber<? super SMSCode> subscriber) {
-
-                SMSCode smsCode = new SMSCode();
-                smsCode.setCode("666666");
-
-                subscriber.onNext(smsCode);
-                subscriber.onCompleted();
-
+            public void subscribe(@NonNull ObservableEmitter<String> e) throws Exception {
+                e.onNext("666666");
+                e.onComplete();
             }
         });
 

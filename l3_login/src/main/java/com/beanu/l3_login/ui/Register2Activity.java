@@ -1,18 +1,20 @@
 package com.beanu.l3_login.ui;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.beanu.arad.base.ToolBarActivity;
-import com.beanu.arad.support.log.KLog;
 import com.beanu.arad.utils.MessageUtils;
+import com.beanu.arad.utils.statusbar.StatusBarUtil;
 import com.beanu.l3_login.R;
 import com.beanu.l3_login.SignInMode;
 import com.beanu.l3_login.mvp.contract.RegisterContract;
@@ -98,6 +100,18 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
     }
 
     @Override
+    protected void setStatusBar() {
+        StatusBarUtil.setTransparentForImageView(this, null);
+
+        //设置toolbar的低版本的高度
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            ViewGroup.LayoutParams layoutParams = getToolbar().getLayoutParams();
+            layoutParams.height = getResources().getDimensionPixelSize(R.dimen.toolbar_height);
+            getToolbar().setLayoutParams(layoutParams);
+        }
+    }
+
+    @Override
     public String setupToolBarTitle() {
         return "设置密码";
     }
@@ -139,7 +153,9 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
     @Override
     public void registerSuccess() {
         //注册成功 去登录页面
-        KLog.d("注册成功");
+        MessageUtils.showShortToast(this, "注册成功");
+        startActivity(LoginActivity.class);
+        finish();
 
     }
 
@@ -154,8 +170,8 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
     }
 
     //倒计时
-    class TimeCount extends CountDownTimer {
-        public TimeCount(long millisInFuture, long countDownInterval) {
+    private class TimeCount extends CountDownTimer {
+        TimeCount(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
         }
 

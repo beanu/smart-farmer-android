@@ -1,9 +1,11 @@
 package com.beanu.l3_common.model.api;
 
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.beanu.arad.Arad;
+import com.beanu.arad.support.log.KLog;
 import com.beanu.arad.utils.AndroidUtil;
 import com.beanu.arad.utils.MD5Util;
 import com.beanu.l3_common.util.AppHolder;
@@ -12,7 +14,6 @@ import com.beanu.l3_common.util.Constants;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -25,14 +26,14 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Jam on 16-5-17
  * Description:
  */
-public class ApiManager {
+public class APIManager {
 
     private static Map<Class, Object> apiServiceMap = new HashMap<>();
 
@@ -84,20 +85,20 @@ public class ApiManager {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new HeaderInterceptor())
                 .addInterceptor(logging)
-                .addNetworkInterceptor(new CacheInterceptor())
+//                .addNetworkInterceptor(new CacheInterceptor())
                 .build();
 
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)
                 .build().create(service);
     }
 
     private static class HeaderInterceptor implements Interceptor {
         @Override
-        public Response intercept(Chain chain) throws IOException {
+        public Response intercept(@NonNull Chain chain) throws IOException {
 
             Request original = chain.request();
 
@@ -120,27 +121,28 @@ public class ApiManager {
             //2.把post中的参数加入进去
             if (original.body() instanceof FormBody) {
                 FormBody body = (FormBody) original.body();
-                for (int i = 0; i < body.size(); i++) {
-                    params.put(body.name(i), body.value(i));
+                if (body != null) {
+                    for (int i = 0; i < body.size(); i++) {
+                        params.put(body.name(i), body.value(i));
+                    }
                 }
             }
 
             //3.开始拼接加密的字符串
-//            String urlPath = httpUrl.url().getPath() + "?";
             String urlPath = "";
-            Iterator iterator = params.keySet().iterator();
-            while (iterator.hasNext()) {
-                String key = (String) iterator.next();
-                String value = params.get(key);
-                urlPath = urlPath + key + "=" + value + "&";
+            for (Object key : params.keySet()) {
+                if (key instanceof String) {
+                    String value = params.get(key);
+                    urlPath = urlPath + key + "=" + value + "&";
+                }
             }
 
             //4.把uuid和时间戳加上
             urlPath = urlPath + original.header("uuid") + "&" + original.header("timestamp");
 
-//            KLog.d("排序后" + urlPath);
+            KLog.d("排序后" + urlPath);
             String sign = MD5Util.md5String(urlPath);
-//            KLog.d("MD5:" + sign);
+            KLog.d("MD5:" + sign);
 
             Request.Builder requestBuilder = original.newBuilder()
                     .header("sign", sign)
@@ -161,7 +163,7 @@ public class ApiManager {
     private static class CacheInterceptor implements Interceptor {
 
         @Override
-        public Response intercept(Chain chain) throws IOException {
+        public Response intercept(@NonNull Chain chain) throws IOException {
             Request request = chain.request();
             if (!AndroidUtil.networkStatusOK(Arad.app)) {
                 request = request.newBuilder()

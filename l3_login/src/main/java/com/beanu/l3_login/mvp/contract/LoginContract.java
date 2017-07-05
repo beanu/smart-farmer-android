@@ -5,7 +5,8 @@ import com.beanu.arad.base.BasePresenter;
 import com.beanu.arad.base.BaseView;
 import com.beanu.l3_common.model.bean.User;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 /**
  * 登录-契约类
@@ -27,7 +28,7 @@ public interface LoginContract {
     }
 
     public interface Model extends BaseModel {
-        Observable<User> httpLogin();
+        Observable<User> httpLogin(String account, String password);
     }
 
 

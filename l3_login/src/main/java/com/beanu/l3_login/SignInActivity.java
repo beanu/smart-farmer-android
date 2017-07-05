@@ -75,9 +75,9 @@ public class SignInActivity extends ToolBarActivity implements View.OnClickListe
     }
 
 
-    static class LoginRegisterAdapter extends FragmentPagerAdapter {
+    private static class LoginRegisterAdapter extends FragmentPagerAdapter {
 
-        public LoginRegisterAdapter(FragmentManager fm) {
+        LoginRegisterAdapter(FragmentManager fm) {
             super(fm);
         }
 

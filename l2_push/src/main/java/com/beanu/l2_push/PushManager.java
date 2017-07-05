@@ -17,6 +17,7 @@ import com.xiaomi.mipush.sdk.Logger;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -160,8 +161,22 @@ public class PushManager {
 
 
     /**
-     * 设置别名，
-     * 华为不支持alias的写法，所以只能用tag，tag只能放map，所以alias作为value,key为name
+     * 设置别名
+     * <p>
+     * 华为
+     * <p>
+     * 不支持alias的写法，所以只能用tag，tag只能放map，所以alias作为value,key为name
+     * ==========
+     * 极光 别名
+     * <p>
+     * "" （空字符串）表示取消之前的设置。
+     * 每次调用设置有效的别名，覆盖之前的设置。
+     * 有效的别名组成：字母（区分大小写）、数字、下划线、汉字、特殊字符(v2.1.6支持)@!#$&*+=.|。
+     * 限制：alias 命名长度限制为 40 字节。（判断长度需采用UTF-8编码）
+     * ==========
+     * 小米 别名
+     * <p>
+     * 一个RegId可以被设置多个别名，如果设置的别名已经存在，会覆盖掉之前的别名。
      */
     public static void setAlias(final Context context, String alias) {
         if (TextUtils.isEmpty(alias))
@@ -187,6 +202,78 @@ public class PushManager {
                         if (JPushReceiver.getPushListener() != null) {
                             JPushReceiver.getPushListener().onAlias(context, s);
                         }
+                    }
+                }
+            });
+        }
+
+    }
+
+    /**
+     * 设置标签
+     *
+     * @param context
+     * @param tag
+     */
+    public static void setTag(final Context context, String tag) {
+//        if (TextUtils.isEmpty(tag))
+//            return;
+        if (RomUtil.rom() == PhoneTarget.EMUI) {
+            Map<String, String> tagMap = new HashMap<>();
+            tagMap.put("tag", tag);
+            com.huawei.android.pushagent.api.PushManager.setTags(context, tagMap);
+            return;
+
+        }
+        if (RomUtil.rom() == PhoneTarget.MIUI) {
+            MiPushClient.subscribe(context, tag, null);
+            return;
+        }
+
+        if (RomUtil.rom() == PhoneTarget.JPUSH) {
+
+            Set<String> tagSet = new LinkedHashSet<>();
+            if (!TextUtils.isEmpty(tag)) {
+                String[] sArray = tag.split(",");
+                for (String sTagItme : sArray) {
+//                    if (!JPushUtils.isValidTagAndAlias(sTagItme)) {
+//                        continue;
+//                    }
+                    tagSet.add(sTagItme);
+                }
+            }
+            JPushInterface.setTags(context, tagSet, new TagAliasCallback() {
+                @Override
+                public void gotResult(int i, final String s, final Set<String> set) {
+                    String logs;
+                    switch (i) {
+                        case 0:
+                            logs = "Set tag and alias success";
+                            break;
+//                        case 6002:
+//                            logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
+//                            KLog.d(logs);
+//                            if (JPushUtils.isConnected(context)) {
+//                                Observable.empty().delay(1, TimeUnit.MINUTES).subscribe(new Action1<Object>() {
+//                                    @Override
+//                                    public void call(Object o) {
+//
+//                                        if (s != null) {
+//                                            setAlias(context, s);
+//                                        }
+//                                        if (set != null) {
+//                                            JPushInterface.setTags(context, set, this);
+//                                        }
+//
+//                                    }
+//                                });
+//                            } else {
+//                                KLog.d("No network");
+//                            }
+//                            break;
+//                        default:
+//                            logs = "Failed with errorCode = " + i;
+//                            KLog.e("qcxy", logs);
                     }
                 }
             });

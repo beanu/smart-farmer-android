@@ -17,8 +17,11 @@ public class L4Application extends AradApplication {
         super.onCreate();
         disableCrashHandler();
 
-        //Log日志
-        KLog.init(BuildConfig.DEBUG);
+        if (getApplicationContext().getPackageName().equals(processName)) {
+
+            //Log日志
+            KLog.init(BuildConfig.DEBUG);
+        }
     }
 
     @Override

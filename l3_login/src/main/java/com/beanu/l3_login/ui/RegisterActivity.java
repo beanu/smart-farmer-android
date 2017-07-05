@@ -1,10 +1,15 @@
 package com.beanu.l3_login.ui;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.beanu.arad.base.ToolBarActivity;
+import com.beanu.arad.utils.statusbar.StatusBarUtil;
 import com.beanu.l3_login.R;
+import com.beanu.l3_login.SignIn2Activity;
 
 public class RegisterActivity extends ToolBarActivity {
 
@@ -14,6 +19,17 @@ public class RegisterActivity extends ToolBarActivity {
         setContentView(R.layout.activity_register);
     }
 
+    @Override
+    protected void setStatusBar() {
+        StatusBarUtil.setTransparentForImageView(this, null);
+
+        //设置toolbar的低版本的高度
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            ViewGroup.LayoutParams layoutParams = getToolbar().getLayoutParams();
+            layoutParams.height = getResources().getDimensionPixelSize(R.dimen.toolbar_height);
+            getToolbar().setLayoutParams(layoutParams);
+        }
+    }
 
     @Override
     public String setupToolBarTitle() {
@@ -29,5 +45,12 @@ public class RegisterActivity extends ToolBarActivity {
             }
         });
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(RegisterActivity.this, SignIn2Activity.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

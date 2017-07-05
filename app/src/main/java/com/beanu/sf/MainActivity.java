@@ -8,6 +8,7 @@ import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.sf.ui.layer1.OneActivity;
 import com.beanu.sf.ui.layer2.imageselector.ImageSelectorMainActivity;
 import com.beanu.sf.ui.layer3.guide.GuideDemoActivity;
+import com.beanu.sf.ui.layer3.shoppingcart.CartDemoActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -46,7 +47,8 @@ public class MainActivity extends ToolBarActivity {
 
                 break;
             case R.id.btn_four_app:
-
+                Intent intent3 = new Intent(MainActivity.this, CartDemoActivity.class);
+                startActivity(intent3);
                 break;
         }
     }

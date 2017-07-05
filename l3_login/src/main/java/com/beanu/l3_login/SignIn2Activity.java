@@ -45,10 +45,14 @@ public class SignIn2Activity extends ToolBarActivity implements View.OnClickList
         if (id == R.id.btn_to_login) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+            finish();
+
         } else if (id == R.id.btn_to_register) {
 
             Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
+            finish();
+
         }
 
     }

@@ -1,5 +1,6 @@
 package com.beanu.l3_login.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -101,25 +102,40 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
 
 
         } else if (i == R.id.txt_login_forget) {
+            Intent intent = new Intent(getActivity(), FindPwdActivity.class);
+            startActivity(intent);
         } else if (i == R.id.btn_login_weChat) {
+            //TODO
         }
     }
 
-    //UI
+    /**
+     * 去首页 推荐ARouter跳转方式
+     * <p>
+     * 目前l3 不能依赖l4，所以去上一级，可以通过路由的方式跳转
+     */
     private void gotoMain() {
+
 //        Intent intent = new Intent(getActivity(), MainActivity.class);
 //        startActivity(intent);
 //        getActivity().finish();
+
+//        ARouter.getInstance().build("/app/main").navigation();
+
     }
 
 
     @Override
     public void loginSuccess() {
+        hideProgress();
         gotoMain();
+        getActivity().finish();
+
     }
 
     @Override
     public void loginFailed(String error) {
+        hideProgress();
         MessageUtils.showShortToast(getActivity(), error);
     }
 }

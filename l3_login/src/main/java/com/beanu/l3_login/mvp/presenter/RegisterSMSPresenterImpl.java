@@ -1,10 +1,11 @@
 package com.beanu.l3_login.mvp.presenter;
 
 import com.beanu.arad.utils.StringUtils;
-import com.beanu.l3_login.model.bean.SMSCode;
 import com.beanu.l3_login.mvp.contract.RegisterSMSContract;
 
-import rx.Subscriber;
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Beanu on 2017/02/13
@@ -23,22 +24,30 @@ public class RegisterSMSPresenterImpl extends RegisterSMSContract.Presenter {
 
         if (StringUtils.isPhoneFormat(phoneNum)) {
 
-            mRxManage.add(mModel.sendSMSCode(phoneNum).subscribe(new Subscriber<SMSCode>() {
+            mModel.sendSMSCode(phoneNum).subscribe(new Observer<String>() {
                 @Override
-                public void onCompleted() {
-                    mView.requestSMSCode(true);
+                public void onSubscribe(@NonNull Disposable d) {
+                    mRxManage.add(d);
                 }
 
                 @Override
-                public void onError(Throwable e) {
+                public void onNext(@NonNull String smsCode) {
+                    mVerificationCode = smsCode;
+
+                }
+
+                @Override
+                public void onError(@NonNull Throwable e) {
                     mView.requestSMSCode(false);
+
                 }
 
                 @Override
-                public void onNext(SMSCode smsCode) {
-                    mVerificationCode = smsCode.getCode();
+                public void onComplete() {
+                    mView.requestSMSCode(true);
+
                 }
-            }));
+            });
 
         } else {
             mView.wrongPhoneFormat();

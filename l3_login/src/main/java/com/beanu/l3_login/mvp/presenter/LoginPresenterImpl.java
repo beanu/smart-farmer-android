@@ -8,7 +8,9 @@ import com.beanu.l3_common.util.AppHolder;
 import com.beanu.l3_common.util.Constants;
 import com.beanu.l3_login.mvp.contract.LoginContract;
 
-import rx.Subscriber;
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 
 
 /**
@@ -20,21 +22,14 @@ public class LoginPresenterImpl extends LoginContract.Presenter {
     @Override
     public void login(final String account, final String password) {
 
-        mRxManage.add(mModel.httpLogin().subscribe(new Subscriber<User>() {
-
+        mModel.httpLogin(account, password).subscribe(new Observer<User>() {
             @Override
-            public void onCompleted() {
-                mView.loginSuccess();
+            public void onSubscribe(@NonNull Disposable d) {
+                mRxManage.add(d);
             }
 
             @Override
-            public void onError(Throwable e) {
-                mView.loginFailed(e.getMessage());
-            }
-
-            @Override
-            public void onNext(User user) {
-
+            public void onNext(@NonNull User user) {
                 AppHolder.getInstance().setUser(user);
 
                 //保存到本地
@@ -47,6 +42,17 @@ public class LoginPresenterImpl extends LoginContract.Presenter {
                 //通知登录成功
                 Arad.bus.post(new EventModel.LoginEvent(user));
             }
-        }));
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                mView.loginFailed(e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                mView.loginSuccess();
+
+            }
+        });
     }
 }

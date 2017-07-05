@@ -3,9 +3,9 @@ package com.beanu.l3_login.mvp.contract;
 import com.beanu.arad.base.BaseModel;
 import com.beanu.arad.base.BasePresenter;
 import com.beanu.arad.base.BaseView;
-import com.beanu.l3_login.model.bean.SMSCode;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 /**
  * 注册 契约类
@@ -37,9 +37,9 @@ public interface RegisterContract {
 
         Observable<String> uploadAvatar(String imgPath);
 
-        Observable<Void> register(String phone, String password, String yzm, String nickname, String avatarUrl);
+        Observable<String> register(String phone, String password, String yzm, String nickname, String avatarUrl);
 
-        Observable<SMSCode> sendSMSCode(String phoneNum);
+        Observable<String> sendSMSCode(String phoneNum);
 
     }
 

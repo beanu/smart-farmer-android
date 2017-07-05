@@ -8,32 +8,31 @@ import io.reactivex.Observable;
 
 
 /**
- * 注册 获取短信验证码
- * Created by Beanu on 2017/2/13.
+ * 更改密码
+ * Created by Beanu on 2017/5/15.
  */
 
-public interface RegisterSMSContract {
+public interface ChangePwdContract {
 
     public interface View extends BaseView {
-        /**
-         * 验证手机号是否正确
-         */
-        public void wrongPhoneFormat();
 
-        /**
-         * 请求验证码是否正确
-         */
-        public void requestSMSCode(boolean correct);
+        public void obtainSMS(String smsCode);
+
+        public void findPwdSuccess();
     }
 
     public abstract class Presenter extends BasePresenter<View, Model> {
-
         public abstract void sendSMSCode(String phoneNum);
+
+        public abstract void findPassword(String phoneNum, String password, String yzm);
 
     }
 
     public interface Model extends BaseModel {
         Observable<String> sendSMSCode(String phoneNum);
+
+        Observable<String> findPassword(String phoneNum, String password, String yzm);
+
     }
 
 

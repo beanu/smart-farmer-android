@@ -3,8 +3,11 @@ package com.beanu.l3_login.mvp.model;
 import com.beanu.l3_common.model.bean.User;
 import com.beanu.l3_login.mvp.contract.LoginContract;
 
-import rx.Observable;
-import rx.Subscriber;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.annotations.NonNull;
+
 
 /**
  * Created by Beanu on 2017/02/13
@@ -13,15 +16,19 @@ import rx.Subscriber;
 public class LoginModelImpl implements LoginContract.Model {
 
     @Override
-    public Observable<User> httpLogin() {
+    public Observable<User> httpLogin(String account, String password) {
 
-        return Observable.create(new Observable.OnSubscribe<User>() {
+//        return API.getInstance(ApiLoginService.class).user_login(account, password, "0", "")
+//                .compose(RxHelper.<User>handleResult());
+//
+        return Observable.create(new ObservableOnSubscribe<User>() {
             @Override
-            public void call(Subscriber<? super User> subscriber) {
+            public void subscribe(@NonNull ObservableEmitter<User> e) throws Exception {
                 User user = new User();
-                subscriber.onNext(user);
-                subscriber.onCompleted();
+                e.onNext(user);
+                e.onComplete();
             }
         });
     }
+
 }

@@ -15,7 +15,7 @@ public class API {
      * @return 指定的服务类型的实例
      */
     public static <T> T getInstance(Class<T> clazz) {
-        return ApiManager.getService(clazz);
+        return APIManager.getService(clazz);
     }
 
     /**
@@ -27,7 +27,7 @@ public class API {
      * @return 指定的服务类型的实例
      */
     public static <T> T getInstanceWithBaseUrl(Class<T> clazz, String baseUrl) {
-        return ApiManager.getServiceWithBaseUrl(clazz, baseUrl);
+        return APIManager.getServiceWithBaseUrl(clazz, baseUrl);
     }
 
 }
