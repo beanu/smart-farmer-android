@@ -5,10 +5,15 @@ import com.beanu.arad.http.RxHelper;
 import com.beanu.sf.ui.layer2.recycleview.support.api.DemoHttpModel;
 import com.beanu.sf.ui.layer2.recycleview.support.api.DemoPageModel;
 
+import org.reactivestreams.Subscriber;
+
 import java.util.ArrayList;
 
-import rx.Observable;
-import rx.Subscriber;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.annotations.NonNull;
+
 
 /**
  * 虚拟网络请求
@@ -17,9 +22,9 @@ import rx.Subscriber;
 
 public class FakeLoader {
     public static Observable<IPageModel<News>> loadNewsList(final int page) {
-        return Observable.create(new Observable.OnSubscribe<DemoHttpModel<IPageModel<News>>>() {
+        return Observable.create(new ObservableOnSubscribe<DemoHttpModel<IPageModel<News>>>() {
             @Override
-            public void call(Subscriber<? super DemoHttpModel<IPageModel<News>>> subscriber) {
+            public void subscribe(@NonNull ObservableEmitter<DemoHttpModel<IPageModel<News>>> subscriber) throws Exception {
                 DemoHttpModel<IPageModel<News>> baseModel = new DemoHttpModel<>();
                 baseModel.error = "false";
                 DemoPageModel<News> pageModel = new DemoPageModel<>();
@@ -42,7 +47,7 @@ public class FakeLoader {
                 }
 
                 subscriber.onNext(baseModel);
-                subscriber.onCompleted();
+                subscriber.onComplete();
             }
         }).compose(RxHelper.<IPageModel<News>>handleResult());
     }

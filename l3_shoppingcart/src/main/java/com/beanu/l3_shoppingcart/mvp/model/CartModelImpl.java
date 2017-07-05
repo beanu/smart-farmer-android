@@ -31,6 +31,7 @@ public class CartModelImpl implements CartContract.Model {
 
         return Observable.create(new ObservableOnSubscribe<List<CartItem>>() {
 
+
             @Override
             public void subscribe(@NonNull ObservableEmitter<List<CartItem>> e) throws Exception {
                 List<CartItem> list = new ArrayList<>();
@@ -71,5 +72,6 @@ public class CartModelImpl implements CartContract.Model {
     public Observable<Void> updateAllCartShop(int type) {
         return API.getInstance(APICartService.class).select_shop_cart(type)
                 .compose(RxHelper.<Void>handleResult());
+
     }
 }

@@ -23,11 +23,16 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-import rx.Emitter;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.LongConsumer;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by shaohui on 2016/11/18.
@@ -66,10 +71,9 @@ public class WxShareInstance implements ShareInstance {
     public void shareMedia(
             final int platform, final String title, final String targetUrl, final String summary,
             final ShareImageObject shareImageObject, final Activity activity, final ShareListener listener) {
-        Observable.fromEmitter(new Action1<Emitter<byte[]>>() {
-
+        Flowable.create(new FlowableOnSubscribe<byte[]>() {
             @Override
-            public void call(Emitter<byte[]> emitter) {
+            public void subscribe(@NonNull FlowableEmitter<byte[]> emitter) throws Exception {
                 try {
                     String imagePath = ImageDecoder.decode(activity, shareImageObject);
                     emitter.onNext(ImageDecoder.compress2Byte(imagePath, TARGET_SIZE, THUMB_SIZE));
@@ -77,18 +81,18 @@ public class WxShareInstance implements ShareInstance {
                     emitter.onError(e);
                 }
             }
-        }, Emitter.BackpressureMode.DROP)
+        }, BackpressureStrategy.DROP)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnRequest(new Action1<Long>() {
+                .doOnRequest(new LongConsumer() {
                     @Override
-                    public void call(Long aLong) {
+                    public void accept(long aLong) {
                         listener.shareRequest();
                     }
                 })
-                .subscribe(new Action1<byte[]>() {
+                .subscribe(new Consumer<byte[]>() {
                     @Override
-                    public void call(byte[] bytes) {
+                    public void accept(byte[] bytes) {
                         WXWebpageObject webpageObject = new WXWebpageObject();
                         webpageObject.webpageUrl = targetUrl;
 
@@ -99,9 +103,9 @@ public class WxShareInstance implements ShareInstance {
 
                         sendMessage(platform, message, buildTransaction("webPage"));
                     }
-                }, new Action1<Throwable>() {
+                }, new Consumer<Throwable>() {
                     @Override
-                    public void call(Throwable throwable) {
+                    public void accept(Throwable throwable) {
                         activity.finish();
                         listener.shareFailure(new Exception(throwable));
                     }
@@ -111,9 +115,9 @@ public class WxShareInstance implements ShareInstance {
     @Override
     public void shareImage(final int platform, final ShareImageObject shareImageObject,
             final Activity activity, final ShareListener listener) {
-        Observable.fromEmitter(new Action1<Emitter<Pair<Bitmap, byte[]>>>() {
+        Flowable.create(new FlowableOnSubscribe<Pair<Bitmap, byte[]>>() {
             @Override
-            public void call(Emitter<Pair<Bitmap, byte[]>> emitter) {
+            public void subscribe(@NonNull FlowableEmitter<Pair<Bitmap, byte[]>> emitter) throws Exception {
                 try {
                     String imagePath = ImageDecoder.decode(activity, shareImageObject);
                     emitter.onNext(Pair.create(BitmapFactory.decodeFile(imagePath),
@@ -122,18 +126,18 @@ public class WxShareInstance implements ShareInstance {
                     emitter.onError(e);
                 }
             }
-        }, Emitter.BackpressureMode.BUFFER)
+        }, BackpressureStrategy.BUFFER)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnRequest(new Action1<Long>() {
+                .doOnRequest(new LongConsumer() {
                     @Override
-                    public void call(Long aLong) {
+                    public void accept(long aLong) {
                         listener.shareRequest();
                     }
                 })
-                .subscribe(new Action1<Pair<Bitmap, byte[]>>() {
+                .subscribe(new Consumer<Pair<Bitmap,byte[]>>() {
                     @Override
-                    public void call(Pair<Bitmap, byte[]> pair) {
+                    public void accept(Pair<Bitmap, byte[]> pair) {
                         WXImageObject imageObject = new WXImageObject(pair.first);
 
                         WXMediaMessage message = new WXMediaMessage();
@@ -142,9 +146,9 @@ public class WxShareInstance implements ShareInstance {
 
                         sendMessage(platform, message, buildTransaction("image"));
                     }
-                }, new Action1<Throwable>() {
+                }, new Consumer<Throwable>() {
                     @Override
-                    public void call(Throwable throwable) {
+                    public void accept(Throwable throwable) {
                         activity.finish();
                         listener.shareFailure(new Exception(throwable));
                     }

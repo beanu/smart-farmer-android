@@ -26,14 +26,17 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import rx.Emitter;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 import static com.beanu.l2_shareutil.ShareLogger.INFO;
 
@@ -89,9 +92,9 @@ public class WeiboLoginInstance extends LoginInstance {
 
     @Override
     public void fetchUserInfo(final BaseToken token) {
-        Observable.fromEmitter(new Action1<Emitter<WeiboUser>>() {
+        Flowable.create(new FlowableOnSubscribe<WeiboUser>() {
             @Override
-            public void call(Emitter<WeiboUser> weiboUserEmitter) {
+            public void subscribe(@NonNull FlowableEmitter<WeiboUser> weiboUserEmitter) throws Exception {
                 OkHttpClient client = new OkHttpClient();
                 Request request =
                         new Request.Builder().url(buildUserInfoUrl(token, USER_INFO)).build();
@@ -105,18 +108,18 @@ public class WeiboLoginInstance extends LoginInstance {
                     weiboUserEmitter.onError(e);
                 }
             }
-        }, Emitter.BackpressureMode.DROP)
+        }, BackpressureStrategy.DROP)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<WeiboUser>() {
+                .subscribe(new Consumer<WeiboUser>() {
                     @Override
-                    public void call(WeiboUser weiboUser) {
+                    public void accept(WeiboUser weiboUser) {
                         mLoginListener.loginSuccess(
                                 new LoginResult(LoginPlatform.WEIBO, token, weiboUser));
                     }
-                }, new Action1<Throwable>() {
+                }, new Consumer<Throwable>() {
                     @Override
-                    public void call(Throwable throwable) {
+                    public void accept(Throwable throwable) {
                         mLoginListener.loginFailure(new Exception(throwable));
                     }
                 });

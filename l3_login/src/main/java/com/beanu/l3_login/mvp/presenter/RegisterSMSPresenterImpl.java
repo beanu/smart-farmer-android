@@ -33,7 +33,6 @@ public class RegisterSMSPresenterImpl extends RegisterSMSContract.Presenter {
                 @Override
                 public void onNext(@NonNull String smsCode) {
                     mVerificationCode = smsCode;
-
                 }
 
                 @Override
@@ -45,7 +44,6 @@ public class RegisterSMSPresenterImpl extends RegisterSMSContract.Presenter {
                 @Override
                 public void onComplete() {
                     mView.requestSMSCode(true);
-
                 }
             });
 

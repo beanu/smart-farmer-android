@@ -59,7 +59,6 @@ public class CartPresenterImpl extends CartContract.Presenter implements CartAda
             @Override
             public void onComplete() {
                 mView.requestCartListSuccess();
-
             }
         });
     }

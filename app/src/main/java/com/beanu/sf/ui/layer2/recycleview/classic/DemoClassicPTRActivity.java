@@ -17,10 +17,10 @@ import java.util.concurrent.TimeUnit;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class DemoClassicPTRActivity extends AppCompatActivity {
 
@@ -65,9 +65,9 @@ public class DemoClassicPTRActivity extends AppCompatActivity {
                 Observable.timer(1, TimeUnit.SECONDS)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Action1<Long>() {
+                        .subscribe(new Consumer<Long>() {
                             @Override
-                            public void call(Long aLong) {
+                            public void accept(Long aLong) {
                                 mPtrFrame.refreshComplete();
                             }
                         });

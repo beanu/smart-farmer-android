@@ -19,11 +19,16 @@ import com.sina.weibo.sdk.api.share.SendMultiMessageToWeiboRequest;
 import com.sina.weibo.sdk.api.share.WeiboShareSDK;
 import com.sina.weibo.sdk.constant.WBConstants;
 
-import rx.Emitter;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.LongConsumer;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by shaohui on 2016/11/18.
@@ -102,30 +107,30 @@ public class WeiboShareInstance implements ShareInstance {
     private void shareTextOrImage(final ShareImageObject shareImageObject, final String text,
             final Activity activity, final ShareListener listener) {
 
-        Observable.fromEmitter(new Action1<Emitter<Pair<String, byte[]>>>() {
+        Flowable.create(new FlowableOnSubscribe<Pair<String, byte[]>>() {
             @Override
-            public void call(Emitter<Pair<String, byte[]>> emitter) {
+            public void subscribe(@NonNull FlowableEmitter<Pair<String, byte[]>> emitter) throws Exception {
                 try {
                     String path = ImageDecoder.decode(activity, shareImageObject);
                     emitter.onNext(Pair.create(path,
                             ImageDecoder.compress2Byte(path, TARGET_SIZE, TARGET_LENGTH)));
-                    emitter.onCompleted();
+                    emitter.onComplete();
                 } catch (Exception e) {
                     emitter.onError(e);
                 }
             }
-        }, Emitter.BackpressureMode.DROP)
+        }, BackpressureStrategy.DROP)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnRequest(new Action1<Long>() {
+                .doOnRequest(new LongConsumer() {
                     @Override
-                    public void call(Long aLong) {
+                    public void accept(long aLong) {
                         listener.shareRequest();
                     }
                 })
-                .subscribe(new Action1<Pair<String, byte[]>>() {
+                .subscribe(new Consumer<Pair<String,byte[]>>() {
                     @Override
-                    public void call(Pair<String, byte[]> pair) {
+                    public void accept(Pair<String, byte[]> pair) {
                         ImageObject imageObject = new ImageObject();
                         imageObject.imageData = pair.second;
                         imageObject.imagePath = pair.first;
@@ -141,9 +146,9 @@ public class WeiboShareInstance implements ShareInstance {
 
                         sendRequest(activity, message);
                     }
-                }, new Action1<Throwable>() {
+                }, new Consumer<Throwable>() {
                     @Override
-                    public void call(Throwable throwable) {
+                    public void accept(Throwable throwable) {
                         activity.finish();
                         listener.shareFailure(new Exception(throwable));
                     }

@@ -17,7 +17,6 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
 
     @Override
     public void uploadAvatar(String imgPath) {
-
         mModel.uploadAvatar(imgPath).subscribe(new Observer<String>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -45,7 +44,6 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
     @Override
     public void register(String phone, String password, String yzm, String nickname) {
         mView.showProgress();
-
         mModel.register(phone, password, yzm, nickname, avatarPath)
                 .subscribe(new Observer<String>() {
                     @Override

@@ -31,6 +31,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile rootProject.ext.support["support-v7"]
+    compile rootProject.ext.support["support-v4"]
     //第三方依赖
     compile rootProject.ext.dependencies["arad"]
     compile project(':l2_pay')

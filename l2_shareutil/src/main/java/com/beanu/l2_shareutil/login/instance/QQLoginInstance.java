@@ -25,14 +25,18 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.List;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Emitter;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import rx.Emitter;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 import static com.beanu.l2_shareutil.ShareLogger.INFO;
 
@@ -98,9 +102,9 @@ public class QQLoginInstance extends LoginInstance {
 
     @Override
     public void fetchUserInfo(final BaseToken token) {
-        Observable.fromEmitter(new Action1<Emitter<QQUser>>() {
+        Flowable.create(new FlowableOnSubscribe<QQUser>() {
             @Override
-            public void call(Emitter<QQUser> qqUserEmitter) {
+            public void subscribe(@NonNull FlowableEmitter<QQUser> qqUserEmitter) throws Exception {
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder().url(buildUserInfoUrl(token, URL)).build();
 
@@ -114,18 +118,18 @@ public class QQLoginInstance extends LoginInstance {
                     qqUserEmitter.onError(e);
                 }
             }
-        }, Emitter.BackpressureMode.DROP)
+        }, BackpressureStrategy.DROP)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<QQUser>() {
+                .subscribe(new Consumer<QQUser>() {
                     @Override
-                    public void call(QQUser qqUser) {
+                    public void accept(@NonNull QQUser qqUser) throws Exception {
                         mLoginListener.loginSuccess(
                                 new LoginResult(LoginPlatform.QQ, token, qqUser));
                     }
-                }, new Action1<Throwable>() {
+                }, new Consumer<Throwable>() {
                     @Override
-                    public void call(Throwable throwable) {
+                    public void accept(Throwable throwable) {
                         mLoginListener.loginFailure(new Exception(throwable));
                     }
                 });
