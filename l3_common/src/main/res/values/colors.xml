@@ -7,4 +7,7 @@
     <color name="base_color_end">#15BABC</color>
     <color name="base_color_press">#009178</color>
     <color name="base_color_disable">#dbdbdb</color>
+
+    <color name="base_color_orange">#ffb400</color>
+
 </resources>

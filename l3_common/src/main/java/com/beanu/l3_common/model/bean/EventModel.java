@@ -18,4 +18,11 @@ public class EventModel {
     }
 
 
+    //购物车购买成功
+    public static class CartBuySuccess {
+
+        public CartBuySuccess() {
+        }
+
+    }
 }

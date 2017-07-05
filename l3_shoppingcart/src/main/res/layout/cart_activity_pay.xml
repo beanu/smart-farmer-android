@@ -28,6 +28,7 @@
 
 
             <TextView
+                android:id="@+id/txt_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="¥29.90"
@@ -59,14 +60,16 @@
                 android:layout_marginRight="16dp"
                 android:src="@drawable/cart_ic_alipay"/>
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/cbAli"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="16dp"
-                android:button="@drawable/cart_checkbox_selector"/>
+                android:button="@drawable/cart_checkbox_selector"
+                android:checked="true"
+                android:clickable="false"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,7 +120,7 @@
                 android:layout_marginRight="16dp"
                 android:src="@drawable/cart_ic_weixin"/>
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/cbWeixin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,6 +128,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="16dp"
                 android:button="@drawable/cart_checkbox_selector"
+                android:clickable="false"
                 />
 
             <LinearLayout
@@ -159,6 +163,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/btn_cart_pay"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"

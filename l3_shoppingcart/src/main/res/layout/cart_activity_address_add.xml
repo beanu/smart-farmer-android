@@ -1,10 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.beanu.l3_shoppingcart.AddressAddActivity">
+    tools:context="com.beanu.l3_shoppingcart.AddressAddOrUpdateActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/arad_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="@color/cart_white"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:hint="收件人姓名"
+            android:inputType="text"
+            android:textColorHint="@color/cart_font_gray2"
+            android:textSize="14sp"/>
+
+        <EditText
+            android:id="@+id/edit_phone"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:hint="联系电话"
+            android:inputType="phone"
+            android:textColorHint="@color/cart_font_gray2"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/txt_city"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:drawableRight="@drawable/base_arrow_right"
+            android:gravity="center_vertical"
+            android:minHeight="42dp"
+            android:paddingRight="12sp"
+            android:text="省 市 区"
+            android:textSize="14sp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:background="@color/colorPrimary"
+            />
+
+        <EditText
+            android:id="@+id/edit_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:gravity="top"
+            android:hint="详细地址"
+            android:minHeight="100dp"
+            android:textColorHint="@color/cart_font_gray2"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/base_color_orange"
+        android:text="保存"
+        android:textColor="@color/cart_white"
+        />
+</RelativeLayout>

@@ -16,6 +16,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_place_order"/>
+    <include layout="@layout/cart_content_place_order"/>
 
 </android.support.design.widget.CoordinatorLayout>

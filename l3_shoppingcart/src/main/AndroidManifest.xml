@@ -10,7 +10,7 @@
         </activity>
         <activity android:name=".AddressChooseActivity">
         </activity>
-        <activity android:name=".AddressAddActivity">
+        <activity android:name=".AddressAddOrUpdateActivity">
         </activity>
         <activity android:name=".CartPayActivity">
         </activity>

@@ -15,4 +15,6 @@ public class Constants {
     public static final String P_User_Id = "mnhjhhhh";
     public static final String P_ISFIRSTLOAD = "asfaagdse";
 
+    //支付
+    public static final String WX_APPID = "";
 }

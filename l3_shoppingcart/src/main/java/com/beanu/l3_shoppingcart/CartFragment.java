@@ -10,16 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.beanu.arad.Arad;
 import com.beanu.arad.base.ToolBarFragment;
 import com.beanu.arad.support.recyclerview.divider.HorizontalDividerItemDecoration;
+import com.beanu.l3_common.model.bean.EventModel;
 import com.beanu.l3_shoppingcart.adapter.CartAdapter;
 import com.beanu.l3_shoppingcart.mvp.contract.CartContract;
 import com.beanu.l3_shoppingcart.mvp.model.CartModelImpl;
 import com.beanu.l3_shoppingcart.mvp.presenter.CartPresenterImpl;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.DecimalFormat;
 
@@ -38,14 +42,23 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
     private TextView mTxtToBuyDelete;
     private CheckBox mAllCheckBoxDelete;
 
-
     private CartAdapter mCartAdapter;
     DecimalFormat df = new DecimalFormat("0.00");
+
+    public CartFragment() {
+    }
+
+    public static CartFragment newInstance() {
+        CartFragment fragment = new CartFragment();
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCartAdapter = new CartAdapter(getActivity(), mPresenter.getProductList(), mPresenter);
+
+        Arad.bus.register(this);
     }
 
     @Override
@@ -79,16 +92,23 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
         mRecyclerView.setAdapter(mCartAdapter);
 
         if (mPresenter.getProductList().size() == 0) {
+            mTxtToBuy.setEnabled(false);
             mPresenter.requestCartList();
+        } else {
+            mTxtToBuy.setEnabled(true);
         }
     }
 
-    public CartFragment() {
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Arad.bus.unregister(this);
     }
 
-    public static CartFragment newInstance() {
-        CartFragment fragment = new CartFragment();
-        return fragment;
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(EventModel.CartBuySuccess item) {
+        getActivity().finish();
     }
 
     @Override
@@ -102,6 +122,12 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
         mTxtTotalPrice.setText("¥" + df.format(price));
         mTxtToBuy.setText("结算(" + amount + ")");
         mAllCheckBox.setChecked(allChecked);
+
+        if (amount > 0) {
+            mTxtToBuy.setEnabled(true);
+        } else {
+            mTxtToBuy.setEnabled(false);
+        }
     }
 
     @Override
@@ -116,25 +142,30 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
 
     @Override
     public boolean setupToolBarRightButton(View rightButton) {
-        final ImageView btn = (ImageView) rightButton;
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mPresenter.isDeleteMode()) {
-                    btn.setImageResource(R.drawable.arad_ic_share_selector);
-                    mPresenter.setDeleteMode(false);
-                    mPresenter.changed();
-                    mLayoutDeleteMode.setVisibility(View.GONE);
-                } else {
-                    btn.setImageResource(R.drawable.cart_del);
-                    mPresenter.setDeleteMode(true);
-                    mLayoutDeleteMode.setVisibility(View.VISIBLE);
+        if (rightButton instanceof TextView) {
+            final TextView button = ((TextView) rightButton);
+            button.setText("编辑");
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mPresenter.isDeleteMode()) {
+                        button.setText("编辑");
+                        mPresenter.setDeleteMode(false);
+                        mPresenter.changed();
+                        mLayoutDeleteMode.setVisibility(View.GONE);
+                    } else {
+                        button.setText("完成");
+                        mPresenter.setDeleteMode(true);
+                        mLayoutDeleteMode.setVisibility(View.VISIBLE);
+                    }
+
+                    mCartAdapter.notifyDataSetChanged();
                 }
+            });
+        }
 
-                mCartAdapter.notifyDataSetChanged();
-            }
-        });
+
         return true;
     }
 
@@ -149,7 +180,13 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
             mCartAdapter.notifyDataSetChanged();
         } else if (id == R.id.cart_txt_toBuy) {
             //跳转到下单页面
+
             Intent intent = new Intent(getActivity(), PlaceOrderActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList("shopList", mPresenter.getProductList());
+            bundle.putDouble("priceSum", mPresenter.getPriceSum());
+            bundle.putInt("goodsCount", mPresenter.getGoodsCount());
+            intent.putExtras(bundle);
             startActivity(intent);
 
         } else if (id == R.id.cart_txt_toBuyDelete) {

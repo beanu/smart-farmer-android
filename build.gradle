@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'com.android.tools.build:gradle:2.3.3'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -61,7 +61,8 @@ ext {
             "arouter"               : 'com.alibaba:arouter-api:1.2.1.1',
             "arouter-annotation"    : 'com.alibaba:arouter-compiler:1.1.2.1',
             "butterknife"           : 'com.jakewharton:butterknife:8.6.0',
-            "butterknife-annotation": 'com.jakewharton:butterknife-compiler:8.6.0']
+            "butterknife-annotation": 'com.jakewharton:butterknife-compiler:8.6.0',
+            "rxbinding"             : 'com.jakewharton.rxbinding2:rxbinding:2.0.0']
 
 
 }

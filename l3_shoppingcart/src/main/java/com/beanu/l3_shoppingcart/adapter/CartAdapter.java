@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.beanu.arad.support.recyclerview.adapter.BaseAdapter;
 import com.beanu.l3_shoppingcart.R;
-import com.beanu.l3_shoppingcart.bean.CartItem;
+import com.beanu.l3_shoppingcart.model.bean.CartItem;
 import com.beanu.l3_shoppingcart.mvp.presenter.CartPresenterImpl;
 import com.beanu.l3_shoppingcart.widget.InDeNumber;
 import com.bumptech.glide.Glide;
@@ -76,7 +76,7 @@ public class CartAdapter extends BaseAdapter<CartItem, CartAdapter.ItemViewHolde
 
         private void bind(final CartItem item) {
 
-            mCheckBox.setChecked(mCartPresenter.isDeleteMode() ? item.isDelete_checked() : item.isCart_checked());
+            mCheckBox.setChecked(mCartPresenter.isDeleteMode() ? item.isDelete_checked() : (item.isSelect() == 1));
             mCheckBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -84,24 +84,26 @@ public class CartAdapter extends BaseAdapter<CartItem, CartAdapter.ItemViewHolde
                         item.setDelete_checked(mCheckBox.isChecked());
                         mCartListener.changed();
                     } else {
-                        item.setCart_checked(mCheckBox.isChecked());
+                        item.setSelect(mCheckBox.isChecked() ? 1 : 0);
                         mCartListener.changed();
+                        mCartPresenter.updateCartShop(item);
                     }
                 }
             });
 
-            if (!TextUtils.isEmpty(item.getFaceImgPath())) {
-                Glide.with(mContext).load(item.getFaceImgPath()).into(mImgFace);
+            if (!TextUtils.isEmpty(item.getProductImg())) {
+                Glide.with(mContext).load(item.getProductImg()).into(mImgFace);
             }
             mTxtTitle.setText(item.getName());
-            mTxtSKU.setText(item.getSku());
+            mTxtSKU.setText(item.getPress());
             mTxtPrice.setText(df.format(item.getPrice()) + "元");
-            mInDeNumber.setNum(item.getCart_amount());
+            mInDeNumber.setNum(item.getNum());
             mInDeNumber.setListener(new InDeNumber.OnChangeListener() {
                 @Override
                 public void notifyDataChanged(int num) {
-                    item.setCart_amount(num);
+                    item.setNum(num);
                     mCartListener.changed();
+                    mCartPresenter.updateCartShop(item);
                 }
             });
 

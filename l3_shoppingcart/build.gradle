@@ -1,4 +1,4 @@
- apply plugin: 'com.android.library'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -28,8 +28,19 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    testCompile 'junit:junit:4.12'
+
     compile rootProject.ext.support["support-v7"]
     //第三方依赖
     compile rootProject.ext.dependencies["arad"]
-    testCompile 'junit:junit:4.12'
+    compile project(':l2_pay')
+    compile project(':l3_common')
+    compile rootProject.ext.dependencies["rxbinding"]
+    compile rootProject.ext.dependencies["arouter"]
+    annotationProcessor rootProject.ext.dependencies["arouter-annotation"]
+
+
+    compile('cn.qqtheme.framework:WheelPicker:1.5.1') {
+        exclude group: 'com.android.support'
+    }
 }

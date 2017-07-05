@@ -19,8 +19,9 @@
 
         <ImageView
             android:id="@+id/cart_img_address_tag"
-            android:layout_width="24dp"
-            android:layout_height="24dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cart_books_location"/>
 
         <TextView
             android:id="@+id/cart_txt_address_userName"
@@ -29,7 +30,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="8dp"
             android:layout_toRightOf="@id/cart_img_address_tag"
-            android:text="李美慧"
+            android:text="收货地址"
             android:textColor="@color/cart_font_black"
             android:textSize="16sp"/>
 
@@ -40,9 +41,9 @@
             android:layout_alignBottom="@id/cart_txt_address_userName"
             android:layout_marginLeft="8dp"
             android:layout_toRightOf="@id/cart_txt_address_userName"
-            android:text="18560232016"
             android:textColor="@color/cart_font_black"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            tools:text="18560232016"/>
 
         <TextView
             android:id="@+id/cart_txt_address"
@@ -51,13 +52,16 @@
             android:layout_alignLeft="@id/cart_txt_address_userName"
             android:layout_below="@id/cart_txt_address_userName"
             android:layout_marginTop="8dp"
-            android:text="山东省济南市高新区"
             android:textColor="@color/cart_font_gray"
-            android:textSize="13sp"/>
+            android:textSize="13sp"
+            tools:text="山东省济南市高新区"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/base_arrow_right"
             />
 
     </RelativeLayout>
@@ -115,13 +119,14 @@
     <!--小记-->
 
     <TextView
+        android:id="@+id/txt_cart_info"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:layout_below="@id/rl_place_order_express_fee"
         android:background="@color/cart_white"
         android:gravity="center_vertical|right"
         android:paddingRight="16dp"
-        android:text="共%s件商品  小计:¥$d"
+        android:text="共%s件商品  小计:¥%s"
         android:textSize="12sp"
         />
 
@@ -164,7 +169,7 @@
             android:layout_alignParentRight="true"
             android:background="@color/cart_primary"
             android:gravity="center"
-            android:text="支付"
+            android:text="下单"
             android:textColor="@color/cart_white"
             android:textSize="18sp"/>
 

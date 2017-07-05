@@ -30,7 +30,7 @@ public class AddressChooseActivity extends ToolBarActivity implements View.OnCli
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.cart_txt_address_add) {
-            Intent intent = new Intent(this, AddressAddActivity.class);
+            Intent intent = new Intent(this, AddressAddOrUpdateActivity.class);
             startActivity(intent);
         }
     }
