@@ -1,0 +1,10 @@
+<resources>
+
+    <!--分割线-->
+    <style name="line_horizontal_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/common_line_color</item>
+    </style>
+
+</resources>

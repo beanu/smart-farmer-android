@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color>
+    <!--分类标题的背景颜色-->
+    <color name="common_class_color">#F3F3F5</color>
+    <!--通用的分割线的颜色-->
+    <color name="common_line_color">#F1F1F1</color>
+
+    <!--login&&reg-->
+    <color name="common_main_pink">#eb81b2</color>
+</resources>
