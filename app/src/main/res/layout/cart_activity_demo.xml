@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.beanu.l3_shoppingcart.com.beanu.sf.ui.layer3.shoppingcart.CartDemoActivity">
+    android:orientation="vertical">
 
     <fragment
         android:id="@+id/fragment"

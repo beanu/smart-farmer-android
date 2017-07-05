@@ -4,13 +4,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/cart_white"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="16dp">
 
     <ImageView
         android:id="@+id/cart_img_order_item"
         android:layout_width="80dp"
         android:layout_height="100dp"
-        android:padding="8dp"/>
+        android:scaleType="centerCrop"/>
 
 
     <TextView
@@ -18,13 +19,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_toEndOf="@+id/cart_img_order_item"
         android:layout_toRightOf="@+id/cart_img_order_item"
         android:textSize="14sp"
-        tools:text="韩啸"/>
+        tools:text="中国农业银行"/>
 
     <TextView
         android:id="@+id/cart_txt_order_item_goods_sku"
@@ -33,9 +33,10 @@
         android:layout_alignLeft="@+id/cart_txt_order_item_goods_name"
         android:layout_alignStart="@+id/cart_txt_order_item_goods_name"
         android:layout_below="@+id/cart_txt_order_item_goods_name"
-        android:layout_marginTop="20dp"
-        android:textSize="14sp"
-        tools:text="15012345678"/>
+        android:layout_marginTop="8dp"
+        android:textColor="@color/cart_shop_sku"
+        android:textSize="13sp"
+        tools:text="上海交通大学出版社"/>
 
     <TextView
         android:id="@+id/cart_txt_order_item_goods_price"
@@ -44,8 +45,28 @@
         android:layout_alignBottom="@+id/cart_img_order_item"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="23dp"
-        android:layout_marginRight="23dp"
-        android:text="TextView"/>
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="¥45.50"
+        android:textColor="@color/cart_primary"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/cart_txt_order_item_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cart_txt_order_item_goods_price"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="14dp"
+        android:layout_toLeftOf="@+id/cart_txt_order_item_goods_price"
+        android:layout_toStartOf="@+id/cart_txt_order_item_goods_price"
+        tools:text="x7"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/cart_txt_order_item_num"
+        android:layout_marginTop="4dp"
+        android:background="@color/cart_line"/>
 
 </RelativeLayout>
