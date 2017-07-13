@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_demo"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context="com.beanu.l2_shareutil.demo.DemoActivity">
+<LinearLayout android:id="@+id/activity_demo"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="QQ"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
 
         <Button
             android:id="@+id/btn_qq_image"
@@ -27,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="QQ_Image"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
 
         <Button
             android:id="@+id/btn_qq_media"
@@ -35,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="QQ_Media"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
     </LinearLayout>
 
     <LinearLayout
@@ -50,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="微信"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
 
         <Button
             android:id="@+id/btn_weixin_image"
@@ -58,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="微信Image"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
 
         <Button
             android:id="@+id/btn_weixin_media"
@@ -66,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="微信Media"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
 
         <Button
             android:id="@+id/btn_weixin_circle_media"
@@ -74,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="微信朋友圈Media"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
     </LinearLayout>
 
     <LinearLayout
@@ -88,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="微博"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
 
         <Button
             android:id="@+id/btn_weibo_image"
@@ -96,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="微博Image"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
 
         <Button
             android:id="@+id/btn_weibo_media"
@@ -104,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="微博Media"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
     </LinearLayout>
 
     <LinearLayout
@@ -118,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="QQ登录"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
 
         <Button
             android:id="@+id/btn_weixin_login"
@@ -126,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="微信登录"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
 
         <Button
             android:id="@+id/btn_weibo_login"
@@ -134,7 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="微博登录"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
     </LinearLayout>
 
     <ScrollView
@@ -145,6 +143,6 @@
             android:id="@+id/tv_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#88000000" />
+            android:textColor="#88000000"/>
     </ScrollView>
 </LinearLayout>

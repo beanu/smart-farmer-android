@@ -6,8 +6,8 @@ import android.util.Log;
 
 import com.beanu.arad.Arad;
 import com.beanu.arad.support.log.KLog;
-import com.beanu.arad.utils.AndroidUtil;
 import com.beanu.arad.utils.MD5Util;
+import com.beanu.arad.utils.NetworkUtils;
 import com.beanu.l3_common.util.AppHolder;
 import com.beanu.l3_common.util.Constants;
 
@@ -165,7 +165,7 @@ public class APIManager {
         @Override
         public Response intercept(@NonNull Chain chain) throws IOException {
             Request request = chain.request();
-            if (!AndroidUtil.networkStatusOK(Arad.app)) {
+            if (!NetworkUtils.isConnected()) {
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)
                         .build();
@@ -173,7 +173,7 @@ public class APIManager {
             }
 
             Response originalResponse = chain.proceed(request);
-            if (AndroidUtil.networkStatusOK(Arad.app)) {
+            if (NetworkUtils.isConnected()) {
                 //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
                 String cacheControl = request.cacheControl().toString();
                 return originalResponse.newBuilder()

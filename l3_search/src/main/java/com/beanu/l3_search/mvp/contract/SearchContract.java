@@ -10,7 +10,8 @@ import com.beanu.l3_search.mvp.model.OnSearchListener;
 
 import java.util.ArrayList;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 /**
  * 搜索 契约类

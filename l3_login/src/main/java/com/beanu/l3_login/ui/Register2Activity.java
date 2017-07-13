@@ -1,20 +1,18 @@
 package com.beanu.l3_login.ui;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.beanu.arad.base.ToolBarActivity;
-import com.beanu.arad.utils.MessageUtils;
-import com.beanu.arad.utils.statusbar.StatusBarUtil;
+import com.beanu.arad.utils.ToastUtils;
 import com.beanu.l3_login.R;
 import com.beanu.l3_login.SignInMode;
 import com.beanu.l3_login.mvp.contract.RegisterContract;
@@ -100,24 +98,12 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
     }
 
     @Override
-    protected void setStatusBar() {
-        StatusBarUtil.setTransparentForImageView(this, null);
-
-        //设置toolbar的低版本的高度
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            ViewGroup.LayoutParams layoutParams = getToolbar().getLayoutParams();
-            layoutParams.height = getResources().getDimensionPixelSize(R.dimen.toolbar_height);
-            getToolbar().setLayoutParams(layoutParams);
-        }
-    }
-
-    @Override
     public String setupToolBarTitle() {
         return "设置密码";
     }
 
     @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
+    public boolean setupToolBarLeftButton(ImageView leftButton) {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,7 +139,7 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
     @Override
     public void registerSuccess() {
         //注册成功 去登录页面
-        MessageUtils.showShortToast(this, "注册成功");
+        ToastUtils.showShort("注册成功");
         startActivity(LoginActivity.class);
         finish();
 
@@ -161,7 +147,7 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
 
     @Override
     public void registerFail(String msg) {
-        MessageUtils.showShortToast(this, msg);
+        ToastUtils.showShort(msg);
     }
 
     @Override

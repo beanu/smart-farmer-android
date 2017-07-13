@@ -1,7 +1,8 @@
 package com.beanu.l3_login.mvp.presenter;
 
 import com.beanu.arad.Arad;
-import com.beanu.arad.utils.Base64Coder;
+import com.beanu.arad.utils.ConvertUtils;
+import com.beanu.arad.utils.EncryptUtils;
 import com.beanu.l3_common.model.bean.EventModel;
 import com.beanu.l3_common.model.bean.User;
 import com.beanu.l3_common.util.AppHolder;
@@ -34,7 +35,7 @@ public class LoginPresenterImpl extends LoginContract.Presenter {
 
                 //保存到本地
                 Arad.preferences.putString(Constants.P_ACCOUNT, account);
-                Arad.preferences.putString(Constants.P_PWD, Base64Coder.encodeString(password));
+                Arad.preferences.putString(Constants.P_PWD, EncryptUtils.encryptDES2HexString(ConvertUtils.hexString2Bytes(password), Constants.DES_KEY));
                 Arad.preferences.putString(Constants.P_User_Id, user.getId());
                 Arad.preferences.putBoolean(Constants.P_ISFIRSTLOAD, false);
                 Arad.preferences.flush();

@@ -13,7 +13,8 @@ import android.view.WindowManager;
 
 import com.beanu.arad.Arad;
 import com.beanu.arad.utils.AnimUtil;
-import com.beanu.arad.utils.Base64Coder;
+import com.beanu.arad.utils.ConvertUtils;
+import com.beanu.arad.utils.EncryptUtils;
 import com.beanu.l3_common.util.Constants;
 import com.beanu.l4_bottom_tab.R;
 
@@ -93,7 +94,7 @@ public class StartActivity extends AppCompatActivity {
 
         String phone = Arad.preferences.getString(Constants.P_ACCOUNT);
         String password = Arad.preferences.getString(Constants.P_PWD);
-        password = Base64Coder.decodeString(password);
+        password = ConvertUtils.bytes2HexString(EncryptUtils.decryptHexStringDES(password, Constants.DES_KEY));
 
 //        APIFactory.getInstance().login(phone, password).subscribe(new Subscriber<User>() {
 //            @Override

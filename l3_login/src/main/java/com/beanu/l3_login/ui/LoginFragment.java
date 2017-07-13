@@ -14,7 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.beanu.arad.base.ToolBarFragment;
-import com.beanu.arad.utils.MessageUtils;
+import com.beanu.arad.utils.ToastUtils;
 import com.beanu.l3_login.R;
 import com.beanu.l3_login.mvp.contract.LoginContract;
 import com.beanu.l3_login.mvp.model.LoginModelImpl;
@@ -136,6 +136,6 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
     @Override
     public void loginFailed(String error) {
         hideProgress();
-        MessageUtils.showShortToast(getActivity(), error);
+        ToastUtils.showShort(error);
     }
 }

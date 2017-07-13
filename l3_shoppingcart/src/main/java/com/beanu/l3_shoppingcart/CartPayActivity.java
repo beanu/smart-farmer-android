@@ -2,6 +2,7 @@ package com.beanu.l3_shoppingcart;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,7 +12,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.beanu.arad.Arad;
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.http.RxHelper;
-import com.beanu.arad.utils.MessageUtils;
+import com.beanu.arad.utils.ToastUtils;
 import com.beanu.l2_pay.PayResultCallBack;
 import com.beanu.l2_pay.PayType;
 import com.beanu.l2_pay.PayUtil;
@@ -69,7 +70,7 @@ public class CartPayActivity extends ToolBarActivity implements View.OnClickList
     }
 
     @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
+    public boolean setupToolBarLeftButton(ImageView leftButton) {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,7 +177,7 @@ public class CartPayActivity extends ToolBarActivity implements View.OnClickList
     public void onPaySuccess(PayType payType) {
         Arad.bus.post(new EventModel.CartBuySuccess());
 
-        MessageUtils.showShortToast(CartPayActivity.this, "支付成功");
+        ToastUtils.showShort("支付成功");
         ARouter.getInstance().build("/app/my/orderList").withInt("page", type).navigation();
 
         finish();

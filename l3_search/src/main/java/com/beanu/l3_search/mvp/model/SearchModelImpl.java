@@ -3,7 +3,6 @@ package com.beanu.l3_search.mvp.model;
 import com.beanu.arad.Arad;
 import com.beanu.arad.http.RxHelper;
 import com.beanu.l3_common.model.api.API;
-import com.beanu.l3_common.util.AppHolder;
 import com.beanu.l3_search.model.APISearchService;
 import com.beanu.l3_search.model.bean.SearchHistoryModel;
 import com.beanu.l3_search.model.bean.SearchResult;
@@ -12,7 +11,7 @@ import com.litesuits.orm.db.assit.WhereBuilder;
 
 import java.util.ArrayList;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 
 /**
@@ -56,12 +55,12 @@ public class SearchModelImpl implements SearchContract.Model {
     @Override
     public Observable<SearchResult> searchResult(String value) {
 
-        String subjectId = null;
-        if (AppHolder.getInstance().user != null) {
-            subjectId = AppHolder.getInstance().user.getSubjectId();
-        }
+//        String subjectId = null;
+//        if (AppHolder.getInstance().user != null) {
+//            subjectId = AppHolder.getInstance().user.getSubjectId();
+//        }
 
-        return API.getInstance(APISearchService.class).searchResult(API.createHeader(), subjectId, value)
+        return API.getInstance(APISearchService.class).searchResult("", value)
                 .compose(RxHelper.<SearchResult>handleResult());
     }
 }

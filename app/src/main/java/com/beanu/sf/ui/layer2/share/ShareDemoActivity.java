@@ -3,26 +3,38 @@ package com.beanu.sf.ui.layer2.share;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.l2_shareutil.LoginUtil;
-import com.beanu.l2_shareutil.R;
 import com.beanu.l2_shareutil.ShareUtil;
 import com.beanu.l2_shareutil.login.LoginPlatform;
 import com.beanu.l2_shareutil.login.LoginResult;
 import com.beanu.l2_shareutil.share.SharePlatform;
+import com.beanu.sf.R;
 
-public class DemoActivity extends AppCompatActivity implements View.OnClickListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    private Button mBtnQq, mBtnQqImage, mBtnQqMedia;
-    private Button mBtnWeixin, mBtnWeixinImage, mBtnWeixinMedia, mBtnWeixinCircleMedia;
-    private Button mBtnWeibo, mBtnWeiboImage, mBtnWeiboMedia;
-    private Button mBtnQqLogin, mBtnWeixinLogin, mBtnWeiBoLogin;
-    private TextView mTvResult;
+public class ShareDemoActivity extends ToolBarActivity implements View.OnClickListener {
+
+    @BindView(R.id.btn_qq) Button mBtnQq;
+    @BindView(R.id.btn_qq_image) Button mBtnQqImage;
+    @BindView(R.id.btn_qq_media) Button mBtnQqMedia;
+    @BindView(R.id.btn_weixin) Button mBtnWeixin;
+    @BindView(R.id.btn_weixin_image) Button mBtnWeixinImage;
+    @BindView(R.id.btn_weixin_media) Button mBtnWeixinMedia;
+    @BindView(R.id.btn_weixin_circle_media) Button mBtnWeixinCircleMedia;
+    @BindView(R.id.btn_weibo) Button mBtnWeibo;
+    @BindView(R.id.btn_weibo_image) Button mBtnWeiboImage;
+    @BindView(R.id.btn_weibo_media) Button mBtnWeiboMedia;
+    @BindView(R.id.btn_qq_login) Button mBtnQqLogin;
+    @BindView(R.id.btn_weixin_login) Button mBtnWeixinLogin;
+    @BindView(R.id.btn_weibo_login) Button mBtnWeiBoLogin;
+    @BindView(R.id.tv_result) TextView mTvResult;
 
     private String shareTitle = "分享的标题";
     private String shareSummary = "分享的摘要";
@@ -38,21 +50,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_demo);
-
-        mBtnQq = (Button) findViewById(R.id.btn_qq);
-        mBtnQqImage = (Button) findViewById(R.id.btn_qq_image);
-        mBtnQqMedia = (Button) findViewById(R.id.btn_qq_media);
-        mBtnWeixin = (Button) findViewById(R.id.btn_weixin);
-        mBtnWeixinImage = (Button) findViewById(R.id.btn_weixin_image);
-        mBtnWeixinMedia = (Button) findViewById(R.id.btn_weixin_media);
-        mBtnWeixinCircleMedia = (Button) findViewById(R.id.btn_weixin_circle_media);
-        mBtnWeibo = (Button) findViewById(R.id.btn_weibo);
-        mBtnWeiboImage = (Button) findViewById(R.id.btn_weibo_image);
-        mBtnWeiboMedia = (Button) findViewById(R.id.btn_weibo_media);
-        mBtnQqLogin = (Button) findViewById(R.id.btn_qq_login);
-        mBtnWeixinLogin = (Button) findViewById(R.id.btn_weixin_login);
-        mBtnWeiBoLogin = (Button) findViewById(R.id.btn_weibo_login);
-        mTvResult = (TextView) findViewById(R.id.tv_result);
+        ButterKnife.bind(this);
 
         mBtnQq.setOnClickListener(this);
         mBtnQqImage.setOnClickListener(this);
@@ -151,7 +149,7 @@ public class DemoActivity extends AppCompatActivity implements View.OnClickListe
         if (null != result) {
             mTvResult.setText(platformName + "登录结果:" + result.toString());
         } else {
-            Toast.makeText(DemoActivity.this, platformName + "登录结果为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ShareDemoActivity.this, platformName + "登录结果为空", Toast.LENGTH_SHORT).show();
         }
     }
 }

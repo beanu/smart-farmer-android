@@ -3,7 +3,7 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".ui.layer2.share.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -26,7 +26,6 @@
         <activity android:name=".ui.layer1.RetrofitActivity">
         </activity>
         <activity android:name=".ui.layer2.imageselector.ImageSelectorMainActivity"/>
-
         <activity android:name=".ui.layer2.recycleview.classic.DemoClassicPTRActivity">
         </activity>
         <activity android:name=".ui.layer2.recycleview.storehouse.StoreHouseActivity">
@@ -41,7 +40,15 @@
         </activity>
         <activity android:name=".ui.layer3.guide.GuideDemoActivity"/>
         <activity android:name=".ui.layer3.shoppingcart.CartDemoActivity"/>
-        <activity android:name=".ui.layer2.share.DemoActivity"/>
+        <activity android:name=".ui.layer2.share.ShareDemoActivity"/>
+        <activity android:name=".ui.layer3.search.SearchDemoActivity">
+        </activity>
+        <activity android:name=".ui.layer2.TwoActivity"/>
+
+        <activity android:name=".ui.layer3.ThreeActivity"/>
+
+        <activity android:name=".ui.layer3.login.LoginDemoActivity"/>
+
     </application>
 
 </manifest>

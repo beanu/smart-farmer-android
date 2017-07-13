@@ -6,11 +6,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.log.KLog;
-import com.beanu.arad.utils.MessageUtils;
+import com.beanu.arad.utils.ToastUtils;
 import com.beanu.l3_shoppingcart.model.bean.AddressItem;
 import com.beanu.l3_shoppingcart.mvp.contract.AddressModifyContract;
 import com.beanu.l3_shoppingcart.mvp.model.AddressModifyModelImpl;
@@ -99,7 +100,7 @@ public class AddressAddOrUpdateActivity extends ToolBarActivity<AddressModifyPre
                 String address = mEditAddress.getText().toString();
 
                 if (TextUtils.isEmpty(name) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(address) || mProvince == null || mCity == null || mCounty == null) {
-                    MessageUtils.showShortToast(AddressAddOrUpdateActivity.this, "信息填写不完整");
+                    ToastUtils.showShort("信息填写不完整");
                 } else {
 
                     ArrayMap<String, String> params = new ArrayMap<>();
@@ -130,7 +131,7 @@ public class AddressAddOrUpdateActivity extends ToolBarActivity<AddressModifyPre
     }
 
     @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
+    public boolean setupToolBarLeftButton(ImageView leftButton) {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,6 +150,6 @@ public class AddressAddOrUpdateActivity extends ToolBarActivity<AddressModifyPre
 
     @Override
     public void addOrUpdateFailed(String errorMessage) {
-        MessageUtils.showShortToast(this, errorMessage);
+        ToastUtils.showShort(errorMessage);
     }
 }

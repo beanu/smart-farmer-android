@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.beanu.arad.base.ToolBarFragment;
-import com.beanu.arad.utils.MessageUtils;
+import com.beanu.arad.utils.ToastUtils;
 import com.beanu.l3_login.R;
 import com.beanu.l3_login.mvp.contract.RegisterSMSContract;
 import com.beanu.l3_login.mvp.model.RegisterSMSModelImpl;
@@ -105,7 +105,7 @@ public class RegisterFragment extends ToolBarFragment<RegisterSMSPresenterImpl, 
 
     @Override
     public void wrongPhoneFormat() {
-        MessageUtils.showShortToast(getActivity(), "手机号不正确");
+        ToastUtils.showShort("手机号不正确");
         mEditRegisterPhone.setText("");
     }
 
@@ -117,7 +117,7 @@ public class RegisterFragment extends ToolBarFragment<RegisterSMSPresenterImpl, 
             intent.putExtra("code", mPresenter.getVerificationCode());
             startActivity(intent);
         } else {
-            MessageUtils.showShortToast(getActivity(), "请求验证码失败，请重试");
+            ToastUtils.showShort("请求验证码失败，请重试");
         }
     }
 }

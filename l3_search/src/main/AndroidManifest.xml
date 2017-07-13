@@ -3,6 +3,8 @@
 
     <application>
 
+        <activity android:name=".SearchActivity"/>
+
     </application>
 
 </manifest>

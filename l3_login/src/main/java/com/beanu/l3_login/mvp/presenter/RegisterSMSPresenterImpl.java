@@ -1,6 +1,6 @@
 package com.beanu.l3_login.mvp.presenter;
 
-import com.beanu.arad.utils.StringUtils;
+import com.beanu.arad.utils.RegexUtils;
 import com.beanu.l3_login.mvp.contract.RegisterSMSContract;
 
 import io.reactivex.Observer;
@@ -22,7 +22,7 @@ public class RegisterSMSPresenterImpl extends RegisterSMSContract.Presenter {
     @Override
     public void sendSMSCode(String phoneNum) {
 
-        if (StringUtils.isPhoneFormat(phoneNum)) {
+        if (RegexUtils.isMobileSimple(phoneNum)) {
 
             mModel.sendSMSCode(phoneNum).subscribe(new Observer<String>() {
                 @Override

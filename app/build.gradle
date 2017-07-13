@@ -39,9 +39,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    testCompile 'junit:junit:4.12'
+
     compile rootProject.ext.support["support-v7"]
     compile rootProject.ext.support["design"]
-    testCompile 'junit:junit:4.12'
+
     //butter knife 单独提出来放到app层
     compile rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-annotation"]
@@ -49,16 +51,18 @@ dependencies {
     //第一层
     compile rootProject.ext.dependencies["arad"]
     //第二层
-    //第三层
-    //第四层
     compile project(':l2_im')
     compile project(':l2_imageselector')
     compile project(':l2_pay')
     compile project(':l2_recycleview')
     compile project(':l2_shareutil')
     compile project(':l2_zxing')
+    //第三层
     compile project(':l3_common')
     compile project(':l3_guide')
     compile project(':l3_login')
     compile project(':l3_shoppingcart')
+    compile project(':l3_search')
+
+    //第四层
 }

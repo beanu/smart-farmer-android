@@ -141,31 +141,25 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
     }
 
     @Override
-    public boolean setupToolBarRightButton(View rightButton) {
-
-        if (rightButton instanceof TextView) {
-            final TextView button = ((TextView) rightButton);
-            button.setText("编辑");
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mPresenter.isDeleteMode()) {
-                        button.setText("编辑");
-                        mPresenter.setDeleteMode(false);
-                        mPresenter.changed();
-                        mLayoutDeleteMode.setVisibility(View.GONE);
-                    } else {
-                        button.setText("完成");
-                        mPresenter.setDeleteMode(true);
-                        mLayoutDeleteMode.setVisibility(View.VISIBLE);
-                    }
-
-                    mCartAdapter.notifyDataSetChanged();
+    public boolean setupToolBarRightText(final TextView rightText) {
+        rightText.setText("编辑");
+        rightText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mPresenter.isDeleteMode()) {
+                    rightText.setText("编辑");
+                    mPresenter.setDeleteMode(false);
+                    mPresenter.changed();
+                    mLayoutDeleteMode.setVisibility(View.GONE);
+                } else {
+                    rightText.setText("完成");
+                    mPresenter.setDeleteMode(true);
+                    mLayoutDeleteMode.setVisibility(View.VISIBLE);
                 }
-            });
-        }
 
-
+                mCartAdapter.notifyDataSetChanged();
+            }
+        });
         return true;
     }
 

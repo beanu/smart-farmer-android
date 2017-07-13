@@ -11,7 +11,11 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -33,7 +37,9 @@ dependencies {
     //butter knife 单独提出来放到app层
     compile rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-annotation"]
+    //ARouter路由 模块解耦
+    compile rootProject.ext.dependencies["arouter"]
+    annotationProcessor rootProject.ext.dependencies["arouter-annotation"]
     //第三方依赖
-    compile rootProject.ext.dependencies["arad"]
     compile project(':l3_common')
 }

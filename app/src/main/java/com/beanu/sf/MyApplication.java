@@ -1,7 +1,7 @@
-package com.beanu.sf.ui.layer2.share;
+package com.beanu.sf;
 
-import android.app.Application;
-
+import com.beanu.arad.AradApplication;
+import com.beanu.arad.AradApplicationConfig;
 import com.beanu.l2_shareutil.ShareConfig;
 import com.beanu.l2_shareutil.ShareManager;
 
@@ -9,7 +9,7 @@ import com.beanu.l2_shareutil.ShareManager;
  * Created by Administrator on 2017/1/17.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends AradApplication {
 
     @Override
     public void onCreate() {
@@ -32,5 +32,10 @@ public class MyApplication extends Application {
                 .wxSecret(WX_SECRET);
 
         ShareManager.init(config);
+    }
+
+    @Override
+    protected AradApplicationConfig appConfig() {
+        return new AradApplicationConfig();
     }
 }

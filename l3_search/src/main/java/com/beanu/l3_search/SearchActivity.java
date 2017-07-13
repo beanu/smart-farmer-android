@@ -1,7 +1,6 @@
 package com.beanu.l3_search;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,16 +13,15 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.divider.HorizontalDividerItemDecoration;
-import com.beanu.arad.utils.statusbar.StatusBarUtil;
 import com.beanu.l3_search.model.bean.SearchHistoryModel;
 import com.beanu.l3_search.model.bean.SearchResultModel;
 import com.beanu.l3_search.mvp.contract.SearchContract;
@@ -139,19 +137,6 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
     }
 
 
-    @Override
-    protected void setStatusBar() {
-        StatusBarUtil.setTransparentForImageView(this, null);
-
-        //设置toolbar的低版本的高度
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            ViewGroup.LayoutParams layoutParams = getToolbar().getLayoutParams();
-            layoutParams.height = getResources().getDimensionPixelSize(R.dimen.toolbar);
-            getToolbar().setLayoutParams(layoutParams);
-        }
-    }
-
-
     public void search(String value) {
         if (!TextUtils.isEmpty(value)) {
             // 先隐藏键盘
@@ -163,7 +148,7 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
     }
 
     @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
+    public boolean setupToolBarLeftButton(ImageView leftButton) {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,7 +159,7 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
     }
 
     @Override
-    public boolean setupToolBarRightButton(View rightButton) {
+    public boolean setupToolBarRightButton(ImageView rightButton) {
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

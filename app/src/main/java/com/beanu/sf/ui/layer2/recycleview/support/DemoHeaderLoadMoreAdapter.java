@@ -9,7 +9,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.beanu.arad.support.listview.ILoadMoreAdapter;
+import com.beanu.arad.support.listview.ILoadMoreListener;
 import com.beanu.arad.support.recyclerview.adapter.BaseHeadLoadMoreAdapter;
 import com.beanu.arad.support.viewpager.transforms.HalfTransformer;
 import com.beanu.arad.support.viewpager.tricks.ViewPagerAutoScroll;
@@ -31,7 +31,7 @@ public class DemoHeaderLoadMoreAdapter extends BaseHeadLoadMoreAdapter<News, Dem
     private List<IndexImage> mIndexImages;
 
 
-    public DemoHeaderLoadMoreAdapter(Context context, List<News> list, List<IndexImage> imageList, ILoadMoreAdapter listener) {
+    public DemoHeaderLoadMoreAdapter(Context context, List<News> list, List<IndexImage> imageList, ILoadMoreListener listener) {
         super(context, list, listener);
         mIndexImages = imageList;
         mViewPagerAutoScroll = new ViewPagerAutoScroll();

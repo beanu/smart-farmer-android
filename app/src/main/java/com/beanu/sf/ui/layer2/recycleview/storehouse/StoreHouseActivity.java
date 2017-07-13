@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.beanu.arad.utils.AndroidUtil;
-import com.beanu.arad.utils.MessageUtils;
+import com.beanu.arad.utils.ConvertUtils;
+import com.beanu.arad.utils.ToastUtils;
 import com.beanu.sf.R;
 import com.beanu.sf.ui.layer2.recycleview.support.News;
 import com.beanu.sf.ui.layer2.recycleview.support.RecyclerAdapter;
@@ -53,7 +53,7 @@ public class StoreHouseActivity extends AppCompatActivity {
 
         // header
         final StoreHouseHeader header = new StoreHouseHeader(this);
-        header.setPadding(0, AndroidUtil.dp2px(this, 15), 0, 0);
+        header.setPadding(0, ConvertUtils.dp2px(15), 0, 0);
         header.setTextColor(getResources().getColor(R.color.colorPrimary));
         header.initWithString(mStringList[0]);
 
@@ -72,7 +72,7 @@ public class StoreHouseActivity extends AppCompatActivity {
             @Override
             public void onUIRefreshPrepare(PtrFrameLayout frame) {
                 String string = mStringList[mLoadTime % mStringList.length];
-                MessageUtils.showLongToast(StoreHouseActivity.this, string);
+                ToastUtils.showLong(string);
             }
 
             @Override

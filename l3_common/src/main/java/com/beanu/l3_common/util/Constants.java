@@ -17,4 +17,8 @@ public class Constants {
 
     //支付
     public static final String WX_APPID = "";
+
+
+    //加密密钥，随便写
+    public static final byte[] DES_KEY = new byte[]{'a', 'z', 'f', 'h', 'a', 'o', 'l', 'k'};
 }

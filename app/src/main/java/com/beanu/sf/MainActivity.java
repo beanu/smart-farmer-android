@@ -6,9 +6,8 @@ import android.view.View;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.sf.ui.layer1.OneActivity;
-import com.beanu.sf.ui.layer2.imageselector.ImageSelectorMainActivity;
-import com.beanu.sf.ui.layer3.guide.GuideDemoActivity;
-import com.beanu.sf.ui.layer3.shoppingcart.CartDemoActivity;
+import com.beanu.sf.ui.layer2.TwoActivity;
+import com.beanu.sf.ui.layer3.ThreeActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -21,7 +20,6 @@ public class MainActivity extends ToolBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
     }
 
     @OnClick({R.id.btn_one_arad, R.id.btn_two_function, R.id.btn_three_module, R.id.btn_four_app})
@@ -36,19 +34,19 @@ public class MainActivity extends ToolBarActivity {
             case R.id.btn_two_function:
 
                 //TODO  这个图片选择器有BUG 可以考虑下知乎的开源版本
-                Intent intent1 = new Intent(MainActivity.this, ImageSelectorMainActivity.class);
+                Intent intent1 = new Intent(MainActivity.this, TwoActivity.class);
                 startActivity(intent1);
 
                 break;
             case R.id.btn_three_module:
 
-                Intent intent2 = new Intent(MainActivity.this, GuideDemoActivity.class);
+                Intent intent2 = new Intent(MainActivity.this, ThreeActivity.class);
                 startActivity(intent2);
 
                 break;
             case R.id.btn_four_app:
-                Intent intent3 = new Intent(MainActivity.this, CartDemoActivity.class);
-                startActivity(intent3);
+//                Intent intent3 = new Intent(MainActivity.this, CartDemoActivity.class);
+//                startActivity(intent3);
                 break;
         }
     }

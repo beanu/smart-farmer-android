@@ -8,7 +8,9 @@ import com.beanu.l3_search.mvp.model.OnSearchListener;
 
 import java.util.ArrayList;
 
-import rx.Subscriber;
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Beanu on 2017/06/22
@@ -43,54 +45,57 @@ public class SearchPresenterImpl extends SearchContract.Presenter implements OnS
 
     @Override
     public void searchResult(String value) {
-        mRxManage.add(mModel.searchResult(value)
-                .subscribe(new Subscriber<SearchResult>() {
-                    @Override
-                    public void onCompleted() {
+        mModel.searchResult(value).subscribe(new Observer<SearchResult>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                mRxManage.add(d);
+            }
 
+            @Override
+            public void onNext(@NonNull SearchResult searchResult) {
+                ArrayList<SearchResultModel> arrayList = new ArrayList<>();
+
+                if (searchResult.getBookList() != null) {
+                    for (SearchResultModel book : searchResult.getBookList()) {
+                        book.setType(0);
+                        arrayList.add(book);
                     }
+                }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
+                if (searchResult.getInforList() != null) {
+                    for (SearchResultModel info : searchResult.getInforList()) {
+                        info.setType(1);
+                        arrayList.add(info);
                     }
+                }
 
-                    @Override
-                    public void onNext(SearchResult searchResult) {
-
-                        ArrayList<SearchResultModel> arrayList = new ArrayList<>();
-
-                        if (searchResult.getBookList() != null) {
-                            for (SearchResultModel book : searchResult.getBookList()) {
-                                book.setType(0);
-                                arrayList.add(book);
-                            }
-                        }
-
-                        if (searchResult.getInforList() != null) {
-                            for (SearchResultModel info : searchResult.getInforList()) {
-                                info.setType(1);
-                                arrayList.add(info);
-                            }
-                        }
-
-                        if (searchResult.getDirectList() != null) {
-                            for (SearchResultModel live : searchResult.getDirectList()) {
-                                live.setType(2);
-                                arrayList.add(live);
-                            }
-                        }
-                        if (searchResult.getRecordingList() != null) {
-                            for (SearchResultModel record : searchResult.getRecordingList()) {
-                                record.setType(3);
-                                arrayList.add(record);
-                            }
-                        }
-
-                        mView.searchResult(arrayList);
+                if (searchResult.getDirectList() != null) {
+                    for (SearchResultModel live : searchResult.getDirectList()) {
+                        live.setType(2);
+                        arrayList.add(live);
                     }
+                }
+                if (searchResult.getRecordingList() != null) {
+                    for (SearchResultModel record : searchResult.getRecordingList()) {
+                        record.setType(3);
+                        arrayList.add(record);
+                    }
+                }
 
-                }));
+                mView.searchResult(arrayList);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                e.printStackTrace();
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
     @Override

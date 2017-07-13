@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.beanu.arad.utils.MessageUtils;
+import com.beanu.arad.utils.ToastUtils;
 import com.beanu.sf.R;
 import com.beanu.sf.ui.layer2.recycleview.support.News;
 import com.beanu.sf.ui.layer2.recycleview.support.RecyclerAdapter;
@@ -58,7 +58,7 @@ public class DemoAnimPTRActivity extends AppCompatActivity {
         mPtrFrame.setPtrHandler(new PtrDefaultHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                MessageUtils.showShortToast(DemoAnimPTRActivity.this, "刷新了");
+                ToastUtils.showShort("刷新了");
 
                 Observable.timer(1, TimeUnit.SECONDS)
                         .subscribeOn(Schedulers.newThread())
