@@ -1,31 +1,34 @@
-package com.beanu.l2_recycleview.simplest;
+package com.beanu.l2_recyclerview;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;
-import com.beanu.arad.support.recyclerview.adapter._BaseAdapter;
 import com.beanu.arad.support.recyclerview.loadmore.ABSLoadMorePresenter;
 import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreModel;
+import com.beanu.l2_recyclerview.loadmore.BaseLoadMoreMultiTypeAdapter;
 import com.beanu.l2_recycleview.R;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
+import me.drakeet.multitype.MultiTypeAdapter;
 
 /**
- * 最简的recycle view
- * Created by Beanu on 2017/1/6.
+ * 最简的recycle view,适合列表中多种类型
+ * Created by Beanu on 2017/7/13.
  */
 
-public abstract class SimplestRecycleViewActivity<T extends ABSLoadMorePresenter, E extends ILoadMoreModel> extends ToolBarActivity<T, E> {
+public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePresenter, E extends ILoadMoreModel> extends ToolBarActivity<T, E> {
 
-    RecyclerView mRecycleView;
-    PtrClassicFrameLayout mPtrFrame;
-    _BaseAdapter mAdapter;
+    protected RecyclerView mRecycleView;
+    protected PtrClassicFrameLayout mPtrFrame;
+    private BaseLoadMoreMultiTypeAdapter mAdapter;
+    protected MultiTypeAdapter mMultiTypeAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,13 +40,14 @@ public abstract class SimplestRecycleViewActivity<T extends ABSLoadMorePresenter
         mRecycleView = (RecyclerView) findViewById(R.id.recycle_view);
 
         //定义recycle view 样式
-        mAdapter = initBaseApater();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecycleView.setLayoutManager(linearLayoutManager);
+        mMultiTypeAdapter = initBaseApater();
+        mAdapter = new BaseLoadMoreMultiTypeAdapter(mMultiTypeAdapter, mPresenter);
+
+        mRecycleView.setLayoutManager(getLayoutManager());
         mRecycleView.setAdapter(mAdapter);
 
         //上拉监听
-        mRecycleView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager, mPresenter) {
+        mRecycleView.addOnScrollListener(new EndlessRecyclerOnScrollListener(getLayoutManager(), mPresenter) {
             @Override
             public void onLoadMore() {
                 mPresenter.loadDataNext();
@@ -62,10 +66,14 @@ public abstract class SimplestRecycleViewActivity<T extends ABSLoadMorePresenter
         mPresenter.loadDataFirst();
     }
 
+    @NonNull
+    protected RecyclerView.LayoutManager getLayoutManager() {
+        return new LinearLayoutManager(this);
+    }
 
-    public abstract _BaseAdapter initBaseApater();
+    public abstract MultiTypeAdapter initBaseApater();
 
-    public void loadDataComplete() {
+    protected void loadDataComplete() {
         mPtrFrame.refreshComplete();
         mAdapter.notifyDataSetChanged();
     }

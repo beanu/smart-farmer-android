@@ -11,6 +11,7 @@ import com.beanu.sf.adapter.LayerAdapter;
 import com.beanu.sf.model.bean.LayerItem;
 import com.beanu.sf.ui.layer1.RetrofitActivity;
 import com.beanu.sf.ui.layer1.RxjavaActivity;
+import com.beanu.sf.ui.layer2.recycleview.simplest.DemoSimplestMultiTypeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,8 @@ import butterknife.ButterKnife;
  */
 public class TwoActivity extends ToolBarActivity {
 
-    private static String[] titles = {"Retrofit", "Rxjava"};
-    private static Class[] className = {RetrofitActivity.class, RxjavaActivity.class};
+    private static String[] titles = {"Retrofit", "Rxjava", "RecyclerView"};
+    private static Class[] className = {RetrofitActivity.class, RxjavaActivity.class, DemoSimplestMultiTypeActivity.class};
 
     @BindView(R.id.recycle_view_one) RecyclerView mRecycleViewOne;
 

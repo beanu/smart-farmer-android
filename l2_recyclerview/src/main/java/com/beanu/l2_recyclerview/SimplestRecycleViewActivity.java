@@ -1,16 +1,12 @@
-package com.beanu.l2_recycleview.simplest;
+package com.beanu.l2_recyclerview;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.beanu.arad.base.ToolBarFragment;
+import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;
-import com.beanu.arad.support.recyclerview.adapter._BaseAdapter;
 import com.beanu.arad.support.recyclerview.loadmore.ABSLoadMorePresenter;
 import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreModel;
 import com.beanu.l2_recycleview.R;
@@ -20,39 +16,28 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
- * Created by Beanu on 2017/1/14.
+ * 最简的recycle view
+ * Created by Beanu on 2017/1/6.
  */
 
-public abstract class SimplestRecycleViewFragment<T extends ABSLoadMorePresenter, E extends ILoadMoreModel> extends ToolBarFragment<T, E> {
-
+public abstract class SimplestRecycleViewActivity<T extends ABSLoadMorePresenter, E extends ILoadMoreModel> extends ToolBarActivity<T, E> {
 
     RecyclerView mRecycleView;
     PtrClassicFrameLayout mPtrFrame;
-    _BaseAdapter mAdapter;
+    RecyclerView.Adapter mAdapter;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mAdapter = initBaseApater();
-    }
-
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_recycleview_simplest, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        setContentView(R.layout.activity_recycleview_simplest);
 
         //初始化view
-        mPtrFrame = (PtrClassicFrameLayout) view.findViewById(R.id.arad_content);
-        mRecycleView = (RecyclerView) view.findViewById(R.id.recycle_view);
+        mPtrFrame = (PtrClassicFrameLayout) findViewById(R.id.arad_content);
+        mRecycleView = (RecyclerView) findViewById(R.id.recycle_view);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        //定义recycle view 样式
+        mAdapter = initBaseApater();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecycleView.setLayoutManager(linearLayoutManager);
         mRecycleView.setAdapter(mAdapter);
 
@@ -73,16 +58,14 @@ public abstract class SimplestRecycleViewFragment<T extends ABSLoadMorePresenter
         });
 
         //第一次加载数据
-//        if (mPresenter.getList().size() == 0) {
         mPresenter.loadDataFirst();
-//        }
     }
 
-    public abstract _BaseAdapter initBaseApater();
+
+    public abstract RecyclerView.Adapter initBaseApater();
 
     public void loadDataComplete() {
         mPtrFrame.refreshComplete();
         mAdapter.notifyDataSetChanged();
     }
-
 }

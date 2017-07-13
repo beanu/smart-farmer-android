@@ -31,7 +31,7 @@ dependencies {
     compile rootProject.ext.support["support-v7"]
     testCompile 'junit:junit:4.12'
 
-    compile project(':l2_recycleview')
+    compile project(':l2_recyclerview')
 
     compile rootProject.ext.dependencies["arad"]
     compile rootProject.ext.dependencies["banner"]

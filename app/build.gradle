@@ -54,7 +54,7 @@ dependencies {
     compile project(':l2_im')
     compile project(':l2_imageselector')
     compile project(':l2_pay')
-    compile project(':l2_recycleview')
+    compile project(':l2_recyclerview')
     compile project(':l2_shareutil')
     compile project(':l2_zxing')
     //第三层

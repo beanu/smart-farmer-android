@@ -6,7 +6,7 @@ import com.beanu.sf.ui.layer2.recycleview.loadmore_header.DemoHeaderLoadMoreMode
 import com.beanu.sf.ui.layer2.recycleview.loadmore_header.DemoHeaderLoadMorePresenterImpl;
 import com.beanu.sf.ui.layer2.recycleview.support.DemoHeaderLoadMoreAdapter;
 import com.beanu.sf.ui.layer2.recycleview.support.News;
-import com.beanu.l2_recycleview.simplest.SimplestRecycleViewActivity;
+import com.beanu.l2_recyclerview.SimplestRecycleViewActivity;
 
 import java.util.List;
 

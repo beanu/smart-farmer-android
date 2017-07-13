@@ -36,6 +36,8 @@
         </activity>
         <activity android:name=".ui.layer2.recycleview.loadmore_header.DemoHeaderLoadMoreActivity">
         </activity>
+        <activity android:name=".ui.layer2.recycleview.simplest.DemoSimplestActivity"/>
+        <activity android:name=".ui.layer2.recycleview.simplest.DemoSimplestMultiTypeActivity"/>
         <activity android:name=".ui.layer2.recycleview.RecycleViewDemoActivity">
         </activity>
         <activity android:name=".ui.layer3.guide.GuideDemoActivity"/>
