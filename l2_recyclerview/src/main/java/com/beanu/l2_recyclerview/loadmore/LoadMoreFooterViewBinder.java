@@ -19,6 +19,17 @@ import me.drakeet.multitype.ItemViewBinder;
 public class LoadMoreFooterViewBinder
         extends ItemViewBinder<LoadMoreFooter, LoadMoreFooterViewBinder.ViewHolder> {
 
+    //底部点击事件
+    public interface OnFooterListener {
+        void onRetry();
+    }
+
+    private OnFooterListener mOnLoadListener;
+
+    public void setOnLoadListener(OnFooterListener onLoadListener) {
+        mOnLoadListener = onLoadListener;
+    }
+
     @NonNull
     @Override
     protected ViewHolder onCreateViewHolder(
@@ -28,15 +39,29 @@ public class LoadMoreFooterViewBinder
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull LoadMoreFooter loadMoreFooter) {
+    protected void onBindViewHolder(@NonNull final ViewHolder holder, @NonNull LoadMoreFooter loadMoreFooter) {
         if (loadMoreFooter.listener.hasError()) {
             holder.itemView.setVisibility(View.VISIBLE);
-            holder.text.setText("发生错误");
+            holder.text.setText("加载出错了，请重试");
+            holder.text.setEnabled(true);
+            holder.text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mOnLoadListener != null) {
+                        //重新设置状态，并尝试加载
+                        holder.text.setText("正在加载更多.....");
+                        holder.progress.setVisibility(View.VISIBLE);
+                        holder.text.setEnabled(false);
+                        mOnLoadListener.onRetry();
+                    }
+                }
+            });
             holder.progress.setVisibility(View.GONE);
         } else if (loadMoreFooter.listener.hasMoreResults()) {
             holder.itemView.setVisibility(View.VISIBLE);
             holder.text.setText("正在加载更多.....");
             holder.progress.setVisibility(View.VISIBLE);
+            holder.text.setEnabled(false);
 
         } else {
             holder.itemView.setVisibility(View.GONE);

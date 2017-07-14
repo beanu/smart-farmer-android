@@ -22,10 +22,14 @@ public class BaseLoadMoreMultiTypeAdapter extends RecyclerView.Adapter<RecyclerV
     private MultiTypeAdapter mInnerAdapter;
     private ILoadMoreListener mLoadMoreScrollListener;
 
+    private LoadMoreFooterViewBinder mLoadMoreFooterViewBinder;
+
     public BaseLoadMoreMultiTypeAdapter(@NonNull MultiTypeAdapter adapter, @NonNull ILoadMoreListener loadMoreListener) {
         this.mInnerAdapter = adapter;
-        mInnerAdapter.register(LoadMoreFooter.class, new LoadMoreFooterViewBinder());
         this.mLoadMoreScrollListener = loadMoreListener;
+
+        mLoadMoreFooterViewBinder = new LoadMoreFooterViewBinder();
+        mInnerAdapter.register(LoadMoreFooter.class, mLoadMoreFooterViewBinder);
     }
 
     @Override
@@ -40,8 +44,7 @@ public class BaseLoadMoreMultiTypeAdapter extends RecyclerView.Adapter<RecyclerV
             return ITEM_TYPE_LOAD_MORE_VIEW;
         }
 
-        int type = mInnerAdapter.getItemViewType(position);
-        return type;
+        return mInnerAdapter.getItemViewType(position);
     }
 
     @Override
@@ -107,24 +110,11 @@ public class BaseLoadMoreMultiTypeAdapter extends RecyclerView.Adapter<RecyclerV
     }
 
 
+    public void setOnFooterListener(LoadMoreFooterViewBinder.OnFooterListener onFooterListener) {
+        mLoadMoreFooterViewBinder.setOnLoadListener(onFooterListener);
+    }
+
     private boolean isMoreResult() {
         return (mLoadMoreScrollListener.hasMoreResults() || mLoadMoreScrollListener.hasError());
     }
-
-//    //region 加载监听
-//
-//    public interface OnLoadListener {
-//        void onRetry();
-//
-//        void onLoadMore();
-//    }
-//
-//    private OnLoadListener mOnLoadListener;
-//
-//    public LoadMoreWrapper setOnLoadListener(OnLoadListener onLoadListener) {
-//        mOnLoadListener = onLoadListener;
-//        return this;
-//    }
-//
-//    //endregion
 }

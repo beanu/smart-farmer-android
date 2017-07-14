@@ -11,6 +11,7 @@ import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListen
 import com.beanu.arad.support.recyclerview.loadmore.ABSLoadMorePresenter;
 import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreModel;
 import com.beanu.l2_recyclerview.loadmore.BaseLoadMoreMultiTypeAdapter;
+import com.beanu.l2_recyclerview.loadmore.LoadMoreFooterViewBinder;
 import com.beanu.l2_recycleview.R;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -27,7 +28,7 @@ public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePre
 
     protected RecyclerView mRecycleView;
     protected PtrClassicFrameLayout mPtrFrame;
-    private BaseLoadMoreMultiTypeAdapter mAdapter;
+    protected BaseLoadMoreMultiTypeAdapter mAdapter;
     protected MultiTypeAdapter mMultiTypeAdapter;
 
     @Override
@@ -42,6 +43,13 @@ public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePre
         //定义recycle view 样式
         mMultiTypeAdapter = initBaseApater();
         mAdapter = new BaseLoadMoreMultiTypeAdapter(mMultiTypeAdapter, mPresenter);
+        mAdapter.setOnFooterListener(new LoadMoreFooterViewBinder.OnFooterListener() {
+            @Override
+            public void onRetry() {
+                //非第一页数据，如果加载出错，点击会重新加载数据
+                mPresenter.loadDataNext();
+            }
+        });
 
         mRecycleView.setLayoutManager(getLayoutManager());
         mRecycleView.setAdapter(mAdapter);

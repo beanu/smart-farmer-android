@@ -10,11 +10,11 @@
 
 **1.第一层** [Arad基础类库](https://github.com/beanu/Arad)
 - Retrofit
-- Rxjava
-- Okhttp
+- Rxjava2.x
+- OkHttp
 - Glide
 - LiteOrm
-- avtivity fragment adapter基础类
+- activity fragment adapter基础类
 - 上拉下拉基础Adapter，常用的util等
 
 **2.第二层** 可依赖的第三方功能库(特点：可单独使用的工具型模块)

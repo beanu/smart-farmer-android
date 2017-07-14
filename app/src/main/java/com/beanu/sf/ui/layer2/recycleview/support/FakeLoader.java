@@ -5,8 +5,6 @@ import com.beanu.arad.http.RxHelper;
 import com.beanu.sf.ui.layer2.recycleview.support.api.DemoHttpModel;
 import com.beanu.sf.ui.layer2.recycleview.support.api.DemoPageModel;
 
-import org.reactivestreams.Subscriber;
-
 import java.util.ArrayList;
 
 import io.reactivex.Observable;
@@ -46,7 +44,12 @@ public class FakeLoader {
                     baseModel.msg = "超时";
                 }
 
-                subscriber.onNext(baseModel);
+                if (Math.random() > 0.5) {
+                    subscriber.onError(new Throwable());
+                } else {
+                    subscriber.onNext(baseModel);
+                }
+
                 subscriber.onComplete();
             }
         }).compose(RxHelper.<IPageModel<News>>handleResult());

@@ -23,7 +23,8 @@ public class DemoSimplestMultiTypeActivity extends SimplestMultiTypeLoadMoreActi
 
     @Override
     public void loadDataComplete(List<News> beans) {
-        mItems.addAll(beans);
+        if (beans != null)
+            mItems.addAll(beans);
 
         super.loadDataComplete();
     }
