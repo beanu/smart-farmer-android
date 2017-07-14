@@ -15,7 +15,6 @@ public class L4Application extends AradApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        disableCrashHandler();
 
         if (getApplicationContext().getPackageName().equals(processName)) {
 
