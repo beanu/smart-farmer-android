@@ -30,7 +30,7 @@ public class DemoSimplestMultiTypeActivity extends SimplestMultiTypeLoadMoreActi
     }
 
     @Override
-    public MultiTypeAdapter initBaseApater() {
+    public MultiTypeAdapter initBaseAdapter() {
         MultiTypeAdapter multiTypeAdapter = new MultiTypeAdapter(mItems);
         multiTypeAdapter.register(News.class, new NewsViewBinder());
         return multiTypeAdapter;

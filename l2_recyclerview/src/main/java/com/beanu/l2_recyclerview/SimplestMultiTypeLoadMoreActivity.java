@@ -41,7 +41,7 @@ public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePre
         mRecycleView = (RecyclerView) findViewById(R.id.recycle_view);
 
         //定义recycle view 样式
-        mMultiTypeAdapter = initBaseApater();
+        mMultiTypeAdapter = initBaseAdapter();
         mAdapter = new BaseLoadMoreMultiTypeAdapter(mMultiTypeAdapter, mPresenter);
         mAdapter.setOnFooterListener(new LoadMoreFooterViewBinder.OnFooterListener() {
             @Override
@@ -79,7 +79,7 @@ public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePre
         return new LinearLayoutManager(this);
     }
 
-    public abstract MultiTypeAdapter initBaseApater();
+    public abstract MultiTypeAdapter initBaseAdapter();
 
     protected void loadDataComplete() {
         mPtrFrame.refreshComplete();
