@@ -16,7 +16,7 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
- * 最简的recycle view
+ * 最简的recycle view,上拉 下拉
  * Created by Beanu on 2017/1/6.
  */
 

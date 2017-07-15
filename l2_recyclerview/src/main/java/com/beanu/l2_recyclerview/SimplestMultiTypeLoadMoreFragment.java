@@ -5,8 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.beanu.arad.base.ToolBarActivity;
+import com.beanu.arad.base.ToolBarFragment;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;
 import com.beanu.arad.support.recyclerview.loadmore.ABSLoadMorePresenter;
 import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreModel;
@@ -20,11 +23,11 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 import me.drakeet.multitype.MultiTypeAdapter;
 
 /**
- * 最简的recycle view,适合列表中多种类型（上拉 下拉）
- * Created by Beanu on 2017/7/13.
+ * Created by Beanu on 2017/1/14.
  */
 
-public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePresenter, E extends ILoadMoreModel> extends ToolBarActivity<T, E> {
+public abstract class SimplestMultiTypeLoadMoreFragment<T extends ABSLoadMorePresenter, E extends ILoadMoreModel> extends ToolBarFragment<T, E> {
+
 
     protected RecyclerView mRecycleView;
     protected PtrClassicFrameLayout mPtrFrame;
@@ -32,15 +35,9 @@ public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePre
     protected MultiTypeAdapter mMultiTypeAdapter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycleview_simplest);
 
-        //初始化view
-        mPtrFrame = (PtrClassicFrameLayout) findViewById(R.id.arad_content);
-        mRecycleView = (RecyclerView) findViewById(R.id.recycle_view);
-
-        //定义recycle view 样式
         mMultiTypeAdapter = initBaseAdapter();
         mAdapter = new BaseLoadMoreMultiTypeAdapter(mMultiTypeAdapter, mPresenter);
         mAdapter.setOnFooterListener(new LoadMoreFooterViewBinder.OnFooterListener() {
@@ -50,6 +47,22 @@ public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePre
                 mPresenter.loadDataNext();
             }
         });
+    }
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_recycleview_simplest, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //初始化view
+        mPtrFrame = (PtrClassicFrameLayout) view.findViewById(R.id.arad_content);
+        mRecycleView = (RecyclerView) view.findViewById(R.id.recycle_view);
 
         RecyclerView.LayoutManager layoutManager = getLayoutManager();
         mRecycleView.setLayoutManager(layoutManager);
@@ -73,17 +86,19 @@ public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePre
 
         //第一次加载数据
         mPresenter.loadDataFirst();
+
     }
 
     @NonNull
     protected RecyclerView.LayoutManager getLayoutManager() {
-        return new LinearLayoutManager(this);
+        return new LinearLayoutManager(getActivity());
     }
 
     public abstract MultiTypeAdapter initBaseAdapter();
 
-    protected void loadDataComplete() {
+    public void loadDataComplete() {
         mPtrFrame.refreshComplete();
         mAdapter.notifyDataSetChanged();
     }
+
 }
