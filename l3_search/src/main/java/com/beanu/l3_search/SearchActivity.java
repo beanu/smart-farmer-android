@@ -15,7 +15,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -148,7 +147,7 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
     }
 
     @Override
-    public boolean setupToolBarLeftButton(ImageView leftButton) {
+    public boolean setupToolBarLeftButton(View leftButton) {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,7 +158,7 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
     }
 
     @Override
-    public boolean setupToolBarRightButton(ImageView rightButton) {
+    public boolean setupToolBarRightButton1(View rightButton) {
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

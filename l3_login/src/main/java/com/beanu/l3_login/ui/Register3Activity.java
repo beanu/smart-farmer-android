@@ -115,7 +115,7 @@ public class Register3Activity extends ToolBarActivity<RegisterPresenterImpl, Re
     }
 
     @Override
-    public boolean setupToolBarLeftButton(ImageView leftButton) {
+    public boolean setupToolBarLeftButton(View leftButton) {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

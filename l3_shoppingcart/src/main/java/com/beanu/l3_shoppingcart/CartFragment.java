@@ -140,26 +140,30 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
         return "购物车";
     }
 
-    @Override
-    public boolean setupToolBarRightText(final TextView rightText) {
-        rightText.setText("编辑");
-        rightText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mPresenter.isDeleteMode()) {
-                    rightText.setText("编辑");
-                    mPresenter.setDeleteMode(false);
-                    mPresenter.changed();
-                    mLayoutDeleteMode.setVisibility(View.GONE);
-                } else {
-                    rightText.setText("完成");
-                    mPresenter.setDeleteMode(true);
-                    mLayoutDeleteMode.setVisibility(View.VISIBLE);
-                }
 
-                mCartAdapter.notifyDataSetChanged();
-            }
-        });
+    @Override
+    public boolean setupToolBarRightButton2(final View rightButton2) {
+        if (rightButton2 instanceof TextView) {
+            ((TextView) rightButton2).setText("编辑");
+            rightButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mPresenter.isDeleteMode()) {
+                        ((TextView) rightButton2).setText("编辑");
+                        mPresenter.setDeleteMode(false);
+                        mPresenter.changed();
+                        mLayoutDeleteMode.setVisibility(View.GONE);
+                    } else {
+                        ((TextView) rightButton2).setText("完成");
+                        mPresenter.setDeleteMode(true);
+                        mLayoutDeleteMode.setVisibility(View.VISIBLE);
+                    }
+
+                    mCartAdapter.notifyDataSetChanged();
+                }
+            });
+        }
+
         return true;
     }
 

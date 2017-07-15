@@ -58,7 +58,7 @@ public class SignInActivity extends ToolBarActivity implements View.OnClickListe
     }
 
     @Override
-    public boolean setupToolBarLeftButton(ImageView leftButton) {
+    public boolean setupToolBarLeftButton(View leftButton) {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

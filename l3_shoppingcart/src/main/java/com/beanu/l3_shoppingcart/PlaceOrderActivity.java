@@ -2,7 +2,6 @@ package com.beanu.l3_shoppingcart;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.beanu.arad.base.ToolBarActivity;
 
@@ -26,7 +25,7 @@ public class PlaceOrderActivity extends ToolBarActivity {
     }
 
     @Override
-    public boolean setupToolBarLeftButton(ImageView leftButton) {
+    public boolean setupToolBarLeftButton(View leftButton) {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

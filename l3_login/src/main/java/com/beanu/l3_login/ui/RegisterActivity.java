@@ -3,7 +3,6 @@ package com.beanu.l3_login.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.l3_login.R;
@@ -23,7 +22,7 @@ public class RegisterActivity extends ToolBarActivity {
     }
 
     @Override
-    public boolean setupToolBarLeftButton(ImageView leftButton) {
+    public boolean setupToolBarLeftButton(View leftButton) {
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
