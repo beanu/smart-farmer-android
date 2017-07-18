@@ -24,7 +24,7 @@
 - [推送（小米，华为，极光）](l2_push)
 - [分享／第三方登录](l2_shareutil)
 - [聊天IM](l2_im)
-- [RecycleView 各种用法](l2_recycleview)
+- [RecycleView 各种用法](l2_recyclerview)
 
 
 **3.第三层** 业务模块＋可抽离并可复用的模块

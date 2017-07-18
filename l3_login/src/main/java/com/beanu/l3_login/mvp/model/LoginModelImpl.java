@@ -15,12 +15,12 @@ import io.reactivex.annotations.NonNull;
 
 public class LoginModelImpl implements LoginContract.Model {
 
-    @Override
-    public Observable<User> httpLogin(String account, String password) {
 
-//        return API.getInstance(ApiLoginService.class).user_login(account, password, "0", "")
+    @Override
+    public Observable<User> httpLogin(String account, String password, String loginType, String token, int sex, String icon, String nickName) {
+
+//        return API.getInstance(ApiLoginService.class).user_login(API.createHeader(), account, password, loginType, token, sex, icon, nickName)
 //                .compose(RxHelper.<User>handleResult());
-//
         return Observable.create(new ObservableOnSubscribe<User>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<User> e) throws Exception {

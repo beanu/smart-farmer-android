@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.beanu.arad.Arad;
 import com.beanu.arad.base.ToolBarFragment;
 import com.beanu.arad.utils.ToastUtils;
+import com.beanu.l2_shareutil.LoginUtil;
+import com.beanu.l2_shareutil.login.LoginListener;
+import com.beanu.l2_shareutil.login.LoginPlatform;
+import com.beanu.l2_shareutil.login.LoginResult;
+import com.beanu.l3_common.util.Constants;
 import com.beanu.l3_login.R;
 import com.beanu.l3_login.mvp.contract.LoginContract;
 import com.beanu.l3_login.mvp.model.LoginModelImpl;
@@ -31,6 +38,44 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
     Button mBtnLoginLogin;
     TextView mTxtLoginForget;
     ImageButton mBtnLoginWeChat;
+    ImageButton mBtnLoginQQ;
+
+    //第三方登录监听
+    final LoginListener mLoginListener = new LoginListener() {
+        @Override
+        public void loginSuccess(LoginResult result) {
+            //登录成功， 如果你选择了获取用户信息，可以通过
+
+            String loginType = "0";
+            if (result.getPlatform() == LoginPlatform.QQ) {
+                loginType = "1";
+            } else if (result.getPlatform() == LoginPlatform.WX) {
+                loginType = "2";
+            }
+            hideProgress();
+
+
+            showProgress();
+            Arad.preferences.putString(Constants.P_LOGIN_OPENID, result.getToken().getOpenid());
+            Arad.preferences.flush();
+
+            mPresenter.login(null, null, loginType, result.getToken().getOpenid(), result.getUserInfo().getSex(), result.getUserInfo().getHeadImageUrl(), result.getUserInfo().getNickname());
+        }
+
+        @Override
+        public void loginFailure(Exception e) {
+            Log.i("TAG", "登录失败");
+
+            hideProgress();
+        }
+
+        @Override
+        public void loginCancel() {
+
+            hideProgress();
+            Log.i("TAG", "登录取消");
+        }
+    };
 
     public LoginFragment() {
         // Required empty public constructor
@@ -54,10 +99,13 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
         mBtnLoginLogin = (Button) view.findViewById(R.id.btn_login_login);
         mTxtLoginForget = (TextView) view.findViewById(R.id.txt_login_forget);
         mBtnLoginWeChat = (ImageButton) view.findViewById(R.id.btn_login_weChat);
+        mBtnLoginQQ = (ImageButton) view.findViewById(R.id.btn_login_QQ);
 
         mBtnLoginLogin.setOnClickListener(this);
         mTxtLoginForget.setOnClickListener(this);
         mBtnLoginWeChat.setOnClickListener(this);
+        mBtnLoginQQ.setOnClickListener(this);
+
 
         return view;
     }
@@ -98,14 +146,18 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
         if (i == R.id.btn_login_login) {
             String phone = mEditLoginPhone.getText().toString();
             String password = mEditLoginPassword.getText().toString();
-            mPresenter.login(phone, password);
+            mPresenter.login(phone, password, "0", null, 0, null, null);
 
 
         } else if (i == R.id.txt_login_forget) {
             Intent intent = new Intent(getActivity(), FindPwdActivity.class);
             startActivity(intent);
         } else if (i == R.id.btn_login_weChat) {
-            //TODO
+            showProgress();
+            LoginUtil.login(getActivity(), LoginPlatform.WX, mLoginListener, true);
+        } else if (i == R.id.btn_login_QQ) {
+            showProgress();
+            LoginUtil.login(getActivity(), LoginPlatform.QQ, mLoginListener, true);
         }
     }
 

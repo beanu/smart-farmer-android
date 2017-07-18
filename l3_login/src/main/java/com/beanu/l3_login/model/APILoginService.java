@@ -14,7 +14,7 @@ import retrofit2.http.Query;
 /**
  * 登录 注册接口专用
  */
-public interface ApiLoginService {
+public interface APILoginService {
 
     /**
      * 发送验证码

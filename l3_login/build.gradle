@@ -41,4 +41,5 @@ dependencies {
     compile project(':l3_common')
     compile rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-annotation"]
+    compile project(path: ':l2_shareutil')
 }

@@ -5,7 +5,7 @@ package com.beanu.l4_bottom_tab.model;
  * Created by Jam on 16-5-17
  * Description:
  */
-public interface ApiService {
+public interface APIService {
 
 //    /**
 //     * 发送验证码
@@ -61,8 +61,3 @@ public interface ApiService {
 
 
 }
-
-
-
-
-

@@ -94,8 +94,11 @@ public class StartActivity extends AppCompatActivity {
 
         String phone = Arad.preferences.getString(Constants.P_ACCOUNT);
         String password = Arad.preferences.getString(Constants.P_PWD);
-        password = ConvertUtils.bytes2HexString(EncryptUtils.decryptHexStringDES(password, Constants.DES_KEY));
-
+        String loginType = Arad.preferences.getString(Constants.P_LOGIN_TYPE);
+        String loginOpenId = Arad.preferences.getString(Constants.P_LOGIN_OPENID);
+        if ("0".equals(loginType)) {
+            password = ConvertUtils.bytes2HexString(EncryptUtils.decryptHexStringDES(password, Constants.DES_KEY));
+        }
 //        APIFactory.getInstance().login(phone, password).subscribe(new Subscriber<User>() {
 //            @Override
 //            public void onCompleted() {

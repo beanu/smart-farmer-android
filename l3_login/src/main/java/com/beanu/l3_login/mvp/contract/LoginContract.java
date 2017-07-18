@@ -15,6 +15,7 @@ import io.reactivex.Observable;
 
 public interface LoginContract {
 
+
     public interface View extends BaseView {
 
         public abstract void loginSuccess();
@@ -24,11 +25,11 @@ public interface LoginContract {
     }
 
     public abstract class Presenter extends BasePresenter<View, Model> {
-        public abstract void login(String account, String password);
+        public abstract void login(String account, String password, String loginType, String token, int sex, String icon, String nickName);
     }
 
     public interface Model extends BaseModel {
-        Observable<User> httpLogin(String account, String password);
+        Observable<User> httpLogin(String account, String password, String loginType, String token, int sex, String icon, String nickName);
     }
 
 

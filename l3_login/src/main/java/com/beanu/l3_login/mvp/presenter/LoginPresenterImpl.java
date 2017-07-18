@@ -21,9 +21,9 @@ import io.reactivex.disposables.Disposable;
 public class LoginPresenterImpl extends LoginContract.Presenter {
 
     @Override
-    public void login(final String account, final String password) {
+    public void login(final String account, final String password, final String loginType, String token, int sex, String icon, String nickName) {
 
-        mModel.httpLogin(account, password).subscribe(new Observer<User>() {
+        mModel.httpLogin(account, password, loginType, token, sex, icon, nickName).subscribe(new Observer<User>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 mRxManage.add(d);
@@ -34,14 +34,19 @@ public class LoginPresenterImpl extends LoginContract.Presenter {
                 AppHolder.getInstance().setUser(user);
 
                 //保存到本地
-                Arad.preferences.putString(Constants.P_ACCOUNT, account);
-                Arad.preferences.putString(Constants.P_PWD, EncryptUtils.encryptDES2HexString(ConvertUtils.hexString2Bytes(password), Constants.DES_KEY));
+                if ("0".equals(loginType)) {
+                    Arad.preferences.putString(Constants.P_ACCOUNT, account);
+                    Arad.preferences.putString(Constants.P_PWD, EncryptUtils.encryptDES2HexString(ConvertUtils.hexString2Bytes(password), Constants.DES_KEY));
+                }
+                Arad.preferences.putString(Constants.P_LOGIN_TYPE, loginType);
                 Arad.preferences.putString(Constants.P_User_Id, user.getId());
                 Arad.preferences.putBoolean(Constants.P_ISFIRSTLOAD, false);
                 Arad.preferences.flush();
 
+
                 //通知登录成功
                 Arad.bus.post(new EventModel.LoginEvent(user));
+
             }
 
             @Override
