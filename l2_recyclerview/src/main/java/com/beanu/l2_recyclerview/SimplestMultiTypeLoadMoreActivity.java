@@ -34,7 +34,7 @@ public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePre
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycleview_simplest);
+        setContentView(getLayoutResId());
 
         //初始化view
         mPtrFrame = (PtrClassicFrameLayout) findViewById(R.id.arad_content);
@@ -78,6 +78,11 @@ public abstract class SimplestMultiTypeLoadMoreActivity<T extends ABSLoadMorePre
     @NonNull
     protected RecyclerView.LayoutManager getLayoutManager() {
         return new LinearLayoutManager(this);
+    }
+
+
+    protected int getLayoutResId() {
+        return R.layout.activity_recycleview_simplest;
     }
 
     public abstract MultiTypeAdapter initBaseAdapter();

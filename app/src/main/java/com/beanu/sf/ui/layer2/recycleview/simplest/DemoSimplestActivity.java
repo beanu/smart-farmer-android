@@ -18,7 +18,7 @@ import java.util.List;
 public class DemoSimplestActivity extends SimplestRecycleViewActivity<DemoHeaderLoadMorePresenterImpl, DemoHeaderLoadMoreModelImpl> implements DemoHeaderLoadMoreContract.View {
 
     @Override
-    public _BaseAdapter initBaseApater() {
+    public _BaseAdapter initBaseAdapter() {
         return new DemoHeaderLoadMoreAdapter(this, mPresenter.getList(), mPresenter.getTopImageList(), mPresenter);
     }
 

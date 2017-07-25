@@ -53,7 +53,7 @@ public abstract class SimplestMultiTypeLoadMoreFragment<T extends ABSLoadMorePre
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_recycleview_simplest, container, false);
+        return inflater.inflate(getLayoutResId(), container, false);
     }
 
     @Override
@@ -92,6 +92,10 @@ public abstract class SimplestMultiTypeLoadMoreFragment<T extends ABSLoadMorePre
     @NonNull
     protected RecyclerView.LayoutManager getLayoutManager() {
         return new LinearLayoutManager(getActivity());
+    }
+
+    protected int getLayoutResId() {
+        return R.layout.fragment_recycleview_simplest;
     }
 
     public abstract MultiTypeAdapter initBaseAdapter();

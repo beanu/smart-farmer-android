@@ -1,6 +1,7 @@
 package com.beanu.l2_recyclerview;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,27 +23,28 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 
 public abstract class SimplestRecycleViewActivity<T extends ABSLoadMorePresenter, E extends ILoadMoreModel> extends ToolBarActivity<T, E> {
 
-    RecyclerView mRecycleView;
-    PtrClassicFrameLayout mPtrFrame;
-    RecyclerView.Adapter mAdapter;
+    protected RecyclerView mRecycleView;
+    protected PtrClassicFrameLayout mPtrFrame;
+    protected RecyclerView.Adapter mAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycleview_simplest);
+        setContentView(getLayoutResId());
 
         //初始化view
         mPtrFrame = (PtrClassicFrameLayout) findViewById(R.id.arad_content);
         mRecycleView = (RecyclerView) findViewById(R.id.recycle_view);
 
         //定义recycle view 样式
-        mAdapter = initBaseApater();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecycleView.setLayoutManager(linearLayoutManager);
+        mAdapter = initBaseAdapter();
+
+        RecyclerView.LayoutManager layoutManager = getLayoutManager();
+        mRecycleView.setLayoutManager(layoutManager);
         mRecycleView.setAdapter(mAdapter);
 
         //上拉监听
-        mRecycleView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager, mPresenter) {
+        mRecycleView.addOnScrollListener(new EndlessRecyclerOnScrollListener(layoutManager, mPresenter) {
             @Override
             public void onLoadMore() {
                 mPresenter.loadDataNext();
@@ -61,8 +63,18 @@ public abstract class SimplestRecycleViewActivity<T extends ABSLoadMorePresenter
         mPresenter.loadDataFirst();
     }
 
+    @NonNull
+    protected RecyclerView.LayoutManager getLayoutManager() {
+        return new LinearLayoutManager(this);
+    }
 
-    public abstract RecyclerView.Adapter initBaseApater();
+
+    protected int getLayoutResId() {
+        return R.layout.activity_recycleview_simplest;
+    }
+
+
+    public abstract RecyclerView.Adapter initBaseAdapter();
 
     public void loadDataComplete() {
         mPtrFrame.refreshComplete();
