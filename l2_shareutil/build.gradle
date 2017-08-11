@@ -52,8 +52,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     //第三方依赖
-    compile rootProject.ext.dependencies["rxjava"]
-    compile rootProject.ext.dependencies["rxandroid"]
-    compile rootProject.ext.dependencies["okhttp"]
     compile rootProject.ext.dependencies["wechat"]
+    compile rootProject.ext.dependencies["arad"]
+
 }
