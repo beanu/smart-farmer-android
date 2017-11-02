@@ -54,10 +54,10 @@ public class PtrAnimHeader extends FrameLayout implements PtrUIHandler {
     private void initView() {
         View headerView = LayoutInflater.from(getContext()).inflate(R.layout.ptr_anim_header, this);
 
-        ivFirst = (ImageView) headerView.findViewById(R.id.ivFirst);
-        ivSecond = (ImageView) headerView.findViewById(R.id.ivSecond);
-        ivThird = (ImageView) headerView.findViewById(R.id.ivThird);
-        mTextView = (TextView) headerView.findViewById(R.id.tvMsg);
+        ivFirst = headerView.findViewById(R.id.ivFirst);
+        ivSecond = headerView.findViewById(R.id.ivSecond);
+        ivThird = headerView.findViewById(R.id.ivThird);
+        mTextView = headerView.findViewById(R.id.tvMsg);
 
         mSecondAnimation = (AnimationDrawable) ivSecond.getDrawable();
         mThirdAnimation = (AnimationDrawable) ivThird.getDrawable();
@@ -91,7 +91,7 @@ public class PtrAnimHeader extends FrameLayout implements PtrUIHandler {
         final int lastPos = ptrIndicator.getLastPosY();
         if (lastPos < mOffsetToRefresh) {
             if (isUnderTouch && status == PtrFrameLayout.PTR_STATUS_PREPARE) {
-                float scale = lastPos / Float.valueOf(mOffsetToRefresh);
+                float scale = lastPos / (float) mOffsetToRefresh;
                 pullStep0(scale);
             }
         }

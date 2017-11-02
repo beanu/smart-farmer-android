@@ -9,7 +9,6 @@ import com.beanu.arad.utils.ConvertUtils;
 import com.beanu.arad.utils.ToastUtils;
 import com.beanu.sf.R;
 import com.beanu.sf.ui.layer2.recycleview.support.News;
-import com.beanu.sf.ui.layer2.recycleview.support.RecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +18,14 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrUIHandler;
 import in.srain.cube.views.ptr.header.StoreHouseHeader;
 import in.srain.cube.views.ptr.indicator.PtrIndicator;
+import me.drakeet.multitype.MultiTypeAdapter;
 
 public class StoreHouseActivity extends AppCompatActivity {
 
     final String[] mStringList = {"Beanu", "Smart Farmer"};
 
     private PtrFrameLayout mPtrFrame;
-    private RecyclerAdapter mAdapter;
+    private MultiTypeAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +33,8 @@ public class StoreHouseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_house);
 
 
-        mPtrFrame = (PtrFrameLayout) findViewById(R.id.ptr_frame);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycle_view);
+        mPtrFrame = findViewById(R.id.ptr_frame);
+        RecyclerView recyclerView = findViewById(R.id.recycle_view);
 
 
         //TODO TEST DATA
@@ -47,7 +47,7 @@ public class StoreHouseActivity extends AppCompatActivity {
             allList.add(news);
         }
 
-        mAdapter = new RecyclerAdapter(this, allList);
+        mAdapter = new MultiTypeAdapter(allList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mAdapter);
 

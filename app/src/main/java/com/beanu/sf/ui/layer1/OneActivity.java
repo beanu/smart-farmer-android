@@ -7,14 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.divider.HorizontalDividerItemDecoration;
 import com.beanu.sf.R;
-import com.beanu.sf.adapter.LayerAdapter;
 import com.beanu.sf.model.bean.LayerItem;
+import com.beanu.sf.ui.layer2.recycleview.support.LayerViewBinder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.drakeet.multitype.MultiTypeAdapter;
 
 /**
  * 第一层功能
@@ -42,7 +43,8 @@ public class OneActivity extends ToolBarActivity {
         }
 
         //设置recycle view
-        LayerAdapter layerAdapter = new LayerAdapter(this, itemList);
+        MultiTypeAdapter layerAdapter = new MultiTypeAdapter(itemList);
+        layerAdapter.register(LayerItem.class, new LayerViewBinder());
         mRecycleViewOne.setLayoutManager(new LinearLayoutManager(this));
         mRecycleViewOne.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this).build());
         mRecycleViewOne.setAdapter(layerAdapter);

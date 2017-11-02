@@ -4,7 +4,8 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.yuyh.library.imgsel.ImageLoader;
+import com.bumptech.glide.request.RequestOptions;
+import com.yuyh.library.imgsel.common.ImageLoader;
 
 /**
  * 图片加载器
@@ -16,7 +17,7 @@ public class GlideLoader implements ImageLoader {
     public void displayImage(Context context, String path, ImageView imageView) {
         Glide.with(context)
                 .load(path)
-                .centerCrop()
+                .apply(RequestOptions.centerCropTransform())
                 .into(imageView);
     }
 }

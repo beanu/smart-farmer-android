@@ -5,7 +5,6 @@
                 tools:context="com.beanu.l3_shoppingcart.CartFragment">
 
     <include
-        android:id="@+id/toolbar"
         layout="@layout/arad_toolbar"/>
 
 

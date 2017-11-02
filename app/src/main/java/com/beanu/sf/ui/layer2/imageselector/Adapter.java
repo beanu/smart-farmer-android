@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.beanu.sf.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(context)
                 .load(result.get(position))
-                .centerCrop()
+                .apply(RequestOptions.centerCropTransform())
                 .into(holder.image);
 
     }

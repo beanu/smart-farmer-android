@@ -3,9 +3,10 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -14,6 +15,7 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         maven {
             url "https://dl.bintray.com/populov/maven"
         }
@@ -28,43 +30,46 @@ task clean(type: Delete) {
 
 
 ext {
-    android = [compileSdkVersion: 25,
-               buildToolsVersion: "25.0.3",
-               minSdkVersion    : 15,
-               targetSdkVersion : 25]
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2",
+            minSdkVersion    : 15,
+            targetSdkVersion : 26,
+            supportVersion   : "26.1.0"
+    ]
 
     support = [
-            "support-v4"  : 'com.android.support:support-v4:25.3.1',
-            "support-v7"  : 'com.android.support:appcompat-v7:25.3.1',
-            "design"      : 'com.android.support:design:25.3.1',
-            "recyclerview": 'com.android.support:recyclerview-v7:25.3.1'
+            "support-v4"  : 'com.android.support:support-v4:26.1.0',
+            "support-v7"  : 'com.android.support:appcompat-v7:26.1.0',
+            "design"      : 'com.android.support:design:26.1.0',
+            "recyclerview": 'com.android.support:recyclerview-v7:26.1.0'
     ]
 
     dependencies = [
-            "rxjava"                : 'io.reactivex.rxjava2:rxjava:2.1.1',
+            "rxjava"                : 'io.reactivex.rxjava2:rxjava:2.1.6',
             "rxandroid"             : 'io.reactivex.rxjava2:rxandroid:2.0.1',
-            "gson"                  : 'com.google.code.gson:gson:2.8.1',
-            "okhttp"                : 'com.squareup.okhttp3:okhttp:3.8.1',
-            "logging-interceptor"   : 'com.squareup.okhttp3:logging-interceptor:3.8.1',
+            "gson"                  : 'com.google.code.gson:gson:2.8.2',
+            "okhttp"                : 'com.squareup.okhttp3:okhttp:3.9.0',
+            "logging-interceptor"   : 'com.squareup.okhttp3:logging-interceptor:3.9.0',
             "retrofit2"             : 'com.squareup.retrofit2:retrofit:2.3.0',
             "converter-gson"        : 'com.squareup.retrofit2:converter-gson:2.3.0',
             "adapter-rxjava"        : 'com.squareup.retrofit2:adapter-rxjava:2.3.0',
-            "glide"                 : 'com.github.bumptech.glide:glide:3.8.0',
+            "glide"                 : 'com.github.bumptech.glide:glide:4.3.0',
             "eventbus"              : 'org.greenrobot:eventbus:3.0.0',
-            "arad"                  : 'com.beanu:arad:1.1.3',
-            "imageselector"         : 'com.yuyh.imgsel:library:1.3.7',
+            "arad"                  : 'com.beanu:arad:1.1.8',
+            "imageselector"         : 'com.yuyh.imgsel:library:2.0.2',
             "wechat"                : 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.0.2',
             "ink-page-indicator"    : 'com.pacioianu.david:ink-page-indicator:1.2.0',
             "viewpagerindicator"    : 'com.viewpagerindicator:library:2.4.1@aar',
             "ultra-ptr"             : 'in.srain.cube:ultra-ptr:1.0.11',
-            "zxing"                 : 'com.google.zxing:core:3.3.0',
-            "arouter"               : 'com.alibaba:arouter-api:1.2.1.1',
-            "arouter-annotation"    : 'com.alibaba:arouter-compiler:1.1.2.1',
+            "zxing"                 : 'com.google.zxing:core:3.3.1',
+            "arouter"               : 'com.alibaba:arouter-api:1.2.4',
+            "arouter-annotation"    : 'com.alibaba:arouter-compiler:1.1.4',
             "butterknife"           : 'com.jakewharton:butterknife:8.6.0',
             "butterknife-annotation": 'com.jakewharton:butterknife-compiler:8.6.0',
             "rxbinding"             : 'com.jakewharton.rxbinding2:rxbinding:2.0.0',
-            "banner"                : 'com.youth.banner:banner:1.4.9',
-            "mutiltype"             : 'me.drakeet.multitype:multitype:3.1.0']
+            "banner"                : 'com.youth.banner:banner:1.4.10',
+            "mutiltype"             : 'me.drakeet.multitype:multitype:3.4.0-rc1']
 
 
 }

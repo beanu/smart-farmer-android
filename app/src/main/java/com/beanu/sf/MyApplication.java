@@ -1,9 +1,16 @@
 package com.beanu.sf;
 
+import android.content.Context;
+import android.widget.ImageView;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.beanu.arad.AradApplication;
 import com.beanu.arad.AradApplicationConfig;
 import com.beanu.l2_shareutil.ShareConfig;
 import com.beanu.l2_shareutil.ShareManager;
+import com.bumptech.glide.Glide;
+import com.yuyh.library.imgsel.ISNav;
+import com.yuyh.library.imgsel.common.ImageLoader;
 
 /**
  * Created by Administrator on 2017/1/17.
@@ -32,6 +39,15 @@ public class MyApplication extends AradApplication {
                 .wxSecret(WX_SECRET);
 
         ShareManager.init(config);
+
+        ARouter.init(this);
+
+        ISNav.getInstance().init(new ImageLoader() {
+            @Override
+            public void displayImage(Context context, String path, ImageView imageView) {
+                Glide.with(context).load(path).into(imageView);
+            }
+        });
     }
 
     @Override

@@ -1,51 +1,51 @@
 package com.beanu.l3_shoppingcart.adapter;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.beanu.arad.support.recyclerview.adapter.BaseAdapter;
 import com.beanu.l3_shoppingcart.R;
 import com.beanu.l3_shoppingcart.model.bean.AddressItem;
 
-import java.util.List;
+import me.drakeet.multitype.ItemViewBinder;
 
 /**
- * 维护地址列表 adapter
- * Created by Beanu on 2017/3/10.
+ * @author lizhi
+ * @date 2017/11/1.
  */
 
-public class AddressAdapter extends BaseAdapter<AddressItem, AddressAdapter.ItemViewHolder> {
+public class AddressViewBinder extends ItemViewBinder<AddressItem, AddressViewBinder.ItemViewHolder> {
+
+    public AddressViewBinder(OnAddressListener addressListener) {
+        this.mAddressListener = addressListener;
+    }
 
     private OnAddressListener mAddressListener;
 
     public interface OnAddressListener {
-        public void deleteAddress(int position);
+        void deleteAddress(int position);
 
-        public void editAddress(int position);
+        void editAddress(int position);
 
-        public void chooseAddress(int position);
+        void chooseAddress(int position);
 
-        public void defaultAddress(int position);
+        void defaultAddress(int position);
     }
 
-
-    public AddressAdapter(Context context, List<AddressItem> list, OnAddressListener listener) {
-        super(context, list);
-        mAddressListener = listener;
-    }
-
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    protected ItemViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         return new ItemViewHolder(inflater.inflate(R.layout.cart_address_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        ((ItemViewHolder) holder).bind(getItem(position));
+    protected void onBindViewHolder(@NonNull ItemViewHolder holder, @NonNull AddressItem item) {
+        final int position = holder.getAdapterPosition();
+        holder.bind(item);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,21 +53,21 @@ public class AddressAdapter extends BaseAdapter<AddressItem, AddressAdapter.Item
             }
         });
 
-        ((ItemViewHolder) holder).llDeleteAddress.setOnClickListener(new View.OnClickListener() {
+        holder.llDeleteAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAddressListener.deleteAddress(position);
             }
         });
 
-        ((ItemViewHolder) holder).llEditorAddress.setOnClickListener(new View.OnClickListener() {
+        holder.llEditorAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAddressListener.editAddress(position);
             }
         });
 
-        ((ItemViewHolder) holder).cbDefault.setOnClickListener(new View.OnClickListener() {
+        holder.cbDefault.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAddressListener.defaultAddress(position);
@@ -75,8 +75,7 @@ public class AddressAdapter extends BaseAdapter<AddressItem, AddressAdapter.Item
         });
     }
 
-
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
 
         RadioButton cbDefault;
         TextView tvName;

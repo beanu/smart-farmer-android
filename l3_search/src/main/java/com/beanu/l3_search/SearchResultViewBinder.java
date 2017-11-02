@@ -1,8 +1,9 @@
 package com.beanu.l3_search;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,34 +11,30 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.beanu.arad.support.recyclerview.adapter.BaseAdapter;
 import com.beanu.l3_search.model.bean.SearchResultModel;
 import com.bumptech.glide.Glide;
 
-import java.util.List;
+import me.drakeet.multitype.ItemViewBinder;
 
 /**
- * 搜索结果Adapter
- * Created by Beanu on 2017/7/1.
+ * @author lizhi
+ * @date 2017/11/1.
  */
 
-public class SearchResultAdapter extends BaseAdapter<SearchResultModel, SearchResultAdapter.ViewHolder> {
+public class SearchResultViewBinder extends ItemViewBinder<SearchResultModel, SearchResultViewBinder.ViewHolder> {
 
-    public SearchResultAdapter(Context context, List<SearchResultModel> list) {
-        super(context, list);
-    }
-
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         return new ViewHolder(inflater.inflate(R.layout.item_search_result, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        ((ViewHolder) holder).bind(getItem(position));
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull SearchResultModel item) {
+        holder.bind(item);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mTxtContent;
         private ImageView mImg;
@@ -45,16 +42,16 @@ public class SearchResultAdapter extends BaseAdapter<SearchResultModel, SearchRe
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTxtContent = (TextView) itemView.findViewById(R.id.contact_info_name);
-            mImg = (ImageView) itemView.findViewById(R.id.contact_info_head);
-            mItemView = (RelativeLayout) itemView.findViewById(R.id.rl_item);
+            mTxtContent = itemView.findViewById(R.id.contact_info_name);
+            mImg = itemView.findViewById(R.id.contact_info_head);
+            mItemView = itemView.findViewById(R.id.rl_item);
         }
 
         private void bind(final SearchResultModel item) {
             mTxtContent.setText(item.getTitle());
 
             if (!TextUtils.isEmpty(item.getImgUrl())) {
-                Glide.with(mContext).load(item.getImgUrl()).into(mImg);
+                Glide.with(itemView.getContext()).load(item.getImgUrl()).into(mImg);
             }
 
             mItemView.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +72,8 @@ public class SearchResultAdapter extends BaseAdapter<SearchResultModel, SearchRe
                             ARouter.getInstance().build("/app/onlineLesson/detail").withString("lessonId", item.getId())
                                     .navigation();
 
+                            break;
+                        default:
                             break;
                     }
                 }

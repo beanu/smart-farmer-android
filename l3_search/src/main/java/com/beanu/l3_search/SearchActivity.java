@@ -29,6 +29,9 @@ import com.beanu.l3_search.mvp.presenter.SearchPresenterImpl;
 
 import java.util.ArrayList;
 
+import me.drakeet.multitype.Items;
+import me.drakeet.multitype.MultiTypeAdapter;
+
 import static com.beanu.l3_search.R.id.ll_search_history;
 
 /**
@@ -45,7 +48,8 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
     private ActionBar mActionBar;
     private Toolbar mToolbar;
 
-    private SearchResultAdapter mSearchResultAdapter;
+    private MultiTypeAdapter mSearchResultAdapter;
+    private final Items searchResultModels = new Items();
     private SearchHistoryAdapter searchHistoryAdapter;
     private ArrayList<SearchHistoryModel> histories = new ArrayList<>();
 
@@ -54,11 +58,11 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        mEtSearch = (CleanEditText) findViewById(R.id.et_search);
-        mListViewHistory = (ListView) findViewById(R.id.listView_history);
-        mLlSearchEmpty = (LinearLayout) findViewById(R.id.ll_search_empty);
-        mLlSearchHistory = (LinearLayout) findViewById(ll_search_history);
-        mResultList = (RecyclerView) findViewById(R.id.result_list);
+        mEtSearch = findViewById(R.id.et_search);
+        mListViewHistory = findViewById(R.id.listView_history);
+        mLlSearchEmpty = findViewById(R.id.ll_search_empty);
+        mLlSearchHistory = findViewById(ll_search_history);
+        mResultList = findViewById(R.id.result_list);
 
         //设置toolbar
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -106,7 +110,8 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
             }
         });
 
-        mSearchResultAdapter = new SearchResultAdapter(this, null);
+        mSearchResultAdapter = new MultiTypeAdapter(searchResultModels);
+        mSearchResultAdapter.register(SearchResultModel.class, new SearchResultViewBinder());
         mResultList.setAdapter(mSearchResultAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mResultList.setLayoutManager(linearLayoutManager);
@@ -131,7 +136,8 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
         mLlSearchHistory.setVisibility(View.GONE);
         mResultList.setVisibility(View.VISIBLE);
 
-        mSearchResultAdapter.setList(resultModels);
+        searchResultModels.clear();
+        searchResultModels.addAll(resultModels);
         mSearchResultAdapter.notifyDataSetChanged();
     }
 
@@ -204,7 +210,7 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-//            search(etSearch.getText().toString().trim());
+//            search(mEtSearch.getText().toString().trim());
         }
     };
 

@@ -29,7 +29,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
         }
     }
 }
@@ -63,6 +63,7 @@ dependencies {
     compile project(':l3_login')
     compile project(':l3_shoppingcart')
     compile project(':l3_search')
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.0'
 
     //第四层
 }

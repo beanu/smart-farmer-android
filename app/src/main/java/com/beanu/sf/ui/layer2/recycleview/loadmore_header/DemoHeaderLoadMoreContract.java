@@ -16,15 +16,15 @@ import java.util.List;
 
 public interface DemoHeaderLoadMoreContract {
 
-    public interface View extends ILoadMoreView<News> {
+    interface View extends ILoadMoreView<News> {
     }
 
-    public abstract class Presenter extends LoadMorePresenterImpl<News, DemoLoadMoreContract.View, DemoLoadMoreContract.Model> {
+    abstract class Presenter extends LoadMorePresenterImpl<News, DemoLoadMoreContract.View, DemoLoadMoreContract.Model> {
 
         public abstract List<IndexImage> getTopImageList();
 
     }
 
-    public interface Model extends ILoadMoreModel<News> {
+    interface Model extends ILoadMoreModel<News> {
     }
 }

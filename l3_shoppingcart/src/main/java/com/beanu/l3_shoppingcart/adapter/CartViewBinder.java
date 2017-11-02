@@ -1,57 +1,55 @@
 package com.beanu.l3_shoppingcart.adapter;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.beanu.arad.support.recyclerview.adapter.BaseAdapter;
 import com.beanu.l3_shoppingcart.R;
 import com.beanu.l3_shoppingcart.model.bean.CartItem;
 import com.beanu.l3_shoppingcart.mvp.presenter.CartPresenterImpl;
 import com.beanu.l3_shoppingcart.widget.InDeNumber;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
 
 import java.text.DecimalFormat;
-import java.util.List;
+
+import me.drakeet.multitype.ItemViewBinder;
 
 /**
- * 购物车adapter
- * Created by Beanu on 2017/3/10.
+ * @author lizhi
+ * @date 2017/11/1.
  */
 
-public class CartAdapter extends BaseAdapter<CartItem, CartAdapter.ItemViewHolder> {
+public class CartViewBinder extends ItemViewBinder<CartItem, CartViewBinder.ItemViewHolder> {
 
     private OnShoppingCartListener mCartListener;
     private CartPresenterImpl mCartPresenter;
 
+    public CartViewBinder(OnShoppingCartListener cartListener, CartPresenterImpl cartPresenter) {
+        this.mCartListener = cartListener;
+        this.mCartPresenter = cartPresenter;
+    }
+
     public interface OnShoppingCartListener {
-        public void changed();
+        void changed();
     }
 
-
-    public CartAdapter(Context context, List<CartItem> list, OnShoppingCartListener listener) {
-        super(context, list);
-        mCartListener = listener;
-        if (listener instanceof CartPresenterImpl) {
-            mCartPresenter = (CartPresenterImpl) listener;
-        }
-    }
-
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    protected ItemViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         return new ItemViewHolder(inflater.inflate(R.layout.cart_shop_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ItemViewHolder) holder).bind(getItem(position));
+    protected void onBindViewHolder(@NonNull ItemViewHolder holder, @NonNull CartItem item) {
+        holder.bind(item);
     }
-
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
@@ -74,7 +72,7 @@ public class CartAdapter extends BaseAdapter<CartItem, CartAdapter.ItemViewHolde
             mInDeNumber = (InDeNumber) view.findViewById(R.id.cart_shop_indeNumber);
         }
 
-        private void bind(final CartItem item) {
+        private void bind(final com.beanu.l3_shoppingcart.model.bean.CartItem item) {
 
             mCheckBox.setChecked(mCartPresenter.isDeleteMode() ? item.isDelete_checked() : (item.isSelect() == 1));
             mCheckBox.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +90,7 @@ public class CartAdapter extends BaseAdapter<CartItem, CartAdapter.ItemViewHolde
             });
 
             if (!TextUtils.isEmpty(item.getProductImg())) {
-                Glide.with(mContext).load(item.getProductImg()).into(mImgFace);
+                Glide.with(itemView.getContext()).load(item.getProductImg()).into(mImgFace);
             }
             mTxtTitle.setText(item.getName());
             mTxtSKU.setText(item.getPress());

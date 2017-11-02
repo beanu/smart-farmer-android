@@ -56,6 +56,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     //第三方依赖
-    compile 'cn.jiguang.sdk:jpush:3.0.0'
-    compile 'cn.jiguang.sdk:jcore:1.0.0'
+    compile 'cn.jiguang.sdk:jpush:3.0.9'
+    compile 'cn.jiguang.sdk:jcore:1.1.7'
 }

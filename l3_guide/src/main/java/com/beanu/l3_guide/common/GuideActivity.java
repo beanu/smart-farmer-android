@@ -1,10 +1,12 @@
 package com.beanu.l3_guide.common;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -17,15 +19,17 @@ import com.viewpagerindicator.CirclePageIndicator;
 /**
  * 向导页面
  */
-public class GuideActivity extends ToolBarActivity {
+public class GuideActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+//        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_guide);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_guide);
 
         ViewPager guide_viewpager = (ViewPager) findViewById(R.id.viewpager_guide);
         CirclePageIndicator guide_indicator = (CirclePageIndicator) findViewById(R.id.indicator_guide);

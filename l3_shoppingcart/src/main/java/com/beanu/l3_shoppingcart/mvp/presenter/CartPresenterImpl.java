@@ -2,7 +2,7 @@ package com.beanu.l3_shoppingcart.mvp.presenter;
 
 import android.text.TextUtils;
 
-import com.beanu.l3_shoppingcart.adapter.CartAdapter;
+import com.beanu.l3_shoppingcart.adapter.CartViewBinder;
 import com.beanu.l3_shoppingcart.model.bean.CartItem;
 import com.beanu.l3_shoppingcart.mvp.contract.CartContract;
 
@@ -19,9 +19,9 @@ import io.reactivex.disposables.Disposable;
  * Created by Beanu on 2017/03/10
  */
 
-public class CartPresenterImpl extends CartContract.Presenter implements CartAdapter.OnShoppingCartListener {
+public class CartPresenterImpl extends CartContract.Presenter implements CartViewBinder.OnShoppingCartListener {
 
-    private ArrayList<CartItem> mProductList;//购物车商品列表
+    private final ArrayList<CartItem> mProductList = new ArrayList<>();//购物车商品列表
 
     private boolean deleteMode = false;//是否是删除模式
     private boolean deleteModeAllChecked = false;//删除模式  是否全部选择
@@ -33,7 +33,6 @@ public class CartPresenterImpl extends CartContract.Presenter implements CartAda
 
     @Override
     public void onStart() {
-        mProductList = new ArrayList<>();
     }
 
     @Override

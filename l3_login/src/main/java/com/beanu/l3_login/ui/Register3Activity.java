@@ -1,5 +1,6 @@
 package com.beanu.l3_login.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,8 +19,12 @@ import com.beanu.l3_login.mvp.contract.RegisterContract;
 import com.beanu.l3_login.mvp.model.RegisterModelImpl;
 import com.beanu.l3_login.mvp.presenter.RegisterPresenterImpl;
 import com.bumptech.glide.Glide;
-import com.yuyh.library.imgsel.ImgSelActivity;
-import com.yuyh.library.imgsel.ImgSelConfig;
+import com.bumptech.glide.request.RequestOptions;
+import com.yuyh.library.imgsel.ISNav;
+import com.yuyh.library.imgsel.common.ImageLoader;
+import com.yuyh.library.imgsel.config.ISListConfig;
+import com.yuyh.library.imgsel.ui.ISListActivity;
+import com.yuyh.library.imgsel.ui.fragment.ImgSelFragment;
 
 import java.util.List;
 
@@ -44,9 +49,9 @@ public class Register3Activity extends ToolBarActivity<RegisterPresenterImpl, Re
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register3);
 
-        mImgRegisterAvatar = (ImageView) findViewById(R.id.img_register_avatar);
-        mEditRegisterNickname = (EditText) findViewById(R.id.edit_register_nickname);
-        mBtnRegisterComplete = (Button) findViewById(R.id.btn_register_complete);
+        mImgRegisterAvatar = findViewById(R.id.img_register_avatar);
+        mEditRegisterNickname = findViewById(R.id.edit_register_nickname);
+        mBtnRegisterComplete = findViewById(R.id.btn_register_complete);
 
         mImgRegisterAvatar.setOnClickListener(this);
         mBtnRegisterComplete.setOnClickListener(this);
@@ -97,10 +102,10 @@ public class Register3Activity extends ToolBarActivity<RegisterPresenterImpl, Re
 
         // 图片选择结果回调
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            List<String> pathList = data.getStringArrayListExtra(ImgSelActivity.INTENT_RESULT);
+            List<String> pathList = data.getStringArrayListExtra(ISListActivity.INTENT_RESULT);
             if (pathList != null && pathList.size() > 0) {
                 imgPath = pathList.get(0);
-                Glide.with(this).load(imgPath).centerCrop().into(mImgRegisterAvatar);
+                Glide.with(this).load(imgPath).apply(RequestOptions.centerCropTransform()).into(mImgRegisterAvatar);
                 //上传到服务器
                 mPresenter.uploadAvatar(imgPath);
             }
@@ -128,35 +133,33 @@ public class Register3Activity extends ToolBarActivity<RegisterPresenterImpl, Re
 
     //打开图片选择器
     private void showImageSelector() {
-
-        ImgSelConfig config = new ImgSelConfig.Builder(this, new GlideLoader())
+        // 自由配置选项
+        ISListConfig config = new ISListConfig.Builder()
                 // 是否多选, 默认true
                 .multiSelect(false)
-
+                // 是否记住上次选中记录, 仅当multiSelect为true的时候配置，默认为true
+                .rememberSelected(false)
                 // “确定”按钮背景色
                 .btnBgColor(Color.GRAY)
                 // “确定”按钮文字颜色
                 .btnTextColor(Color.BLUE)
                 // 使用沉浸式状态栏
                 .statusBarColor(Color.parseColor("#3F51B5"))
-                // 返回图标ResId
-                .backResId(R.drawable.ic_back)
                 // 标题
                 .title("图片")
                 // 标题文字颜色
                 .titleColor(Color.WHITE)
                 // TitleBar背景色
                 .titleBgColor(Color.parseColor("#3F51B5"))
-
                 // 裁剪大小。needCrop为true的时候配置
                 .cropSize(1, 1, 200, 200)
                 .needCrop(true)
                 // 第一个是否显示相机，默认true
-                .needCamera(true)
+                .needCamera(false)
                 .build();
 
         // 跳转到图片选择器
-        ImgSelActivity.startActivity(this, config, REQUEST_CODE);
+        ISNav.getInstance().toListActivity(this, config, REQUEST_CODE);
     }
 
 

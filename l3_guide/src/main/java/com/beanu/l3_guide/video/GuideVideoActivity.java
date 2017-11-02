@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -30,7 +31,7 @@ import java.io.File;
 /**
  * 视频向导页面
  */
-public class GuideVideoActivity extends ToolBarActivity implements View.OnClickListener {
+public class GuideVideoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();

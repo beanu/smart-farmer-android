@@ -17,7 +17,8 @@ import com.beanu.arad.Arad;
 import com.beanu.arad.base.ToolBarFragment;
 import com.beanu.arad.support.recyclerview.divider.HorizontalDividerItemDecoration;
 import com.beanu.l3_common.model.bean.EventModel;
-import com.beanu.l3_shoppingcart.adapter.CartAdapter;
+import com.beanu.l3_shoppingcart.adapter.CartViewBinder;
+import com.beanu.l3_shoppingcart.model.bean.CartItem;
 import com.beanu.l3_shoppingcart.mvp.contract.CartContract;
 import com.beanu.l3_shoppingcart.mvp.model.CartModelImpl;
 import com.beanu.l3_shoppingcart.mvp.presenter.CartPresenterImpl;
@@ -26,6 +27,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.DecimalFormat;
+
+import me.drakeet.multitype.MultiTypeAdapter;
 
 
 /**
@@ -42,7 +45,7 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
     private TextView mTxtToBuyDelete;
     private CheckBox mAllCheckBoxDelete;
 
-    private CartAdapter mCartAdapter;
+    private MultiTypeAdapter mCartAdapter;
     DecimalFormat df = new DecimalFormat("0.00");
 
     public CartFragment() {
@@ -56,7 +59,8 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCartAdapter = new CartAdapter(getActivity(), mPresenter.getProductList(), mPresenter);
+        mCartAdapter = new MultiTypeAdapter(mPresenter.getProductList());
+        mCartAdapter.register(CartItem.class, new CartViewBinder(mPresenter, mPresenter));
 
         Arad.bus.register(this);
     }
@@ -70,15 +74,15 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        mTxtTotalPrice = (TextView) view.findViewById(R.id.cart_txt_priceTotal);
-        mTxtToBuy = (TextView) view.findViewById(R.id.cart_txt_toBuy);
-        mAllCheckBox = (CheckBox) view.findViewById(R.id.cart_cb_selectAll);
+        mRecyclerView = view.findViewById(R.id.recycler_view);
+        mTxtTotalPrice = view.findViewById(R.id.cart_txt_priceTotal);
+        mTxtToBuy = view.findViewById(R.id.cart_txt_toBuy);
+        mAllCheckBox = view.findViewById(R.id.cart_cb_selectAll);
 
         //底部删除的时候用
-        mLayoutDeleteMode = (RelativeLayout) view.findViewById(R.id.cart_bottom_delete);
-        mTxtToBuyDelete = (TextView) view.findViewById(R.id.cart_txt_toBuyDelete);
-        mAllCheckBoxDelete = (CheckBox) view.findViewById(R.id.cart_cb_selectAllDelete);
+        mLayoutDeleteMode = view.findViewById(R.id.cart_bottom_delete);
+        mTxtToBuyDelete = view.findViewById(R.id.cart_txt_toBuyDelete);
+        mAllCheckBoxDelete = view.findViewById(R.id.cart_cb_selectAllDelete);
 
         mAllCheckBoxDelete.setOnClickListener(this);
         mAllCheckBox.setOnClickListener(this);

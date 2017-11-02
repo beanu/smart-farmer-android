@@ -12,14 +12,14 @@ import com.beanu.sf.ui.layer2.recycleview.support.News;
 
 public interface DemoLoadMoreContract {
 
-    public interface View extends ILoadMoreView<News> {
+    interface View extends ILoadMoreView<News> {
     }
 
-    public abstract class Presenter extends LoadMorePresenterImpl<News, View, Model> {
+    abstract class Presenter extends LoadMorePresenterImpl<News, View, Model> {
 
     }
 
-    public interface Model extends ILoadMoreModel<News> {
+    interface Model extends ILoadMoreModel<News> {
     }
 
 }

@@ -1,29 +1,46 @@
 package com.beanu.sf.ui.layer2.recycleview.simplest;
 
-import com.beanu.arad.support.recyclerview.adapter._BaseAdapter;
+import android.support.v7.widget.RecyclerView;
+
+import com.beanu.arad.http.IPageModel;
+import com.beanu.l2_recyclerview.SimplestListActivity;
 import com.beanu.sf.ui.layer2.recycleview.loadmore_header.DemoHeaderLoadMoreContract;
-import com.beanu.sf.ui.layer2.recycleview.loadmore_header.DemoHeaderLoadMoreModelImpl;
-import com.beanu.sf.ui.layer2.recycleview.loadmore_header.DemoHeaderLoadMorePresenterImpl;
-import com.beanu.sf.ui.layer2.recycleview.support.DemoHeaderLoadMoreAdapter;
+import com.beanu.sf.ui.layer2.recycleview.support.FakeLoader;
 import com.beanu.sf.ui.layer2.recycleview.support.News;
-import com.beanu.l2_recyclerview.SimplestRecycleViewActivity;
+import com.beanu.sf.ui.layer2.recycleview.support.NewsViewBinder;
 
 import java.util.List;
+import java.util.Map;
+
+import io.reactivex.Observable;
+import me.drakeet.multitype.Items;
+import me.drakeet.multitype.MultiTypeAdapter;
 
 /**
  * 最简洁的 recycle view
  * Created by Beanu on 2017/1/6.
  */
 
-public class DemoSimplestActivity extends SimplestRecycleViewActivity<DemoHeaderLoadMorePresenterImpl, DemoHeaderLoadMoreModelImpl> implements DemoHeaderLoadMoreContract.View {
+public class DemoSimplestActivity extends SimplestListActivity<News> implements DemoHeaderLoadMoreContract.View {
 
-    @Override
-    public _BaseAdapter initBaseAdapter() {
-        return new DemoHeaderLoadMoreAdapter(this, mPresenter.getList(), mPresenter.getTopImageList(), mPresenter);
-    }
+    private final Items items = new Items();
 
     @Override
     public void loadDataComplete(List<News> beans) {
-        loadDataComplete();
+        items.clear();
+        items.addAll(mPresenter.getList());
+        getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public Observable<? extends IPageModel<News>> loadData(Map<String, Object> params, int pageIndex) {
+        return FakeLoader.loadNewsList(pageIndex);
+    }
+
+    @Override
+    protected RecyclerView.Adapter<?> provideAdapter() {
+        MultiTypeAdapter adapter = new MultiTypeAdapter(items);
+        adapter.register(News.class, new NewsViewBinder());
+        return adapter;
     }
 }

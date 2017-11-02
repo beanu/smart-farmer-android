@@ -8,10 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import com.beanu.arad.utils.ToastUtils;
 import com.beanu.sf.R;
 import com.beanu.sf.ui.layer2.recycleview.support.News;
-import com.beanu.sf.ui.layer2.recycleview.support.RecyclerAdapter;
+import com.beanu.sf.ui.layer2.recycleview.support.NewsViewBinder;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import in.srain.cube.views.ptr.PtrDefaultHandler;
@@ -20,11 +18,13 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import me.drakeet.multitype.Items;
+import me.drakeet.multitype.MultiTypeAdapter;
 
 public class DemoAnimPTRActivity extends AppCompatActivity {
 
     private PtrAnimFrameLayout mPtrFrame;
-    private RecyclerAdapter mAdapter;
+    private MultiTypeAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class DemoAnimPTRActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycle_view);
 
         //TODO TEST DATA
-        List<News> allList = new ArrayList<>();
+        Items allList = new Items();
         for (int i = 0; i < 20; i++) {
             News news = new News();
             news.setImgPath("http://img.d9soft.com/2016/0412/20160412032431842.png");
@@ -44,7 +44,8 @@ public class DemoAnimPTRActivity extends AppCompatActivity {
             allList.add(news);
         }
 
-        mAdapter = new RecyclerAdapter(this, allList);
+        mAdapter = new MultiTypeAdapter(allList);
+        mAdapter.register(News.class, new NewsViewBinder());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mAdapter);
 
