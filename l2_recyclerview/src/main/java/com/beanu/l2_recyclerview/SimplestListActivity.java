@@ -1,6 +1,5 @@
 package com.beanu.l2_recyclerview;
 
-import com.beanu.arad.support.recyclerview.loadmore.ABSLoadMorePresenter;
 import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreModel;
 import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreView;
 import com.beanu.arad.support.recyclerview.loadmore.LoadMorePresenterImpl;
