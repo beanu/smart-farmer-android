@@ -13,8 +13,10 @@ import android.view.WindowManager;
 
 import com.beanu.arad.Arad;
 import com.beanu.arad.utils.AnimUtil;
+import com.beanu.arad.utils.ConvertUtils;
+import com.beanu.arad.utils.EncryptUtils;
+import com.beanu.l3_common.util.Constants;
 import com.beanu.l4_clean.R;
-import com.beanu.l4_clean.util.Constants;
 
 
 /**
@@ -90,9 +92,13 @@ public class StartActivity extends AppCompatActivity {
     //    业务
     private void tryLogin() {
 
-        String phone = Arad.preferences.getString(Constants.P_Name);
-        String password = Arad.preferences.getString(Constants.P_Password);
-
+        String phone = Arad.preferences.getString(Constants.P_ACCOUNT);
+        String password = Arad.preferences.getString(Constants.P_PWD);
+        String loginType = Arad.preferences.getString(Constants.P_LOGIN_TYPE);
+        String loginOpenId = Arad.preferences.getString(Constants.P_LOGIN_OPENID);
+        if ("0".equals(loginType)) {
+            password = ConvertUtils.bytes2HexString(EncryptUtils.decryptHexStringDES(password, Constants.DES_KEY));
+        }
 //        APIFactory.getInstance().login(phone, password).subscribe(new Subscriber<User>() {
 //            @Override
 //            public void onCompleted() {

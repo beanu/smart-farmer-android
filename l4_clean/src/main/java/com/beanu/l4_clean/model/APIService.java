@@ -1,11 +1,11 @@
-package com.beanu.l4_clean.model.api;
+package com.beanu.l4_clean.model;
 
 
 /**
  * Created by Jam on 16-5-17
  * Description:
  */
-public interface ApiService {
+public interface APIService {
 
 //    /**
 //     * 发送验证码
@@ -15,7 +15,7 @@ public interface ApiService {
 //     * @param yzm_length 验证码位数,>=4  <=8
 //     */
 //    @GET("yzm/sendYzm")
-//    Observable<BaseModel<SMSCode>> smsVCode(@HeaderMap Map<String, String> header, @Query("tel") String tel, @Query("judge_tel") String judge_tel, @Query("yzm_length") String yzm_length);
+//    Observable<HttpModel<SMSCode>> smsVCode(@HeaderMap Map<String, String> header, @Query("tel") String tel, @Query("judge_tel") String judge_tel, @Query("yzm_length") String yzm_length);
 //
 //    /**
 //     * 注册用户
@@ -27,7 +27,7 @@ public interface ApiService {
 //     */
 //    @FormUrlEncoded
 //    @POST("user/regist")
-//    Observable<BaseModel<User>> user_register(@HeaderMap Map<String, String> header, @Field("key") String key, @Field("val") String val, @Field("pwd") String pwd, @Field("yzm") String yzm, @Field("nickname") String nickname, @Field("url") String url);
+//    Observable<HttpModel<User>> user_register(@HeaderMap Map<String, String> header, @Field("key") String key, @Field("val") String val, @Field("pwd") String pwd, @Field("yzm") String yzm, @Field("nickname") String nickname, @Field("url") String url);
 //
 //    /**
 //     * 登录
@@ -39,8 +39,8 @@ public interface ApiService {
 //     */
 //    @FormUrlEncoded
 //    @POST("user/login")
-//    Observable<BaseModel<User>> user_login(@HeaderMap Map<String, String> header, @Field("key") String key, @Field("val") String value, @Field("pwd") String pwd);
-//
+//    Observable<HttpModel<User>> user_login(@HeaderMap Map<String, String> header, @Field("key") String key, @Field("val") String value, @Field("pwd") String pwd);
+
 //
 //    /**
 //     * 上传用户头像
@@ -49,7 +49,7 @@ public interface ApiService {
 //     */
 //    @Multipart
 //    @POST("img/uploadFirstUseFormData")
-//    Observable<BaseModel<SimpleModel>> uploadAvatar(@HeaderMap Map<String, String> header, @Part("img\"; filename=\"avatar.png\"") RequestBody file);
+//    Observable<HttpModel<SimpleModel>> uploadAvatar(@HeaderMap Map<String, String> header, @Part("img\"; filename=\"avatar.png\"") RequestBody file);
 //
 //
 //    /**
@@ -57,12 +57,7 @@ public interface ApiService {
 //     */
 //    @FormUrlEncoded
 //    @POST("user/info_edit")
-//    Observable<BaseModel<SimpleModel>> modifyUserInfo(@HeaderMap Map<String, String> header, @FieldMap Map<String, String> param);
+//    Observable<HttpModel<SimpleModel>> modifyUserInfo(@HeaderMap Map<String, String> header, @FieldMap Map<String, String> param);
 
 
 }
-
-
-
-
-
