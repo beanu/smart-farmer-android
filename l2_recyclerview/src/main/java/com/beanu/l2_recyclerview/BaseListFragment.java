@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.base.ToolBarFragment;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;
 import com.beanu.arad.support.recyclerview.adapter.LoadMoreAdapterWrapper;
@@ -29,7 +28,7 @@ public abstract class BaseListFragment<P extends ABSLoadMorePresenter, M extends
 
     private RecyclerView.Adapter<?> adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayMap<String, ?> params;
+    private ArrayMap<String, Object> params;
     private RecyclerView recyclerView;
     private PtrFrameLayout refreshLayout;
 
@@ -73,7 +72,7 @@ public abstract class BaseListFragment<P extends ABSLoadMorePresenter, M extends
         return layoutManager;
     }
 
-    public ArrayMap<String, ?> getParams() {
+    public ArrayMap<String, Object> getParams() {
         if (params == null) {
             params = provideParams();
         }
@@ -135,7 +134,7 @@ public abstract class BaseListFragment<P extends ABSLoadMorePresenter, M extends
         return new LinearLayoutManager(getActivity());
     }
 
-    protected ArrayMap<String, ?> provideParams() {
+    protected ArrayMap<String, Object> provideParams() {
         return new ArrayMap<>();
     }
 

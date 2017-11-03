@@ -10,7 +10,6 @@ import android.view.View;
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;
 import com.beanu.arad.support.recyclerview.adapter.LoadMoreAdapterWrapper;
-import com.beanu.arad.support.recyclerview.loadmore.ABSLoadMorePresenter;
 import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreModel;
 import com.beanu.arad.support.recyclerview.loadmore.LoadMorePresenterImpl;
 import com.beanu.l2_recycleview.R;
@@ -26,7 +25,7 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 public abstract class BaseListActivity<P extends LoadMorePresenterImpl, M extends ILoadMoreModel> extends ToolBarActivity<P, M> implements LoadMoreAdapterWrapper.OnClickRetryListener {
     private RecyclerView.Adapter<?> adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayMap<String, ?> params;
+    private ArrayMap<String, Object> params;
     private RecyclerView recyclerView;
     private PtrFrameLayout refreshLayout;
 
@@ -65,7 +64,7 @@ public abstract class BaseListActivity<P extends LoadMorePresenterImpl, M extend
         return layoutManager;
     }
 
-    public ArrayMap<String, ?> getParams() {
+    public ArrayMap<String, Object> getParams() {
         if (params == null) {
             params = provideParams();
         }
@@ -123,7 +122,7 @@ public abstract class BaseListActivity<P extends LoadMorePresenterImpl, M extend
         return new LinearLayoutManager(this);
     }
 
-    protected ArrayMap<String, ?> provideParams() {
+    protected ArrayMap<String, Object> provideParams() {
         return new ArrayMap<>();
     }
 
