@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">L4_Clean</string>
+    <string name="jump_over_0s">跳过</string>
+
 </resources>

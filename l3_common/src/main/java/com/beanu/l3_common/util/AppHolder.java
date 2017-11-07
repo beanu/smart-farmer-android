@@ -3,6 +3,7 @@ package com.beanu.l3_common.util;
 
 import com.beanu.arad.Arad;
 import com.beanu.arad.utils.StreamUtil;
+import com.beanu.l3_common.model.bean.GlobalConfig;
 import com.beanu.l3_common.model.bean.User;
 import com.beanu.l3_common.model.bean.Version;
 
@@ -24,6 +25,7 @@ public class AppHolder implements Serializable, Cloneable {
         //初始化数据 防止null指针
         user = new User();
         mVersion = new Version();
+        mConfig = new GlobalConfig();
     }
 
     public static AppHolder getInstance() {
@@ -47,6 +49,7 @@ public class AppHolder implements Serializable, Cloneable {
     public void reset() {
         this.user = new User();
         this.mVersion = new Version();
+        this.mConfig = new GlobalConfig();
         save();
     }
 
@@ -59,10 +62,14 @@ public class AppHolder implements Serializable, Cloneable {
     public void setVersion(Version version) {
         mVersion = version;
         save();
-
     }
 
+    public void setConfig(GlobalConfig config) {
+        mConfig = config;
+        save();
+    }
 
     public User user;
     public Version mVersion;
+    public GlobalConfig mConfig;
 }

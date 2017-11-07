@@ -47,7 +47,7 @@ public class MainActivity extends NavBarActivity {
 
     @Override
     protected void onQuit() {
-
+        AppHolder.getInstance().reset();
     }
 
     @Override
