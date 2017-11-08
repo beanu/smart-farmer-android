@@ -50,7 +50,7 @@ public class LayerViewBinder extends ItemViewBinder<LayerItem, LayerViewBinder.V
         });
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.txt_item_layer)
         TextView mTxtItemLayer;
 

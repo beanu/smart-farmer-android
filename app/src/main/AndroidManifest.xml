@@ -16,11 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.layer1.OneActivity"
-            android:label="@string/title_activity_one"
-            android:theme="@style/AppTheme">
-        </activity>
         <activity android:name=".ui.layer1.RxjavaActivity">
         </activity>
         <activity android:name=".ui.layer1.RetrofitActivity">
@@ -44,9 +39,6 @@
         <activity android:name=".ui.layer2.share.ShareDemoActivity"/>
         <activity android:name=".ui.layer3.search.SearchDemoActivity">
         </activity>
-        <activity android:name=".ui.layer2.TwoActivity"/>
-
-        <activity android:name=".ui.layer3.ThreeActivity"/>
 
         <activity android:name=".ui.layer3.login.LoginDemoActivity"/>
 

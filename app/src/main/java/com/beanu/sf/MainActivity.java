@@ -1,53 +1,39 @@
 package com.beanu.sf;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 
 import com.beanu.arad.base.ToolBarActivity;
-import com.beanu.sf.ui.layer1.OneActivity;
-import com.beanu.sf.ui.layer2.TwoActivity;
-import com.beanu.sf.ui.layer3.ThreeActivity;
+import com.beanu.sf.adapter.MainFragmentAdapter;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
+/**
+ * 主页
+ */
 public class MainActivity extends ToolBarActivity {
 
+    @BindView(R.id.tabLayout) TabLayout mTabLayout;
+    @BindView(R.id.viewPager) ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        String[] titles = new String[]{"第一层", "第二层", "第三层", "第四层"};
+
+        MainFragmentAdapter mFragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager(), titles);
+        mViewPager.setAdapter(mFragmentAdapter);
+        mViewPager.setOffscreenPageLimit(4);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    @OnClick({R.id.btn_one_arad, R.id.btn_two_function, R.id.btn_three_module, R.id.btn_four_app})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_one_arad:
-
-                Intent intent = new Intent(this, OneActivity.class);
-                startActivity(intent);
-
-                break;
-            case R.id.btn_two_function:
-
-                //TODO  这个图片选择器有BUG 可以考虑下知乎的开源版本
-                Intent intent1 = new Intent(MainActivity.this, TwoActivity.class);
-                startActivity(intent1);
-
-                break;
-            case R.id.btn_three_module:
-
-                Intent intent2 = new Intent(MainActivity.this, ThreeActivity.class);
-                startActivity(intent2);
-
-                break;
-            case R.id.btn_four_app:
-//                Intent intent3 = new Intent(MainActivity.this, CartDemoActivity.class);
-//                startActivity(intent3);
-                break;
-        }
+    @Override
+    public String setupToolBarTitle() {
+        return "Smart Farmer";
     }
 }
