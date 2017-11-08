@@ -5,6 +5,7 @@
                 tools:context="com.beanu.l3_shoppingcart.CartFragment">
 
     <include
+        android:id="@+id/toolbar_layout"
         layout="@layout/arad_toolbar"/>
 
 
@@ -134,7 +135,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/cart_bottom"
-        android:layout_below="@id/toolbar">
+        android:layout_below="@id/toolbar_layout">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

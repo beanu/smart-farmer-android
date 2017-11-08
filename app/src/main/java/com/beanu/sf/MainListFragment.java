@@ -44,8 +44,8 @@ public class MainListFragment extends Fragment {
     private static String[] titles1 = {"Retrofit基础用法", "Rxjava基础用法"};
     private static Class[] className1 = {RetrofitActivity.class, RxjavaActivity.class};
 
-    private static String[] titles2 = {"Retrofit", "Rxjava", "RecyclerView"};
-    private static Class[] className2 = {RetrofitActivity.class, RxjavaActivity.class, DemoSimplestActivity.class};
+    private static String[] titles2 = {"图片选择器", "二维码扫描", "支付宝+微信支付", "分享／第三方登录", "聊天IM", "RecycleView的各种用法（最简用法）"};
+    private static Class[] className2 = {RetrofitActivity.class, RxjavaActivity.class, DemoSimplestActivity.class, DemoSimplestActivity.class, DemoSimplestActivity.class, DemoSimplestActivity.class};
 
     private static String[] titles3 = {"登录模块", "购物车模块", "引导页模块", "搜索模块"};
     private static Class[] className3 = {LoginDemoActivity.class, CartDemoActivity.class, GuideDemoActivity.class, SearchDemoActivity.class};
