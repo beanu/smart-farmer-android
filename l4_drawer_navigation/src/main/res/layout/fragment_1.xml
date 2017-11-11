@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="页面1"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="80dp"
+        android:lineSpacingMultiplier="1.2"
+        android:padding="16dp"
+        android:text="本工程已经包含了项目中常用的网络请求、数据存储、图片加载、工具类、ButterKnife、下拉上拉、图片选择、支付、分享.....\n\n你所要做的就是复制一份工程，选择你需要的功能，然后关注业务即可"/>
+</FrameLayout>

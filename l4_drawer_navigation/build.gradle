@@ -23,17 +23,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile rootProject.ext.support["support-v7"]
     testCompile 'junit:junit:4.12'
-
     //butter knife 单独提出来放到app层
     compile rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-annotation"]
-
     //第三方依赖
     compile rootProject.ext.dependencies["arad"]
+    implementation project(':l3_common')
 }

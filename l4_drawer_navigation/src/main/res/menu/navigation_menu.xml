@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/nav_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_page_a"
+            android:icon="@drawable/ic_android"
+            android:title="PageA" />
+        <item
+            android:id="@+id/nav_page_b"
+            android:icon="@drawable/ic_android"
+            android:title="PageB" />
+        <item
+            android:id="@+id/nav_page_c"
+            android:icon="@drawable/ic_android"
+            android:title="PageC" />
+
+    </group>
+
+    <item android:title="Other1">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_android"
+                android:title="About Us" />
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_android"
+                android:title="Setting" />
+        </menu>
+    </item>
+    <item android:title="Other2">
+        <menu>
+            <item
+                android:id="@+id/nav_about2"
+                android:icon="@drawable/ic_android"
+                android:title="About Us" />
+            <item
+                android:id="@+id/nav_setting2"
+                android:icon="@drawable/ic_android"
+                android:title="Setting" />
+        </menu>
+    </item>
+    <item android:title="Other3">
+        <menu>
+            <item
+                android:id="@+id/nav_about3"
+                android:icon="@drawable/ic_android"
+                android:title="About Us" />
+            <item
+                android:id="@+id/nav_setting3"
+                android:icon="@drawable/ic_android"
+                android:title="Setting" />
+        </menu>
+    </item>
+
+</menu>

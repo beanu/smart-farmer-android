@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">L4_drawer_navigation</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
 </resources>
