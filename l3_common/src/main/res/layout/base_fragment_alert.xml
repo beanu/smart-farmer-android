@@ -1,0 +1,72 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/base_white_round_10dp">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/base_black"
+            tools:text="提示"
+            android:textSize="18sp"
+            android:visibility="visible"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <TextView
+                android:id="@+id/text_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:paddingBottom="30dp"
+                android:paddingTop="30dp"
+                android:lineSpacingExtra="8dp"/>
+        </ScrollView>
+
+        <View style="@style/base_line_horizontal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/base_vertical_line"
+            android:showDividers="middle">
+
+            <TextView
+                android:id="@+id/text_negative"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/base_black"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:gravity="center"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/text_positive"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/base_black"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:gravity="center"
+                android:textSize="15sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

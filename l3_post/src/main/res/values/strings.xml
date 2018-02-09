@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">l3_post</string>
+
+    <string name="alert_title">提示</string>
+    <string name="alert_confirm">确定</string>
+    <string name="alert_cancel">取消</string>
+
+</resources>

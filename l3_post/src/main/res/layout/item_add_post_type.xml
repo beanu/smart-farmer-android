@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.beanu.l3_common.widget.MyRadioButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:button="@null"
+    app:group_name="post_type"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:text="测试"
+    android:background="@drawable/btn_add_post_type"
+    android:textColor="@color/add_post_type_text_color"
+    android:layout_height="wrap_content" />

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_white"
+    android:orientation="vertical"
+    tools:context="com.beanu.l3_post.L3PostActivity">
+
+    <include layout="@layout/arad_toolbar"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <View style="@style/base_line_horizontal"/>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_add_illustrated"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/toolbar_icon_add"
+            android:drawableStart="@drawable/toolbar_icon_add"
+            android:gravity="center_vertical"
+            android:text="添加图文"
+            android:textColor="@color/textColor"/>
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/img_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/toolbar_icon_at"/>
+
+        <CheckBox
+            android:id="@+id/check_face"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/toolbar_icon_emotion_n"
+            android:button="@null"
+            android:contentDescription="@null"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/bottom_line"
+        style="@style/base_line_horizontal"/>
+
+    <com.beanu.l3_common.widget.FacePanelView
+        android:id="@+id/face_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+</LinearLayout>

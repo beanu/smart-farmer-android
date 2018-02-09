@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="base_line">#ededed</color>
+    <color name="base_line">#eee</color>
     <color name="base_font_black">#323232</color>
 
     <color name="base_color_start">#15D1B0</color>
@@ -9,5 +9,9 @@
     <color name="base_color_disable">#dbdbdb</color>
 
     <color name="base_color_orange">#ffb400</color>
+    <color name="base_greyLight">#f8f8f8</color>
+    <color name="base_black">#000000</color>
+    <color name="base_white">#FFFFFF</color>
+
 
 </resources>

@@ -1,6 +1,7 @@
 package com.beanu.l4_bottom_tab;
 
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.beanu.arad.AradApplication;
 import com.beanu.arad.AradApplicationConfig;
 import com.beanu.arad.support.log.KLog;
@@ -20,6 +21,9 @@ public class L4Application extends AradApplication {
 
             //Log日志
             KLog.init(BuildConfig.DEBUG);
+
+            ARouter.init(this);
+
         }
     }
 

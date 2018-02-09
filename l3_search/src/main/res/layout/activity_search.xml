@@ -39,7 +39,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/white"
+                android:background="@color/base_white"
                 android:hint="搜索商品"
                 android:imeOptions="actionSearch"
                 android:paddingLeft="8dp"
@@ -56,7 +56,7 @@
                 android:paddingLeft="13dp"
                 android:paddingRight="13dp"
                 android:text="搜索"
-                android:textColor="@color/white"
+                android:textColor="@color/base_white"
                 android:visibility="visible"/>
         </LinearLayout>
 
@@ -68,7 +68,7 @@
         android:id="@+id/ll_search_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/base_white"
         android:orientation="vertical">
 
         <TextView

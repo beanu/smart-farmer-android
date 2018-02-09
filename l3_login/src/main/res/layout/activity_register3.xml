@@ -46,7 +46,7 @@
         android:background="@drawable/button_yellow"
         android:enabled="false"
         android:text="完成"
-        android:textColor="@color/white"/>
+        android:textColor="@color/base_white"/>
 
 
 </LinearLayout>

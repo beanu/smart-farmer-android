@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/base_black">
+
+
+    <com.cjt2325.cameralibrary.JCameraView
+        android:id="@+id/jcameraview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:duration_max="10000"
+        app:iconMargin="20dp"
+        app:iconSize="30dp"
+        app:iconSrc="@drawable/ic_camera_enhance_black_24dp"/>
+
+    <!--<TextView-->
+    <!--android:id="@+id/text_time"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textSize="14sp"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:text="00:00"-->
+    <!--android:visibility="gone"-->
+    <!--android:layout_marginBottom="140dp"-->
+    <!--android:layout_gravity="center_horizontal|bottom"/>-->
+</FrameLayout>
