@@ -22,9 +22,6 @@
         <activity android:name=".ui.StartActivity">
         </activity>
 
-        <activity android:name=".ui.signIn.LoginActivity">
-        </activity>
-
         <activity android:name=".ui.MainActivity">
         </activity>
 
@@ -34,6 +31,15 @@
             android:name="com.beanu.arad.support.updateversion.DownloadService"
             android:exported="true"/>
 
+        <provider
+            android:name="com.beanu.arad.support.updateversion.ApkFileProvider"
+            android:authorities="${applicationId}.install"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/apk_path"/>
+        </provider>
         <!--bug收集-->
         <!--<meta-data-->
         <!--android:name="com.bugsnag.android.API_KEY"-->
