@@ -108,7 +108,7 @@ public class AliLocalParamCreator {
     }
 
     private static String localSign(String content) {
-        return SignUtils.sign(content, RSA_PRIVATE);
+        return SignUtils.sign(content, RSA_PRIVATE, false);
     }
 
     private static String localGenOrderInfo(String subject, String body, String price, String tradeNo) {
