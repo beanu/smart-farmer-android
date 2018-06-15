@@ -48,14 +48,14 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile rootProject.ext.support["support-v7"]
-    testCompile 'junit:junit:4.12'
+    implementation rootProject.ext.support["support-v7"]
+    testImplementation 'junit:junit:4.12'
 
     //第三方依赖
-    compile 'cn.jiguang.sdk:jpush:3.0.9'
-    compile 'cn.jiguang.sdk:jcore:1.1.7'
+    implementation 'cn.jiguang.sdk:jpush:3.0.9'
+    implementation 'cn.jiguang.sdk:jcore:1.1.7'
 }

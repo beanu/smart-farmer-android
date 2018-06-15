@@ -28,18 +28,32 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile rootProject.ext.support["support-v7"]
-    testCompile 'junit:junit:4.12'
+    implementation rootProject.ext.support["support-v7"]
+    testImplementation 'junit:junit:4.12'
+
     //butter knife 单独提出来放到app层
-    compile rootProject.ext.dependencies["butterknife"]
+    implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-annotation"]
+
     //ARouter路由 模块解耦
-    compile rootProject.ext.dependencies["arouter"]
+    implementation rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-annotation"]
+
     //第三方依赖
-    compile project(':l3_common')
+    implementation project(':l3_common')
+
+    configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '28.0.0-alpha3'
+                }
+            }
+        }
+    }
 }

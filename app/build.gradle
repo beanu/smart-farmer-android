@@ -36,37 +36,37 @@ android {
 
 dependencies {
     implementation rootProject.ext.support["support-v4"]
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 
-    compile rootProject.ext.support["support-v7"]
-    compile rootProject.ext.support["design"]
+    implementation rootProject.ext.support["support-v7"]
+    implementation rootProject.ext.support["design"]
 
     //butter knife 单独提出来放到app层
-    compile rootProject.ext.dependencies["butterknife"]
+    implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-annotation"]
 
     //glide
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
 
     //第一层
-    compile rootProject.ext.dependencies["arad"]
+    implementation rootProject.ext.dependencies["arad"]
     //第二层
-    compile project(':l2_im')
-    compile project(':l2_imageselector')
-    compile project(':l2_pay')
-    compile project(':l2_recyclerview')
-    compile project(':l2_shareutil')
-    compile project(':l2_zxing')
+    implementation project(':l2_im')
+    implementation project(':l2_imageselector')
+    implementation project(':l2_pay')
+    implementation project(':l2_recyclerview')
+    implementation project(':l2_shareutil')
+    implementation project(':l2_zxing')
     //第三层
-    compile project(':l3_common')
-    compile project(':l3_guide')
-    compile project(':l3_login')
-    compile project(':l3_shoppingcart')
-    compile project(':l3_search')
+    implementation project(':l3_common')
+    implementation project(':l3_guide')
+    implementation project(':l3_login')
+    implementation project(':l3_shoppingcart')
+    implementation project(':l3_search')
 
     //第四层
 }

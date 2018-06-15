@@ -6,7 +6,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.3'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -31,35 +31,35 @@ task clean(type: Delete) {
 
 ext {
     android = [
-            compileSdkVersion: 27,
+            compileSdkVersion: 28,
             buildToolsVersion: "27.0.3",
             minSdkVersion    : 17,
-            targetSdkVersion : 27,
-            supportVersion   : "27.0.2"
+            targetSdkVersion : 28,
+            supportVersion   : "28.0.0-alpha3"
     ]
 
     support = [
-            "support-v4"  : 'com.android.support:support-v4:27.0.2',
-            "support-v7"  : 'com.android.support:appcompat-v7:27.0.2',
-            "design"      : 'com.android.support:design:27.0.2',
-            "recyclerview": 'com.android.support:recyclerview-v7:27.0.2'
+            "support-v4"  : 'com.android.support:support-v4:28.0.0-alpha3',
+            "support-v7"  : 'com.android.support:appcompat-v7:28.0.0-alpha3',
+            "design"      : 'com.android.support:design:28.0.0-alpha3',
+            "recyclerview": 'com.android.support:recyclerview-v7:28.0.0-alpha3'
     ]
 
     dependencies = [
             "rxjava"                : 'io.reactivex.rxjava2:rxjava:2.1.9',
-            "rxandroid"             : 'io.reactivex.rxjava2:rxandroid:2.0.1',
+            "rxandroid"             : 'io.reactivex.rxjava2:rxandroid:2.0.2',
             "gson"                  : 'com.google.code.gson:gson:2.8.2',
-            "okhttp"                : 'com.squareup.okhttp3:okhttp:3.9.1',
-            "logging-interceptor"   : 'com.squareup.okhttp3:logging-interceptor:3.9.1',
+            "okhttp"                : 'com.squareup.okhttp3:okhttp:3.10.0',
+            "logging-interceptor"   : 'com.squareup.okhttp3:logging-interceptor:3.10.0',
             "retrofit2"             : 'com.squareup.retrofit2:retrofit:2.3.0',
             "converter-gson"        : 'com.squareup.retrofit2:converter-gson:2.3.0',
             "adapter-rxjava"        : 'com.squareup.retrofit2:adapter-rxjava:2.3.0',
-            "glide"                 : 'com.github.bumptech.glide:glide:4.3.1',
-            "glide-okhttp"          :'com.github.bumptech.glide:okhttp3-integration:4.3.1@aar',
-            "eventbus"              : 'org.greenrobot:eventbus:3.0.0',
-            "arad"                  : 'com.beanu:arad:1.2.6',
-            "imageselector"         : 'com.yuyh.imgsel:library:2.0.2',
-            "albumselector"         : 'com.yanzhenjie:album:2.0.2',
+            "glide"                 : 'com.github.bumptech.glide:glide:4.5.0',
+            "glide-okhttp"          :'com.github.bumptech.glide:okhttp3-integration:4.5.0@aar',
+            "eventbus"              : 'org.greenrobot:eventbus:3.1.1',
+            "arad"                  : 'com.beanu:arad:1.2.8',
+            "imageselector"         : 'com.yuyh.imgsel:library:2.0.3',
+            "albumselector"         : 'com.yanzhenjie:album:2.1.2',
             "wechat"                : 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.0.2',
             "ink-page-indicator"    : 'com.pacioianu.david:ink-page-indicator:1.2.0',
             "viewpagerindicator"    : 'com.viewpagerindicator:library:2.4.1@aar',
@@ -69,9 +69,9 @@ ext {
             "arouter-annotation"    : 'com.alibaba:arouter-compiler:1.1.4',
             "butterknife"           : 'com.jakewharton:butterknife:8.8.1',
             "butterknife-annotation": 'com.jakewharton:butterknife-compiler:8.8.1',
-            "rxbinding"             : 'com.jakewharton.rxbinding2:rxbinding:2.1.0',
+            "rxbinding"             : 'com.jakewharton.rxbinding2:rxbinding:2.1.1',
             "banner"                : 'com.youth.banner:banner:1.4.10',
-            "mutiltype"             : 'me.drakeet.multitype:multitype:3.4.2']
+            "mutiltype"             : 'me.drakeet.multitype:multitype:3.4.4']
 
 
 }

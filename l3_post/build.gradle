@@ -42,19 +42,19 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile rootProject.ext.support["support-v7"]
+    implementation rootProject.ext.support["support-v7"]
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     //ARouter
-    compile rootProject.ext.dependencies["arouter"]
+    implementation rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-annotation"]
 
     //第三方依赖
-    compile project(':l2_imageselector')
-    compile project(':l3_common')
-    compile 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
+    implementation project(':l2_imageselector')
+    implementation project(':l3_common')
+    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
     implementation('cjt.library.wheel:camera:1.1.9') {
         exclude group: 'com.android.support'
     }

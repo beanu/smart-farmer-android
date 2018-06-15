@@ -24,16 +24,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile rootProject.ext.support["support-v7"]
-    testCompile 'junit:junit:4.12'
+    implementation rootProject.ext.support["support-v7"]
+    testImplementation 'junit:junit:4.12'
 
-    compile project(':l2_recyclerview')
+    implementation project(':l2_recyclerview')
 
-    compile rootProject.ext.dependencies["arad"]
-    compile rootProject.ext.dependencies["banner"]
-    compile rootProject.ext.dependencies["mutiltype"]
+    implementation rootProject.ext.dependencies["arad"]
+    implementation rootProject.ext.dependencies["banner"]
+    implementation rootProject.ext.dependencies["mutiltype"]
 }
