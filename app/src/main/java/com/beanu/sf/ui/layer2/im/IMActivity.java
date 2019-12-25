@@ -1,7 +1,7 @@
 package com.beanu.sf.ui.layer2.im;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.beanu.sf.R;
 

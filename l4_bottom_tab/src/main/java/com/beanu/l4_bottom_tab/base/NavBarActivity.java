@@ -1,7 +1,6 @@
 package com.beanu.l4_bottom_tab.base;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTabHost;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,8 +8,10 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.l4_bottom_tab.R;
+
+import androidx.fragment.app.FragmentTabHost;
+import io.fchain.ui.QMUIActivity;
 
 
 /**
@@ -18,7 +19,7 @@ import com.beanu.l4_bottom_tab.R;
  * 第三方通用底部导航栏，使用时直接继承NavBarActivity实现未实现的方法
  * Created by Beanu on 16/1/26.
  */
-public abstract class NavBarActivity extends ToolBarActivity implements TabHost.OnTabChangeListener {
+public abstract class NavBarActivity extends QMUIActivity implements TabHost.OnTabChangeListener {
 
     private long waitTime = 2000;
     private long touchTime = 0;

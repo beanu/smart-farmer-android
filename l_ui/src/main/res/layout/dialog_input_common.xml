@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="36dp"
+              android:layout_marginTop="20dp"
+              android:orientation="vertical"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin">
+
+    <EditText
+        android:id="@+id/dialog_edit_input"
+        style="@style/FFInputEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/editInputHeight"
+        android:lines="1"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        />
+
+    <com.qmuiteam.qmui.widget.textview.QMUISpanTouchFixTextView
+        android:id="@+id/dialog_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fontSize12"
+        android:layout_marginTop="12dp"/>
+
+</LinearLayout>

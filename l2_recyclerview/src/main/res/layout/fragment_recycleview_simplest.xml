@@ -18,11 +18,11 @@
         ptr:ptr_ratio_of_header_height_to_refresh="1.2"
         ptr:ptr_resistance="1.7">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
     </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 </FrameLayout>

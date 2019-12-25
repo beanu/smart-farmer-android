@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/base_white"
+    android:orientation="vertical">
+
+
+
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/editInputHeight"
+        android:background="@color/base_white"
+        android:ems="10"
+        android:hint="@string/hint_input_pwd"
+        android:lines="1"
+        android:textSize="14sp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/base_font_black"
+        android:textColorHint="@color/color_a3a3a3" />
+
+    <View
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="@id/et_input"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/color_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/view_line"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/et_input"
+        android:textColor="@color/color_fb303b"
+        android:layout_marginTop="2dp"
+        android:paddingBottom="2dp"
+        android:minHeight="15dp"
+        android:id="@+id/tv_error_tips"
+        app:layout_constraintStart_toStartOf="@id/et_input"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:src="@drawable/ui_input_error"
+        app:layout_constraintTop_toTopOf="@id/et_input"
+        app:layout_constraintBottom_toBottomOf="@id/et_input"
+        app:layout_constraintEnd_toEndOf="@id/et_input"
+        android:padding="4dp"
+        android:visibility="gone"
+        android:id="@+id/ic_clear"
+        android:layout_height="30dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

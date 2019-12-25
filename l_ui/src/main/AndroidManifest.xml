@@ -1,0 +1,8 @@
+<manifest package="io.fchain.ui"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+
+    </application>
+
+</manifest>

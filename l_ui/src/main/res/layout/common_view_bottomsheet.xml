@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/qmui_config_color_white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp">
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaImageButton
+            android:id="@+id/imgbtn_bottomsheet_close"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/qmui_config_color_transparent"
+            android:src="@drawable/bottom_sheet_close"/>
+
+        <TextView
+            android:id="@+id/txt_bottomsheet_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_font_app"/>
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaImageButton
+            android:id="@+id/imgbtn_bottomsheet_top_right"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@color/qmui_config_color_transparent"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/qmui_config_color_separator"/>
+
+    <FrameLayout
+        android:id="@+id/layout_bottomsheet_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:id="@+id/btn_bottomsheet_opretion"
+        style="@style/FFButtonGreenStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_margin="16dp"
+        />
+
+</LinearLayout>

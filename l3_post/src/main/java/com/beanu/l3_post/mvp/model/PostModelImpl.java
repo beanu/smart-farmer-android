@@ -1,6 +1,6 @@
 package com.beanu.l3_post.mvp.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.beanu.arad.http.RxHelper;
 import com.beanu.arad.utils.FileUtils;

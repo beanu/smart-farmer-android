@@ -23,13 +23,15 @@ public class GlideLoader implements ImageLoader, AlbumLoader {
                 .into(imageView);
     }
 
+
     @Override
-    public void loadAlbumFile(ImageView imageView, AlbumFile albumFile, int viewWidth, int viewHeight) {
+    public void load(ImageView imageView, AlbumFile albumFile) {
         Glide.with(imageView).load(albumFile.getPath()).into(imageView);
+
     }
 
     @Override
-    public void loadImage(ImageView imageView, String imagePath, int viewWidth, int viewHeight) {
-        Glide.with(imageView).load(imagePath).into(imageView);
+    public void load(ImageView imageView, String url) {
+        Glide.with(imageView).load(url).into(imageView);
     }
 }

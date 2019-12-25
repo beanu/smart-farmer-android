@@ -2,7 +2,7 @@ package com.beanu.l3_post.upload;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.beanu.arad.base.BasePresenter;
 import com.beanu.l3_post.upload.manager.UploadCallback;

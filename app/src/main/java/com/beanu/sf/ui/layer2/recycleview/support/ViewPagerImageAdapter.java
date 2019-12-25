@@ -1,7 +1,7 @@
 package com.beanu.sf.ui.layer2.recycleview.support;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;

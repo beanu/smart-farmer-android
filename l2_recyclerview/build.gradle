@@ -3,7 +3,6 @@ apply plugin: 'com.android.library'
 android {
 
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -11,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
@@ -24,17 +23,24 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation rootProject.ext.support["support-v7"]
     implementation rootProject.ext.support["recyclerview"]
+    implementation rootProject.ext.support["design"]
     testImplementation 'junit:junit:4.12'
 
     //第三方依赖
     implementation rootProject.ext.dependencies["arad"]
-    implementation rootProject.ext.dependencies["mutiltype"]
-    implementation rootProject.ext.dependencies["ink-page-indicator"]
-    implementation rootProject.ext.dependencies["ultra-ptr"]
+    implementation (rootProject.ext.dependencies["mutiltype"]){
+        exclude group: 'com.android.support'
+    }
+    implementation (rootProject.ext.dependencies["ink-page-indicator"]){
+        exclude group: 'com.android.support'
+    }
+    implementation (rootProject.ext.dependencies["ultra-ptr"]){
+        exclude group: 'com.android.support'
+    }
 
 }

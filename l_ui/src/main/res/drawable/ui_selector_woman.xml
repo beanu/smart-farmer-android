@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_checked="true" android:drawable="@drawable/ui_ic_woman_choose"/>
+    <item android:state_checked="false" android:drawable="@drawable/ui_ic_woman_normal"/>
+
+</selector>

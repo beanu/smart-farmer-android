@@ -3,17 +3,19 @@ package com.beanu.l4_clean.ui;
 import android.os.Bundle;
 
 import com.beanu.arad.Arad;
-import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.updateversion.UpdateChecker;
 import com.beanu.l3_common.model.bean.EventModel;
 import com.beanu.l3_common.util.AppHolder;
 import com.beanu.l3_common.util.Constants;
 import com.beanu.l4_clean.R;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class MainActivity extends ToolBarActivity {
+import io.fchain.ui.QMUIActivity;
+
+public class MainActivity extends QMUIActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,9 @@ public class MainActivity extends ToolBarActivity {
     }
 
     @Override
-    public String setupToolBarTitle() {
-        return "首页";
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.setTitle("首页");
+
     }
+
 }

@@ -2,7 +2,7 @@ package com.beanu.l4_clean.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 解决 app 启动白屏黑屏的问题

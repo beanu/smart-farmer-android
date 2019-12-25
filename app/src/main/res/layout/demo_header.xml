@@ -6,7 +6,7 @@
               android:orientation="vertical">
 
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/header_viewpager"
         android:layout_width="match_parent"
         android:layout_height="290dp"/>

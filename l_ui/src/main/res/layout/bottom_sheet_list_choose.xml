@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/base_global_bg"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp">
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaImageButton
+            android:id="@+id/imgbtn_bottomsheet_close"
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+            android:background="@color/qmui_config_color_transparent"
+            android:src="@drawable/bottom_sheet_close"/>
+
+        <TextView
+            android:id="@+id/txt_bottomsheet_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_font_app"/>
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaImageButton
+            android:id="@+id/imgbtn_bottomsheet_top_right"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@color/qmui_config_color_transparent"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/qmui_config_color_separator"/>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/qmui_config_color_white"
+        android:choiceMode="singleChoice"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"/>
+
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:id="@+id/btn_bottomsheet_opretion"
+        style="@style/FFButtonGreenStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_margin="16dp"
+        />
+</LinearLayout>

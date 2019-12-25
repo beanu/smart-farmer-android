@@ -1,10 +1,6 @@
 package com.beanu.l2_recyclerview;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.util.ArrayMap;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.beanu.arad.base.ToolBarActivity;
@@ -14,6 +10,10 @@ import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreModel;
 import com.beanu.arad.support.recyclerview.loadmore.LoadMorePresenterImpl;
 import com.beanu.l2_recycleview.R;
 
+import androidx.annotation.Nullable;
+import androidx.collection.ArrayMap;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 

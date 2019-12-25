@@ -14,7 +14,7 @@ import android.view.View;
  * Created by Beanu on 2017/6/22.
  */
 
-public class CleanEditText extends android.support.v7.widget.AppCompatEditText implements View.OnFocusChangeListener {
+public class CleanEditText extends androidx.appcompat.widget.AppCompatEditText implements View.OnFocusChangeListener {
 
     //EditText右侧的删除按钮
     private Drawable mClearDrawable;

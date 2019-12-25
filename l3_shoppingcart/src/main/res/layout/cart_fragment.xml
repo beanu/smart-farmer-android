@@ -137,14 +137,14 @@
         android:layout_above="@id/cart_bottom"
         android:layout_below="@id/toolbar_layout">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/cart_shop_item">
 
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <!--TODO 没有数据的时候-->
         <ImageView

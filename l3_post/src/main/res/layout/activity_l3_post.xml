@@ -10,7 +10,7 @@
 
     <include layout="@layout/arad_toolbar"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,7 +34,7 @@
             android:text="添加图文"
             android:textColor="@color/textColor"/>
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>

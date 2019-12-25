@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="?attr/qmui_bottom_sheet_list_item_height"
+              android:background="?attr/qmui_bottom_sheet_list_item_bg"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:paddingLeft="?attr/qmui_bottom_sheet_list_item_padding_horizontal"
+              android:paddingRight="?attr/qmui_bottom_sheet_list_item_padding_horizontal">
+
+    <TextView
+        android:id="@+id/bottom_dialog_list_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        android:textAppearance="?attr/qmui_bottom_sheet_list_item_text_appearance"/>
+
+</LinearLayout>

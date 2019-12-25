@@ -50,13 +50,13 @@
         android:textSize="64dp"/>
 
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager_guide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/ll_guide_button">
 
-    </android.support.v4.view.ViewPager>
+    </androidx.viewpager.widget.ViewPager>
 
     <com.pixelcan.inkpageindicator.InkPageIndicator
         android:id="@+id/indicator_guide"

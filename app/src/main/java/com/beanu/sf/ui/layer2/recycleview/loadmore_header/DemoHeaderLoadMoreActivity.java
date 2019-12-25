@@ -1,8 +1,8 @@
 package com.beanu.sf.ui.layer2.recycleview.loadmore_header;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;

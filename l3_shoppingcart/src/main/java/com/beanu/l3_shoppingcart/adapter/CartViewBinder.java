@@ -1,7 +1,7 @@
 package com.beanu.l3_shoppingcart.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +15,6 @@ import com.beanu.l3_shoppingcart.model.bean.CartItem;
 import com.beanu.l3_shoppingcart.mvp.presenter.CartPresenterImpl;
 import com.beanu.l3_shoppingcart.widget.InDeNumber;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.GlideBuilder;
 
 import java.text.DecimalFormat;
 

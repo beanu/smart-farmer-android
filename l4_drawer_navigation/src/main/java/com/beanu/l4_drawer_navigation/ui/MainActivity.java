@@ -1,11 +1,13 @@
 package com.beanu.l4_drawer_navigation.ui;
 
-import android.support.annotation.NonNull;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.beanu.l4_drawer_navigation.R;
 import com.beanu.l4_drawer_navigation.base.DrawerActivity;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
+
+import androidx.annotation.NonNull;
 
 public class MainActivity extends DrawerActivity {
 
@@ -13,7 +15,7 @@ public class MainActivity extends DrawerActivity {
 
     @Override
     protected void initView() {
-        setToggleButton(getToolbar());
+//        setToggleButton(getToolbar());
         mStatus = findViewById(R.id.text_status);
     }
 
@@ -37,7 +39,7 @@ public class MainActivity extends DrawerActivity {
                 break;
             case R.id.nav_setting:
             case R.id.nav_about:
-                startActivity(SettingActivity.class);
+                launchActivity(SettingActivity.class);
                 break;
         }
         closeDrawer();
@@ -50,7 +52,8 @@ public class MainActivity extends DrawerActivity {
     }
 
     @Override
-    public String setupToolBarTitle() {
-        return "首页";
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.setTitle("首页");
     }
+
 }

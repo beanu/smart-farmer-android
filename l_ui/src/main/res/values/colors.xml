@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="base_font_black">#323232</color>
+    <color name="base_font_gray">#666666</color>
+    <color name="base_white">#FFFFFF</color>
+
+    <color name="base_global_bg">#ffffff</color>
+
+    <!--字体颜色-->
+    <color name="color_font_white">#FFFFFF</color>
+    <color name="color_font_white3">#ccFFFFFF</color>
+    <color name="color_font_app">#333333</color>
+    <color name="color_font_green">#1685D9</color>
+    <color name="color_font_red">#E36243</color>
+    <color name="color_font_gray">#A0ACB8</color>
+
+    <!--按钮颜色-->
+    <color name="button_green">#1685D9</color>
+    <color name="button_green_pressed">#CCCCCC</color>
+    <color name="button_green_disable">#CCCCCC</color>
+
+    <color name="button_red">#E36243</color>
+    <color name="button_red_pressed">#C0E36243</color>
+    <color name="button_red_disable">#66E36243</color>
+
+
+    <!--辅助-->
+    <color name="edt_font_hint_color">#A0ACB8</color>
+
+    <color name="bg_light_smoke">#F5F7F9</color>
+    <color name="color_separator">#EEF1F5</color>
+    <!--底部弹窗-->
+    <color name="bottom_sheet_selected">#3027C28A</color>
+
+
+    <color name="ui_theme_red">#FB303B</color>
+    <color name="ui_theme_blue">#1685D9</color>
+    <color name="ui_theme_black">#071020</color>
+    <color name="ui_theme_green">#FF1ABF7C</color>
+    <color name="ui_theme_page_background">#f9f9f9</color>
+
+    <color name="color_a3a3a3">#FFA3A3A3</color>
+    <color name="color_cacaca">#FFCACACA</color>
+    <color name="color_cccccc">#CCCCCC</color>
+    <color name="color_2a95d4">#FF2A95D4</color>
+    <color name="color_half_2a95d4">#2E2A95D4</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_line">#DADADA</color>
+    <color name="color_fb303b">#FB303B</color>
+    <color name="color_1685D9">#1685D9</color>
+    <color name="color_alpha_black">#CC000000</color>
+
+    <color name="color_ff2ba4ff">#ff2ba4ff</color>
+    <color name="color_4d3aaaff">#4d3aaaff</color>
+    <color name="color_f0f0f0">#FFF0F0F0</color>
+    <color name="color_f9f9f9">#F9F9F9</color>
+    <color name="color_dadada">#DADADA</color>
+    <color name="color_7a8a99">#7A8A99</color>
+    <color name="popup_bg">#EE212122</color>
+    <color name="color_d4d4d4">#d4d4d4</color>
+    <color name="color_22272e">#22272E</color>
+    <color name="color_62cb95">#6662cb95</color>
+    <color name="color_111e34">#111e34</color>
+    <color name="color_a3b8cc">#A3B8CC</color>
+    <color name="color_525e66">#525E66</color>
+    <color name="white">#FFFFFF</color>
+    <color name="color_accent_green">#443434</color>
+
+</resources>

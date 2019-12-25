@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/layout_item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:background="@drawable/s_bottom_sheet_list_choose_item_bg"
+    android:clickable="true"
+    android:focusable="true">
+
+
+    <ImageView
+        android:id="@+id/img_tag"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/layout_txt_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_toEndOf="@+id/img_tag">
+
+        <TextView
+            android:id="@+id/txt_bottom_sheet_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="texttttttttttt"/>
+
+        <TextView
+            android:id="@+id/txt_bottom_sheet_item_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/color_font_gray"
+            android:textSize="12sp"
+            android:visibility="gone"
+            tools:text="desc"
+            />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/img_bottom_sheet_choose_mark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_choice_tag"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

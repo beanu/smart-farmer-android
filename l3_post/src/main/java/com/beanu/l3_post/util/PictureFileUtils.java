@@ -4,8 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.media.MediaMetadataRetriever;
-import android.support.annotation.NonNull;
-import android.support.annotation.Size;
+import androidx.annotation.NonNull;
+import androidx.annotation.Size;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 

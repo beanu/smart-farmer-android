@@ -1,7 +1,7 @@
 package com.beanu.l2_recyclerview;
 
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.widget.RecyclerView;
+import com.google.android.material.appbar.AppBarLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import in.srain.cube.views.ptr.PtrDefaultHandler;

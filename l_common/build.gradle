@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    resourcePrefix "base_"
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    api rootProject.ext.support["support-v4"]
+    api rootProject.ext.support["support-v7"]
+    api rootProject.ext.support["recyclerview"]
+    api rootProject.ext.support["design"]
+    testImplementation 'junit:junit:4.12'
+
+    api rootProject.ext.dependencies["arad"]
+    api rootProject.ext.dependencies["banner"]
+    api(rootProject.ext.dependencies["mutiltype"]) {
+        exclude group: 'com.android.support'
+    }
+    implementation (rootProject.ext.dependencies["ink-page-indicator"]){
+        exclude group: 'com.android.support'
+    }
+
+}

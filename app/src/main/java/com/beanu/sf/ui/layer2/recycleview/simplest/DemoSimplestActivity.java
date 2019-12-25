@@ -1,6 +1,6 @@
 package com.beanu.sf.ui.layer2.recycleview.simplest;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.beanu.arad.http.IPageModel;
 import com.beanu.l2_recyclerview.SimplestListActivity;

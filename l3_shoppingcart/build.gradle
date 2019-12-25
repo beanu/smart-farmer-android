@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     resourcePrefix "cart_"
 
@@ -17,7 +16,7 @@ android {
             }
         }
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
@@ -30,7 +29,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation 'junit:junit:4.12'
@@ -40,7 +39,7 @@ dependencies {
     //第三方依赖
     implementation rootProject.ext.dependencies["arad"]
     implementation project(':l2_pay')
-    implementation project(':l3_common')
+    implementation project(':l_common')
     implementation rootProject.ext.dependencies["rxbinding"]
     implementation rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-annotation"]

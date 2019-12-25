@@ -1,6 +1,6 @@
 package com.beanu.l3_post.upload;
 
-import android.support.annotation.FloatRange;
+import androidx.annotation.FloatRange;
 
 import com.beanu.arad.base.BaseView;
 import com.beanu.l3_post.upload.manager.UploadResponse;

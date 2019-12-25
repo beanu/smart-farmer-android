@@ -1,6 +1,6 @@
 package com.beanu.l4_drawer_navigation.ui;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +15,7 @@ import com.beanu.l4_drawer_navigation.uitls.FragmentSwitcher;
 public class DrawerPageActivity extends DrawerActivity implements DrawerLayout.DrawerListener {
 
     private FragmentSwitcher mSwitcher;
-    private String currentTag;
+    private String currentTag = "fragment1";
 
     @Override
     protected void initView() {

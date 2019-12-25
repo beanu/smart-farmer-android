@@ -1,14 +1,32 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="QMUI.Compat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+
+        <!-- 配置qmui提供的theme -->
+        <item name="qmui_config_color_blue">@color/colorAccent</item>
+        <item name="qmui_round_btn_bg_color">@color/s_btn_green_bg</item>
+        <item name="qmui_round_btn_border_color">@color/s_btn_green_bg</item>
+        <item name="qmui_round_btn_text_color">@color/s_btn_text</item>
+
+        <item name="qmui_content_spacing_horizontal">20dp</item>
+        <item name="qmui_content_padding_horizontal">@dimen/qmui_content_spacing_horizontal</item>
+        <item name="qmui_config_color_separator">@color/color_separator</item>
+
+        <item name="QMUITopBarStyle">@style/FFTopBar</item>
+        <item name="QMUICommonListItemViewStyle">@style/FFCommonList</item>
+        <item name="qmui_common_list_item_title_h_text_size">14sp</item>
+
     </style>
 
-    <style name="SplashTheme" parent="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+    <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowFullscreen">true</item>
+
     </style>
 </resources>

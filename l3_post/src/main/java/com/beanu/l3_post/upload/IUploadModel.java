@@ -1,6 +1,6 @@
 package com.beanu.l3_post.upload;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.beanu.arad.base.BaseModel;
 

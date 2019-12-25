@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context="com.beanu.l3_search.SearchActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbarHeight"
@@ -61,7 +61,7 @@
         </LinearLayout>
 
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 
     <LinearLayout
@@ -119,11 +119,11 @@
     </LinearLayout>
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/result_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
