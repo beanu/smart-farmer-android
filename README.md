@@ -8,7 +8,8 @@
 
 ![框架图](screenshot/frame.png)
 
-**1.第一层** [Arad基础类库](https://github.com/beanu/Arad)
+**1.第一层** 
+[Arad基础类库](https://github.com/beanu/Arad)
 - Retrofit
 - Rxjava2.x
 - OkHttp
@@ -16,6 +17,10 @@
 - LiteOrm
 - activity fragment adapter基础类
 - 上拉下拉基础Adapter，常用的util等
+
+- [l_common](l_common) 基础类库
+- [l_ui](l_ui) 基础UI
+
 
 **2.第二层** 可依赖的第三方功能库(特点：可单独使用的工具型模块)
 - [图片选择器](l2_imageselector)
@@ -25,6 +30,7 @@
 - [分享／第三方登录](l2_shareutil)
 - [聊天IM](l2_im)
 - [RecycleView 各种用法](l2_recyclerview)
+- [生物识别-指纹支付](l2_biometric)
 
 
 **3.第三层** 业务模块＋可抽离并可复用的模块
