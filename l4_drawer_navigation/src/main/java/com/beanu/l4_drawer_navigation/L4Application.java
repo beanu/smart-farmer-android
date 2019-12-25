@@ -1,4 +1,4 @@
-package com.beanu.l4_clean;
+package com.beanu.l4_drawer_navigation;
 
 
 import com.alibaba.android.arouter.launcher.ARouter;

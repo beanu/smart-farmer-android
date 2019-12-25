@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.alibaba.arouter'
+apply plugin: 'save.state'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion

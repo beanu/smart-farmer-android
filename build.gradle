@@ -8,6 +8,9 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
 
+        classpath "com.alibaba:arouter-register:1.0.2"
+        classpath "io.github.prototypez:save-state:0.2.3"
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -63,7 +66,8 @@ ext {
             "butterknife-annotation": 'com.jakewharton:butterknife-compiler:10.2.1',
             "rxbinding"             : 'com.jakewharton.rxbinding2:rxbinding:2.1.1',
             "banner"                : 'com.youth.banner:banner:1.4.10',
-            "mutiltype"             : 'me.drakeet.multitype:multitype:3.5.0']
+            "mutiltype"             : 'me.drakeet.multitype:multitype:3.5.0',
+            "permissions"           : 'com.github.tbruyelle:rxpermissions:0.10.2']
 
 
 }

@@ -18,17 +18,19 @@ public class L4Application extends AradApplication {
         super.onCreate();
 
         if (getApplicationContext().getPackageName().equals(processName)) {
-
             //Log日志
             KLog.init(BuildConfig.DEBUG);
-
             ARouter.init(this);
-
         }
+
     }
 
     @Override
     protected AradApplicationConfig appConfig() {
-        return new AradApplicationConfig();
+
+        AradApplicationConfig config = new AradApplicationConfig();
+        config.debug = BuildConfig.DEBUG;
+
+        return config;
     }
 }
