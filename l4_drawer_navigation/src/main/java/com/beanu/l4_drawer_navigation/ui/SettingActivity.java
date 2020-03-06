@@ -5,8 +5,6 @@ import android.os.Bundle;
 import com.beanu.l4_drawer_navigation.R;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
-import io.fchain.ui.QMUIActivity;
-
 public class SettingActivity extends QMUIActivity {
 
     @Override

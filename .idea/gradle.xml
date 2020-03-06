@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <compositeConfiguration>
-          <compositeBuild compositeDefinitionSource="SCRIPT" />
-        </compositeConfiguration>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="D:\Program Files\android-studio\gradle\gradle-4.1" />
@@ -13,6 +13,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/l2_biometric" />
             <option value="$PROJECT_DIR$/l2_im" />
             <option value="$PROJECT_DIR$/l2_imageselector" />
             <option value="$PROJECT_DIR$/l2_pay" />
@@ -20,7 +21,6 @@
             <option value="$PROJECT_DIR$/l2_recyclerview" />
             <option value="$PROJECT_DIR$/l2_shareutil" />
             <option value="$PROJECT_DIR$/l2_zxing" />
-            <option value="$PROJECT_DIR$/l3_common" />
             <option value="$PROJECT_DIR$/l3_guide" />
             <option value="$PROJECT_DIR$/l3_login" />
             <option value="$PROJECT_DIR$/l3_post" />
@@ -29,6 +29,8 @@
             <option value="$PROJECT_DIR$/l4_bottom_tab" />
             <option value="$PROJECT_DIR$/l4_clean" />
             <option value="$PROJECT_DIR$/l4_drawer_navigation" />
+            <option value="$PROJECT_DIR$/l_common" />
+            <option value="$PROJECT_DIR$/l_ui" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

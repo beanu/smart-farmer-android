@@ -13,7 +13,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import io.fchain.ui.QMUIActivity;
 
 /**
  * more DrawerLayout style link: https://github.com/mikepenz/MaterialDrawer

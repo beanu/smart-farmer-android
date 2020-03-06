@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/arad_toolbar" />
+        <include layout="@layout/top_bar" />
 
         <TextView
             android:id="@+id/text_status"

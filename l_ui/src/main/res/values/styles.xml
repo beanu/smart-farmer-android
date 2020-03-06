@@ -68,7 +68,7 @@
 
     <!--dialog Style 内容靠左-->
     <style name="FFDialogTheme.Release">
-        <item name="qmui_dialog_wrapper_style">@style/QMUI.Dialog.Wrapper</item>
+        <!--        <item name="qmuidialo">@style/QMUI.Dialog.Wrapper</item>-->
         <item name="qmui_dialog_message_content_style">@style/ReleaseMessageContentStyle</item>
     </style>
 

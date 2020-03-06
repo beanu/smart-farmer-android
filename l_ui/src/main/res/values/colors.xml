@@ -38,34 +38,15 @@
     <color name="ui_theme_black">#071020</color>
     <color name="ui_theme_green">#FF1ABF7C</color>
     <color name="ui_theme_page_background">#f9f9f9</color>
-
-    <color name="color_a3a3a3">#FFA3A3A3</color>
-    <color name="color_cacaca">#FFCACACA</color>
+    <color name="white">#FFFFFF</color>
+    <color name="color_accent_green">#1ABF7C</color>
     <color name="color_cccccc">#CCCCCC</color>
-    <color name="color_2a95d4">#FF2A95D4</color>
-    <color name="color_half_2a95d4">#2E2A95D4</color>
+    <color name="color_dadada">#dadada</color>
     <color name="color_999999">#999999</color>
-    <color name="color_666666">#666666</color>
-    <color name="color_333333">#333333</color>
-    <color name="color_line">#DADADA</color>
+    <color name="color_a3a3a3">#a3a3a3</color>
     <color name="color_fb303b">#FB303B</color>
-    <color name="color_1685D9">#1685D9</color>
+    <color name="color_line">#DADADA</color>
     <color name="color_alpha_black">#CC000000</color>
 
-    <color name="color_ff2ba4ff">#ff2ba4ff</color>
-    <color name="color_4d3aaaff">#4d3aaaff</color>
-    <color name="color_f0f0f0">#FFF0F0F0</color>
-    <color name="color_f9f9f9">#F9F9F9</color>
-    <color name="color_dadada">#DADADA</color>
-    <color name="color_7a8a99">#7A8A99</color>
-    <color name="popup_bg">#EE212122</color>
-    <color name="color_d4d4d4">#d4d4d4</color>
-    <color name="color_22272e">#22272E</color>
-    <color name="color_62cb95">#6662cb95</color>
-    <color name="color_111e34">#111e34</color>
-    <color name="color_a3b8cc">#A3B8CC</color>
-    <color name="color_525e66">#525E66</color>
-    <color name="white">#FFFFFF</color>
-    <color name="color_accent_green">#443434</color>
 
 </resources>

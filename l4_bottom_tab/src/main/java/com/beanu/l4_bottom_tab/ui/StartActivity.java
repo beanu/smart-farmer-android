@@ -203,7 +203,7 @@ public class StartActivity extends AppCompatActivity {
                 .map(new Function<User, Object>() {
                     @Override
                     public Object apply(User user) throws Exception {
-                        AppHolder.getInstance().setUser(user);
+//                        AppHolder.getInstance().setUser(user);
                         return AppHolder.getInstance().user;
                     }
                 }).onErrorReturnItem(AppHolder.getInstance().user);
@@ -217,7 +217,7 @@ public class StartActivity extends AppCompatActivity {
                 .map(new Function<GlobalConfig, Object>() {
                     @Override
                     public Object apply(GlobalConfig globalConfig) throws Exception {
-                        AppHolder.getInstance().setConfig(globalConfig);
+//                        AppHolder.getInstance().setConfig(globalConfig);
                         return AppHolder.getInstance().mConfig;
                     }
                 }).onErrorReturnItem(AppHolder.getInstance().mConfig);

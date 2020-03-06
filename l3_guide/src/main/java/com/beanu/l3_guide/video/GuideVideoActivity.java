@@ -8,9 +8,6 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,6 +22,10 @@ import com.beanu.l3_guide.R;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 import java.io.File;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 
 /**
@@ -217,7 +218,7 @@ public class GuideVideoActivity extends AppCompatActivity implements View.OnClic
 
     //    业务
     private void enableFirstLaunchFalse() {
-        Arad.preferences.putBoolean(Constants.P_ISFIRSTLOAD, false);
+        Arad.preferences.put(Constants.P_ISFIRSTLOAD, false);
         Arad.preferences.flush();
     }
 }

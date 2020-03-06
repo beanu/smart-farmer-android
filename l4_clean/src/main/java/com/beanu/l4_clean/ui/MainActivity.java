@@ -13,8 +13,6 @@ import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import io.fchain.ui.QMUIActivity;
-
 public class MainActivity extends QMUIActivity {
 
     @Override

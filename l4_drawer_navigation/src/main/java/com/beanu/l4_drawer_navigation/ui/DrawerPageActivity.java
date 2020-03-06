@@ -1,7 +1,5 @@
 package com.beanu.l4_drawer_navigation.ui;
 
-import androidx.annotation.NonNull;
-import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -11,6 +9,9 @@ import com.beanu.l4_drawer_navigation.ui.module1.Fragment1;
 import com.beanu.l4_drawer_navigation.ui.module2.Fragment2;
 import com.beanu.l4_drawer_navigation.ui.module3.Fragment3;
 import com.beanu.l4_drawer_navigation.uitls.FragmentSwitcher;
+
+import androidx.annotation.NonNull;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 public class DrawerPageActivity extends DrawerActivity implements DrawerLayout.DrawerListener {
 
@@ -43,7 +44,7 @@ public class DrawerPageActivity extends DrawerActivity implements DrawerLayout.D
                 break;
             case R.id.nav_setting:
             case R.id.nav_about:
-                startActivity(SettingActivity.class);
+                launchActivity(SettingActivity.class);
                 break;
         }
         closeDrawer();

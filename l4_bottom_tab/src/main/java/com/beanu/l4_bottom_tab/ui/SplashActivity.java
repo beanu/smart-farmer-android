@@ -7,6 +7,8 @@ import android.os.Bundle;
 /**
  * 解决 app 启动白屏黑屏的问题
  * 秒开APP
+ *
+ * @author Beanu
  */
 public class SplashActivity extends Activity {
 

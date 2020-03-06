@@ -7,16 +7,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-
         <!-- 配置qmui提供的theme -->
         <item name="qmui_config_color_blue">@color/colorAccent</item>
-        <item name="qmui_round_btn_bg_color">@color/s_btn_green_bg</item>
-        <item name="qmui_round_btn_border_color">@color/s_btn_green_bg</item>
-        <item name="qmui_round_btn_text_color">@color/s_btn_text</item>
+        <item name="qmui_skin_support_round_btn_bg_color">@color/s_btn_green_bg</item>
+        <item name="qmui_skin_support_round_btn_border_color">@color/s_btn_green_bg</item>
+        <item name="qmui_skin_support_round_btn_text_color">@color/s_btn_text</item>
 
         <item name="qmui_content_spacing_horizontal">20dp</item>
         <item name="qmui_content_padding_horizontal">@dimen/qmui_content_spacing_horizontal</item>
-        <item name="qmui_config_color_separator">@color/color_separator</item>
+        <item name="qmui_skin_support_color_separator">@color/color_separator</item>
 
         <item name="QMUITopBarStyle">@style/FFTopBar</item>
         <item name="QMUICommonListItemViewStyle">@style/FFCommonList</item>

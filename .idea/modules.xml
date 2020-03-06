@@ -2,25 +2,26 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l2_im/l2_im.iml" filepath="$PROJECT_DIR$/l2_im/l2_im.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l2_imageselector/l2_imageselector.iml" filepath="$PROJECT_DIR$/l2_imageselector/l2_imageselector.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l2_pay/l2_pay.iml" filepath="$PROJECT_DIR$/l2_pay/l2_pay.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l2_push/l2_push.iml" filepath="$PROJECT_DIR$/l2_push/l2_push.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l2_recyclerview/l2_recyclerview.iml" filepath="$PROJECT_DIR$/l2_recyclerview/l2_recyclerview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l2_shareutil/l2_shareutil.iml" filepath="$PROJECT_DIR$/l2_shareutil/l2_shareutil.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l2_zxing/l2_zxing.iml" filepath="$PROJECT_DIR$/l2_zxing/l2_zxing.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l3_guide/l3_guide.iml" filepath="$PROJECT_DIR$/l3_guide/l3_guide.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l3_login/l3_login.iml" filepath="$PROJECT_DIR$/l3_login/l3_login.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l3_post/l3_post.iml" filepath="$PROJECT_DIR$/l3_post/l3_post.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l3_search/l3_search.iml" filepath="$PROJECT_DIR$/l3_search/l3_search.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l3_shoppingcart/l3_shoppingcart.iml" filepath="$PROJECT_DIR$/l3_shoppingcart/l3_shoppingcart.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l4_bottom_tab/l4_bottom_tab.iml" filepath="$PROJECT_DIR$/l4_bottom_tab/l4_bottom_tab.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l4_clean/l4_clean.iml" filepath="$PROJECT_DIR$/l4_clean/l4_clean.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l4_drawer_navigation/l4_drawer_navigation.iml" filepath="$PROJECT_DIR$/l4_drawer_navigation/l4_drawer_navigation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l_common/l_common.iml" filepath="$PROJECT_DIR$/l_common/l_common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/l_ui/l_ui.iml" filepath="$PROJECT_DIR$/l_ui/l_ui.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smart-farmer-android.iml" filepath="$PROJECT_DIR$/smart-farmer-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="smart-farmer-android/app" />
+      <module fileurl="file://$PROJECT_DIR$/l2_biometric/l2_biometric.iml" filepath="$PROJECT_DIR$/l2_biometric/l2_biometric.iml" group="smart-farmer-android/l2_biometric" />
+      <module fileurl="file://$PROJECT_DIR$/l2_im/l2_im.iml" filepath="$PROJECT_DIR$/l2_im/l2_im.iml" group="smart-farmer-android/l2_im" />
+      <module fileurl="file://$PROJECT_DIR$/l2_imageselector/l2_imageselector.iml" filepath="$PROJECT_DIR$/l2_imageselector/l2_imageselector.iml" group="smart-farmer-android/l2_imageselector" />
+      <module fileurl="file://$PROJECT_DIR$/l2_pay/l2_pay.iml" filepath="$PROJECT_DIR$/l2_pay/l2_pay.iml" group="smart-farmer-android/l2_pay" />
+      <module fileurl="file://$PROJECT_DIR$/l2_push/l2_push.iml" filepath="$PROJECT_DIR$/l2_push/l2_push.iml" group="smart-farmer-android/l2_push" />
+      <module fileurl="file://$PROJECT_DIR$/l2_recyclerview/l2_recyclerview.iml" filepath="$PROJECT_DIR$/l2_recyclerview/l2_recyclerview.iml" group="smart-farmer-android/l2_recyclerview" />
+      <module fileurl="file://$PROJECT_DIR$/l2_shareutil/l2_shareutil.iml" filepath="$PROJECT_DIR$/l2_shareutil/l2_shareutil.iml" group="smart-farmer-android/l2_shareutil" />
+      <module fileurl="file://$PROJECT_DIR$/l2_zxing/l2_zxing.iml" filepath="$PROJECT_DIR$/l2_zxing/l2_zxing.iml" group="smart-farmer-android/l2_zxing" />
+      <module fileurl="file://$PROJECT_DIR$/l3_guide/l3_guide.iml" filepath="$PROJECT_DIR$/l3_guide/l3_guide.iml" group="smart-farmer-android/l3_guide" />
+      <module fileurl="file://$PROJECT_DIR$/l3_login/l3_login.iml" filepath="$PROJECT_DIR$/l3_login/l3_login.iml" group="smart-farmer-android/l3_login" />
+      <module fileurl="file://$PROJECT_DIR$/l3_post/l3_post.iml" filepath="$PROJECT_DIR$/l3_post/l3_post.iml" group="smart-farmer-android/l3_post" />
+      <module fileurl="file://$PROJECT_DIR$/l3_search/l3_search.iml" filepath="$PROJECT_DIR$/l3_search/l3_search.iml" group="smart-farmer-android/l3_search" />
+      <module fileurl="file://$PROJECT_DIR$/l3_shoppingcart/l3_shoppingcart.iml" filepath="$PROJECT_DIR$/l3_shoppingcart/l3_shoppingcart.iml" group="smart-farmer-android/l3_shoppingcart" />
+      <module fileurl="file://$PROJECT_DIR$/l4_bottom_tab/l4_bottom_tab.iml" filepath="$PROJECT_DIR$/l4_bottom_tab/l4_bottom_tab.iml" group="smart-farmer-android/l4_bottom_tab" />
+      <module fileurl="file://$PROJECT_DIR$/l4_clean/l4_clean.iml" filepath="$PROJECT_DIR$/l4_clean/l4_clean.iml" group="smart-farmer-android/l4_clean" />
+      <module fileurl="file://$PROJECT_DIR$/l4_drawer_navigation/l4_drawer_navigation.iml" filepath="$PROJECT_DIR$/l4_drawer_navigation/l4_drawer_navigation.iml" group="smart-farmer-android/l4_drawer_navigation" />
+      <module fileurl="file://$PROJECT_DIR$/l_common/l_common.iml" filepath="$PROJECT_DIR$/l_common/l_common.iml" group="smart-farmer-android/l_common" />
+      <module fileurl="file://$PROJECT_DIR$/l_ui/l_ui.iml" filepath="$PROJECT_DIR$/l_ui/l_ui.iml" group="smart-farmer-android/l_ui" />
+      <module fileurl="file://$PROJECT_DIR$/smart-farmer-android.iml" filepath="$PROJECT_DIR$/smart-farmer-android.iml" group="smart-farmer-android" />
     </modules>
   </component>
 </project>

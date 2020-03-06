@@ -36,20 +36,20 @@ android {
 dependencies {
     implementation rootProject.ext.support["support-v4"]
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.2.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
 
-    implementation rootProject.ext.support["support-v7"]
-    implementation rootProject.ext.support["design"]
+    implementation 'androidx.appcompat:appcompat:1.2.0-alpha03'
+    implementation 'com.google.android.material:material:1.1.0'
 
     //butter knife 单独提出来放到app层
     implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-annotation"]
 
     //glide
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     //第一层
     implementation rootProject.ext.dependencies["arad"]

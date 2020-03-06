@@ -92,10 +92,10 @@ public class APIManager {
                 .append(Build.VERSION.RELEASE).append("; ")
                 .append(Build.MODEL).append("; ")
 //                .append(LocalManageUtil.getSetLanguageLocale().getLanguage()).append(")")
-                .append(" coinviva/")
+                .append(" app/")
                 .append(BuildConfig.VERSION_NAME);
 
-//        builder.addInterceptor(new UserAgentInterceptor(fireFlyUa.toString()));
+        builder.addInterceptor(new UserAgentInterceptor(fireFlyUa.toString()));
         if (Arad.app.config.debug) {
             builder.addInterceptor(logging);
         }

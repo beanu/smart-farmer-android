@@ -34,18 +34,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation rootProject.ext.support["support-v7"]
+    implementation 'androidx.appcompat:appcompat:1.2.0-alpha03'
     implementation rootProject.ext.support["constraintlayout"]
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation 'androidx.palette:palette:1.0.0'
 
-    //QMUI
-    api 'com.qmuiteam:qmui:1.4.4'
-
     implementation project(path: ':l_common')
-
-
 }

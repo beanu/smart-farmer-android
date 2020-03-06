@@ -24,21 +24,22 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.2.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     api rootProject.ext.support["support-v4"]
-    api rootProject.ext.support["support-v7"]
+    api 'androidx.appcompat:appcompat:1.2.0-alpha03'
     api rootProject.ext.support["recyclerview"]
-    api rootProject.ext.support["design"]
-    testImplementation 'junit:junit:4.12'
+    api 'com.google.android.material:material:1.1.0'
+    testImplementation 'junit:junit:4.13'
+
 
     api rootProject.ext.dependencies["arad"]
     api rootProject.ext.dependencies["banner"]
     api(rootProject.ext.dependencies["mutiltype"]) {
         exclude group: 'com.android.support'
     }
-    implementation (rootProject.ext.dependencies["ink-page-indicator"]){
+    implementation(rootProject.ext.dependencies["ink-page-indicator"]) {
         exclude group: 'com.android.support'
     }
 
