@@ -2,80 +2,63 @@ package com.beanu.l4_bottom_tab.base;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TabHost;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.l4_bottom_tab.R;
+import com.beanu.l4_bottom_tab.support.bottomnavigation.BottomNavigationViewEx;
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
-import androidx.fragment.app.FragmentTabHost;
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 
 /**
  * 带有底部导航的首页
  * 第三方通用底部导航栏，使用时直接继承NavBarActivity实现未实现的方法
- * Created by Beanu on 16/1/26.
+ *
+ * @author Beanu
  */
-public abstract class NavBarActivity extends ToolBarActivity implements TabHost.OnTabChangeListener {
+public abstract class NavBarActivity extends ToolBarActivity {
 
-    private long waitTime = 2000;
     private long touchTime = 0;
-    FragmentTabHost mTabHost;
-
+    protected BottomNavigationViewEx mNavigationViewEx;
+    protected FragmentStateAdapter mPagerAdapter;
+    protected ViewPager2 mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
-        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
-        mTabHost.getTabWidget().setBackgroundColor(getResources().getColor(R.color.tab_bg));
-        mTabHost.getTabWidget().setDividerDrawable(null);
-        mTabHost.setOnTabChangedListener(this);
+        mPagerAdapter = new VpAdapter(this, createFragments());
 
-        TabInfo[] tabs = createTabInfo();
-        if (tabs != null) {
+        mNavigationViewEx = findViewById(R.id.bottom_nav);
+        mNavigationViewEx.enableAnimation(false);
+        mNavigationViewEx.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+        mNavigationViewEx.setItemHorizontalTranslationEnabled(false);
 
-            for (TabInfo tabInfo : tabs) {
-                mTabHost.addTab(mTabHost.newTabSpec(tabInfo.tag).setIndicator(getTabItemView(tabInfo.bitmapResId, getString(tabInfo.titleSId))),
-                        tabInfo.fragment, null);
-            }
-        }
+        mViewPager = findViewById(R.id.viewPager);
+        mViewPager.setUserInputEnabled(false);
+        mViewPager.setAdapter(mPagerAdapter);
 
-        mTabHost.getTabWidget().getChildAt(0).getLayoutParams().height = (int) getResources().getDimension(R.dimen.tab_height);
+
+        mNavigationViewEx.setupWithViewPager(mViewPager);
 
     }
 
-    public FragmentTabHost getmTabHost() {
-        return mTabHost;
-    }
-
-    private View getTabItemView(int id, String title) {
-        View view = getLayoutInflater().inflate(R.layout.item_tab, null);
-        ImageView imageView = (ImageView) view.findViewById(R.id.tab_icon);
-        imageView.setImageResource(id);
-
-        TextView textView = (TextView) view.findViewById(R.id.tab_title);
-        textView.setText(title);
-
-        return view;
-    }
-
-    /***
-     * 抽象方法，放入自己界面的名字和图标
+    /**
+     * 首页fragment的创建
      *
-     * @return
+     * @return fragment列表
      */
-    protected abstract TabInfo[] createTabInfo();
+    protected abstract List<Fragment> createFragments();
 
-    @Override
-    public void onTabChanged(String tabId) {
-        //DO nothing
-    }
 
     /**
      * 按两次返回键退出程序
@@ -89,6 +72,7 @@ public abstract class NavBarActivity extends ToolBarActivity implements TabHost.
         // 两次返回键，退出程序
         if (event.getAction() == KeyEvent.ACTION_DOWN && KeyEvent.KEYCODE_BACK == keyCode) {
             long currentTime = System.currentTimeMillis();
+            long waitTime = 2000;
             if ((currentTime - touchTime) >= waitTime) {
                 Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 touchTime = currentTime;
@@ -104,17 +88,27 @@ public abstract class NavBarActivity extends ToolBarActivity implements TabHost.
 
     protected abstract void onQuit();
 
-    public static class TabInfo {
-        String tag;
-        int bitmapResId;
-        int titleSId;
-        Class fragment;
+    /**
+     * view pager adapter
+     */
+    private static class VpAdapter extends FragmentStateAdapter {
+        private List<Fragment> data;
 
-        public TabInfo(String tag, int bitmapResId, int titleSId, Class fragment) {
-            this.tag = tag;
-            this.bitmapResId = bitmapResId;
-            this.titleSId = titleSId;
-            this.fragment = fragment;
+        public VpAdapter(@NonNull FragmentActivity fragmentActivity, List<Fragment> fragments) {
+            super(fragmentActivity);
+            this.data = fragments;
+        }
+
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+            return data.get(position);
+        }
+
+        @Override
+        public int getItemCount() {
+            return data.size();
         }
     }
 }

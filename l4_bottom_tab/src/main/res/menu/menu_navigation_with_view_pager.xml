@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/i_music"
+        android:checked="true"
+        android:icon="@drawable/main_bottom_tab_home_normal"
+        android:title="@string/tab_title_1" />
+    <item
+        android:id="@+id/i_backup"
+        android:icon="@drawable/main_bottom_tab_home_normal"
+        android:title="@string/tab_title_2" />
+    <item
+        android:id="@+id/i_friends"
+        android:icon="@drawable/main_bottom_tab_home_normal"
+        android:title="@string/tab_title_3" />
+
+    <item
+        android:id="@+id/i_user"
+        android:icon="@drawable/main_bottom_tab_home_normal"
+        android:title="@string/tab_title_4" />
+</menu>

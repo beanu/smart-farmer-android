@@ -2,8 +2,8 @@
     <string name="app_name">SmartFarmer</string>
 
     <string name="tab_title_1">首页</string>
-    <string name="tab_title_2">页面2</string>
-    <string name="tab_title_3">页面3</string>
-    <string name="tab_title_4">页面4</string>
+    <string name="tab_title_2">页面</string>
+    <string name="tab_title_3">浏览</string>
+    <string name="tab_title_4">我的</string>
     <string name="jump_over_0s">跳过</string>
 </resources>
