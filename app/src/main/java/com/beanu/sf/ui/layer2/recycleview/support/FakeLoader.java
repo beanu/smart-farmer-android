@@ -24,7 +24,7 @@ public class FakeLoader {
             @Override
             public void subscribe(@NonNull ObservableEmitter<DemoHttpModel<IPageModel<News>>> subscriber) throws Exception {
                 DemoHttpModel<IPageModel<News>> baseModel = new DemoHttpModel<>();
-                baseModel.error = "false";
+                baseModel.error = 0;
                 DemoPageModel<News> pageModel = new DemoPageModel<>();
                 pageModel.currentPage = page;
                 pageModel.totalPage = 10;
@@ -40,7 +40,7 @@ public class FakeLoader {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    baseModel.error = "111";
+                    baseModel.error = 111;
                     baseModel.msg = "超时";
                 }
 

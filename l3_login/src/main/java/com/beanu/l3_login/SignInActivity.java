@@ -2,10 +2,6 @@ package com.beanu.l3_login;
 
 import android.os.Build;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,6 +12,12 @@ import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.l3_login.ui.LoginFragment;
 import com.beanu.l3_login.ui.RegisterFragment;
 import com.beanu.l3_login.widget.ViewPagerIndicator;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 
 /**
@@ -53,19 +55,9 @@ public class SignInActivity extends ToolBarActivity implements View.OnClickListe
 
 
     @Override
-    public String setupToolBarTitle() {
-        return "登录";
-    }
-
-    @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        return true;
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.setTitle("登录");
+        topBarLayout.addLeftBackImageButton().setOnClickListener(v -> onBackPressed());
     }
 
 
@@ -73,7 +65,6 @@ public class SignInActivity extends ToolBarActivity implements View.OnClickListe
     public void onClick(View view) {
 
     }
-
 
     private static class LoginRegisterAdapter extends FragmentPagerAdapter {
 

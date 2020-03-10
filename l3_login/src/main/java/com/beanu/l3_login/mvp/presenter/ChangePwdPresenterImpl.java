@@ -15,10 +15,12 @@ public class ChangePwdPresenterImpl extends ChangePwdContract.Presenter {
     @Override
     public void sendSMSCode(String phoneNum) {
 
-        mModel.sendSMSCode(phoneNum).subscribe(new Observer<String>() {
+        mModel.sendSMSCode(phoneNum)
+                .as(bindLifecycle())
+                .subscribe(new Observer<String>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
+
             }
 
             @Override
@@ -41,7 +43,7 @@ public class ChangePwdPresenterImpl extends ChangePwdContract.Presenter {
 
     @Override
     public void findPassword(String phoneNum, String password, String yzm) {
-        mView.showProgress();
+        mView.showProgressDialog();
 
         mModel.findPassword(phoneNum, password, yzm).subscribe(new Observer<String>() {
             @Override
@@ -56,13 +58,13 @@ public class ChangePwdPresenterImpl extends ChangePwdContract.Presenter {
 
             @Override
             public void onError(@NonNull Throwable e) {
-                mView.hideProgress();
+                mView.hideProgressDialog();
 
             }
 
             @Override
             public void onComplete() {
-                mView.hideProgress();
+                mView.hideProgressDialog();
                 mView.findPwdSuccess();
             }
         });

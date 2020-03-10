@@ -19,6 +19,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 dependencies {
@@ -34,10 +38,10 @@ dependencies {
     implementation('com.github.bumptech.glide:glide:4.11.0') {
         exclude group: "com.android.support"
     }
-    implementation(rootProject.ext.dependencies["imageselector"]) {
+    api(rootProject.ext.dependencies["imageselector"]) {
         exclude group: 'com.android.support'
     }
-    implementation(rootProject.ext.dependencies["albumselector"]) {
+    api(rootProject.ext.dependencies["albumselector"]) {
         exclude group: 'com.android.support'
     }
 }

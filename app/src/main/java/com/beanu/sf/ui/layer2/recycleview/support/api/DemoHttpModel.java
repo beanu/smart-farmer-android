@@ -8,17 +8,17 @@ import com.beanu.arad.http.IHttpModel;
 
 public class DemoHttpModel<T> implements IHttpModel<T> {
 
-    public String error;
+    public int error;
     public String msg;
     public T results;
 
     @Override
     public boolean success() {
-        return "false".equals(error);
+        return error == 0;
     }
 
     @Override
-    public String getErrorCode() {
+    public int getErrorCode() {
         return error;
     }
 

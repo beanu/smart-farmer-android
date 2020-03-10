@@ -25,10 +25,10 @@ public class LoginDemoActivity extends ToolBarActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_login_1:
-                startActivity(SignInActivity.class);
+                launchActivity(SignInActivity.class);
                 break;
             case R.id.btn_login_2:
-                startActivity(SignIn2Activity.class);
+                launchActivity(SignIn2Activity.class);
                 break;
         }
     }

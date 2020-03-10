@@ -20,6 +20,6 @@ public class SearchDemoActivity extends ToolBarActivity {
 
     @OnClick(R.id.btn_search)
     public void onViewClicked() {
-        startActivity(SearchActivity.class);
+        launchActivity(SearchActivity.class);
     }
 }

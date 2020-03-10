@@ -3,12 +3,10 @@ package com.beanu.l3_shoppingcart;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,12 +20,16 @@ import com.beanu.l3_shoppingcart.model.bean.CartItem;
 import com.beanu.l3_shoppingcart.mvp.contract.CartContract;
 import com.beanu.l3_shoppingcart.mvp.model.CartModelImpl;
 import com.beanu.l3_shoppingcart.mvp.presenter.CartPresenterImpl;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.DecimalFormat;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import me.drakeet.multitype.MultiTypeAdapter;
 
 
@@ -140,35 +142,25 @@ public class CartFragment extends ToolBarFragment<CartPresenterImpl, CartModelIm
     }
 
     @Override
-    public String setupToolBarTitle() {
-        return "购物车";
-    }
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.setTitle("购物车");
 
+        Button rightBtn = topBarLayout.addRightTextButton("编辑", R.id.qmui_dialog_edit_right_icon);
+        rightBtn.setOnClickListener(v -> {
+            if (mPresenter.isDeleteMode()) {
+                rightBtn.setText("编辑");
+                mPresenter.setDeleteMode(false);
+                mPresenter.changed();
+                mLayoutDeleteMode.setVisibility(View.GONE);
+            } else {
+                rightBtn.setText("完成");
+                mPresenter.setDeleteMode(true);
+                mLayoutDeleteMode.setVisibility(View.VISIBLE);
+            }
 
-    @Override
-    public boolean setupToolBarRightButton2(final View rightButton2) {
-        if (rightButton2 instanceof TextView) {
-            ((TextView) rightButton2).setText("编辑");
-            rightButton2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mPresenter.isDeleteMode()) {
-                        ((TextView) rightButton2).setText("编辑");
-                        mPresenter.setDeleteMode(false);
-                        mPresenter.changed();
-                        mLayoutDeleteMode.setVisibility(View.GONE);
-                    } else {
-                        ((TextView) rightButton2).setText("完成");
-                        mPresenter.setDeleteMode(true);
-                        mLayoutDeleteMode.setVisibility(View.VISIBLE);
-                    }
+            mCartAdapter.notifyDataSetChanged();
 
-                    mCartAdapter.notifyDataSetChanged();
-                }
-            });
-        }
-
-        return true;
+        });
     }
 
     @Override

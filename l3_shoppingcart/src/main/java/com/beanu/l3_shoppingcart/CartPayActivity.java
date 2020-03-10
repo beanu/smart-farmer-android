@@ -19,13 +19,15 @@ import com.beanu.l3_common.model.api.API;
 import com.beanu.l3_common.model.bean.EventModel;
 import com.beanu.l3_common.util.Constants;
 import com.beanu.l3_shoppingcart.model.APICartService;
-import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 import java.util.Map;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+
+//import com.tencent.mm.opensdk.modelpay.PayReq;
 
 
 /**
@@ -64,25 +66,10 @@ public class CartPayActivity extends ToolBarActivity implements View.OnClickList
     }
 
     @Override
-    public String setupToolBarTitle() {
-        return "支付";
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.setTitle("支付");
+        topBarLayout.addLeftBackImageButton().setOnClickListener(v -> onBackPressed());
     }
-
-    @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        return true;
-    }
-//
-//    @Override
-//    protected void setStatusBar() {
-//
-//    }
 
     @Override
     public void onClick(View view) {
@@ -93,13 +80,14 @@ public class CartPayActivity extends ToolBarActivity implements View.OnClickList
         } else if (id == R.id.rlWeixin) {
             cbAli.setChecked(false);
             cbWeixin.setChecked(true);
-        } else if (id == R.id.btn_cart_pay)
-
+        } else if (id == R.id.btn_cart_pay) {
             if (cbAli.isChecked()) {
                 //支付宝支付
-                showProgress();
-                API.getInstance(APICartService.class).requestAlipaySign(orderId)
-                        .compose(RxHelper.<String>handleResult())
+                showProgressDialog();
+                API.getInstance(APICartService.class)
+                        .requestAlipaySign(orderId)
+                        .compose(RxHelper.handleResult())
+                        .as(RxHelper.bindLifecycle(this))
                         .subscribe(new Observer<String>() {
                             @Override
                             public void onSubscribe(@NonNull Disposable d) {
@@ -115,13 +103,13 @@ public class CartPayActivity extends ToolBarActivity implements View.OnClickList
 
                             @Override
                             public void onError(@NonNull Throwable e) {
-                                hideProgress();
+                                hideProgressDialog();
 
                             }
 
                             @Override
                             public void onComplete() {
-                                hideProgress();
+                                hideProgressDialog();
 
                             }
                         });
@@ -129,11 +117,13 @@ public class CartPayActivity extends ToolBarActivity implements View.OnClickList
 
             } else {
                 //微信支付
-                showProgress();
+                showProgressDialog();
 
 
-                API.getInstance(APICartService.class).requestWePaySign(orderId)
+                API.getInstance(APICartService.class)
+                        .requestWePaySign(orderId)
                         .compose(RxHelper.<Map<String, String>>handleResult())
+                        .as(RxHelper.bindLifecycle(this))
                         .subscribe(new Observer<Map<String, String>>() {
                             @Override
                             public void onSubscribe(@NonNull Disposable d) {
@@ -143,33 +133,35 @@ public class CartPayActivity extends ToolBarActivity implements View.OnClickList
                             @Override
                             public void onNext(@NonNull Map<String, String> map) {
 
-                                PayReq req = new PayReq();
-                                req.appId = map.get("appid");
-                                req.partnerId = map.get("partnerid");
-                                req.prepayId = map.get("prepayid");
-                                req.packageValue = map.get("packageValue");
-                                req.nonceStr = map.get("noncestr");
-                                req.timeStamp = map.get("timestamp");
-                                req.sign = map.get("sign");
-
-                                //调起微信支付
-                                PayUtil.wxPay(CartPayActivity.this, req, CartPayActivity.this);
+                                //TODO
+//                                PayReq req = new PayReq();
+//                                req.appId = map.get("appid");
+//                                req.partnerId = map.get("partnerid");
+//                                req.prepayId = map.get("prepayid");
+//                                req.packageValue = map.get("packageValue");
+//                                req.nonceStr = map.get("noncestr");
+//                                req.timeStamp = map.get("timestamp");
+//                                req.sign = map.get("sign");
+//
+//                                //调起微信支付
+//                                PayUtil.wxPay(CartPayActivity.this, req, CartPayActivity.this);
                             }
 
                             @Override
                             public void onError(@NonNull Throwable e) {
-                                hideProgress();
+                                hideProgressDialog();
 
                             }
 
                             @Override
                             public void onComplete() {
-                                hideProgress();
+                                hideProgressDialog();
 
                             }
                         });
 
             }
+        }
     }
 
     @Override

@@ -1,9 +1,9 @@
 package com.beanu.l3_shoppingcart;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.beanu.arad.base.ToolBarActivity;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 /**
  * 下订单页面
@@ -20,18 +20,8 @@ public class PlaceOrderActivity extends ToolBarActivity {
     }
 
     @Override
-    public String setupToolBarTitle() {
-        return "下单";
-    }
-
-    @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        return true;
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.setTitle("下单");
+        topBarLayout.addLeftBackImageButton().setOnClickListener(v -> onBackPressed());
     }
 }

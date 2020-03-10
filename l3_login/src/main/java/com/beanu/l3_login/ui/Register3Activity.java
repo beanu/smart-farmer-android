@@ -1,6 +1,5 @@
 package com.beanu.l3_login.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,18 +12,16 @@ import android.widget.ImageView;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.log.KLog;
-import com.beanu.l2_imageselector.GlideLoader;
 import com.beanu.l3_login.R;
 import com.beanu.l3_login.mvp.contract.RegisterContract;
 import com.beanu.l3_login.mvp.model.RegisterModelImpl;
 import com.beanu.l3_login.mvp.presenter.RegisterPresenterImpl;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 import com.yuyh.library.imgsel.ISNav;
-import com.yuyh.library.imgsel.common.ImageLoader;
 import com.yuyh.library.imgsel.config.ISListConfig;
 import com.yuyh.library.imgsel.ui.ISListActivity;
-import com.yuyh.library.imgsel.ui.fragment.ImgSelFragment;
 
 import java.util.List;
 
@@ -115,21 +112,11 @@ public class Register3Activity extends ToolBarActivity<RegisterPresenterImpl, Re
 
 
     @Override
-    public String setupToolBarTitle() {
-        return "设置信息";
-    }
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
 
-    @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        return true;
+        topBarLayout.setTitle("设置信息");
+        topBarLayout.addLeftBackImageButton().setOnClickListener(view -> onBackPressed());
     }
-
 
     //打开图片选择器
     private void showImageSelector() {

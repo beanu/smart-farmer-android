@@ -45,10 +45,12 @@ public class SearchPresenterImpl extends SearchContract.Presenter implements OnS
 
     @Override
     public void searchResult(String value) {
-        mModel.searchResult(value).subscribe(new Observer<SearchResult>() {
+        mModel.searchResult(value)
+                .as(bindLifecycle())
+                .subscribe(new Observer<SearchResult>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
+//                mRxManage.add(d);
             }
 
             @Override

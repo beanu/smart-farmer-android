@@ -24,28 +24,30 @@ public class RegisterSMSPresenterImpl extends RegisterSMSContract.Presenter {
 
         if (RegexUtils.isMobileSimple(phoneNum)) {
 
-            mModel.sendSMSCode(phoneNum).subscribe(new Observer<String>() {
-                @Override
-                public void onSubscribe(@NonNull Disposable d) {
-                    mRxManage.add(d);
-                }
+            mModel.sendSMSCode(phoneNum)
+                    .as(bindLifecycle())
+                    .subscribe(new Observer<String>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+//                            mRxManage.add(d);
+                        }
 
-                @Override
-                public void onNext(@NonNull String smsCode) {
-                    mVerificationCode = smsCode;
-                }
+                        @Override
+                        public void onNext(@NonNull String smsCode) {
+                            mVerificationCode = smsCode;
+                        }
 
-                @Override
-                public void onError(@NonNull Throwable e) {
-                    mView.requestSMSCode(false);
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            mView.requestSMSCode(false);
 
-                }
+                        }
 
-                @Override
-                public void onComplete() {
-                    mView.requestSMSCode(true);
-                }
-            });
+                        @Override
+                        public void onComplete() {
+                            mView.requestSMSCode(true);
+                        }
+                    });
 
         } else {
             mView.wrongPhoneFormat();

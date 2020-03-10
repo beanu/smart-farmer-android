@@ -1,18 +1,16 @@
 package com.beanu.l3_guide.common;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.WindowManager;
 
 import com.beanu.arad.support.log.KLog;
 import com.beanu.l3_guide.BuildConfig;
 import com.beanu.l3_guide.R;
-import com.viewpagerindicator.CirclePageIndicator;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 /**
  * 向导页面
@@ -29,13 +27,15 @@ public class GuideActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        ViewPager guide_viewpager = (ViewPager) findViewById(R.id.viewpager_guide);
-        CirclePageIndicator guide_indicator = (CirclePageIndicator) findViewById(R.id.indicator_guide);
 
-        String[] fileNames = new String[]{"guide1.png", "guide2.png"};
-        GuideAdapter adapter = new GuideAdapter(getSupportFragmentManager(), fileNames);
-        guide_viewpager.setAdapter(adapter);
-        guide_indicator.setViewPager(guide_viewpager);
+        //TODO 替换一个page indicator
+//        ViewPager guide_viewpager = (ViewPager) findViewById(R.id.viewpager_guide);
+//        CirclePageIndicator guide_indicator = (CirclePageIndicator) findViewById(R.id.indicator_guide);
+//
+//        String[] fileNames = new String[]{"guide1.png", "guide2.png"};
+//        GuideAdapter adapter = new GuideAdapter(getSupportFragmentManager(), fileNames);
+//        guide_viewpager.setAdapter(adapter);
+//        guide_indicator.setViewPager(guide_viewpager);
 
         KLog.d(BuildConfig.DEBUG + "" + BuildConfig.BUILD_TYPE);
     }

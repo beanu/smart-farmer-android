@@ -17,6 +17,7 @@ import com.beanu.l3_login.SignInMode;
 import com.beanu.l3_login.mvp.contract.RegisterContract;
 import com.beanu.l3_login.mvp.model.RegisterModelImpl;
 import com.beanu.l3_login.mvp.presenter.RegisterPresenterImpl;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 /**
  * 注册第二步,获取验证码和密码
@@ -96,20 +97,12 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
         }
     }
 
-    @Override
-    public String setupToolBarTitle() {
-        return "设置密码";
-    }
+
 
     @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        return true;
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.setTitle("设置密码");
+        topBarLayout.addLeftBackImageButton().setOnClickListener(v -> onBackPressed());
     }
 
     @Override
@@ -139,7 +132,7 @@ public class Register2Activity extends ToolBarActivity<RegisterPresenterImpl, Re
     public void registerSuccess() {
         //注册成功 去登录页面
         ToastUtils.showShort("注册成功");
-        startActivity(LoginActivity.class);
+        launchActivity(LoginActivity.class);
         finish();
 
     }

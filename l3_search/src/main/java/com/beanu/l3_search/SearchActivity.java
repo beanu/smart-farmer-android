@@ -4,10 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import androidx.appcompat.app.ActionBar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -26,9 +22,14 @@ import com.beanu.l3_search.model.bean.SearchResultModel;
 import com.beanu.l3_search.mvp.contract.SearchContract;
 import com.beanu.l3_search.mvp.model.SearchModelImpl;
 import com.beanu.l3_search.mvp.presenter.SearchPresenterImpl;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
@@ -69,7 +70,7 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
             mActionBar = getSupportActionBar();
-            hideHomeAsUp();
+//            hideHomeAsUp();
         }
         if (mActionBar != null) {
             mActionBar.setDisplayShowTitleEnabled(false);
@@ -152,26 +153,16 @@ public class SearchActivity extends ToolBarActivity<SearchPresenterImpl, SearchM
         }
     }
 
-    @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        return true;
-    }
 
     @Override
-    public boolean setupToolBarRightButton1(View rightButton) {
-        rightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                search(mEtSearch.getText().toString());
-            }
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.addLeftBackImageButton().setOnClickListener(v -> onBackPressed());
+
+        topBarLayout.addRightTextButton("搜索", R.id.et_search).setOnClickListener(v -> {
+            search(mEtSearch.getText().toString());
         });
-        return true;
+
+
     }
 
     private TextWatcher textWatcher = new TextWatcher() {

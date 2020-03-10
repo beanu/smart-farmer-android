@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:id="@+id/coordinator_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.beanu.sf.MainActivity">
@@ -36,37 +35,41 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:lineSpacingMultiplier="1.2"
                     android:text="1.第一层 Arad基础类库
                     \n2.第二层 可依赖的第三方功能库(特点：可单独使用的工具型模块)
                     \n3.业务模块＋可抽离并可复用的模块
                     \n4.第四层 主APP布局"
-                    android:textColor="@color/base_font_black"/>
+                    android:textColor="@color/base_font_black" />
 
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/frame"/>
+                    android:src="@drawable/frame" />
 
             </LinearLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/toolbar_height"
+                android:layout_height="72dp"
                 android:background="@color/colorPrimary"
+                android:fitsSystemWindows="true"
                 app:contentInsetEnd="0dp"
                 app:contentInsetStart="0dp"
                 app:layout_collapseMode="pin">
 
                 <TextView
                     android:id="@+id/toolbar_title"
-                    style="@style/arad_actionbar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -83,8 +86,7 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-        <View
-            style="@style/base_line_horizontal"/>
+        <View style="@style/base_line_horizontal" />
 
 
     </com.google.android.material.appbar.AppBarLayout>

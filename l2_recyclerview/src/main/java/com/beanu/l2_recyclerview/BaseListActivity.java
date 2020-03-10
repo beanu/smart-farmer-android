@@ -1,7 +1,6 @@
 package com.beanu.l2_recyclerview;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.arad.support.recyclerview.adapter.EndlessRecyclerOnScrollListener;
@@ -9,6 +8,7 @@ import com.beanu.arad.support.recyclerview.adapter.LoadMoreAdapterWrapper;
 import com.beanu.arad.support.recyclerview.loadmore.ILoadMoreModel;
 import com.beanu.arad.support.recyclerview.loadmore.LoadMorePresenterImpl;
 import com.beanu.l2_recycleview.R;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 import androidx.annotation.Nullable;
 import androidx.collection.ArrayMap;
@@ -126,20 +126,14 @@ public abstract class BaseListActivity<P extends LoadMorePresenterImpl, M extend
         return new ArrayMap<>();
     }
 
-    @Override
-    public String setupToolBarTitle() {
-        return "列表";
-    }
 
     @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+
+        topBarLayout.setTitle("列表");
+        topBarLayout.addLeftBackImageButton().setOnClickListener(view -> {
+            onBackPressed();
         });
-        return true;
     }
 
     @Override

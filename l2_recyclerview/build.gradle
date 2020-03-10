@@ -19,6 +19,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 dependencies {
@@ -36,10 +40,10 @@ dependencies {
     implementation (rootProject.ext.dependencies["mutiltype"]){
         exclude group: 'com.android.support'
     }
-    implementation (rootProject.ext.dependencies["ink-page-indicator"]){
+    api (rootProject.ext.dependencies["ink-page-indicator"]){
         exclude group: 'com.android.support'
     }
-    implementation (rootProject.ext.dependencies["ultra-ptr"]){
+    api (rootProject.ext.dependencies["ultra-ptr"]){
         exclude group: 'com.android.support'
     }
 

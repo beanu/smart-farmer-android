@@ -17,60 +17,64 @@ public class PlaceOrderPresenterImpl extends PlaceOrderContract.Presenter {
 
     @Override
     public void createBookOrder(String addressId, String cartIds) {
-        mView.showProgress();
+        mView.showProgressDialog();
 
-        mModel.createBookOrder(addressId, cartIds).subscribe(new Observer<Map<String, String>>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
-            }
+        mModel.createBookOrder(addressId, cartIds)
+                .as(bindLifecycle())
+                .subscribe(new Observer<Map<String, String>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+//                mRxManage.add(d);
+                    }
 
-            @Override
-            public void onNext(@NonNull Map<String, String> map) {
-                mView.createBookOrderSuccess(map.get("orderId"));
+                    @Override
+                    public void onNext(@NonNull Map<String, String> map) {
+                        mView.createBookOrderSuccess(map.get("orderId"));
 
-            }
+                    }
 
-            @Override
-            public void onError(@NonNull Throwable e) {
-                mView.hideProgress();
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        mView.hideProgressDialog();
 
-            }
+                    }
 
-            @Override
-            public void onComplete() {
-                mView.hideProgress();
+                    @Override
+                    public void onComplete() {
+                        mView.hideProgressDialog();
 
-            }
-        });
+                    }
+                });
 
 
     }
 
     @Override
     public void requestMyAddressDefault() {
-        mModel.requestMyAddressDefault().subscribe(new Observer<AddressItem>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
-            }
+        mModel.requestMyAddressDefault()
+                .as(bindLifecycle())
+                .subscribe(new Observer<AddressItem>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+//                mRxManage.add(d);
+                    }
 
-            @Override
-            public void onNext(@NonNull AddressItem addressItem) {
-                mView.refreshDefaultAddress(addressItem);
+                    @Override
+                    public void onNext(@NonNull AddressItem addressItem) {
+                        mView.refreshDefaultAddress(addressItem);
 
-            }
+                    }
 
-            @Override
-            public void onError(@NonNull Throwable e) {
+                    @Override
+                    public void onError(@NonNull Throwable e) {
 
-            }
+                    }
 
-            @Override
-            public void onComplete() {
+                    @Override
+                    public void onComplete() {
 
-            }
-        });
+                    }
+                });
 
     }
 }

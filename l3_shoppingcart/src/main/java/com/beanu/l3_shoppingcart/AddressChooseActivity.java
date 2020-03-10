@@ -2,8 +2,6 @@ package com.beanu.l3_shoppingcart;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,7 +12,10 @@ import com.beanu.l3_shoppingcart.model.bean.AddressItem;
 import com.beanu.l3_shoppingcart.mvp.contract.AddressContract;
 import com.beanu.l3_shoppingcart.mvp.model.AddressModelImpl;
 import com.beanu.l3_shoppingcart.mvp.presenter.AddressPresenterImpl;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
@@ -34,7 +35,7 @@ public class AddressChooseActivity extends ToolBarActivity<AddressPresenterImpl,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart_activity_address_choose);
 
-        RecyclerView mRecyclerView =  findViewById(R.id.cart_address_recycleview);
+        RecyclerView mRecyclerView = findViewById(R.id.cart_address_recycleview);
         TextView mTxtAddressAdd = findViewById(R.id.cart_txt_address_add);
         mTxtAddressAdd.setOnClickListener(this);
 
@@ -76,32 +77,22 @@ public class AddressChooseActivity extends ToolBarActivity<AddressPresenterImpl,
     }
 
     @Override
-    public String setupToolBarTitle() {
-        return "选择地址";
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.setTitle("选择地址");
+        topBarLayout.addLeftBackImageButton().setOnClickListener(v -> onBackPressed());
     }
 
-    @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        return true;
-    }
-
-    @Override
-    protected void setStatusBar() {
+    //    @Override
+//    protected void setStatusBar() {
 //        StatusBarUtil.setTransparentForImageView(this, null);
 
-        //设置toolbar的低版本的高度
+    //设置toolbar的低版本的高度
 //        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
 //            ViewGroup.LayoutParams layoutParams = getToolbar().getLayoutParams();
 //            layoutParams.height = getResources().getDimensionPixelSize(R.dimen.toolbar);
 //            getToolbar().setLayoutParams(layoutParams);
 //        }
-    }
+//    }
 
     @Override
     public void refreshAddressList() {

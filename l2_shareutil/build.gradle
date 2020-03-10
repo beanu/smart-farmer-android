@@ -1,4 +1,4 @@
- apply plugin: 'com.android.library'
+apply plugin: 'com.android.library'
 
 android {
     signingConfigs {
@@ -34,16 +34,20 @@ android {
         }
         debug {
 //            if (isL2Debug.toBoolean()) {//debug模式使用config2签名配置
-                minifyEnabled true
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-                signingConfig signingConfigs.config_debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config_debug
 //            }
         }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('androidx.test.espresso:espresso-core:3.2.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -51,7 +55,7 @@ dependencies {
     testImplementation 'junit:junit:4.13'
 
     //第三方依赖
-    implementation rootProject.ext.dependencies["wechat"]
+    api rootProject.ext.dependencies["wechat"]
     implementation rootProject.ext.dependencies["arad"]
 
 }

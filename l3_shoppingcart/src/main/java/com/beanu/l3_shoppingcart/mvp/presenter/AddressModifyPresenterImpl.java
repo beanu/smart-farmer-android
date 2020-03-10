@@ -17,12 +17,14 @@ public class AddressModifyPresenterImpl extends AddressModifyContract.Presenter 
     @Override
     public void addOrUpdateAddress(Map<String, String> params) {
 
-        mView.showProgress();
+        mView.showProgressDialog();
 
-        mModel.addOrUpdateAddress(params).subscribe(new Observer<String>() {
+        mModel.addOrUpdateAddress(params)
+                .as(bindLifecycle())
+                .subscribe(new Observer<String>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
+//                mRxManage.add(d);
             }
 
             @Override
@@ -32,13 +34,13 @@ public class AddressModifyPresenterImpl extends AddressModifyContract.Presenter 
 
             @Override
             public void onError(@NonNull Throwable e) {
-                mView.hideProgress();
+                mView.hideProgressDialog();
                 mView.addOrUpdateFailed(e.getMessage());
             }
 
             @Override
             public void onComplete() {
-                mView.hideProgress();
+                mView.hideProgressDialog();
                 mView.addOrUpdateSuccess();
             }
         });

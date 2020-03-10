@@ -2,11 +2,11 @@ package com.beanu.l3_login.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.beanu.arad.base.ToolBarActivity;
 import com.beanu.l3_login.R;
 import com.beanu.l3_login.SignIn2Activity;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 public class RegisterActivity extends ToolBarActivity {
 
@@ -16,20 +16,11 @@ public class RegisterActivity extends ToolBarActivity {
         setContentView(R.layout.activity_register);
     }
 
-    @Override
-    public String setupToolBarTitle() {
-        return "注册";
-    }
 
     @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        return true;
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.setTitle("注册");
+        topBarLayout.addLeftBackImageButton().setOnClickListener(v -> onBackPressed());
     }
 
     @Override

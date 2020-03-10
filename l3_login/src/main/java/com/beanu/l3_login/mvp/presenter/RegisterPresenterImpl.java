@@ -17,38 +17,41 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
 
     @Override
     public void uploadAvatar(String imgPath) {
-        mModel.uploadAvatar(imgPath).subscribe(new Observer<String>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
-            }
+        mModel.uploadAvatar(imgPath)
+                .as(bindLifecycle())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
 
-            @Override
-            public void onNext(@NonNull String s) {
-                avatarPath = s;
+                    }
 
-            }
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        avatarPath = s;
 
-            @Override
-            public void onError(@NonNull Throwable e) {
+                    }
 
-            }
+                    @Override
+                    public void onError(@NonNull Throwable e) {
 
-            @Override
-            public void onComplete() {
+                    }
 
-            }
-        });
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @Override
     public void register(String phone, String password, String yzm, String nickname) {
-        mView.showProgress();
+        mView.showProgressDialog();
         mModel.register(phone, password, yzm, nickname, avatarPath)
+                .as(bindLifecycle())
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-                        mRxManage.add(d);
+//                        mRxManage.add(d);
                     }
 
                     @Override
@@ -58,7 +61,7 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        mView.hideProgress();
+                        mView.hideProgressDialog();
                         if (e instanceof AradException) {
                             mView.registerFail(e.getMessage());
                         } else {
@@ -69,7 +72,7 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
 
                     @Override
                     public void onComplete() {
-                        mView.hideProgress();
+                        mView.hideProgressDialog();
                         mView.registerSuccess();
                     }
                 });
@@ -79,27 +82,29 @@ public class RegisterPresenterImpl extends RegisterContract.Presenter {
     public void sendSMSCode(String phoneNum) {
 
 
-        mModel.sendSMSCode(phoneNum).subscribe(new Observer<String>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
-            }
+        mModel.sendSMSCode(phoneNum)
+                .as(bindLifecycle())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+//                        mRxManage.add(d);
+                    }
 
-            @Override
-            public void onNext(@NonNull String smsCode) {
-                mView.obtainSMS(smsCode);
-            }
+                    @Override
+                    public void onNext(@NonNull String smsCode) {
+                        mView.obtainSMS(smsCode);
+                    }
 
-            @Override
-            public void onError(@NonNull Throwable e) {
-                e.printStackTrace();
-            }
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                    }
 
-            @Override
-            public void onComplete() {
+                    @Override
+                    public void onComplete() {
 
-            }
-        });
+                    }
+                });
 
     }
 

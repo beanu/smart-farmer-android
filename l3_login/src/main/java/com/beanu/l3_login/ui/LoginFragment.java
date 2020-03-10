@@ -2,7 +2,6 @@ package com.beanu.l3_login.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -26,6 +25,8 @@ import com.beanu.l3_login.R;
 import com.beanu.l3_login.mvp.contract.LoginContract;
 import com.beanu.l3_login.mvp.model.LoginModelImpl;
 import com.beanu.l3_login.mvp.presenter.LoginPresenterImpl;
+
+import androidx.annotation.Nullable;
 
 
 /**
@@ -52,13 +53,14 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
             } else if (result.getPlatform() == LoginPlatform.WX) {
                 loginType = "2";
             }
-            hideProgress();
+            hideProgressDialog();
 
 
-            showProgress();
-            Arad.preferences.putString(Constants.P_LOGIN_OPENID, result.getToken().getOpenid());
+
+            Arad.preferences.put(Constants.P_LOGIN_OPENID, result.getToken().getOpenid());
             Arad.preferences.flush();
 
+            showProgressDialog();
             mPresenter.login(null, null, loginType, result.getToken().getOpenid(), result.getUserInfo().getSex(), result.getUserInfo().getHeadImageUrl(), result.getUserInfo().getNickname());
         }
 
@@ -66,13 +68,13 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
         public void loginFailure(Exception e) {
             Log.i("TAG", "登录失败");
 
-            hideProgress();
+            hideProgressDialog();
         }
 
         @Override
         public void loginCancel() {
 
-            hideProgress();
+            hideProgressDialog();
             Log.i("TAG", "登录取消");
         }
     };
@@ -153,10 +155,10 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
             Intent intent = new Intent(getActivity(), FindPwdActivity.class);
             startActivity(intent);
         } else if (i == R.id.btn_login_weChat) {
-            showProgress();
+            showProgressDialog();
             LoginUtil.login(getActivity(), LoginPlatform.WX, mLoginListener, true);
         } else if (i == R.id.btn_login_QQ) {
-            showProgress();
+            showProgressDialog();
             LoginUtil.login(getActivity(), LoginPlatform.QQ, mLoginListener, true);
         }
     }
@@ -179,7 +181,7 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
 
     @Override
     public void loginSuccess() {
-        hideProgress();
+        hideProgressDialog();
         gotoMain();
         getActivity().finish();
 
@@ -187,7 +189,7 @@ public class LoginFragment extends ToolBarFragment<LoginPresenterImpl, LoginMode
 
     @Override
     public void loginFailed(String error) {
-        hideProgress();
+        hideProgressDialog();
         ToastUtils.showShort(error);
     }
 }

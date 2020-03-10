@@ -17,6 +17,7 @@ import com.beanu.l3_login.R;
 import com.beanu.l3_login.mvp.contract.ChangePwdContract;
 import com.beanu.l3_login.mvp.model.ChangePwdModelImpl;
 import com.beanu.l3_login.mvp.presenter.ChangePwdPresenterImpl;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 /**
  * 找回密码
@@ -103,19 +104,9 @@ public class FindPwdActivity extends ToolBarActivity<ChangePwdPresenterImpl, Cha
     }
 
     @Override
-    public String setupToolBarTitle() {
-        return "找回密码";
-    }
-
-    @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        return true;
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
+        topBarLayout.setTitle("找回密码");
+        topBarLayout.setOnClickListener(v -> onBackPressed());
     }
 
     @Override

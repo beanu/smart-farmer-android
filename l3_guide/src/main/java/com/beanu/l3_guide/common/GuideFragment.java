@@ -3,8 +3,6 @@ package com.beanu.l3_guide.common;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +15,9 @@ import com.beanu.l3_guide.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 public class GuideFragment extends Fragment {
 
@@ -54,7 +55,7 @@ public class GuideFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    Arad.preferences.putBoolean(Constants.P_ISFIRSTLOAD, false);
+                    Arad.preferences.put(Constants.P_ISFIRSTLOAD, false);
                     Arad.preferences.flush();
 
 //                    Intent intent = new Intent(getActivity(), MainActivity.class);

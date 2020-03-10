@@ -1,7 +1,6 @@
 package com.beanu.l3_shoppingcart;
 
 import android.os.Bundle;
-import androidx.collection.ArrayMap;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,9 @@ import com.beanu.l3_shoppingcart.model.bean.AddressItem;
 import com.beanu.l3_shoppingcart.mvp.contract.AddressModifyContract;
 import com.beanu.l3_shoppingcart.mvp.model.AddressModifyModelImpl;
 import com.beanu.l3_shoppingcart.mvp.presenter.AddressModifyPresenterImpl;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
+import androidx.collection.ArrayMap;
 import cn.qqtheme.framework.entity.City;
 import cn.qqtheme.framework.entity.County;
 import cn.qqtheme.framework.entity.Province;
@@ -125,21 +126,11 @@ public class AddressAddOrUpdateActivity extends ToolBarActivity<AddressModifyPre
     }
 
     @Override
-    public String setupToolBarTitle() {
-        return "添加地址";
-    }
+    public void initTopBar(QMUITopBarLayout topBarLayout) {
 
-    @Override
-    public boolean setupToolBarLeftButton(View leftButton) {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        return true;
+        topBarLayout.setTitle("添加地址");
+        topBarLayout.addLeftBackImageButton().setOnClickListener(v -> onBackPressed());
     }
-
 
     @Override
     public void addOrUpdateSuccess() {

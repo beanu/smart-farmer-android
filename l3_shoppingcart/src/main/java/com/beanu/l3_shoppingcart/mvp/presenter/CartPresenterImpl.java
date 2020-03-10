@@ -32,34 +32,32 @@ public class CartPresenterImpl extends CartContract.Presenter implements CartVie
 
 
     @Override
-    public void onStart() {
-    }
-
-    @Override
     public void requestCartList() {
 
-        mModel.requestCartList().subscribe(new Observer<List<CartItem>>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
-            }
+        mModel.requestCartList()
+                .as(bindLifecycle())
+                .subscribe(new Observer<List<CartItem>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+//                mRxManage.add(d);
+                    }
 
-            @Override
-            public void onNext(@NonNull List<CartItem> cartItems) {
-                mProductList.clear();
-                mProductList.addAll(cartItems);
-            }
+                    @Override
+                    public void onNext(@NonNull List<CartItem> cartItems) {
+                        mProductList.clear();
+                        mProductList.addAll(cartItems);
+                    }
 
-            @Override
-            public void onError(@NonNull Throwable e) {
+                    @Override
+                    public void onError(@NonNull Throwable e) {
 
-            }
+                    }
 
-            @Override
-            public void onComplete() {
-                mView.requestCartListSuccess();
-            }
-        });
+                    @Override
+                    public void onComplete() {
+                        mView.requestCartListSuccess();
+                    }
+                });
     }
 
     @Override
@@ -75,27 +73,29 @@ public class CartPresenterImpl extends CartContract.Presenter implements CartVie
         if (mProductList.size() > 0 && !deleteMode) {
             changed();
             //存到服务器
-            mModel.updateAllCartShop(isSelected ? 1 : 0).subscribe(new Observer<Void>() {
-                @Override
-                public void onSubscribe(@NonNull Disposable d) {
-                    mRxManage.add(d);
-                }
+            mModel.updateAllCartShop(isSelected ? 1 : 0)
+                    .as(bindLifecycle())
+                    .subscribe(new Observer<Void>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+//                            mRxManage.add(d);
+                        }
 
-                @Override
-                public void onNext(@NonNull Void aVoid) {
+                        @Override
+                        public void onNext(@NonNull Void aVoid) {
 
-                }
+                        }
 
-                @Override
-                public void onError(@NonNull Throwable e) {
+                        @Override
+                        public void onError(@NonNull Throwable e) {
 
-                }
+                        }
 
-                @Override
-                public void onComplete() {
+                        @Override
+                        public void onComplete() {
 
-                }
-            });
+                        }
+                    });
         }
     }
 
@@ -116,27 +116,29 @@ public class CartPresenterImpl extends CartContract.Presenter implements CartVie
         //存到服务器
         if (!TextUtils.isEmpty(cartIds)) {
 
-            mModel.deleteCartShop(cartIds).subscribe(new Observer<Void>() {
-                @Override
-                public void onSubscribe(@NonNull Disposable d) {
-                    mRxManage.add(d);
-                }
+            mModel.deleteCartShop(cartIds)
+                    .as(bindLifecycle())
+                    .subscribe(new Observer<Void>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+//                    mRxManage.add(d);
+                        }
 
-                @Override
-                public void onNext(@NonNull Void aVoid) {
+                        @Override
+                        public void onNext(@NonNull Void aVoid) {
 
-                }
+                        }
 
-                @Override
-                public void onError(@NonNull Throwable e) {
+                        @Override
+                        public void onError(@NonNull Throwable e) {
 
-                }
+                        }
 
-                @Override
-                public void onComplete() {
+                        @Override
+                        public void onComplete() {
 
-                }
-            });
+                        }
+                    });
 
         }
     }
@@ -144,27 +146,29 @@ public class CartPresenterImpl extends CartContract.Presenter implements CartVie
     @Override
     public void updateCartShop(CartItem cartItem) {
 
-        mModel.updateCartShop(cartItem).subscribe(new Observer<Integer>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
-            }
+        mModel.updateCartShop(cartItem)
+                .as(bindLifecycle())
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+//                mRxManage.add(d);
+                    }
 
-            @Override
-            public void onNext(@NonNull Integer integer) {
+                    @Override
+                    public void onNext(@NonNull Integer integer) {
 
-            }
+                    }
 
-            @Override
-            public void onError(@NonNull Throwable e) {
+                    @Override
+                    public void onError(@NonNull Throwable e) {
 
-            }
+                    }
 
-            @Override
-            public void onComplete() {
+                    @Override
+                    public void onComplete() {
 
-            }
-        });
+                    }
+                });
     }
 
 

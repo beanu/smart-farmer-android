@@ -19,65 +19,69 @@ public class AddressPresenterImpl extends AddressContract.Presenter {
     private List<AddressItem> mAddressItemList;
 
     @Override
-    public void onStart() {
+    public void onCreate() {
         mAddressItemList = new ArrayList<>();
     }
 
     @Override
     public void addressList() {
 
-        mModel.addressList().subscribe(new Observer<List<AddressItem>>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
-            }
+        mModel.addressList()
+                .as(bindLifecycle())
+                .subscribe(new Observer<List<AddressItem>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+//                mRxManage.add(d);
+                    }
 
-            @Override
-            public void onNext(@NonNull List<AddressItem> addressItems) {
-                mAddressItemList.clear();
-                mAddressItemList.addAll(addressItems);
-            }
+                    @Override
+                    public void onNext(@NonNull List<AddressItem> addressItems) {
+                        mAddressItemList.clear();
+                        mAddressItemList.addAll(addressItems);
+                    }
 
-            @Override
-            public void onError(@NonNull Throwable e) {
+                    @Override
+                    public void onError(@NonNull Throwable e) {
 
-            }
+                    }
 
-            @Override
-            public void onComplete() {
-                mView.refreshAddressList();
+                    @Override
+                    public void onComplete() {
+                        mView.refreshAddressList();
 
-            }
-        });
+                    }
+                });
     }
 
     @Override
     public void addressDelete(final int position) {
         if (mAddressItemList.size() > 0) {
             String addressId = mAddressItemList.get(position).getId();
-            mModel.addressDelete(addressId).subscribe(new Observer<String>() {
+            mModel.addressDelete(addressId)
+                    .as(bindLifecycle())
+                    .subscribe(new Observer<String>() {
 
-                @Override
-                public void onError(Throwable e) {
+                        @Override
+                        public void onError(Throwable e) {
 
-                }
+                        }
 
-                @Override
-                public void onComplete() {
-                    mAddressItemList.remove(position);
-                    mView.refreshDeleteAddress(position);
-                }
+                        @Override
+                        public void onComplete() {
+                            mAddressItemList.remove(position);
+                            mView.refreshDeleteAddress(position);
+                        }
 
-                @Override
-                public void onSubscribe(@NonNull Disposable d) {
-                    mRxManage.add(d);
-                }
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+//                            mRxManage.add(d);
+                        }
 
-                @Override
-                public void onNext(String s) {
+                        @Override
+                        public void onNext(String s) {
 
-                }
-            });
+                        }
+                    });
         }
     }
 
@@ -85,32 +89,34 @@ public class AddressPresenterImpl extends AddressContract.Presenter {
     public void addressDefault(final int position) {
         String addressId = mAddressItemList.get(position).getId();
 
-        mModel.addressDefault(addressId).subscribe(new Observer<String>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                mRxManage.add(d);
-            }
+        mModel.addressDefault(addressId)
+                .as(bindLifecycle())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+//                mRxManage.add(d);
+                    }
 
-            @Override
-            public void onNext(@NonNull String s) {
+                    @Override
+                    public void onNext(@NonNull String s) {
 
-            }
+                    }
 
-            @Override
-            public void onError(@NonNull Throwable e) {
+                    @Override
+                    public void onError(@NonNull Throwable e) {
 
-            }
+                    }
 
-            @Override
-            public void onComplete() {
-                for (AddressItem item : mAddressItemList) {
-                    item.setIs_default(0);
-                }
-                mAddressItemList.get(position).setIs_default(1);
+                    @Override
+                    public void onComplete() {
+                        for (AddressItem item : mAddressItemList) {
+                            item.setIs_default(0);
+                        }
+                        mAddressItemList.get(position).setIs_default(1);
 
-                mView.refreshDefaultAddress(position);
-            }
-        });
+                        mView.refreshDefaultAddress(position);
+                    }
+                });
     }
 
     public List<AddressItem> getAddressItemList() {
